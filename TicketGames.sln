@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Presentation", "0 - Presentation", "{96ED9419-4942-4482-B185-7FFE1C81EABD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - CrossCutting", "1 - CrossCutting", "{259CDD5B-197A-4E22-96C2-C50DAD22450B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - BoundedContext", "2 - BoundedContext", "{778169D0-165D-4CE1-A340-3957B1BAD72B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Payment", "3 - Payment", "{37459005-F59D-4866-9705-0A613B463304}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "99 - Tests", "99 - Tests", "{C4F38FDF-F7A5-4117-9F07-0E2BD135E7F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketGames.API", "TicketGames.API\TicketGames.API.csproj", "{5AF51868-068D-4DDB-873A-E7A9E440485F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5AF51868-068D-4DDB-873A-E7A9E440485F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AF51868-068D-4DDB-873A-E7A9E440485F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AF51868-068D-4DDB-873A-E7A9E440485F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AF51868-068D-4DDB-873A-E7A9E440485F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5AF51868-068D-4DDB-873A-E7A9E440485F} = {96ED9419-4942-4482-B185-7FFE1C81EABD}
+	EndGlobalSection
+EndGlobal
