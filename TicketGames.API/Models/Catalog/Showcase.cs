@@ -26,6 +26,17 @@ namespace TicketGames.API.Models.Catalog
             {
                 case ShowcaseType.Banner:
                     {
+
+                        List<Image> images = new List<Image>();
+
+                        images.Add(new Image() { Id = 1, ImageType = ImageType.Cover, URL = "1.png" });
+                        images.Add(new Image() { Id = 2, ImageType = ImageType.Detail, URL = "1-D-1.png" });
+                        images.Add(new Image() { Id = 3, ImageType = ImageType.Detail, URL = "1-D-2.png" });
+                        images.Add(new Image() { Id = 4, ImageType = ImageType.Detail, URL = "1-D-3.png" });
+                        images.Add(new Image() { Id = 5, ImageType = ImageType.Detail, URL = "1-D-4.png" });
+                        images.Add(new Image() { Id = 6, ImageType = ImageType.Detail, URL = "1-D-5.png" });
+                        images.Add(new Image() { Id = 7, ImageType = ImageType.Banner, URL = "1-B.png" });
+
                         Product productone = new Product()
                         {
                             Id = 1,
@@ -34,13 +45,18 @@ namespace TicketGames.API.Models.Catalog
                             Department = new Department() { Id = 1, Name = "Jogos" },
                             ShortDescription = "Watch Dogs 2 é um jogo eletrônico desenvolvido pela Ubisoft Montreal que sucede o popular Watch Dogs, de 2014.",
                             Value = 10.00m,
-                            UrlImage = "1.png",
-                            UrlImageBanner = "1-B.png",
+                            Images = images,
                             SalesMade = 98,
                             MissingtoSell = 2
                         };
 
                         this.Products.Add(productone);
+
+
+                        List<Image> imagestwo = new List<Image>();
+
+                        imagestwo.Add(new Image() { Id = 8, ImageType = ImageType.Cover, URL = "10.png" });                        
+                        imagestwo.Add(new Image() { Id = 9, ImageType = ImageType.Banner, URL = "10-B.png" });
 
                         Product producttwo = new Product()
                         {
@@ -50,8 +66,7 @@ namespace TicketGames.API.Models.Catalog
                             Department = new Department() { Id = 4, Name = "Jogos" },
                             ShortDescription = "Gears of War 4 é um jogo de tiro em terceira pessoa produzido pelo estúdio canadense The Coalition. O quinto título da série Gears of War, foi publicado pela Microsoft Studios para Microsoft Windows e Xbox One em 11 de Outubro de 2016",
                             Value = 5.00m,
-                            UrlImage = "10.png",
-                            UrlImageBanner = "10-B.png",
+                            Images = imagestwo,
                             SalesMade = 20,
                             MissingtoSell = 80
                         };

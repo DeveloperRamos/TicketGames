@@ -13,7 +13,7 @@ namespace TicketGames.API.Controllers
     [ApiExplorerSettings(IgnoreApi = false)]
     public class ShowcaseController : ApiController
     {
-        [Authorize]
+        //[Authorize]
         [HttpGet, Route()]
         public IHttpActionResult Get()
         {

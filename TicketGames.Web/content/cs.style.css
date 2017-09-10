@@ -44,7 +44,7 @@ form {
 }
 
 .icons {
-    background-image: url(../images/payment.png);
+    background-image: url('images/payment.png');
     background-repeat: no-repeat;
     text-indent: -9999px;
     display: inline-block;

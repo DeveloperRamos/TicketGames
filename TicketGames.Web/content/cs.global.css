@@ -1088,3 +1088,14 @@ label.control-label {
 #customer-login .wrapper-title {
     margin-left: 10px;
 }
+
+/*Images*/
+.img1180x400 {
+    width: 1180px !important;
+    height: 400px !important;
+}
+
+.img200x267 {
+    width: 200px !important;
+    height: 267px !important;
+}

@@ -4,43 +4,45 @@
             <div id="home-slider" class="responsive-slider hideControls">
                 <div class="slides" data-group="slides">
                     <ul>
-                        <li>
-                            <div class="slide-body" data-group="slide">
-                                <img src="images/demos/banner_1180x400.png" alt="">
-                                <div class="caption image">
-                                    <img src="images/demos/demo_200x267.png" alt="">
+                        <li ng-repeat="product in vmHome.banner.Products">
+                            <div class="slide-body" data-group="slide" ng-repeat="image in product.Images | filter: { ImageType: '3' } | limitTo: 6">
+                                <!--<img src="images/demos/banner_1180x400.png" alt="">-->
+                                <img src="images/{{image.URL}}" alt="" class="img1180x400">
+                                <div class="caption image" ng-repeat="image in product.Images | filter: { ImageType: '1' }">
+                                    <!--<img src="images/demos/demo_200x267.png" alt="">-->
+                                    <img src="images/{{image.URL}}" alt="" class="img200x267">
                                 </div>
                                 <div class="caption header">
                                     <div class="heading" data-animate="slideAppearRightToLeft" data-delay="500" data-length="300">
                                         <a href="./collection.html">
                                             <span class="caption-content" style="color:#47cbde">
-                                                <span>Lorem of Ipsum</span><br>
-                                                Amet Space
+                                                <span>{{product.Name}}</span>
+
                                             </span>
                                         </a>
                                     </div>
                                     <div class="content" data-animate="slideAppearRightToLeft" data-delay="800" data-length="300">
-                                        <span class="caption-content" style="color:#ea5210">PRE-ORDER</span>
+                                        <!--<span class="caption-content" style="color:#ea5210">PRE-ORDER</span>
                                         <span class="caption-content" style="color:#ea5210">
                                             <br>
                                             RELEASE DATE :<span style="color:#ffffff"> Dec 30 2013</span>
-                                        </span>
+                                        </span>-->
                                     </div>
                                     <div class="caption1" data-animate="slideAppearRightToLeft" data-delay="1000">
                                         <span class="caption-content" style="color:#ffffff">
-                                            Several major cities around the world have been reported to be under attack. New York Harbor in Manhattan is among those in distress. <br> Will you accept the call ?
+                                            {{product.ShortDescription}}
                                         </span>
                                     </div>
                                     <div class="slide-price">
                                         <span class="caption-content" style="color:#ea5210">
-                                            $58.89
+                                            R$ {{product.Value}}
                                         </span>
                                         <a href="./collection.html">Details</a>
                                     </div>
                                 </div>
                             </div>
                         </li>
-                        <li>
+                        <!--<li>
                             <div class="slide-body" data-group="slide">
                                 <img src="images/demos/banner_1180x400.png" alt="">
                                 <div class="caption image">
@@ -75,8 +77,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </li>
-                        <li>
+                        </li>-->
+                        <!--<li>
                             <div class="slide-body" data-group="slide">
                                 <img src="images/demos/banner_1180x400.png" alt="">
                                 <div class="caption image">
@@ -111,7 +113,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </li>
+                        </li>-->
                     </ul>
                 </div>
                 <div class="control-slideshow">
@@ -136,63 +138,63 @@
         <div id="col-main" class="clearfix">
 
             <script type="text/javascript">
-                            jQuery(document).ready(function ($) {
+                jQuery(document).ready(function ($) {
 
-                                initTabActive();
+                    initTabActive();
 
-                                //  When user clicks on tab, this code will be executed
-                                $(".head_tabs").on(clickEv, function () {
+                    //  When user clicks on tab, this code will be executed
+                    $(".head_tabs").on(clickEv, function () {
 
-                                    if (!$(this).parent().hasClass('active')) {
-                                        //  First remove class "active" from currently active tab
-                                        $(".head_tabs").parent().removeClass("active");
+                        if (!$(this).parent().hasClass('active')) {
+                            //  First remove class "active" from currently active tab
+                            $(".head_tabs").parent().removeClass("active");
 
-                                        //  Here we get the data-src(parent) value of the selected tab
-                                        var $src_tab = $(this).attr("data-src");
+                            //  Here we get the data-src(parent) value of the selected tab
+                            var $src_tab = $(this).attr("data-src");
 
-                                        //  Now add class "active" to the selected/clicked tab
-                                        $($src_tab).parent().addClass("active");
+                            //  Now add class "active" to the selected/clicked tab
+                            $($src_tab).parent().addClass("active");
 
-                                        //  Hide all tab content
-                                        $(".content_tabs").hide();
-
-
-                                        //  Here we get the href value of the selected tab
-                                        var $selected_tab = $(this).attr("href");
-
-                                        //  Show the selected tab content
-                                        if (isMobile.any())
-                                            $($selected_tab).show();
-                                        else
-                                            $($selected_tab).fadeIn();
-
-                                        // Scroll to content
-                                        $('html, body').animate({
-                                            scrollTop: $($selected_tab).offset().top - 80
-                                        }, 300);
-
-                                        // re-call position quickshop
-                                        positionQuickshop();
-
-                                        //  Here we get the href value of the selected tab
-                                        var $selected_carousel = $(this).attr("data-crs");
-
-                                    }
-                                    //  At the end, we add return false so that the click on the link is not executed
-                                    return false;
-                                });
-
-                                /* Function: init item active */
-                                function initTabActive() {
-                                    // Content
-                                    jQuery('#tabs_content_container').find('.content_tabs').first().show();
-                                    jQuery('#tabs_content_container').find('.content_tabs').first().prev().addClass('active');
+                            //  Hide all tab content
+                            $(".content_tabs").hide();
 
 
-                                    jQuery('#tabs_container #tabs').find('.head_tabs').first().parent().addClass('active');
+                            //  Here we get the href value of the selected tab
+                            var $selected_tab = $(this).attr("href");
 
-                                }
-                            });
+                            //  Show the selected tab content
+                            if (isMobile.any())
+                                $($selected_tab).show();
+                            else
+                                $($selected_tab).fadeIn();
+
+                            // Scroll to content
+                            $('html, body').animate({
+                                scrollTop: $($selected_tab).offset().top - 80
+                            }, 300);
+
+                            // re-call position quickshop
+                            positionQuickshop();
+
+                            //  Here we get the href value of the selected tab
+                            var $selected_carousel = $(this).attr("data-crs");
+
+                        }
+                        //  At the end, we add return false so that the click on the link is not executed
+                        return false;
+                    });
+
+                    /* Function: init item active */
+                    function initTabActive() {
+                        // Content
+                        jQuery('#tabs_content_container').find('.content_tabs').first().show();
+                        jQuery('#tabs_content_container').find('.content_tabs').first().prev().addClass('active');
+
+
+                        jQuery('#tabs_container #tabs').find('.head_tabs').first().parent().addClass('active');
+
+                    }
+                });
             </script>
             <!--home-tabs-->
             <div id="tabs_container" class="visible-md visible-lg clearfix">
@@ -279,6 +281,17 @@
                                                     <option value="502622237">horror - €60.00</option>
                                                 </select>
                                             </div>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-success" role="progressbar" style="width:100%">
+                                                    Sorteio 01/12/2017
+                                                </div>
+                                                <div class="progress-bar progress-bar-warning" role="progressbar" style="width:0%">
+                                                    0%
+                                                </div>
+                                                <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
+                                                    Danger
+                                                </div>-->
+                                            </div>
                                         </div>
                                     </li>
                                 </ul>
@@ -300,7 +313,7 @@
                                                 </div>
                                             </div>
                                             <span class="sale_banner animated">
-                                                <img src="./assets/images/saleoff.png" title="Sale Off" alt="Sale Off">
+                                                <img src="../../content/images/saleoff.png" title="Sale Off" alt="Sale Off">
                                             </span>
                                         </a>
                                     </li>
@@ -323,6 +336,17 @@
                                                     <option selected="selected" value="455695609">Ferrari / Modern - €59.00</option>
                                                     <option value="502625841">Lamborghini / Modern - €70.00</option>
                                                 </select>
+                                            </div>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-success" role="progressbar" style="width:100%">
+                                                    Sorteio 10/11/2017
+                                                </div>
+                                                <div class="progress-bar progress-bar-warning" role="progressbar" style="width:0%">
+                                                    0%
+                                                </div>
+                                                <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
+                                                    Danger
+                                                </div>-->
                                             </div>
                                         </div>
                                     </li>
@@ -365,6 +389,17 @@
                                                 <select name="id">
                                                     <option selected="selected" value="455695597">animation - €59.00</option>
                                                 </select>
+                                            </div>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-success" role="progressbar" style="width:99%">
+                                                    99%
+                                                </div>
+                                                <div class="progress-bar progress-bar-warning" role="progressbar" style="width:1%">
+                                                    1%
+                                                </div>
+                                                <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
+                                                    Danger
+                                                </div>-->
                                             </div>
                                         </div>
                                     </li>
@@ -409,6 +444,17 @@
                                                     <option value="502628309">horror - €65.00</option>
                                                 </select>
                                             </div>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-success" role="progressbar" style="width:89%">
+                                                    89%
+                                                </div>
+                                                <div class="progress-bar progress-bar-warning" role="progressbar" style="width:11%">
+                                                    11%
+                                                </div>
+                                                <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
+                                                    Danger
+                                                </div>-->
+                                            </div>
                                         </div>
                                     </li>
                                 </ul>
@@ -452,6 +498,17 @@
                                                     <option value="502628861">action - €65.00</option>
                                                 </select>
                                             </div>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-success" role="progressbar" style="width:100%">
+                                                    Sorteio 01/12/2017
+                                                </div>
+                                                <div class="progress-bar progress-bar-warning" role="progressbar" style="width:0%">
+                                                    0%
+                                                </div>
+                                                <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
+                                                    Danger
+                                                </div>-->
+                                            </div>
                                         </div>
                                     </li>
                                 </ul>
@@ -494,6 +551,17 @@
                                                     <option selected="selected" value="456848697">venture - €59.00</option>
                                                     <option value="502630317">science fiction - €69.00</option>
                                                 </select>
+                                            </div>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-success" role="progressbar" style="width:30%">
+                                                    30%
+                                                </div>
+                                                <div class="progress-bar progress-bar-warning" role="progressbar" style="width:70%">
+                                                    70%
+                                                </div>
+                                                <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
+                                                    Danger
+                                                </div>-->
                                             </div>
                                         </div>
                                     </li>
@@ -548,6 +616,17 @@
                                                     <option value="502624265">animation - €65.00</option>
                                                 </select>
                                             </div>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-success" role="progressbar" style="width:30%">
+                                                    30%
+                                                </div>
+                                                <div class="progress-bar progress-bar-warning" role="progressbar" style="width:70%">
+                                                    70%
+                                                </div>
+                                                <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
+                                                    Danger
+                                                </div>-->
+                                            </div>
                                         </div>
                                     </li>
                                 </ul>
@@ -569,7 +648,7 @@
                                                 </div>
                                             </div>
                                             <span class="sale_banner animated">
-                                                <img src="./assets/images/saleoff.png" title="Sale Off" alt="Sale Off">
+                                                <img src="../../content/images/saleoff.png" title="Sale Off" alt="Sale Off">
                                             </span>
                                         </a>
                                     </li>
@@ -592,6 +671,17 @@
                                                     <option selected="selected" value="455695609">Ferrari / Modern - €59.00</option>
                                                     <option value="502625841">Lamborghini / Modern - €70.00</option>
                                                 </select>
+                                            </div>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-success" role="progressbar" style="width:30%">
+                                                    30%
+                                                </div>
+                                                <div class="progress-bar progress-bar-warning" role="progressbar" style="width:70%">
+                                                    70%
+                                                </div>
+                                                <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
+                                                    Danger
+                                                </div>-->
                                             </div>
                                         </div>
                                     </li>
@@ -635,6 +725,17 @@
                                                     <option selected="selected" value="455695597">animation - €59.00</option>
                                                 </select>
                                             </div>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-success" role="progressbar" style="width:30%">
+                                                    30%
+                                                </div>
+                                                <div class="progress-bar progress-bar-warning" role="progressbar" style="width:70%">
+                                                    70%
+                                                </div>
+                                                <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
+                                                    Danger
+                                                </div>-->
+                                            </div>
                                         </div>
                                     </li>
                                 </ul>
@@ -676,6 +777,17 @@
                                                 <select name="id">
                                                     <option selected="selected" value="455695573">action - €59.00</option>
                                                 </select>
+                                            </div>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-success" role="progressbar" style="width:30%">
+                                                    30%
+                                                </div>
+                                                <div class="progress-bar progress-bar-warning" role="progressbar" style="width:70%">
+                                                    70%
+                                                </div>
+                                                <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
+                                                    Danger
+                                                </div>-->
                                             </div>
                                         </div>
                                     </li>
@@ -719,6 +831,17 @@
                                                     <option selected="selected" value="455695585">action - €59.00</option>
                                                     <option value="502628309">horror - €65.00</option>
                                                 </select>
+                                            </div>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-success" role="progressbar" style="width:30%">
+                                                    30%
+                                                </div>
+                                                <div class="progress-bar progress-bar-warning" role="progressbar" style="width:70%">
+                                                    70%
+                                                </div>
+                                                <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
+                                                    Danger
+                                                </div>-->
                                             </div>
                                         </div>
                                     </li>
@@ -1057,7 +1180,7 @@
                                                 </div>
                                             </div>
                                             <span class="sale_banner animated">
-                                                <img src="./assets/images/saleoff.png" title="Sale Off" alt="Sale Off">
+                                                <img src="../../content/images/saleoff.png" title="Sale Off" alt="Sale Off">
                                             </span>
                                         </a>
                                     </li>
@@ -1368,7 +1491,7 @@
                                                 </div>
                                             </div>
                                             <span class="sale_banner animated">
-                                                <img src="./assets/images/saleoff.png" title="Sale Off" alt="Sale Off">
+                                                <img src="../../content/images/saleoff.png" title="Sale Off" alt="Sale Off">
                                             </span>
                                         </a>
                                     </li>
@@ -1945,7 +2068,7 @@
                                                 </div>
                                             </div>
                                             <span class="sale_banner animated">
-                                                <img src="./assets/images/saleoff.png" title="Sale Off" alt="Sale Off">
+                                                <img src="../../content/images/saleoff.png" title="Sale Off" alt="Sale Off">
                                             </span>
                                         </a>
                                     </li>
@@ -2112,7 +2235,7 @@
                     <div class="sb-title">Platforms &amp; Games</div>
                     <div>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas -<a href="./collection.html"> BUY THIS THEMES</a></div>
                 </div>
-                <div class="platforms_products col-md-8 not-animated clearfix" data-animate="fadeInUp" data-delay="300">
+                <div class="platforms_products col-md-8 animated clearfix" data-animate="fadeInUp" data-delay="300">
                     <header class="control-group control-group-1 clearfix">
                         <div class="platforms-wrapper-title">
                             <span class="sb-title">Lorem Ipsum</span>
@@ -2148,7 +2271,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="platforms_products col-md-8 not-animated clearfix" data-animate="fadeInUp" data-delay="300">
+                <div class="platforms_products col-md-8 animated clearfix" data-animate="fadeInUp" data-delay="300">
                     <header class="control-group control-group-2 clearfix">
                         <div class="platforms-wrapper-title">
                             <span class="sb-title">Lorem Ipsum</span>
@@ -2184,7 +2307,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="platforms_products col-md-8 not-animated clearfix" data-animate="fadeInUp" data-delay="300">
+                <div class="platforms_products col-md-8 animated clearfix" data-animate="fadeInUp" data-delay="300">
                     <header class="control-group control-group-3 clearfix">
                         <div class="platforms-wrapper-title">
                             <span class="sb-title">Lorem Ipsum</span>
@@ -2228,32 +2351,32 @@
 
             <!--home-block-->
             <div id="home-block">
-                <div class="block-image not-animated col-md-4" data-animate="bounceIn" data-delay="150">
+                <div class="block-image animated col-md-4" data-animate="bounceIn" data-delay="150">
                     <a class="image-1" href="./collection.html">
                         <img class="pulse" src="images/demos/home_block_image_1.png" alt="">
                     </a>
                 </div>
-                <div class="block-image not-animated col-md-4" data-animate="bounceIn" data-delay="300">
+                <div class="block-image animated col-md-4" data-animate="bounceIn" data-delay="300">
                     <a class="image-2" href="./product.html">
                         <img class="pulse" src="images/demos/home_block_image_2.png" alt="">
                     </a>
                 </div>
-                <div class="block-image not-animated col-md-4" data-animate="bounceIn" data-delay="450">
+                <div class="block-image animated col-md-4" data-animate="bounceIn" data-delay="450">
                     <a class="image-3" href="./collection.html">
                         <img class="pulse" src="images/demos/home_block_image_3.png" alt="">
                     </a>
                 </div>
-                <div class="block-image not-animated col-md-4" data-animate="bounceIn" data-delay="600">
+                <div class="block-image animated col-md-4" data-animate="bounceIn" data-delay="600">
                     <a class="image-4" href="./product.html">
                         <img class="pulse" src="images/demos/home_block_image_4.png" alt="">
                     </a>
                 </div>
-                <div class="block-image not-animated col-md-4" data-animate="bounceIn" data-delay="750">
+                <div class="block-image animated col-md-4" data-animate="bounceIn" data-delay="750">
                     <a class="image-5" href="./collection.html">
                         <img class="pulse" src="images/demos/home_block_image_5.png" alt="">
                     </a>
                 </div>
-                <div class="block-image not-animated col-md-4" data-animate="bounceIn" data-delay="900">
+                <div class="block-image animated col-md-4" data-animate="bounceIn" data-delay="900">
                     <a class="image-6" href="./product.html">
                         <img class="pulse" src="images/demos/home_block_image_6.png" alt="">
                     </a>
@@ -2276,13 +2399,13 @@
 
             <div class="container">
                 <div class="row">
-                    <div class="home_products col-md-8 not-animated clearfix" data-animate="fadeInUp" data-delay="300">
+                    <div class="home_products col-md-8 animated clearfix" data-animate="fadeInUp" data-delay="300">
                         <div class="control-group visible-xs">
                             <div class="sb-title header_home_products row" style="color:#59a73b">Xbox 360 Games</div>
                         </div>
                         <div class="home_products_wrapper">
                             <div id="home_products_1" class="clearfix">
-                                <div class="section-item not-animated" data-animate="bounceIn" data-delay="300">
+                                <div class="section-item animated" data-animate="bounceIn" data-delay="300">
                                     <form action="/cart/add" method="post" enctype="multipart/form-data">
                                         <ul class="row-container list-unstyled clearfix">
                                             <li class="col-md-5 row-left">
@@ -2308,11 +2431,22 @@
                                                         <option value="502624265">animation - €65.00</option>
                                                     </select>
                                                 </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-success" role="progressbar" style="width:100%">
+                                                        Sorteio 10/12/2017
+                                                    </div>
+                                                    <div class="progress-bar progress-bar-warning" role="progressbar" style="width:0%">
+                                                        0%
+                                                    </div>
+                                                    <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
+                                                        Danger
+                                                    </div>-->
+                                                </div>
                                             </li>
                                         </ul>
                                     </form>
                                 </div>
-                                <div class="section-item not-animated" data-animate="bounceIn" data-delay="600">
+                                <div class="section-item animated" data-animate="bounceIn" data-delay="600">
                                     <form action="/cart/add" method="post" enctype="multipart/form-data">
                                         <ul class="row-container list-unstyled clearfix">
                                             <li class="col-md-5 row-left">
@@ -2321,7 +2455,7 @@
                                                         <img src="images/demos/demo_60x85.png" class="image-fly img-responsive" alt="Curabitur mattis tellus rutrum enim facilisis">
                                                     </span>
                                                     <span class="sale_banner animated">
-                                                        <img src="./assets/images/saleoff.png" title="Sale Off" alt="Sale Off">
+                                                        <img src="../../content/images/saleoff.png" title="Sale Off" alt="Sale Off">
                                                     </span>
                                                 </a>
                                             </li>
@@ -2340,11 +2474,22 @@
                                                         <option value="502625841">Lamborghini / Modern - €70.00</option>
                                                     </select>
                                                 </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-success" role="progressbar" style="width:100%">
+                                                        Sorteio 01/12/2017
+                                                    </div>
+                                                    <div class="progress-bar progress-bar-warning" role="progressbar" style="width:0%">
+                                                        0%
+                                                    </div>
+                                                    <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
+                                                        Danger
+                                                    </div>-->
+                                                </div>
                                             </li>
                                         </ul>
                                     </form>
                                 </div>
-                                <div class="section-item not-animated" data-animate="bounceIn" data-delay="900">
+                                <div class="section-item animated" data-animate="bounceIn" data-delay="900">
                                     <form action="/cart/add" method="post" enctype="multipart/form-data">
                                         <ul class="row-container list-unstyled clearfix">
                                             <li class="col-md-5 row-left">
@@ -2369,11 +2514,22 @@
                                                         <option selected="selected" value="455695597">animation - €59.00</option>
                                                     </select>
                                                 </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-success" role="progressbar" style="width:75%">
+                                                        75%
+                                                    </div>
+                                                    <div class="progress-bar progress-bar-warning" role="progressbar" style="width:25%">
+                                                        25%
+                                                    </div>
+                                                    <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
+                                                        Danger
+                                                    </div>-->
+                                                </div>
                                             </li>
                                         </ul>
                                     </form>
                                 </div>
-                                <div class="section-item not-animated" data-animate="bounceIn" data-delay="1200">
+                                <div class="section-item animated" data-animate="bounceIn" data-delay="1200">
                                     <form action="/cart/add" method="post" enctype="multipart/form-data">
                                         <ul class="row-container list-unstyled clearfix">
                                             <li class="col-md-5 row-left">
@@ -2398,6 +2554,17 @@
                                                         <option selected="selected" value="455695573">action - €59.00</option>
                                                     </select>
                                                 </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-success" role="progressbar" style="width:10%">
+                                                        10%
+                                                    </div>
+                                                    <div class="progress-bar progress-bar-warning" role="progressbar" style="width:90%">
+                                                        90%
+                                                    </div>
+                                                    <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
+                                                        Danger
+                                                    </div>-->
+                                                </div>
                                             </li>
                                         </ul>
                                     </form>
@@ -2405,13 +2572,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="home_products col-md-8 not-animated clearfix" data-animate="fadeInUp" data-delay="300">
+                    <div class="home_products col-md-8 animated clearfix" data-animate="fadeInUp" data-delay="300">
                         <div class="control-group visible-xs">
                             <div class="sb-title header_home_products row" style="color:#a32d0a">PlayStation 3 Games</div>
                         </div>
                         <div class="home_products_wrapper">
                             <div id="home_products_2" class="clearfix">
-                                <div class="section-item not-animated" data-animate="bounceIn" data-delay="300">
+                                <div class="section-item animated" data-animate="bounceIn" data-delay="300">
                                     <form action="/cart/add" method="post" enctype="multipart/form-data">
                                         <ul class="row-container list-unstyled clearfix">
                                             <li class="col-md-5 row-left">
@@ -2437,11 +2604,22 @@
                                                         <option value="502622237">horror - €60.00</option>
                                                     </select>
                                                 </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-success" role="progressbar" style="width:5%">
+                                                        5%
+                                                    </div>
+                                                    <div class="progress-bar progress-bar-warning" role="progressbar" style="width:95%">
+                                                        95%
+                                                    </div>
+                                                    <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
+                                                        Danger
+                                                    </div>-->
+                                                </div>
                                             </li>
                                         </ul>
                                     </form>
                                 </div>
-                                <div class="section-item not-animated" data-animate="bounceIn" data-delay="600">
+                                <div class="section-item animated" data-animate="bounceIn" data-delay="600">
                                     <form action="/cart/add" method="post" enctype="multipart/form-data">
                                         <ul class="row-container list-unstyled clearfix">
                                             <li class="col-md-5 row-left">
@@ -2467,11 +2645,22 @@
                                                         <option value="502624265">animation - €65.00</option>
                                                     </select>
                                                 </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-success" role="progressbar" style="width:90%">
+                                                        90%
+                                                    </div>
+                                                    <div class="progress-bar progress-bar-warning" role="progressbar" style="width:10%">
+                                                        10%
+                                                    </div>
+                                                    <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
+                                                        Danger
+                                                    </div>-->
+                                                </div>
                                             </li>
                                         </ul>
                                     </form>
                                 </div>
-                                <div class="section-item not-animated" data-animate="bounceIn" data-delay="900">
+                                <div class="section-item animated" data-animate="bounceIn" data-delay="900">
                                     <form action="/cart/add" method="post" enctype="multipart/form-data">
                                         <ul class="row-container list-unstyled clearfix">
                                             <li class="col-md-5 row-left">
@@ -2496,11 +2685,22 @@
                                                         <option selected="selected" value="455695573">action - €59.00</option>
                                                     </select>
                                                 </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-success" role="progressbar" style="width:20%">
+                                                        20%
+                                                    </div>
+                                                    <div class="progress-bar progress-bar-warning" role="progressbar" style="width:80%">
+                                                        80%
+                                                    </div>
+                                                    <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
+                                                        Danger
+                                                    </div>-->
+                                                </div>
                                             </li>
                                         </ul>
                                     </form>
                                 </div>
-                                <div class="section-item not-animated" data-animate="bounceIn" data-delay="1200">
+                                <div class="section-item animated" data-animate="bounceIn" data-delay="1200">
                                     <form action="/cart/add" method="post" enctype="multipart/form-data">
                                         <ul class="row-container list-unstyled clearfix">
                                             <li class="col-md-5 row-left">
@@ -2526,6 +2726,17 @@
                                                         <option value="502628309">horror - €65.00</option>
                                                     </select>
                                                 </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-success" role="progressbar" style="width:100%">
+                                                        Sorteio 01/12/2017
+                                                    </div>
+                                                    <div class="progress-bar progress-bar-warning" role="progressbar" style="width:0%">
+                                                        0%
+                                                    </div>
+                                                    <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
+                                                        Danger
+                                                    </div>-->
+                                                </div>
                                             </li>
                                         </ul>
                                     </form>
@@ -2533,13 +2744,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="home_products col-md-8 not-animated clearfix" data-animate="fadeInUp" data-delay="300">
+                    <div class="home_products col-md-8 animated clearfix" data-animate="fadeInUp" data-delay="300">
                         <div class="control-group visible-xs">
                             <div class="sb-title header_home_products row" style="color:#3ba8b6">Wii Games</div>
                         </div>
                         <div class="home_products_wrapper">
                             <div id="home_products_3" class="clearfix">
-                                <div class="section-item not-animated" data-animate="bounceIn" data-delay="300">
+                                <div class="section-item animated" data-animate="bounceIn" data-delay="300">
                                     <form action="/cart/add" method="post" enctype="multipart/form-data">
                                         <ul class="row-container list-unstyled clearfix">
                                             <li class="col-md-5 row-left">
@@ -2548,7 +2759,7 @@
                                                         <img src="images/demos/demo_60x85.png" class="image-fly img-responsive" alt="Curabitur mattis tellus rutrum enim facilisis">
                                                     </span>
                                                     <span class="sale_banner animated">
-                                                        <img src="./assets/images/saleoff.png" title="Sale Off" alt="Sale Off">
+                                                        <img src="../../content/images/saleoff.png" title="Sale Off" alt="Sale Off">
                                                     </span>
                                                 </a>
                                             </li>
@@ -2567,11 +2778,22 @@
                                                         <option value="502625841">Lamborghini / Modern - €70.00</option>
                                                     </select>
                                                 </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-success" role="progressbar" style="width:100%">
+                                                        Sorteio 01/10/2017
+                                                    </div>
+                                                    <div class="progress-bar progress-bar-warning" role="progressbar" style="width:0%">
+                                                        0%
+                                                    </div>
+                                                    <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
+                                                        Danger
+                                                    </div>-->
+                                                </div>
                                             </li>
                                         </ul>
                                     </form>
                                 </div>
-                                <div class="section-item not-animated" data-animate="bounceIn" data-delay="600">
+                                <div class="section-item animated" data-animate="bounceIn" data-delay="600">
                                     <form action="/cart/add" method="post" enctype="multipart/form-data">
                                         <ul class="row-container list-unstyled clearfix">
                                             <li class="col-md-5 row-left">
@@ -2596,11 +2818,22 @@
                                                         <option selected="selected" value="455695573">action - €59.00</option>
                                                     </select>
                                                 </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-success" role="progressbar" style="width:100%">
+                                                        Sorteio 10/10/2017
+                                                    </div>
+                                                    <div class="progress-bar progress-bar-warning" role="progressbar" style="width:0%">
+                                                        0%
+                                                    </div>
+                                                    <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
+                                                        Danger
+                                                    </div>-->
+                                                </div>
                                             </li>
                                         </ul>
                                     </form>
                                 </div>
-                                <div class="section-item not-animated" data-animate="bounceIn" data-delay="900">
+                                <div class="section-item animated" data-animate="bounceIn" data-delay="900">
                                     <form action="/cart/add" method="post" enctype="multipart/form-data">
                                         <ul class="row-container list-unstyled clearfix">
                                             <li class="col-md-5 row-left">
@@ -2626,11 +2859,22 @@
                                                         <option value="502628309">horror - €65.00</option>
                                                     </select>
                                                 </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-success" role="progressbar" style="width:20%">
+                                                        20%
+                                                    </div>
+                                                    <div class="progress-bar progress-bar-warning" role="progressbar" style="width:80%">
+                                                        80%
+                                                    </div>
+                                                    <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
+                                                        Danger
+                                                    </div>-->
+                                                </div>
                                             </li>
                                         </ul>
                                     </form>
                                 </div>
-                                <div class="section-item not-animated" data-animate="bounceIn" data-delay="1200">
+                                <div class="section-item animated" data-animate="bounceIn" data-delay="1200">
                                     <form action="/cart/add" method="post" enctype="multipart/form-data">
                                         <ul class="row-container list-unstyled clearfix">
                                             <li class="col-md-5 row-left">
@@ -2655,6 +2899,17 @@
                                                         <option selected="selected" value="456848697">venture - €59.00</option>
                                                         <option value="502630317">science fiction - €69.00</option>
                                                     </select>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-success" role="progressbar" style="width:30%">
+                                                        30%
+                                                    </div>
+                                                    <div class="progress-bar progress-bar-warning" role="progressbar" style="width:70%">
+                                                        70%
+                                                    </div>
+                                                    <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
+                                                        Danger
+                                                    </div>-->
                                                 </div>
                                             </li>
                                         </ul>
