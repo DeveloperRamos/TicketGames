@@ -27,8 +27,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Payment", "Payment", "{0CE2
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicktGames.PagSeguro.Tests", "TicktGames.PagSeguro.Tests\TicktGames.PagSeguro.Tests.csproj", "{2957365F-10C5-4C81-A9C1-B07397375B2B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketGames.Site", "TicketGames.Web\TicketGames.Site.csproj", "{BE2C601B-8595-48FB-A9BA-236D1C8FCDF6}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,10 +57,6 @@ Global
 		{2957365F-10C5-4C81-A9C1-B07397375B2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2957365F-10C5-4C81-A9C1-B07397375B2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2957365F-10C5-4C81-A9C1-B07397375B2B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BE2C601B-8595-48FB-A9BA-236D1C8FCDF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BE2C601B-8595-48FB-A9BA-236D1C8FCDF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BE2C601B-8595-48FB-A9BA-236D1C8FCDF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BE2C601B-8595-48FB-A9BA-236D1C8FCDF6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -75,6 +69,5 @@ Global
 		{0F5A2FFD-43BE-490F-8B32-BDB4CC91831E} = {37459005-F59D-4866-9705-0A613B463304}
 		{0CE278AC-257E-4C16-945C-DA15AD981D42} = {C4F38FDF-F7A5-4117-9F07-0E2BD135E7F9}
 		{2957365F-10C5-4C81-A9C1-B07397375B2B} = {0CE278AC-257E-4C16-945C-DA15AD981D42}
-		{BE2C601B-8595-48FB-A9BA-236D1C8FCDF6} = {96ED9419-4942-4482-B185-7FFE1C81EABD}
 	EndGlobalSection
 EndGlobal
