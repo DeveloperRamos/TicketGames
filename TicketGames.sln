@@ -27,7 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Payment", "Payment", "{0CE2
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicktGames.PagSeguro.Tests", "TicktGames.PagSeguro.Tests\TicktGames.PagSeguro.Tests.csproj", "{2957365F-10C5-4C81-A9C1-B07397375B2B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketGames.Web", "TicketGames.Web\TicketGames.Web.csproj", "{BE2C601B-8595-48FB-A9BA-236D1C8FCDF6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketGames.Site", "TicketGames.Web\TicketGames.Site.csproj", "{BE2C601B-8595-48FB-A9BA-236D1C8FCDF6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
