@@ -1,574 +1,313 @@
 ﻿<!DOCTYPE html>
-<!--[if IE 8 ]>    <html lang="en" class="no-js ie8" ng-app="ticketGamesApp"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!-->
-<html lang="en" class="no-js" ng-app="ticketGamesApp">
-<!--<![endif]-->
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-    <link rel="canonical" href="/" />
-
-    <meta name="description" content="" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
 
     <title>Ticket Games</title>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet" type="text/css">
-    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
+    <!-- Loading third party fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Roboto:100,300,400,700|" rel="stylesheet" type="text/css">
+    <link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="fonts/lineo-icon/style.css" rel="stylesheet" type="text/css">
+    <!-- Loading main css file -->
+    <link href="content/style.css" rel="stylesheet" />
 
-    <link href="content/cs.animate.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="content/application.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="content/bootstrap.min.3x.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="content/cs.bootstrap.3x.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="content/owl.carousel.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="content/responsive-slider.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="content/cs.global.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="content/cs.style.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="content/cs.media.3x.css" rel="stylesheet" type="text/css" media="all" />
-
-    <!--[if IE 8 ]>
-    <link href="content/ie8.css" rel="stylesheet" type="text/css" media="all" />
+    <!--[if lt IE 9]>
+    <script src="js/ie-support/html5.js"></script>
+    <script src="js/ie-support/respond.js"></script>
     <![endif]-->
-    <script src="Scripts/jquery-2.1.0.min.js" type="text/javascript"></script>
-    <script src="Scripts/modernizr.js" type="text/javascript"></script>
 
 </head>
-<body class="templateIndex">
-    <div class="bg-image-sidebar">
-        <a id="bg-left" href="#"><img src="content/images/image_left.png" /></a>
-        <a id="bg-right" href="#"><img src="content/images/image_right.png" /></a>
-    </div>
+<body class="slider-collapse">
 
-    <!-- Header -->
-    <header id="top" class="clearfix">
 
-        <!--top-other-->
-        <div id="top-other">
+    <div id="site-content">
+        <div class="site-header">
+            <div class="container">
+                <a href="index.html" id="branding">
+                    <img src="images/logo.png" alt="" class="logo">
+                    <div class="logo-text">
+                        <h1 class="site-title">Company name</h1>
+                        <small class="site-description">Tagline goes here</small>
+                    </div>
+                </a> <!-- #branding -->
+                <div class="right-section pull-right">
+                    <a href="cart.html" class="cart"><i class="icon-cart"></i> 0 items in cart</a>
+                    <a href="#" class="login-button">Login/Register</a>
+                </div> <!-- .right-section -->
+                <div class="main-navigation">
+                    <button class="toggle-menu"><i class="fa fa-bars"></i></button>
+                    <ul class="menu">
+                        <li class="menu-item home current-menu-item"><a href="index.html"><i class="icon-home"></i></a></li>
+                        <li class="menu-item"><a href="products.html">Accessories</a></li>
+                        <li class="menu-item"><a href="products.html">Promotions</a></li>
+                        <li class="menu-item"><a href="products.html">PC</a></li>
+                        <li class="menu-item"><a href="products.html">Playstation</a></li>
+                        <li class="menu-item"><a href="products.html">Xbox</a></li>
+                        <li class="menu-item"><a href="products.html">Wii</a></li>
+                    </ul> <!-- .menu -->
+                    <div class="search-form">
+                        <label><img src="images/icon-search.png"></label>
+                        <input type="text" placeholder="Search...">
+                    </div> <!-- .search-form -->
+                    <div class="mobile-navigation"></div> <!-- .mobile-navigation -->
+                </div> <!-- .main-navigation -->
+            </div> <!-- .container -->
+        </div> <!-- .site-header -->
+        <div class="home-slider">
+            <ul class="slides">
+                <li data-bg-image="dummy/slide-1.jpg">
+                    <div class="container">
+                        <div class="slide-content">
+                            <h2 class="slide-title">Kill Zone 3</h2>
+                            <small class="slide-subtitle">$190.00</small>
+
+                            <p>Perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.</p>
+
+                            <a href="cart.html" class="button">Add to cart</a>
+                        </div>
+                        <img src="dummy/game-cover-1.jpg" class="slide-image">
+                    </div>
+                </li>
+                <li data-bg-image="dummy/slide-2.jpg">
+                    <div class="container">
+                        <div class="slide-content">
+                            <h2 class="slide-title">Kill Zone 3</h2>
+                            <small class="slide-subtitle">$190.00</small>
+
+                            <p>Perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.</p>
+
+                            <a href="cart.html" class="button">Add to cart</a>
+                        </div>
+                        <img src="dummy/game-cover-2.jpg" class="slide-image">
+                    </div>
+                </li>
+                <li data-bg-image="dummy/slide-3.jpg">
+                    <div class="container">
+                        <div class="slide-content">
+                            <h2 class="slide-title">Kill Zone 3</h2>
+                            <small class="slide-subtitle">$190.00</small>
+
+                            <p>Perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.</p>
+
+                            <a href="cart.html" class="button">Add to cart</a>
+                        </div>
+                        <img src="dummy/game-cover-3.jpg" class="slide-image">
+                    </div>
+                </li>
+            </ul> <!-- .slides -->
+        </div> <!-- .home-slider -->
+        <main class="main-content">
+            <div class="container">
+                <div class="page">
+                    <section>
+                        <header>
+                            <h2 class="section-title">New Products</h2>
+                            <a href="#" class="all">Show All</a>
+                        </header>
+                        <div class="product-list">
+                            <div class="product">
+                                <div class="inner-product">
+                                    <div class="figure-image">
+                                        <a href="single.html"><img src="dummy/game-1.jpg" alt="Game 1"></a>
+                                    </div>
+                                    <h3 class="product-title"><a href="#">Alpha Protocol</a></h3>
+                                    <small class="price">$19.00</small>
+                                    <p>Lorem ipsum dolor sit consectetur adipiscing elit do eiusmod tempor...</p>
+                                    <a href="cart.html" class="button">Add to cart</a>
+                                    <a href="#" class="button muted">Read Details</a>
+                                </div>
+                            </div> <!-- .product -->
+                            <div class="product">
+                                <div class="inner-product">
+                                    <div class="figure-image">
+                                        <a href="single.html"><img src="dummy/game-2.jpg" alt="Game 2"></a>
+                                    </div>
+                                    <h3 class="product-title"><a href="#">Grand Theft Auto V</a></h3>
+                                    <small class="price">$19.00</small>
+                                    <p>Lorem ipsum dolor sit consectetur adipiscing elit do eiusmod tempor...</p>
+                                    <a href="cart.html" class="button">Add to cart</a>
+                                    <a href="#" class="button muted">Read Details</a>
+                                </div>
+                            </div> <!-- .product -->
+                            <div class="product">
+                                <div class="inner-product">
+                                    <div class="figure-image">
+                                        <a href="single.html"><img src="dummy/game-3.jpg" alt="Game 3"></a>
+                                    </div>
+                                    <h3 class="product-title"><a href="#">Need for Speed rivals</a></h3>
+                                    <small class="price">$19.00</small>
+                                    <p>Lorem ipsum dolor sit consectetur adipiscing elit do eiusmod tempor...</p>
+                                    <a href="cart.html" class="button">Add to cart</a>
+                                    <a href="#" class="button muted">Read Details</a>
+                                </div>
+                            </div> <!-- .product -->
+                            <div class="product">
+                                <div class="inner-product">
+                                    <div class="figure-image">
+                                        <a href="single.html"><img src="dummy/game-4.jpg" alt="Game 4"></a>
+                                    </div>
+                                    <h3 class="product-title"><a href="#">Big game hunter</a></h3>
+                                    <small class="price">$19.00</small>
+                                    <p>Lorem ipsum dolor sit consectetur adipiscing elit do eiusmod tempor...</p>
+                                    <a href="cart.html" class="button">Add to cart</a>
+                                    <a href="#" class="button muted">Read Details</a>
+                                </div>
+                            </div> <!-- .product -->
+                        </div> <!-- .product-list -->
+                    </section>
+                    <section>
+                        <header>
+                            <h2 class="section-title">promotion</h2>
+                            <a href="#" class="all">Show All</a>
+                        </header>
+                        <div class="product-list">
+
+                            <div class="product">
+                                <div class="inner-product">
+                                    <div class="figure-image">
+                                        <a href="single.html"><img src="dummy/game-5.jpg" alt="Game 1"></a>
+                                    </div>
+                                    <h3 class="product-title"><a href="#">Watch Dogs</a></h3>
+                                    <small class="price">$19.00</small>
+                                    <p>Lorem ipsum dolor sit consectetur adipiscing elit do eiusmod tempor...</p>
+                                    <a href="cart.html" class="button">Add to cart</a>
+                                    <a href="#" class="button muted">Read Details</a>
+                                </div>
+                            </div> <!-- .product -->
+
+
+                            <div class="product">
+                                <div class="inner-product">
+                                    <div class="figure-image">
+                                        <a href="single.html"><img src="dummy/game-6.jpg" alt="Game 2"></a>
+                                    </div>
+                                    <h3 class="product-title"><a href="#">Mortal Kombat X</a></h3>
+                                    <small class="price">$19.00</small>
+                                    <p>Lorem ipsum dolor sit consectetur adipiscing elit do eiusmod tempor...</p>
+                                    <a href="cart.html" class="button">Add to cart</a>
+                                    <a href="#" class="button muted">Read Details</a>
+                                </div>
+                            </div> <!-- .product -->
+
+
+                            <div class="product">
+                                <div class="inner-product">
+                                    <div class="figure-image">
+                                        <a href="single.html"><img src="dummy/game-7.jpg" alt="Game 3"></a>
+                                    </div>
+                                    <h3 class="product-title"><a href="#">Metal Gear Solid V</a></h3>
+                                    <small class="price">$19.00</small>
+                                    <p>Lorem ipsum dolor sit consectetur adipiscing elit do eiusmod tempor...</p>
+                                    <a href="cart.html" class="button">Add to cart</a>
+                                    <a href="#" class="button muted">Read Details</a>
+                                </div>
+                            </div> <!-- .product -->
+
+
+                            <div class="product">
+                                <div class="inner-product">
+                                    <div class="figure-image">
+                                        <a href="single.html"><img src="dummy/game-8.jpg" alt="Game 4"></a>
+                                    </div>
+                                    <h3 class="product-title"><a href="#">Nascar '14</a></h3>
+                                    <small class="price">$19.00</small>
+                                    <p>Lorem ipsum dolor sit consectetur adipiscing elit do eiusmod tempor...</p>
+                                    <a href="cart.html" class="button">Add to cart</a>
+                                    <a href="#" class="button muted">Read Details</a>
+                                </div>
+                            </div> <!-- .product -->
+
+                        </div> <!-- .product-list -->
+                    </section>
+                </div>
+            </div> <!-- .container -->
+        </main> <!-- .main-content -->
+        <div class="site-footer">
             <div class="container">
                 <div class="row">
-                    <div class="welcome col-md-9 text-left">
-                        Bem vindo a Ticket Games
-                    </div>
-                    <div class="top-other col-md-15">
-                        <ul class="list-inline text-right">                            
-                            <li class="customer-links">
-                                <ul id="accounts" class="list-inline">
-                                    <li class="login">
-                                        <span id="loginButton" class="dropdown-toggle" data-toggle="dropdown">
-                                            Acessar
-                                            <i class="sub-dropdown1"></i>
-                                            <i class="sub-dropdown"></i>
-                                        </span>
-                                        <div id="loginBox" class="dropdown-menu text-left" style="overflow:hidden;display:none">
-                                            <form method="post" action="./login.html" id="customer_login" accept-charset="UTF-8">
-                                                <input name="form_type" type="hidden" value="customer_login">
-                                                <input name="utf8" type="hidden" value="✓">
-                                                <div id="bodyBox">
-                                                    <div class="sb-title">Login</div>
-                                                    <ul class="control-container customer-accounts list-unstyled">
-                                                        <li class="clearfix">
-                                                            <label for="customer_email_box" class="control-label">Email Address <span class="req">*</span></label>
-                                                            <input type="email" value="" name="customer[email]" id="customer_email_box" class="form-control">
-                                                        </li>
-                                                        <li class="clearfix">
-                                                            <label for="customer_password_box" class="control-label">Password <span class="req">*</span></label>
-                                                            <input type="password" value="" name="customer[password]" id="customer_password_box" class="form-control password">
-                                                        </li>
-                                                        <li class="clearfix last1">
-                                                            <button class="btn btn-1" type="submit">Login</button>
-                                                        </li>
-                                                        <li>
-                                                            <a class="register" href="./register.html">Creat New Account</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </li>
-                                    <li>or</li>
-                                    <li class="register">
-                                        <a href="./register.html" id="customer_register_link">Register</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="umbrella">
-                                <div id="umbrella" class="list-inline unmargin">
-                                    <div class="cart-link">
-                                        <div class="dropdown-toggle" data-toggle="dropdown">
-                                            <i class="sub-dropdown1"></i>
-                                            <i class="sub-dropdown"></i>
-                                            <a class="num-items-in-cart link-dropdown" href="./cart.html">
-                                                <span>My Cart</span>
-                                                <span class="icon">
-                                                    <span class="number">2</span> items
-                                                    <span class="total"> - <span class="money">€118.00</span></span>
-                                                </span>
-                                            </a>
-                                        </div>
-                                        <div id="cart-info" class="dropdown-menu">
-                                            <div id="cart-content">
-                                                <div class="sb-title">
-                                                    <a href="/cart">My cart</a>
-                                                </div>
-                                                <div class="action">
-                                                    <span>Cart Subtotal:</span>
-                                                    <span class="cart-total-right"><span class="money">€118.00</span></span>
-                                                </div>
-                                                <div class="action">
-                                                    <button class="btn btn-1">CHECKOUT</button>
-                                                </div>
-                                                <div class="recently">
-                                                    <span>Recently added items</span>
-                                                </div>
-                                                <div class="items control-container">
-                                                    <div class="row">
-                                                        <a class="cart-close" title="Remove" href="#">
-                                                            <i class="fa fa-times"></i>
-                                                        </a>
-                                                        <div class="col-md-7 cart-left">
-                                                            <a class="cart-image" href="./product.html">
-                                                                <img src="images/demos/demo_60x85.png" alt="" title="">
-                                                            </a>
-                                                        </div>
-                                                        <div class="col-md-17 cart-right">
-                                                            <div class="cart-title">
-                                                                <a href="./product.html">Curabitur mattis tellus rutrum enim facilisis - Ferrari / Modern</a>
-                                                            </div>
-                                                            <div class="cart-price">1<span class="x"> x </span><span class="money">€59.00</span></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <a class="cart-close" title="Remove" href="#">
-                                                            <i class="fa fa-times"></i>
-                                                        </a>
-                                                        <div class="col-md-7 cart-left">
-                                                            <a class="cart-image" href="./product.html">
-                                                                <img src="images/demos/demo_60x85.png" alt="" title="">
-                                                            </a>
-                                                        </div>
-                                                        <div class="col-md-17 cart-right">
-                                                            <div class="cart-title">
-                                                                <a href="./product.html">Nam at lectus eget mi vista hendrerit tincidunt - action</a>
-                                                            </div>
-                                                            <div class="cart-price">1<span class="x"> x </span><span class="money">€59.00</span></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--end top-other -->
-
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 top-logo">
-                    <a id="site-title" href="./index.html" title="Ticket Games">
-                        <img src="content/images/logo.png" alt="Ticket Games">                        
-                    </a>
-                </div>
-                <div class="col-md-12 top-support">
-                    <div class="support">
-                        <span class="h5 txt_color">Customer Support</span><span>1800-000-GameWorld</span>
-                        <span class="line"></span>
-                        <a href="ymsgr:sendIM?quocbao0415">Chat with us</a>
-                    </div>
-                    <div class="top-search">
-                        <form id="header-search" class="search-form" action="./index.html" method="get">
-                            <input type="hidden" name="type" value="product">
-                            <input type="text" class="input-block-level" name="q" value="" accesskey="4" autocomplete="off" placeholder="search entire store here">
-                            <button type="submit" class="search-submit" title="Search">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="row top-navigation">
-                <nav class="navbar" role="navigation">
-                    <div class="clearfix">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                                <span class="sr-only">Toggle main navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                        </div>
-                        <div class="is-mobile visible-xs">
-                            <ul class="list-inline">
-                                <li class="is-mobile-menu">
-                                    <div class="btn-navbar" data-toggle="collapse" data-target=".navbar-collapse">
-                                        <span class="icon-bar-group">
-                                            <span class="icon-bar"></span>
-                                            <span class="icon-bar"></span>
-                                            <span class="icon-bar"></span>
-                                        </span>
-                                    </div>
-                                </li>
-                                <li class="is-mobile-login">
-                                    <div class="btn-group">
-                                        <div class="dropdown-toggle" data-toggle="dropdown">
-                                            <i class="fa fa-user"></i>
-                                        </div>
-                                        <ul class="customer dropdown-menu">
-                                            <li class="logout">
-                                                <a href="./login.html">Log in</a>
-                                            </li>
-                                            <li class="account">
-                                                <a href="./register.html">Register</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="is-mobile-cart">
-                                    <a href="./cart.html"><i class="fa fa-shopping-cart"></i></a>
-                                </li>
+                    <div class="col-md-2">
+                        <div class="widget">
+                            <h3 class="widget-title">Information</h3>
+                            <ul class="no-bullet">
+                                <li><a href="#">Site map</a></li>
+                                <li><a href="#">About us</a></li>
+                                <li><a href="#">FAQ</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Contact</a></li>
                             </ul>
-                        </div>
-                        <div class="collapse navbar-collapse">
-                            <ul class="nav navbar-nav hoverMenuWrapper">
-                                <li class="dropdown">
-                                    <a href="./collection.html" class="dropdown-toggle link-dropdown" data-toggle="dropdown">
-                                        Xbox 360
-                                        <i class="fa fa-caret-down"></i>
-                                        <i class="sub-dropdown1 visible-md visible-lg"></i>
-                                        <i class="sub-dropdown visible-md visible-lg"></i>
-                                    </a>
-                                    <ul class="dropdown-menu" style="overflow:hidden;display:none">
-                                        <li><a tabindex="-1" href="./product.html" title="Curabitur mattis tellus rutrum enim facilisis">Curabitur mattis tellus rutrum enim facilisis</a></li>
-                                        <li><a tabindex="-1" href="./product.html">Curabitur sollicitudin</a></li>
-                                        <li><a tabindex="-1" href="./product.html" title="Pellentesque habitant morbi  tristique senectus">Pellentesque habitant morbi tristique senectus</a></li>
-                                        <li><a tabindex="-1" href="./product.html" title="Suspendisse sed libero consequat">Suspendisse sed libero consequat</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="./collection.html" class="dropdown-toggle link-dropdown" data-toggle="dropdown">
-                                        PlayStation 3
-                                        <i class="fa fa-caret-down"></i>
-                                        <i class="sub-dropdown1 visible-md visible-lg"></i>
-                                        <i class="sub-dropdown visible-md visible-lg"></i>
-                                    </a>
-                                    <ul class="dropdown-menu" style="overflow:hidden;display:none">
-                                        <li><a tabindex="-1" href="./product.html" title="Cras in nunc non ipsum duo  cursus ultrices">Cras in nunc non ipsum duo cursus ultrices</a></li>
-                                        <li><a tabindex="-1" href="./product.html" title="Curabitur mattis tellus rutrum enim facilisis">Curabitur mattis tellus rutrum enim facilisis</a></li>
-                                        <li><a tabindex="-1" href="./product.html">Curabitur sollicitudin</a></li>
-                                        <li><a tabindex="-1" href="./product.html" title="Nam at lectus eget mi vista  hendrerit tincidunt">Nam at lectus eget mi vista hendrerit tincidunt</a></li>
-                                        <li><a tabindex="-1" href="./product.html" title="Pellentesque habitant morbi  tristique senectus">Pellentesque habitant morbi tristique senectus</a></li>
-                                        <li><a tabindex="-1" href="./product.html" title="Suspendisse sed libero consequat">Suspendisse sed libero consequat</a></li>
-                                        <li><a tabindex="-1" href="./product.html" title="Suspendisse sed libero tesla  magna consequat">Suspendisse sed libero tesla magna consequat</a></li>
-                                        <li><a tabindex="-1" href="./product.html" title="Auctor semper">Auctor semper</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="./collection.html" class="dropdown-toggle link-dropdown" data-toggle="dropdown">
-                                        Wii
-                                        <i class="fa fa-caret-down"></i>
-                                        <i class="sub-dropdown1 visible-md visible-lg"></i>
-                                        <i class="sub-dropdown visible-md visible-lg"></i>
-                                    </a>
-                                    <ul class="dropdown-menu" style="overflow:hidden;display:none">
-                                        <li><a tabindex="-1" href="./product.html" title="Suspendisse sed libero tesla  magna consequat">Suspendisse sed libero tesla magna consequat</a></li>
-                                        <li><a tabindex="-1" href="./product.html" title="Suspendisse sed libero consequat">Suspendisse sed libero consequat</a></li>
-                                        <li><a tabindex="-1" href="./product.html" title="Auctor semper">Auctor semper</a></li>
-                                        <li><a tabindex="-1" href="./product.html" title="Nam at lectus eget mi vista  hendrerit tincidunt">Nam at lectus eget mi vista hendrerit tincidunt</a></li>
-                                    </ul>
-                                </li>
-                                <li class="">
-                                    <a href="./collection.html">
-                                        3DS
-                                        <span></span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="./collection.html">
-                                        PSP
-                                        <span></span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="./collection.html">
-                                        PC
-                                        <span></span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="./collection.html">
-                                        Gear and Gadgets
-                                        <span></span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="./product.html">
-                                        PlayStation 2
-                                        <span></span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="./product.html">
-                                        Nintendo GBA
-                                        <span></span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="./typography.html">
-                                        Typography
-                                        <span></span>
-                                    </a>
-                                </li>
-                                <li class="last">
-                                    <a href="./collection.html">
-                                        More +
-                                        <span></span>
-                                    </a>
-                                </li>
+                        </div> <!-- .widget -->
+                    </div> <!-- column -->
+                    <div class="col-md-2">
+                        <div class="widget">
+                            <h3 class="widget-title">Consumer Service</h3>
+                            <ul class="no-bullet">
+                                <li><a href="#">Secure</a></li>
+                                <li><a href="#">Shipping &amp; Returns</a></li>
+                                <li><a href="#">Shipping</a></li>
+                                <li><a href="#">Orders &amp; Returns</a></li>
+                                <li><a href="#">Group Sales</a></li>
                             </ul>
-                        </div>
-                    </div>
-                </nav>
-            </div>
-        </div>
-
-        <div class="gr-below-nav">
-            <div class="container">
-                <div class="home_below_nav top-below-nav clearfix">
-                    <div class="sub_menu">
-                        <ul class="list-inline list-unstylet text-left clearfix">
-                            <li class="col-md-5">
-                                <a href="./collection.html">
-                                    <span>Downloads</span>
-                                </a>
-                                <span>Games &amp; Add-ons</span>
-                            </li>
-                            <li class="col-md-5">
-                                <a href="./collection.html">
-                                    <span>Pre-owned</span>
-                                </a>
-                                <span>Great Values</span>
-                            </li>
-                            <li class="col-md-5">
-                                <a href="./collection.html">
-                                    <span>Trade-Ins</span>
-                                </a>
-                                <span>Great Offers</span>
-                            </li>
-                            <li class="col-md-5">
-                                <a href="./collection.html">
-                                    <span>Monthly-Deals</span>
-                                </a>
-                                <span>Current Sales</span>
-                            </li>
-                        </ul>
-                        <span class="sub_nav"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </header>
-    <div id="content-wrapper-parent">
-        <div id="content-wrapper">
-            <div ng-view></div>
-        </div>
+                        </div> <!-- .widget -->
+                    </div> <!-- column -->
+                    <div class="col-md-2">
+                        <div class="widget">
+                            <h3 class="widget-title">My Account</h3>
+                            <ul class="no-bullet">
+                                <li><a href="#">Login/Register</a></li>
+                                <li><a href="#">Settings</a></li>
+                                <li><a href="#">Cart</a></li>
+                                <li><a href="#">Order Tracking</a></li>
+                                <li><a href="#">Logout</a></li>
+                            </ul>
+                        </div> <!-- .widget -->
+                    </div> <!-- column -->
+                    <div class="col-md-6">
+                        <div class="widget">
+                            <h3 class="widget-title">Join our newsletter</h3>
+                            <form action="#" class="newsletter-form">
+                                <input type="text" placeholder="Enter your email...">
+                                <input type="submit" value="Subsribe">
+                            </form>
+                        </div> <!-- .widget -->
+                    </div> <!-- column -->
+                </div><!-- .row -->
+                <div class="colophon">
+                    <div class="copy">Copyright 2014 Company name. Designed by Themezy. All rights reserved.</div>
+                    <div class="social-links square">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                        <a href="#"><i class="fa fa-pinterest"></i></a>
+                    </div> <!-- .social-links -->
+                </div> <!-- .colophon -->
+            </div> <!-- .container -->
+        </div> <!-- .site-footer -->
     </div>
+    <div class="overlay"></div>
+    <div class="auth-popup popup">
+        <a href="#" class="close"><i class="fa fa-times"></i></a>
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="section-title">Login</h2>
+                <form action="#">
+                    <input type="text" placeholder="Username...">
+                    <input type="password" placeholder="Password...">
+                    <input type="submit" value="Login">
+                </form>
+            </div> <!-- .column -->
+            <div class="col-md-6">
+                <h2 class="section-title">Create an account</h2>
+                <form action="#">
+                    <input type="text" placeholder="Username...">
+                    <input type="text" placeholder="Email address...">
+                    <input type="submit" value="register">
+                </form>
+            </div> <!-- .column -->
+        </div> <!-- .row -->
+    </div> <!-- .auth-popup -->
 
-    <footer id="footer">
-        <div class="container">
-            <div id="footer-content">
-                <!--<div class="row widget-blog" id="widget-blog">
-                    <div class="widget-header f_title text-center">
-                        <h4>From our Blog</h4>
-                        <span>Quisque justo turpis, sodales sit amet consectetur <span>-</span></span>
-                        <a href="./blog.html"> GO TO BLOG</a>
-                    </div>
-                    <div class="wrap_item">
-                        <div class="article-extras col-md-8 not-animated" data-animate="fadeInUp" data-delay="0">
-                            <div class="group">
-                                <a href="./blog.html"><img src="images/demos/demo_340x150.png" alt=""></a>
-                                <h5 class="title"><a href="./blog.html" title="">Curabitur sagittis odio quis erat elementum nec dictum est consectetur</a></h5>
-                                <span class="line"></span>
-                                <p class="desc">Pellentesque ultricies ante sit amet felis mollis erat dictum mauris orci urna, accumsan vitae convallis quis mattis nec mi nunc (GameSpot) Lorem ipsum dolor sit amet, consectetur adipiscing elit vestibulum...</p>
-                                <span class="date">Written on Thursday , 19 December 2013 03 : 08 AM </span>
-                            </div>
-                        </div>
-                        <div class="article-extras col-md-8 not-animated" data-animate="fadeInUp" data-delay="300">
-                            <div class="group">
-                                <a href="./blog.html"><img src="images/demos/demo_340x150.png" alt=""></a>
-                                <h5 class="title"><a href="./blog.html" title="">Aliquam a mauris tellus a dapibus ipsum</a></h5>
-                                <span class="line"></span>
-                                <p class="desc">Pellentesque ultricies ante sit amet felis mollis erat dictum mauris orci urna, accumsan vitae convallis quis mattis nec mi nunc (GameSpot) Lorem ipsum dolor sit amet, consectetur adipiscing elit vestibulum...</p>
-                                <span class="date">Written on Thursday , 19 December 2013 03 : 08 AM </span>
-                            </div>
-                        </div>
-                        <div class="article-extras col-md-8 not-animated" data-animate="fadeInUp" data-delay="600">
-                            <div class="group">
-                                <a href="./blog.html"><img src="images/demos/demo_video_340x150.png" alt=""></a>
-                                <h5 class="title"><a href="./blog.html" title="">Donec tempor justo sit amet libero auctor quis interdum</a></h5>
-                                <span class="line"></span>
-                                <p class="desc">Pellentesque ultricies ante sit amet felis mollis erat dictum mauris orci urna, accumsan vitae convallis quis mattis nec mi nunc (GameSpot) Lorem ipsum dolor sit amet, consectetur adipiscing elit vestibulum...</p>
-                                <span class="date">Written on Thursday , 19 December 2013 03 : 07 AM </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
-                <div class="footer_bottom row">
-                    <div class="footer-content-middle clearfix">
-                        <div class="col-md-8">
-                            <div class="group wrap_linklist">
-                                <div class="col-md-12 widget-linklist animated" id="widget-linklist1" data-animate="fadeInLeft" data-delay="200">
-                                    <h5>Company</h5>
-                                    <ul class="list-unstyled list-styled">
-                                        <li class="list-unstyled">
-                                            <a href="./about-us.html">About us</a>
-                                        </li>
-                                        <li class="list-unstyled">
-                                            <a href="./blog.html">Blog</a>
-                                        </li>
-                                        <li class="list-unstyled">
-                                            <a href="./collection.html">Our partners</a>
-                                        </li>
-                                        <li class="list-unstyled">
-                                            <a href="./contact-us.html">Work with us</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-12 widget-linklist animated" id="widget-linklist2" data-animate="fadeInUp" data-delay="400">
-                                    <h5>Assistance</h5>
-                                    <ul class="list-unstyled list-styled">
-                                        <li>
-                                            <a href="./contact-us.html">Contact us</a>
-                                        </li>
-                                        <li>
-                                            <a href="./product.html">FAQs</a>
-                                        </li>
-                                        <li>
-                                            <a href="./collection.html">Shipping information</a>
-                                        </li>
-                                        <li>
-                                            <a href="./contact-us.html">Have a question? ask us</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="widget-location" class="col-md-8 animated" data-animate="fadeInUp" data-delay="600">
-                            <div class="group">
-                                <h5>
-                                    Localização
-                                </h5>
-                                <ul class="list-unstyled list-styled contact_us">
-                                    <li class="address">
-                                        <span class="address_span">Rua Retiro 95 <span>,</span></span>
-                                        <span class="address_span"> São Paulo <span>,</span></span>
-                                        <span class="address_span"> SP 03073 - 005 </span>
-                                    </li>
-                                    <li class="support">
-                                        <span>(11) 9 8020 - 3026</span>
-                                        <span>/</span>
-                                        <a href="mailto:contato@ticketgames.com.br">contato@ticketgames.com.br</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div id="newsletter" class="col-md-8 animated" data-animate="fadeInRight" data-delay="800">
-                            <div class="group">
-                                <h5>
-                                    Sign up for our newsletter
-                                </h5>
-                                <div class="mail_action">
-                                    <form action="./index.html" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
-                                        <input type="email" placeholder="" name="EMAIL" id="email-input">
-                                        <button class="btooltip" title="" type="submit" data-original-title="Subscribe">Subscribe</button>
-                                    </form>
-                                </div>
-                                <div class="footer_social_icons">
-                                    <div class="unpadding">
-                                        <ul class="list-inline social_icons animated">
-                                            <li class="social_title">
-                                                Conecte-se conosco
-                                            </li>
-                                            <li><a target="_blank" href="#" class="btooltip swing" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook"><i class="fa fa-facebook-square"></i></a></li>
-                                            <li><a target="_blank" href="#" class="btooltip swing" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tumblr"><i class="fa fa-tumblr-square"></i></a></li>
-                                            <li><a target="_blank" href="#" class="btooltip swing" data-toggle="tooltip" data-placement="top" title="" data-original-title="Flickr"><i class="fa fa-flickr"></i></a></li>
-                                            <li><a target="_blank" href="#" class="btooltip swing" data-toggle="tooltip" data-placement="top" title="" data-original-title="RSS"><i class="fa fa-rss-square"></i></a></li>
-                                            <li><a target="_blank" href="#" class="btooltip swing" data-toggle="tooltip" data-placement="top" title="" data-original-title="Vimeo"><i class="fa fa-vimeo-square"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="footer_categories animated" data-animate="fadeInUp" data-delay="300">
-                        <ul class="list-inline">
-                            <li><h5>Categorias</h5></li>
-                            <li>
-                                <a href="./collection.html">3DS</a>
-                                <span>|</span>
-                            </li>                            
-                            <li>
-                                <a href="./collection.html">PC</a>
-                                <span>|</span>
-                            </li>
-                            <li>
-                                <a href="./collection.html">PlayStation 3</a>
-                                <span>|</span>
-                            </li>
-                            <li>
-                                <a href="./collection.html">PSP</a>
-                                <span>|</span>
-                            </li>
-                            <li>
-                                <a href="./collection.html">PS Vita</a>
-                                <span>|</span>
-                            </li>
-                            <li>
-                                <a href="./collection.html">Wii</a>
-                                <span>|</span>
-                            </li>
-                            <li>
-                                <a href="./collection.html">XBOX 360</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="wrap_bot">
-                        <div class="footer_bot_info col-md-12">
-                            <div>Suspendisse convallis lacus commodo augue imperdiet tincidunt duis fermentum congue.</div>
-                            <div class="copyright">© 2014 <a href="./index.html">HTML Game Store Theme</a>. All Rights Reserved.<br>Designed by <a href="http://designshopify.com" title="">DesignShopify</a></div>
-                        </div>
-                        <div id="widget-payment" class="col-md-12">
-                            <ul id="payments" class="list-inline animated">
-                                <li class="btooltip tada" data-toggle="tooltip" data-placement="top" title="" data-original-title="Visa"><a href="javascript:" class="icons visa"></a></li>
-                                <li class="btooltip tada" data-toggle="tooltip" data-placement="top" title="" data-original-title="Mastercard"><a href="javascript:" class="icons mastercard"></a></li>
-                                <li class="btooltip tada" data-toggle="tooltip" data-placement="top" title="" data-original-title="American Express"><a href="javascript:" class="icons amex"></a></li>
-                                <li class="btooltip tada" data-toggle="tooltip" data-placement="top" title="" data-original-title="Paypal"><a href="javascript:" class="icons paypal"></a></li>
-                                <li class="btooltip tada" data-toggle="tooltip" data-placement="top" title="" data-original-title="Moneybookers"><a href="javascript:" class="icons moneybookers"></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <div class="modal fade" id="quick-shop-modal"></div>
-
-
-    <script src="Scripts/bootstrap.min.3x.js" type="text/javascript"></script>
-    <script src="Scripts/cs.global.js" type="text/javascript"></script>
-    <script src="Scripts/owl.carousel.js" type="text/javascript"></script>
-    <script src="Scripts/jquery.responsive-slider.min.js" type="text/javascript"></script>
-    <script src="Scripts/jquery.imagesloaded.min.js" type="text/javascript"></script>
-    <script src="Scripts/application.js" type="text/javascript"></script>
-    <script src="Scripts/cs.script.js" type="text/javascript"></script>
 
     <!--Scripts-->
     <script src="Scripts/angular.js"></script>
@@ -582,21 +321,27 @@
     <script src="Scripts/angular-animate.js"></script>
     <script src="Scripts/angular-touch.js"></script>
     <script src="Scripts/angular-loader.js"></script>-->
+    <script src="content/js/jquery-1.11.1.min.js"></script>
+    <script src="content/js/plugins.js"></script>
+    <script src="content/js/app.js"></script>
+
+
+
+
     <!--Application-->
     <script src="app/app.js"></script>
     <script src="app/appConfig.js"></script>
     <script src="app/global.js"></script>
-
+    
     <!--Directive-->
     <!--<script src="app/directives/detail/detailDirective.js"></script>-->
     <!--<script src="app/Directive/phoneMask.js"></script>-->
     
-    
     <!-- Services -->
-    <script src="app/services/globalService.js"></script>
-    <script src="app/services/showcaseService.js"></script>
-    
-    
+    <!--<script src="app/services/globalService.js"></script>
+    <script src="app/services/showcaseService.js"></script>-->
+
+
     <!-- Controllers -->
     <script src="app/controllers/homeController.js"></script>
 
