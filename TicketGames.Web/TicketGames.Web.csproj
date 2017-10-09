@@ -63,6 +63,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\services\globalService.js" />
     <Content Include="packages.config" />
     <Content Include="content\js\jquery-1.11.1.min.map" />
     <Content Include="content\sass\layout\_content.scss" />

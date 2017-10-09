@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html ng-app="ticketGamesApp">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,9 +14,9 @@
     <link href="content/style.css" rel="stylesheet" />
 
     <!--[if lt IE 9]>
-    <script src="js/ie-support/html5.js"></script>
-    <script src="js/ie-support/respond.js"></script>
-    <![endif]-->
+    <script src="content/js/ie-support/html5.js"></script>
+    <script src="content/js/ie-support/respond.js"></script>
+        <![endif]-->
 
 </head>
 <body class="slider-collapse">
@@ -25,21 +25,21 @@
     <div id="site-content">
         <div class="site-header">
             <div class="container">
-                <a href="index.html" id="branding">
-                    <img src="images/logo.png" alt="" class="logo">
+                <a href="/" id="branding">
+                    <img src="content/images/logo.png" alt="" class="logo" />
                     <div class="logo-text">
-                        <h1 class="site-title">Company name</h1>
+                        <h1 class="site-title">Ticket Games</h1>
                         <small class="site-description">Tagline goes here</small>
                     </div>
                 </a> <!-- #branding -->
                 <div class="right-section pull-right">
                     <a href="cart.html" class="cart"><i class="icon-cart"></i> 0 items in cart</a>
-                    <a href="#" class="login-button">Login/Register</a>
+                    <a href="#" class="login-button">Acessar/Cadastrar</a>
                 </div> <!-- .right-section -->
                 <div class="main-navigation">
                     <button class="toggle-menu"><i class="fa fa-bars"></i></button>
                     <ul class="menu">
-                        <li class="menu-item home current-menu-item"><a href="index.html"><i class="icon-home"></i></a></li>
+                        <li class="menu-item home current-menu-item"><a href="/"><i class="icon-home"></i></a></li>
                         <li class="menu-item"><a href="products.html">Accessories</a></li>
                         <li class="menu-item"><a href="products.html">Promotions</a></li>
                         <li class="menu-item"><a href="products.html">PC</a></li>
@@ -48,16 +48,23 @@
                         <li class="menu-item"><a href="products.html">Wii</a></li>
                     </ul> <!-- .menu -->
                     <div class="search-form">
-                        <label><img src="images/icon-search.png"></label>
-                        <input type="text" placeholder="Search...">
+                        <label><img src="content/images/icon-search.png"></label>
+                        <input type="text" placeholder="Pesquisar...">
                     </div> <!-- .search-form -->
                     <div class="mobile-navigation"></div> <!-- .mobile-navigation -->
                 </div> <!-- .main-navigation -->
+                <!--<div class="breadcrumbs">
+                    <div class="container">
+                        <a href="index.html">Home</a>
+                        <span>Cart</span>
+                    </div>
+                </div>-->
+
             </div> <!-- .container -->
         </div> <!-- .site-header -->
         <div class="home-slider">
             <ul class="slides">
-                <li data-bg-image="dummy/slide-1.jpg">
+                <li data-bg-image="images/slide-1.jpg">
                     <div class="container">
                         <div class="slide-content">
                             <h2 class="slide-title">Kill Zone 3</h2>
@@ -67,10 +74,10 @@
 
                             <a href="cart.html" class="button">Add to cart</a>
                         </div>
-                        <img src="dummy/game-cover-1.jpg" class="slide-image">
+                        <img src="images/game-cover-1.jpg" class="slide-image">
                     </div>
                 </li>
-                <li data-bg-image="dummy/slide-2.jpg">
+                <li data-bg-image="images/slide-2.jpg">
                     <div class="container">
                         <div class="slide-content">
                             <h2 class="slide-title">Kill Zone 3</h2>
@@ -80,10 +87,10 @@
 
                             <a href="cart.html" class="button">Add to cart</a>
                         </div>
-                        <img src="dummy/game-cover-2.jpg" class="slide-image">
+                        <img src="images/game-cover-2.jpg" class="slide-image">
                     </div>
                 </li>
-                <li data-bg-image="dummy/slide-3.jpg">
+                <li data-bg-image="images/slide-3.jpg">
                     <div class="container">
                         <div class="slide-content">
                             <h2 class="slide-title">Kill Zone 3</h2>
@@ -93,7 +100,7 @@
 
                             <a href="cart.html" class="button">Add to cart</a>
                         </div>
-                        <img src="dummy/game-cover-3.jpg" class="slide-image">
+                        <img src="images/game-cover-3.jpg" class="slide-image">
                     </div>
                 </li>
             </ul> <!-- .slides -->
@@ -101,126 +108,10 @@
         <main class="main-content">
             <div class="container">
                 <div class="page">
-                    <section>
-                        <header>
-                            <h2 class="section-title">New Products</h2>
-                            <a href="#" class="all">Show All</a>
-                        </header>
-                        <div class="product-list">
-                            <div class="product">
-                                <div class="inner-product">
-                                    <div class="figure-image">
-                                        <a href="single.html"><img src="dummy/game-1.jpg" alt="Game 1"></a>
-                                    </div>
-                                    <h3 class="product-title"><a href="#">Alpha Protocol</a></h3>
-                                    <small class="price">$19.00</small>
-                                    <p>Lorem ipsum dolor sit consectetur adipiscing elit do eiusmod tempor...</p>
-                                    <a href="cart.html" class="button">Add to cart</a>
-                                    <a href="#" class="button muted">Read Details</a>
-                                </div>
-                            </div> <!-- .product -->
-                            <div class="product">
-                                <div class="inner-product">
-                                    <div class="figure-image">
-                                        <a href="single.html"><img src="dummy/game-2.jpg" alt="Game 2"></a>
-                                    </div>
-                                    <h3 class="product-title"><a href="#">Grand Theft Auto V</a></h3>
-                                    <small class="price">$19.00</small>
-                                    <p>Lorem ipsum dolor sit consectetur adipiscing elit do eiusmod tempor...</p>
-                                    <a href="cart.html" class="button">Add to cart</a>
-                                    <a href="#" class="button muted">Read Details</a>
-                                </div>
-                            </div> <!-- .product -->
-                            <div class="product">
-                                <div class="inner-product">
-                                    <div class="figure-image">
-                                        <a href="single.html"><img src="dummy/game-3.jpg" alt="Game 3"></a>
-                                    </div>
-                                    <h3 class="product-title"><a href="#">Need for Speed rivals</a></h3>
-                                    <small class="price">$19.00</small>
-                                    <p>Lorem ipsum dolor sit consectetur adipiscing elit do eiusmod tempor...</p>
-                                    <a href="cart.html" class="button">Add to cart</a>
-                                    <a href="#" class="button muted">Read Details</a>
-                                </div>
-                            </div> <!-- .product -->
-                            <div class="product">
-                                <div class="inner-product">
-                                    <div class="figure-image">
-                                        <a href="single.html"><img src="dummy/game-4.jpg" alt="Game 4"></a>
-                                    </div>
-                                    <h3 class="product-title"><a href="#">Big game hunter</a></h3>
-                                    <small class="price">$19.00</small>
-                                    <p>Lorem ipsum dolor sit consectetur adipiscing elit do eiusmod tempor...</p>
-                                    <a href="cart.html" class="button">Add to cart</a>
-                                    <a href="#" class="button muted">Read Details</a>
-                                </div>
-                            </div> <!-- .product -->
-                        </div> <!-- .product-list -->
-                    </section>
-                    <section>
-                        <header>
-                            <h2 class="section-title">promotion</h2>
-                            <a href="#" class="all">Show All</a>
-                        </header>
-                        <div class="product-list">
+                    <div ng-view>
 
-                            <div class="product">
-                                <div class="inner-product">
-                                    <div class="figure-image">
-                                        <a href="single.html"><img src="dummy/game-5.jpg" alt="Game 1"></a>
-                                    </div>
-                                    <h3 class="product-title"><a href="#">Watch Dogs</a></h3>
-                                    <small class="price">$19.00</small>
-                                    <p>Lorem ipsum dolor sit consectetur adipiscing elit do eiusmod tempor...</p>
-                                    <a href="cart.html" class="button">Add to cart</a>
-                                    <a href="#" class="button muted">Read Details</a>
-                                </div>
-                            </div> <!-- .product -->
+                    </div>
 
-
-                            <div class="product">
-                                <div class="inner-product">
-                                    <div class="figure-image">
-                                        <a href="single.html"><img src="dummy/game-6.jpg" alt="Game 2"></a>
-                                    </div>
-                                    <h3 class="product-title"><a href="#">Mortal Kombat X</a></h3>
-                                    <small class="price">$19.00</small>
-                                    <p>Lorem ipsum dolor sit consectetur adipiscing elit do eiusmod tempor...</p>
-                                    <a href="cart.html" class="button">Add to cart</a>
-                                    <a href="#" class="button muted">Read Details</a>
-                                </div>
-                            </div> <!-- .product -->
-
-
-                            <div class="product">
-                                <div class="inner-product">
-                                    <div class="figure-image">
-                                        <a href="single.html"><img src="dummy/game-7.jpg" alt="Game 3"></a>
-                                    </div>
-                                    <h3 class="product-title"><a href="#">Metal Gear Solid V</a></h3>
-                                    <small class="price">$19.00</small>
-                                    <p>Lorem ipsum dolor sit consectetur adipiscing elit do eiusmod tempor...</p>
-                                    <a href="cart.html" class="button">Add to cart</a>
-                                    <a href="#" class="button muted">Read Details</a>
-                                </div>
-                            </div> <!-- .product -->
-
-
-                            <div class="product">
-                                <div class="inner-product">
-                                    <div class="figure-image">
-                                        <a href="single.html"><img src="dummy/game-8.jpg" alt="Game 4"></a>
-                                    </div>
-                                    <h3 class="product-title"><a href="#">Nascar '14</a></h3>
-                                    <small class="price">$19.00</small>
-                                    <p>Lorem ipsum dolor sit consectetur adipiscing elit do eiusmod tempor...</p>
-                                    <a href="cart.html" class="button">Add to cart</a>
-                                    <a href="#" class="button muted">Read Details</a>
-                                </div>
-                            </div> <!-- .product -->
-
-                        </div> <!-- .product-list -->
-                    </section>
                 </div>
             </div> <!-- .container -->
         </main> <!-- .main-content -->
@@ -253,9 +144,9 @@
                     </div> <!-- column -->
                     <div class="col-md-2">
                         <div class="widget">
-                            <h3 class="widget-title">My Account</h3>
+                            <h3 class="widget-title">Meu Cadastro</h3>
                             <ul class="no-bullet">
-                                <li><a href="#">Login/Register</a></li>
+                                <li><a href="#">Acessar/Cadastrar</a></li>
                                 <li><a href="#">Settings</a></li>
                                 <li><a href="#">Cart</a></li>
                                 <li><a href="#">Order Tracking</a></li>
@@ -274,7 +165,7 @@
                     </div> <!-- column -->
                 </div><!-- .row -->
                 <div class="colophon">
-                    <div class="copy">Copyright 2014 Company name. Designed by Themezy. All rights reserved.</div>
+                    <div class="copy">Copyright 2017 Ticket Games. Todos direitos reservados.</div>
                     <div class="social-links square">
                         <a href="#"><i class="fa fa-facebook"></i></a>
                         <a href="#"><i class="fa fa-twitter"></i></a>
@@ -290,25 +181,23 @@
         <a href="#" class="close"><i class="fa fa-times"></i></a>
         <div class="row">
             <div class="col-md-6">
-                <h2 class="section-title">Login</h2>
+                <h2 class="section-title">Acessar</h2>
                 <form action="#">
-                    <input type="text" placeholder="Username...">
-                    <input type="password" placeholder="Password...">
-                    <input type="submit" value="Login">
+                    <input type="text" placeholder="Login...">
+                    <input type="password" placeholder="Senha...">
+                    <input type="submit" value="Entrar">
                 </form>
             </div> <!-- .column -->
             <div class="col-md-6">
-                <h2 class="section-title">Create an account</h2>
+                <h2 class="section-title">Criar uma conta</h2>
                 <form action="#">
-                    <input type="text" placeholder="Username...">
-                    <input type="text" placeholder="Email address...">
-                    <input type="submit" value="register">
+                    <input type="text" placeholder="CPF">
+                    <input type="text" placeholder="Seu email...">
+                    <input type="submit" value="Cadastrar">
                 </form>
             </div> <!-- .column -->
         </div> <!-- .row -->
     </div> <!-- .auth-popup -->
-
-
     <!--Scripts-->
     <script src="Scripts/angular.js"></script>
     <script src="Scripts/angular.min.js"></script>
@@ -332,16 +221,13 @@
     <script src="app/app.js"></script>
     <script src="app/appConfig.js"></script>
     <script src="app/global.js"></script>
-    
+
     <!--Directive-->
     <!--<script src="app/directives/detail/detailDirective.js"></script>-->
     <!--<script src="app/Directive/phoneMask.js"></script>-->
-    
     <!-- Services -->
-    <!--<script src="app/services/globalService.js"></script>
-    <script src="app/services/showcaseService.js"></script>-->
-
-
+    <script src="app/services/globalService.js"></script>
+    <!--<script src="app/services/showcaseService.js"></script>-->
     <!-- Controllers -->
     <script src="app/controllers/homeController.js"></script>
 
