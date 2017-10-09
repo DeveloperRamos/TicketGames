@@ -64,6 +64,20 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\services\globalService.js" />
+    <Content Include="content\bootstrap-theme.css" />
+    <Content Include="content\bootstrap-theme.min.css" />
+    <Content Include="content\bootstrap.css" />
+    <Content Include="content\bootstrap.min.css" />
+    <Content Include="content\js\loading-bar.js" />
+    <Content Include="content\loading-bar.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="images\190.png" />
+    <Content Include="images\200.png" />
+    <Content Include="images\320.png" />
+    <Content Include="images\halo_5.png" />
+    <Content Include="images\the-last-of-us-N-for-Nerds.png" />
+    <Content Include="images\thelast.jpe" />
+    <Content Include="images\zelda.jpg" />
     <Content Include="packages.config" />
     <Content Include="content\js\jquery-1.11.1.min.map" />
     <Content Include="content\sass\layout\_content.scss" />
@@ -86,7 +100,22 @@
     <Content Include="fonts\lineo-icon\fonts\icomoon.ttf" />
     <Content Include="fonts\lineo-icon\fonts\icomoon.woff" />
     <Content Include="fonts\lineo-icon\selection.json" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="content\bootstrap.min.css.map" />
+    <Content Include="content\bootstrap.css.map" />
+    <Content Include="content\bootstrap-theme.min.css.map" />
+    <Content Include="content\bootstrap-theme.css.map" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Scripts\jquery-3.2.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.2.1.js" />
+    <Content Include="Scripts\jquery-3.2.1.min.js" />
+    <Content Include="Scripts\jquery-3.2.1.slim.js" />
+    <Content Include="Scripts\jquery-3.2.1.slim.min.js" />
     <Content Include="Scripts\version.json" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\angular.min.js.map" />
@@ -101,6 +130,8 @@
     <Content Include="Scripts\angular-cookies.min.js.map" />
     <Content Include="Scripts\angular-aria.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
+    <Content Include="Scripts\jquery-3.2.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.2.1.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
