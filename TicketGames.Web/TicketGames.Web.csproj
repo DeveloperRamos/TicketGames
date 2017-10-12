@@ -74,9 +74,17 @@
     <Content Include="images\190.png" />
     <Content Include="images\200.png" />
     <Content Include="images\320.png" />
+    <Content Include="images\CrashTrilogy.png" />
+    <Content Include="images\DragonDogma.png" />
+    <Content Include="images\Fifa18.png" />
+    <Content Include="images\GTA.png" />
     <Content Include="images\halo_5.png" />
+    <Content Include="images\PokemonX.png" />
+    <Content Include="images\PokemonY.png" />
+    <Content Include="images\SombrasdaGuerra.png" />
     <Content Include="images\the-last-of-us-N-for-Nerds.png" />
     <Content Include="images\thelast.jpe" />
+    <Content Include="images\TheWitcherIII.png" />
     <Content Include="images\zelda.jpg" />
     <Content Include="packages.config" />
     <Content Include="content\js\jquery-1.11.1.min.map" />

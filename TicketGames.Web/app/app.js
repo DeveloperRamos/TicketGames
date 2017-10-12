@@ -1,8 +1,8 @@
 ﻿var ticketGamesApp = angular.module('ticketGamesApp', [
     'ngRoute',
-    'ngCookies'
-    //'ngMask',
-    //'ngAnimate',
+    'ngCookies',
+    'ngAnimate'
+    //'ngMask',    
     //'ngSanitize'
 ]);
 
