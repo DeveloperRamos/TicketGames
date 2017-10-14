@@ -20,8 +20,8 @@
     <script src="content/js/ie-support/respond.js"></script>
         <![endif]-->
 </head>
-<body class="slider-collapse">
-    <div id="site-content">
+<body class="slider-collapse" ng-controller="indexController">
+    <div id="site-content" ng-init="vmIndex.initialize()">
         <div class="site-header">
             <div class="container">
                 <a href="/" id="branding">
@@ -53,58 +53,15 @@
                     </div> <!-- .search-form -->
                     <div class="mobile-navigation"></div> <!-- .mobile-navigation -->
                 </div> <!-- .main-navigation -->
-                <!--<div class="breadcrumbs">
-                    <div class="container">
-                        <a href="index.html">Home</a>
-                        <span>Cart</span>
-                    </div>
-                </div>-->
+
+                <breadcrumb actions="bread"></breadcrumb>
 
             </div> <!-- .container -->
         </div> <!-- .site-header -->
-        <div class="home-slider">
-            <ul class="slides">
-                <li data-bg-image="images/the-last-of-us-N-for-Nerds.png">
-                    <div class="container">
-                        <div class="slide-content">
-                            <h2 class="slide-title">The Last Of Us</h2>
-                            <small class="slide-subtitle">R$ 10.00</small>
+        <showcase actions="enableshowcase"></showcase>
 
-                            <p>The Last of Us é um jogo eletrônico de ação-aventura e sobrevivência desenvolvido pela Naughty Dog e publicado pela Sony Computer Entertainment.</p>
+        <!--<regulation-modal actions="popupmodalmessage"></regulation-modal>-->
 
-                            <a href="/" class="button">Comprar</a>
-                        </div>
-                        <img src="images/190.png" class="slide-image" style="width: 344px; height: 394px">
-                    </div>
-                </li>
-                <li data-bg-image="images/halo_5.png">
-                    <div class="container">
-                        <div class="slide-content">
-                            <h2 class="slide-title">Halo 5</h2>
-                            <small class="slide-subtitle">R$ 10.00</small>
-
-                            <p>Halo 5: Guardians é um videojogo de tiro na primeira pessoa, parte da série Halo e sequela de Halo 4.</p>
-
-                            <a href="/" class="button">Comprar</a>
-                        </div>
-                        <img src="images/200.png" class="slide-image" style="width: 344px; height: 394px">
-                    </div>
-                </li>
-                <li data-bg-image="images/slide-3.jpg">
-                    <div class="container">
-                        <div class="slide-content">
-                            <h2 class="slide-title">The Legend of Zelda</h2>
-                            <small class="slide-subtitle">R$ 20.00</small>
-
-                            <p>The Legend of Zelda: Breath of the Wild é um jogo eletrônico de ação-aventura desenvolvido pela Nintendo Entertainment Planning & Development e publicado pela Nintendo.</p>
-
-                            <a href="/" class="button">Comprar</a>
-                        </div>
-                        <img src="images/320.png" class="slide-image" style="width: 344px; height: 394px">
-                    </div>
-                </li>
-            </ul> <!-- .slides -->
-        </div> <!-- .home-slider -->
         <main class="main-content">
             <div class="container">
                 <div class="page">
@@ -221,6 +178,8 @@
     <script src="app/global.js"></script>
 
     <!--Directive-->
+    <script src="app/directives/showcase/showcaseDirective.js"></script>
+    <script src="app/directives/breadcrumb/breadcrumbDirective.js"></script>
     <!--<script src="app/directives/detail/detailDirective.js"></script>-->
     <!--<script src="app/Directive/phoneMask.js"></script>-->
     <!-- Services -->
@@ -228,6 +187,8 @@
     <!--<script src="app/services/showcaseService.js"></script>-->
     <!-- Controllers -->
     <script src="app/controllers/homeController.js"></script>
+    <script src="app/controllers/indexController.js"></script>
+    <script src="app/controllers/productController.js"></script>
 
 </body>
 </html>
