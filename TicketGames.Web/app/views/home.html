@@ -4,100 +4,37 @@
         <a href="#" class="all">Todos</a>
     </header>
     <div class="product-list">
-        <div class="product">
+
+        <div ng-repeat="product in vmHome.recent.Products" class="product" style="text-align:center">
             <div class="inner-product">
                 <div class="figure-image">
-                    <a href="single.html"><img src="../../images/Fifa18.png" alt="Game 1"></a>
+                    <a href="#/Produto/{{product.Id}}"><img src="../../images/{{product.Id + '.png'}}" alt="{{product.Name}}"></a>
                 </div>
-                <h3 class="product-title"><a href="#">Fifa 18</a></h3>
-                <small class="price">R$ 10,00</small>
-                <p>Com a tecnologia Frostbite™, o EA SPORTS™FIFA 18 elimina o limite entre o mundo virtual e o real, dando vida aos jogadores, times e climas envolventes do maior esporte do mundo.</p>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-success" role="progressbar" style="width:100%" alt="Sorteio 15/10/2017">
-                        Sorteio 15/10/2017
+                <h3 class="product-title"><a href="#/Produto/{{product.Id}}">{{product.Name}}</a></h3>
+                <small class="price">R$ {{product.Value}},00</small>
+                <!--<p>Com a tecnologia Frostbite™, o EA SPORTS™FIFA 18 elimina o limite entre o mundo virtual e o real, dando vida aos jogadores, times e climas envolventes do maior esporte do mundo.</p>-->
+
+
+                <h3 ng-show="product.SalesMade == 100"><b>Sorteio {{product.RaffleDate}}</b></h3>
+                
+                <div class="progress" >
+                    <div class="progress-bar progress-bar-success" role="progressbar" style="width:{{product.SalesMade}}%" alt="O sorteio ocorrerá quando chegar a 100%">
+                        {{product.SalesMade}}%
                     </div>
-                    <div class="progress-bar progress-bar-warning" role="progressbar" style="width:0%">
-                        0%
+                    <div class="progress-bar progress-bar-warning" role="progressbar" style="width:{{product.MissingtoSell}}%" alt="O sorteio ocorrerá quando chegar a 100%">
+                        {{product.MissingtoSell}}%
                     </div>
                     <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
                         Danger
                     </div>-->
                 </div>
+
                 <a href="cart.html" class="button">Comprar</a>
-                <a href="#/Produto/12345" class="button muted">Detalhes</a>               
+                <a href="#/Produto/{{product.Id}}" class="button muted">Detalhes</a>
 
             </div>
         </div> <!-- .product -->
-        <div class="product">
-            <div class="inner-product">
-                <div class="figure-image">
-                    <a href="single.html"><img src="../../images/CrashTrilogy.png" alt="Game 2"></a>
-                </div>
-                <h3 class="product-title"><a href="#">Crash Bandicoot N'sane Trilogy</a></h3>
-                <small class="price">R$ 10,00</small>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-success" role="progressbar" style="width:80%" alt="O sorteio ocorrerá quando chegar a 100%">
-                        80%
-                    </div>
-                    <div class="progress-bar progress-bar-warning" role="progressbar" style="width:20%" alt="O sorteio ocorrerá quando chegar a 100%">
-                        20%
-                    </div>
-                    <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
-                        Danger
-                    </div>-->
-                </div>
-                <a href="cart.html" class="button">Comprar</a>
-                <a href="#" class="button muted">Detalhes</a>
-            </div>
-        </div> <!-- .product -->
-        <div class="product">
-            <div class="inner-product">
-                <div class="figure-image">
-                    <a href="single.html"><img src="../../images/SombrasdaGuerra.png" alt="Game 3"></a>
-                </div>
-                <h3 class="product-title"><a href="#">Sombras da Guerra</a></h3>
-                <small class="price">R$ 20,00</small>
 
-                <div class="progress">
-                    <div class="progress-bar progress-bar-success" role="progressbar" style="width:80%" alt="O sorteio ocorrerá quando chegar a 100%">
-                        80%
-                    </div>
-                    <div class="progress-bar progress-bar-warning" role="progressbar" style="width:20%" alt="O sorteio ocorrerá quando chegar a 100%">
-                        20%
-                    </div>
-                    <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
-                        Danger
-                    </div>-->
-                </div>
-                <a href="cart.html" class="button">Comprar</a>
-                <a href="#" class="button muted">Detalhes</a>
-
-
-            </div>
-        </div> <!-- .product -->
-        <div class="product">
-            <div class="inner-product">
-                <div class="figure-image">
-                    <a href="single.html"><img src="../../images/PokemonY.png" alt="Game 4"></a>
-                </div>
-                <h3 class="product-title"><a href="#">Pokemon Y</a></h3>
-                <small class="price">R$ 20,00</small>
-                <p><b>Jogue em 3D:</b> Tanto os personagens quantos os Pokémon e especialmente, os cenários ganham profundidade e riqueza de detalhes.</p>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-success" role="progressbar" style="width:65%" alt="O sorteio ocorrerá quando chegar a 100%">
-                        65%
-                    </div>
-                    <div class="progress-bar progress-bar-warning" role="progressbar" style="width:35%" alt="O sorteio ocorrerá quando chegar a 100%">
-                        35%
-                    </div>
-                    <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
-                        Danger
-                    </div>-->
-                </div>
-                <a href="cart.html" class="button">Comprar</a>
-                <a href="#" class="button muted">Detalhes</a>
-            </div>
-        </div> <!-- .product -->
     </div> <!-- .product-list -->
 </section>
 <section>
@@ -107,103 +44,33 @@
     </header>
     <div class="product-list">
 
-        <div class="product">
+        <div ng-repeat="product in vmHome.popular.Products" class="product" style="text-align:center">
             <div class="inner-product">
                 <div class="figure-image">
-                    <a href="single.html"><img src="../../images/GTA.png" alt="Game 1"></a>
+                    <a href="#/Produto/{{product.Id}}"><img src="../../images/{{product.Id + '.png'}}" alt="{{product.Name}}"></a>
                 </div>
-                <h3 class="product-title"><a href="#">Grand Theft Auto V</a></h3>
-                <small class="price">R$ 5,00</small>
-                <!--<p>Vivencie o jogo em mundo aberto da Rockstar Games aclamado pela crítica , Grand Theft Auto V.</p>-->
+                <h3 class="product-title"><a href="#/Produto/{{product.Id}}">{{product.Name}}</a></h3>
+                <small class="price">R$ {{product.Value}},00</small>
+                <!--<p>Com a tecnologia Frostbite™, o EA SPORTS™FIFA 18 elimina o limite entre o mundo virtual e o real, dando vida aos jogadores, times e climas envolventes do maior esporte do mundo.</p>-->
+
+
+                <h3 ng-show="product.SalesMade == 100"><b>Sorteio {{product.RaffleDate}}</b></h3>
+
                 <div class="progress">
-                    <div class="progress-bar progress-bar-success" role="progressbar" style="width:31%" alt="O sorteio ocorrerá quando chegar a 100%">
-                        31%
+                    <div class="progress-bar progress-bar-success" role="progressbar" style="width:{{product.SalesMade}}%" alt="O sorteio ocorrerá quando chegar a 100%">
+                        {{product.SalesMade}}%
                     </div>
-                    <div class="progress-bar progress-bar-warning" role="progressbar" style="width:69%" alt="O sorteio ocorrerá quando chegar a 100%">
-                        69%
+                    <div class="progress-bar progress-bar-warning" role="progressbar" style="width:{{product.MissingtoSell}}%" alt="O sorteio ocorrerá quando chegar a 100%">
+                        {{product.MissingtoSell}}%
                     </div>
                     <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
-                        Danger
-                    </div>-->
+                    Danger
+                </div>-->
                 </div>
+
                 <a href="cart.html" class="button">Comprar</a>
-                <a href="#" class="button muted">Detalhes</a>
-            </div>
-        </div> <!-- .product -->
+                <a href="#/Produto/{{product.Id}}" class="button muted">Detalhes</a>
 
-
-        <div class="product">
-            <div class="inner-product">
-                <div class="figure-image">
-                    <a href="single.html"><img src="../../images/PokemonX.png" alt="Game 2"></a>
-                </div>
-                <h3 class="product-title"><a href="#">Pokemon X</a></h3>
-                <small class="price">R$ 10,00</small>
-                <p><b>Jogue em 3D:</b> Tanto os personagens quantos os Pokémon e especialmente, os cenários ganham profundidade e riqueza de detalhes.</p>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-success" role="progressbar" style="width:1%" alt="O sorteio ocorrerá quando chegar a 100%">
-                        1%
-                    </div>
-                    <div class="progress-bar progress-bar-warning" role="progressbar" style="width:99%" alt="O sorteio ocorrerá quando chegar a 100%">
-                        99%
-                    </div>
-                    <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
-                        Danger
-                    </div>-->
-                </div>
-                <a href="cart.html" class="button">Comprar</a>
-                <a href="#" class="button muted">Detalhes</a>
-            </div>
-        </div> <!-- .product -->
-
-
-        <div class="product">
-            <div class="inner-product">
-                <div class="figure-image">
-                    <a href="single.html"><img src="../../images/DragonDogma.png" alt="Game 3"></a>
-                </div>
-                <h3 class="product-title"><a href="#">Dragon’S Dogma - Dark Arisen</a></h3>
-                <small class="price">R$ 15,00</small>
-                <p>Ambientado em um enorme mundo aberto, Dragon’s Dogma: Dark Arisen apresenta uma experiência gratificante de combate e ação.</p>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-success" role="progressbar" style="width:100%">
-                        Sorteio 15/10/2017
-                    </div>
-                    <div class="progress-bar progress-bar-warning" role="progressbar" style="width:0%">
-                        0%
-                    </div>
-                    <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
-                        Danger
-                    </div>-->
-                </div>
-                <a href="cart.html" class="button">Comprar</a>
-                <a href="#" class="button muted">Detalhes</a>
-
-            </div>
-        </div> <!-- .product -->
-
-
-        <div class="product">
-            <div class="inner-product">
-                <div class="figure-image">
-                    <a href="single.html"><img src="../../images/TheWitcherIII.png" alt="Game 4"></a>
-                </div>
-                <h3 class="product-title"><a href="#">The Witcher III - Wild Hunt - Complete Edition</a></h3>
-                <small class="price">R$ 20,00</small>
-                <p>Torne-se um Witcher, um dos últimos matadores de monstro de aluguel!</p>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-success" role="progressbar" style="width:100%"  alt="Sorteio 12/10/2017">
-                        Sorteio 12/10/2017
-                    </div>
-                    <div class="progress-bar progress-bar-warning" role="progressbar" style="width:0%">
-                        0%
-                    </div>
-                    <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
-                        Danger
-                    </div>-->
-                </div>
-                <a href="cart.html" class="button">Comprar</a>
-                <a href="#" class="button muted">Detalhes</a>
             </div>
         </div> <!-- .product -->
     </div> <!-- .product-list -->

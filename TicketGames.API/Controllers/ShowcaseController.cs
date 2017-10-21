@@ -14,60 +14,68 @@ namespace TicketGames.API.Controllers
     public class ShowcaseController : ApiController
     {
         //[Authorize]
-        [HttpGet, Route()]
-        public IHttpActionResult Get()
-        {
-            List<Showcase> showcases = new List<Showcase>();
-
-            #region Buscando vitrine banner
-
+        [HttpGet, Route("{type}")]
+        public IHttpActionResult Get(ShowcaseType type)
+        {           
             Showcase showcase = new Showcase();
-            showcase.Id = 1;
-            showcase.Name = "Vitrine do banner";
-            showcase.ShowcaseType = ShowcaseType.Banner;
-            showcase.GetShowcase();
 
-            showcases.Add(showcase);
+            switch (type)
+            {
+                case ShowcaseType.Banner:
+                    {
 
-            #endregion
+                        #region Buscando vitrine banner
 
-            #region Buscando vitrine de categorias
 
-            //Showcase showcaseCategory = new Models.Showcase();
-            //showcaseCategory.Id = 2;
-            //showcaseCategory.Name = "Vitrine das categorias";
-            //showcaseCategory.ShowcaseType = ShowcaseType.Category;
-            //showcaseCategory.GetShowcase();
+                        showcase.Id = 1;
+                        showcase.Name = "Vitrine do banner";
+                        showcase.ShowcaseType = ShowcaseType.Banner;
+                        showcase.GetShowcase();
+                        
+                        #endregion
 
-            //showcases.Add(showcaseCategory);
+                        break;
+                    }
+                case ShowcaseType.Recent:
+                    {
+                        #region Buscando vitrine de categorias
 
-            #endregion
+                        showcase.Id = 2;
+                        showcase.Name = "Vitrine dos produtos recentes";
+                        showcase.ShowcaseType = ShowcaseType.Recent;
+                        showcase.GetShowcase();                        
 
-            #region Buscando vitrine dos consoles
+                        #endregion
 
-            //Showcase showcaseConsole = new Models.Showcase();
-            //showcaseConsole.Id = 3;
-            //showcaseConsole.Name = "Vitrine dos consoles";
-            //showcaseConsole.ShowcaseType = ShowcaseType.Console;
-            //showcaseConsole.GetShowcase();
+                        break;
+                    }
+                case ShowcaseType.Popular:
+                    {
+                        #region Buscando vitrine de produtos
+                        
+                        showcase.Id = 3;
+                        showcase.Name = "Vitrine dos mais vendidos";
+                        showcase.ShowcaseType = ShowcaseType.Popular;
+                        showcase.GetShowcase();                        
 
-            //home.Showcases.Add(showcaseConsole);
+                        #endregion
+                        break;
+                    }
+                case ShowcaseType.Console:
+                    {
+                        #region Buscando vitrine dos consoles
+                        
+                        showcase.Id = 4;
+                        showcase.Name = "Vitrine dos consoles";
+                        showcase.ShowcaseType = ShowcaseType.Console;
+                        showcase.GetShowcase();
+                       
+                        #endregion
+                        break;
+                    }
+            }
 
-            #endregion
-
-            #region Buscando vitrine de produtos
-
-            //Showcase showcaseProducts = new Models.Showcase();
-            //showcaseProducts.Id = 4;
-            //showcaseProducts.Name = "Vitrine de produtos";
-            //showcaseProducts.ShowcaseType = ShowcaseType.Product;
-            //showcaseProducts.GetShowcase();
-
-            //home.Showcases.Add(showcaseProducts);
-
-            #endregion
-
-            return Ok(showcases);
+            return Ok(showcase);
         }
     }
 }

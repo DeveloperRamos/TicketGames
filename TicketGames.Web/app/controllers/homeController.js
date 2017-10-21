@@ -1,8 +1,8 @@
 ﻿'use strict';
 
 ticketGamesApp
-    .controller('homeController', ['$scope', '$cookieStore',
-        function ($scope, $cookieStore) {
+    .controller('homeController', ['$scope', '$cookieStore', 'showcaseService',
+        function ($scope, $cookieStore, showcaseService) {
             var vmHome = this;
 
 
@@ -12,49 +12,13 @@ ticketGamesApp
 
             var getShowcases = function () {
 
-                //showcaseService.getShowcases(function (data) {
+                var recent = showcaseService.getShowcases('Recent');
 
+                vmHome.recent = recent;
 
-                //    angular.forEach(data.data, function (value, key) {
-                //        switch (value.ShowcaseType) {
-                //            case 1: {
-                //                vmHome.banner = value;
-                //                break;
-                //            }
-                //            case 2: {
-                //                vmHome.category = value;
-                //                break;
-                //            }
-                //        }
-                //    });
+                var popular = showcaseService.getShowcases('Popular');
 
-                //    var show = data.data;
-
-
-                //}, function (error) {
-
-                //});
-
-                //    showcaseService.getShowcases(function (data) {
-
-                //        angular.forEach(data.data, function (value, key) {
-
-                //            switch (value.ShowcaseType) {
-                //                case 1: {
-                //                    vmHome.banner = value;
-                //                    break;
-                //                }
-                //                case 2: {
-                //                    vmHome.category = value;
-                //                    break;
-                //                }
-                //            }
-                //        });
-
-                //    }, function (error) {
-
-                //        var errore = error;
-                //    });
+                vmHome.popular = popular;
             };
 
             $scope.random = function () {
