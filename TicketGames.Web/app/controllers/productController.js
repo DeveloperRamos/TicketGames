@@ -1,16 +1,31 @@
 ﻿'use strict';
 
 ticketGamesApp
-    .controller('productController', ['$scope', '$cookieStore',
-        function ($scope, $cookieStore) {
+    .controller('productController', ['$scope', '$cookieStore', '$rootScope',
+        function ($scope, $cookieStore, $rootScope) {
             var vmProduct = this;
 
 
-            vmProduct.initialize = function () {
+            var initialize = function () {
 
-                $scope.actions.text("Ramos");
+                if ($rootScope.bread) {
+                    $rootScope.bread.show();
+                    $rootScope.showcase.hide();
 
+                    var obj = {
+                        "title": 'Need for Speed Rivals',
+                        "pages": [{
+                            "page": "Busca?cat=" + 12,
+                            "title": "Playstation 4"
+                        }]
+                    };
+
+                    $rootScope.bread.text(obj);
+
+
+
+                }
             };
 
-            //initialize();
+            initialize();
         }]);

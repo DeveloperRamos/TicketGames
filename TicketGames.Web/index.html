@@ -21,7 +21,7 @@
         <![endif]-->
 </head>
 <body class="slider-collapse" ng-controller="indexController">
-    <div id="site-content" ng-init="vmIndex.initialize()">
+    <div id="site-content">
         <div class="site-header">
             <div class="container">
                 <a href="/" id="branding">
@@ -32,7 +32,7 @@
                     </div>
                 </a> <!-- #branding -->
                 <div class="right-section pull-right">
-                    <a href="/" class="cart"><i class="icon-cart"></i> 0 items in cart</a>
+                    <a href="/" class="cart"><i class="icon-cart"></i> 0 iten no carrinho</a>
                     <a href="#" class="login-button">Acessar/Cadastrar</a>
                 </div> <!-- .right-section -->
                 <div class="main-navigation">
@@ -54,11 +54,11 @@
                     <div class="mobile-navigation"></div> <!-- .mobile-navigation -->
                 </div> <!-- .main-navigation -->
 
-                <breadcrumb actions="bread"></breadcrumb>
+                <breadcrumb bread="bread"></breadcrumb>
 
             </div> <!-- .container -->
         </div> <!-- .site-header -->
-        <showcase actions="enableshowcase"></showcase>
+        <showcase actions="showcase"></showcase>
 
         <!--<regulation-modal actions="popupmodalmessage"></regulation-modal>-->
 
@@ -182,10 +182,13 @@
     <script src="app/directives/breadcrumb/breadcrumbDirective.js"></script>
     <!--<script src="app/directives/detail/detailDirective.js"></script>-->
     <!--<script src="app/Directive/phoneMask.js"></script>-->
+
+
     <!-- Services -->
     <script src="app/services/globalService.js"></script>
     <script src="app/services/showcaseService.js"></script>
-
+    <script src="app/services/cartService.js"></script>
+    <script src="app/services/participantService.js"></script>
 
     <!-- Controllers -->
     <script src="app/controllers/homeController.js"></script>

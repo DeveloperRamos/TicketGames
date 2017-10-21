@@ -22,6 +22,20 @@ ticketGamesApp.run(['$rootScope', '$route', '$location', '$cookieStore', '$templ
             //else {
             //    $rootScope.Logged = false;
             //}
+
+
+            if ($rootScope.bread && $rootScope.showcase) {
+                if ($location.url() === "" || $location.url() === "/") {
+                    $rootScope.bread.hide();
+                    $rootScope.showcase.show();
+                }
+                else {
+                    $rootScope.bread.show();
+                    $rootScope.showcase.hide();
+
+                }
+
+            }
         });
 
         $rootScope.$on('$routeChangeSuccess', function (e, current, pre) {

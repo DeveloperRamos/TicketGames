@@ -7,23 +7,23 @@
         },
         replace: false,
         templateUrl: "app/directives/showcase/showcase.html",
-        controller: function ($scope) {
+        controller: function ($scope, $rootScope) {
             var vm = this;
 
-            //$scope.actions = {
-            //    show: function () {
+            $rootScope.showcase = {
+                show: function () {
 
-            //        if ($(".overlay, .bx-modal").is(":visible"))
-            //            return true;
+                    if ($(".home-slider").is(":visible"))
+                        return true;
 
-            //        $(".overlay, .bx-modal").show();
-            //        return false;
-            //    },
+                    $(".home-slider").show();
+                    return false;
+                },
 
-            //    hide: function () {
-            //        $(".overlay, .bx-modal").hide();
-            //    },
-            //};
+                hide: function () {
+                    $(".home-slider").hide();
+                },
+            };
 
             //$scope.trustAsHtml = function () {
             //    if ($rootScope.regulations && $rootScope.regulations.length) {

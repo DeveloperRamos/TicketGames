@@ -26,7 +26,14 @@ ticketGamesApp
                 var valor = (Math.floor(Math.random() * 2))
                 var numb = Math.floor((Math.random() * 1000) + 1);
                 return 0.5 - Math.random();
-            }
+            };
+
+
+            vmHome.addCart = function () {
+
+
+
+            };
 
 
             initialize();
