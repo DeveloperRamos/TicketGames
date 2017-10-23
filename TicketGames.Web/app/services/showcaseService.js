@@ -254,102 +254,103 @@
                 }
                 break;
             case 'Popular':
-                showcase = {
-                    "Id": 3,
-                    "Name": "Vitrine dos mais vendidos",
-                    "ShowcaseType": 3,
-                    "Products": [
-                        {
-                            "Id": 262,
-                            "Name": "Minecraft",
-                            "Category": {
-                                "Id": 4,
-                                "Name": "Xbox One",
-                                "Departments": []
+                {
+                    showcase = {
+                        "Id": 3,
+                        "Name": "Vitrine dos mais vendidos",
+                        "ShowcaseType": 3,
+                        "Products": [
+                            {
+                                "Id": 262,
+                                "Name": "Minecraft",
+                                "Category": {
+                                    "Id": 4,
+                                    "Name": "Xbox One",
+                                    "Departments": []
+                                },
+                                "Department": {
+                                    "Id": 4,
+                                    "Name": "Jogos"
+                                },
+                                "ShortDescription": "Super Bomberman R é um jogo de ação, desenvolvido pela Konami e HexaDrive. O jogo foi lançado em 3 de Março de 2017 como um dos títulos de lançamento para o Nintendo Switch",
+                                "Description": null,
+                                "Value": 15,
+                                "Images": [],
+                                "UrlImage": "262.png",
+                                "UrlImageBanner": "",
+                                "RaffleDate": "",
+                                "SalesMade": 39,
+                                "MissingtoSell": 61
                             },
-                            "Department": {
-                                "Id": 4,
-                                "Name": "Jogos"
+                            {
+                                "Id": 191,
+                                "Name": "God of War 4",
+                                "Category": {
+                                    "Id": 1,
+                                    "Name": "Playstation 4",
+                                    "Departments": []
+                                },
+                                "Department": {
+                                    "Id": 1,
+                                    "Name": "Jogos"
+                                },
+                                "ShortDescription": "Super Bomberman R é um jogo de ação, desenvolvido pela Konami e HexaDrive. O jogo foi lançado em 3 de Março de 2017 como um dos títulos de lançamento para o Nintendo Switch",
+                                "Description": null,
+                                "Value": 15,
+                                "Images": [],
+                                "UrlImage": "191.png",
+                                "UrlImageBanner": "",
+                                "RaffleDate": "",
+                                "SalesMade": 98,
+                                "MissingtoSell": 2
                             },
-                            "ShortDescription": "Super Bomberman R é um jogo de ação, desenvolvido pela Konami e HexaDrive. O jogo foi lançado em 3 de Março de 2017 como um dos títulos de lançamento para o Nintendo Switch",
-                            "Description": null,
-                            "Value": 15,
-                            "Images": [],
-                            "UrlImage": "262.png",
-                            "UrlImageBanner": "",
-                            "RaffleDate": "",
-                            "SalesMade": 39,
-                            "MissingtoSell": 61
-                        },
-                        {
-                            "Id": 191,
-                            "Name": "God of War 4",
-                            "Category": {
-                                "Id": 1,
-                                "Name": "Playstation 4",
-                                "Departments": []
+                            {
+                                "Id": 192,
+                                "Name": "Crash Bandicoot N Sane Trilogy",
+                                "Category": {
+                                    "Id": 1,
+                                    "Name": "Playstation 4",
+                                    "Departments": []
+                                },
+                                "Department": {
+                                    "Id": 1,
+                                    "Name": "Jogos"
+                                },
+                                "ShortDescription": "Super Bomberman R é um jogo de ação, desenvolvido pela Konami e HexaDrive. O jogo foi lançado em 3 de Março de 2017 como um dos títulos de lançamento para o Nintendo Switch",
+                                "Description": null,
+                                "Value": 15,
+                                "Images": [],
+                                "UrlImage": "192.png",
+                                "UrlImageBanner": "",
+                                "RaffleDate": "",
+                                "SalesMade": 98,
+                                "MissingtoSell": 2
                             },
-                            "Department": {
-                                "Id": 1,
-                                "Name": "Jogos"
-                            },
-                            "ShortDescription": "Super Bomberman R é um jogo de ação, desenvolvido pela Konami e HexaDrive. O jogo foi lançado em 3 de Março de 2017 como um dos títulos de lançamento para o Nintendo Switch",
-                            "Description": null,
-                            "Value": 15,
-                            "Images": [],
-                            "UrlImage": "191.png",
-                            "UrlImageBanner": "",
-                            "RaffleDate": "",
-                            "SalesMade": 98,
-                            "MissingtoSell": 2
-                        },
-                        {
-                            "Id": 192,
-                            "Name": "Crash Bandicoot N Sane Trilogy",
-                            "Category": {
-                                "Id": 1,
-                                "Name": "Playstation 4",
-                                "Departments": []
-                            },
-                            "Department": {
-                                "Id": 1,
-                                "Name": "Jogos"
-                            },
-                            "ShortDescription": "Super Bomberman R é um jogo de ação, desenvolvido pela Konami e HexaDrive. O jogo foi lançado em 3 de Março de 2017 como um dos títulos de lançamento para o Nintendo Switch",
-                            "Description": null,
-                            "Value": 15,
-                            "Images": [],
-                            "UrlImage": "192.png",
-                            "UrlImageBanner": "",
-                            "RaffleDate": "",
-                            "SalesMade": 98,
-                            "MissingtoSell": 2
-                        },
-                        {
-                            "Id": 410,
-                            "Name": "Has-Been Heroes",
-                            "Category": {
-                                "Id": 8,
-                                "Name": "Nintendo Switch",
-                                "Departments": []
-                            },
-                            "Department": {
-                                "Id": 8,
-                                "Name": "Jogos"
-                            },
-                            "ShortDescription": "Gears of War 4 é um jogo de tiro em terceira pessoa produzido pelo estúdio canadense The Coalition. O quinto título da série Gears of War, foi publicado pela Microsoft Studios para Microsoft Windows e Xbox One em 11 de Outubro de 2016",
-                            "Description": null,
-                            "Value": 5,
-                            "Images": [],
-                            "UrlImage": "410.png",
-                            "UrlImageBanner": "",
-                            "RaffleDate": "23/10/2017",
-                            "SalesMade": 100,
-                            "MissingtoSell": 0
-                        }
-                    ]
+                            {
+                                "Id": 410,
+                                "Name": "Has-Been Heroes",
+                                "Category": {
+                                    "Id": 8,
+                                    "Name": "Nintendo Switch",
+                                    "Departments": []
+                                },
+                                "Department": {
+                                    "Id": 8,
+                                    "Name": "Jogos"
+                                },
+                                "ShortDescription": "Gears of War 4 é um jogo de tiro em terceira pessoa produzido pelo estúdio canadense The Coalition. O quinto título da série Gears of War, foi publicado pela Microsoft Studios para Microsoft Windows e Xbox One em 11 de Outubro de 2016",
+                                "Description": null,
+                                "Value": 5,
+                                "Images": [],
+                                "UrlImage": "410.png",
+                                "UrlImageBanner": "",
+                                "RaffleDate": "23/10/2017",
+                                "SalesMade": 100,
+                                "MissingtoSell": 0
+                            }
+                        ]
+                    }
                 }
-            case 'Console':
                 break;
             default:
 
