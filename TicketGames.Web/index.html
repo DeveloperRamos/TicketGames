@@ -1,0 +1,199 @@
+﻿<!DOCTYPE html>
+<html ng-app="ticketGamesApp">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+
+    <title>Ticket Games</title>
+    <!-- Loading third party fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Roboto:100,300,400,700|" rel="stylesheet" type="text/css">
+    <link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="fonts/lineo-icon/style.css" rel="stylesheet" type="text/css">
+    <!-- Loading main css file -->
+    <link href="content/style.css" rel="stylesheet" />
+    <link href="content/bootstrap.css" rel="stylesheet" />
+    <link href="content/bootstrap.min.css" rel="stylesheet" />
+
+    <!--[if lt IE 9]>
+    <script src="content/js/ie-support/html5.js"></script>
+    <script src="content/js/ie-support/respond.js"></script>
+        <![endif]-->
+</head>
+<body class="slider-collapse" ng-controller="indexController">
+    <div id="site-content">
+        <div class="site-header">
+            <div class="container">
+                <a href="/" id="branding">
+                    <img src="content/images/logo.png" alt="" class="logo" />
+                    <div class="logo-text">
+                        <h1 class="site-title">Ticket Games</h1>
+                        <small class="site-description">Seu cupom da sorte</small>
+                    </div>
+                </a> <!-- #branding -->
+                <div class="right-section pull-right">
+                    <a href="/" class="cart"><i class="icon-cart"></i> 0 iten no carrinho</a>
+                    <a href="#" class="login-button">Acessar/Cadastrar</a>
+                </div> <!-- .right-section -->
+                <div class="main-navigation">
+                    <button class="toggle-menu"><i class="fa fa-bars"></i></button>
+                    <ul class="menu">
+                        <li class="menu-item home current-menu-item"><a href="/"><i class="icon-home"></i></a></li>
+                        <!--<li class="menu-item"><a href="products.html">Playstation 4</a></li>-->
+                        <li class="menu-item"><a href="/">Playstation 4</a></li>
+                        <li class="menu-item"><a href="/">Xbox One</a></li>
+                        <li class="menu-item"><a href="/">PC</a></li>
+                        <li class="menu-item"><a href="/">Nintendo Switch</a></li>
+                        <li class="menu-item"><a href="/">Playstation Vita</a></li>
+                        <li class="menu-item"><a href="/">Nintendo 3DS</a></li>
+                    </ul> <!-- .menu -->
+                    <div class="search-form">
+                        <label><img src="content/images/icon-search.png"></label>
+                        <input type="text" placeholder="Pesquisar...">
+                    </div> <!-- .search-form -->
+                    <div class="mobile-navigation"></div> <!-- .mobile-navigation -->
+                </div> <!-- .main-navigation -->
+
+                <breadcrumb bread="bread"></breadcrumb>
+
+            </div> <!-- .container -->
+        </div> <!-- .site-header -->
+        <showcase actions="showcase"></showcase>
+
+        <!--<regulation-modal actions="popupmodalmessage"></regulation-modal>-->
+
+        <main class="main-content">
+            <div class="container">
+                <div class="page">
+                    <div ng-view>
+
+                    </div>
+
+                </div>
+            </div> <!-- .container -->
+        </main> <!-- .main-content -->
+        <div class="site-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="widget">
+                            <h3 class="widget-title">Information</h3>
+                            <ul class="no-bullet">
+                                <li><a href="#">Site map</a></li>
+                                <li><a href="#">About us</a></li>
+                                <li><a href="#">FAQ</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+                        </div> <!-- .widget -->
+                    </div> <!-- column -->
+                    <div class="col-md-2">
+                        <div class="widget">
+                            <h3 class="widget-title">Consumer Service</h3>
+                            <ul class="no-bullet">
+                                <li><a href="#">Secure</a></li>
+                                <li><a href="#">Shipping &amp; Returns</a></li>
+                                <li><a href="#">Shipping</a></li>
+                                <li><a href="#">Orders &amp; Returns</a></li>
+                                <li><a href="#">Group Sales</a></li>
+                            </ul>
+                        </div> <!-- .widget -->
+                    </div> <!-- column -->
+                    <div class="col-md-2">
+                        <div class="widget">
+                            <h3 class="widget-title">Meu Cadastro</h3>
+                            <ul class="no-bullet">
+                                <li><a href="#">Acessar/Cadastrar</a></li>
+                                <li><a href="#">Settings</a></li>
+                                <li><a href="#">Cart</a></li>
+                                <li><a href="#">Order Tracking</a></li>
+                                <li><a href="#">Logout</a></li>
+                            </ul>
+                        </div> <!-- .widget -->
+                    </div> <!-- column -->
+                    <div class="col-md-6">
+                        <div class="widget">
+                            <h3 class="widget-title">Join our newsletter</h3>
+                            <form action="#" class="newsletter-form">
+                                <input type="text" placeholder="Enter your email...">
+                                <input type="submit" value="Subsribe">
+                            </form>
+                        </div> <!-- .widget -->
+                    </div> <!-- column -->
+                </div><!-- .row -->
+                <div class="colophon">
+                    <div class="copy">Copyright 2017 Ticket Games. Todos direitos reservados.</div>
+                    <div class="social-links square">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                        <a href="#"><i class="fa fa-pinterest"></i></a>
+                    </div> <!-- .social-links -->
+                </div> <!-- .colophon -->
+            </div> <!-- .container -->
+        </div> <!-- .site-footer -->
+    </div>
+    <div class="overlay"></div>
+    <div class="auth-popup popup">
+        <a href="#" class="close"><i class="fa fa-times"></i></a>
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="section-title">Acessar</h2>
+                <form action="#">
+                    <input type="text" placeholder="Login...">
+                    <input type="password" placeholder="Senha...">
+                    <input type="submit" value="Entrar">
+                </form>
+            </div> <!-- .column -->
+            <div class="col-md-6">
+                <h2 class="section-title">Criar uma conta</h2>
+                <form action="#">
+                    <input type="text" placeholder="CPF">
+                    <input type="text" placeholder="Seu email...">
+                    <input type="submit" value="Cadastrar">
+                </form>
+            </div> <!-- .column -->
+        </div> <!-- .row -->
+    </div> <!-- .auth-popup -->
+    <!--Scripts-->
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/angular-route.js"></script>
+    <script src="Scripts/angular-cookies.js"></script>
+    <script src="Scripts/angular-animate.js"></script>
+    <!--<script src="Scripts/angular-resource.js"></script>
+    <script src="Scripts/angular-sanitize.js"></script>
+    <script src="Scripts/angular-touch.js"></script>
+    <script src="Scripts/angular-loader.js"></script>-->
+    <script src="content/js/jquery-1.11.1.min.js"></script>
+    <!--<script src="Scripts/jquery-3.2.1.min.js"></script>-->
+    <script src="content/js/plugins.js"></script>
+    <script src="content/js/app.js"></script>
+
+
+
+
+    <!--Application-->
+    <script src="app/app.js"></script>
+    <script src="app/appConfig.js"></script>
+    <script src="app/global.js"></script>
+
+    <!--Directive-->
+    <script src="app/directives/showcase/showcaseDirective.js"></script>
+    <script src="app/directives/breadcrumb/breadcrumbDirective.js"></script>
+    <!--<script src="app/directives/detail/detailDirective.js"></script>-->
+    <!--<script src="app/Directive/phoneMask.js"></script>-->
+
+
+    <!-- Services -->
+    <script src="app/services/globalService.js"></script>
+    <script src="app/services/showcaseService.js"></script>
+    <script src="app/services/cartService.js"></script>
+    <script src="app/services/participantService.js"></script>
+
+    <!-- Controllers -->
+    <script src="app/controllers/homeController.js"></script>
+    <script src="app/controllers/indexController.js"></script>
+    <script src="app/controllers/productController.js"></script>
+
+</body>
+</html>

@@ -1,7 +1,7 @@
 ﻿public enum ShowcaseType
 {
     Banner = 1,
-    Category = 2,
-    Console = 3,
-    Product = 4
+    Recent = 2,
+    Popular = 3,
+    Console = 4
 }
