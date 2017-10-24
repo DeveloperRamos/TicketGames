@@ -12,13 +12,18 @@ ticketGamesApp
 
             var getShowcases = function () {
 
-                var recent = showcaseService.getShowcases('Recent');
 
-                vmHome.recent = recent;
+                showcaseService.getShowcases(2, function (response) {
 
-                var popular = showcaseService.getShowcases('Popular');
+                    vmHome.recent = response.data;
 
-                vmHome.popular = popular;
+                });
+
+                showcaseService.getShowcases(3, function (response) {
+
+                    vmHome.popular = response.data;
+
+                });
             };
 
             $scope.random = function () {
