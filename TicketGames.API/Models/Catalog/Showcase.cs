@@ -103,7 +103,7 @@ namespace TicketGames.API.Models.Catalog
                             Value = 10.00m,
                             UrlImage = "260.png",
                             SalesMade = 79,
-                            MissingtoSell = 21
+                            MissingtoSell = 21,
                         };
 
                         this.Products.Add(product5);
@@ -142,6 +142,7 @@ namespace TicketGames.API.Models.Catalog
                             MissingtoSell = 2
                         };
 
+                        this.Products.Add(product1);
 
                         #endregion
 
