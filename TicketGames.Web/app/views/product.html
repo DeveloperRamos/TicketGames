@@ -3,30 +3,45 @@
         <div class="col-sm-6 col-md-4">
             <div class="product-images">
                 <figure class="large-image">
-                    <a href="dummy/image-1.jpg"><img src="dummy/single-game-cover.jpg" alt=""></a>
+                    <a href="../../images/{{vmProduct.product.Id + '.png'}}"><img src="../../images/{{vmProduct.product.Id + '.png'}}" alt="{{vmProduct.product.Name}}"></a>
                 </figure>
                 <div class="thumbnails">
-                    <a href="dummy/image-2.jpg"><img src="dummy/small-thumb-1.jpg" alt=""></a>
-                    <a href="dummy/image-3.jpg"><img src="dummy/small-thumb-2.jpg" alt=""></a>
-                    <a href="dummy/image-4.jpg"><img src="dummy/small-thumb-3.jpg" alt=""></a>
+                    <a ng-repeat="image in vmProduct.product.Images | filter: { ImageType: 2 }" href="../../images/{{image.URL}}"><img src="../../images/{{image.URL}}" alt=""></a>
+                </div>
+
+                <br />
+                <br />
+
+                <div style="text-align:center">
+                    <h3 ng-show="vmProduct.product.SalesMade == 100"><b>Sorteio {{ vmProduct.product.RaffleDate | date: 'dd/MM/yyyy' }}</b></h3>
+
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success" role="progressbar" style="width:{{vmProduct.product.SalesMade}}%" alt="O sorteio ocorrerá quando chegar a 100%">
+                            {{vmProduct.product.SalesMade}}%
+                        </div>
+                        <div class="progress-bar progress-bar-warning" role="progressbar" style="width:{{vmProduct.product.MissingtoSell}}%" alt="O sorteio ocorrerá quando chegar a 100%">
+                            {{vmProduct.product.MissingtoSell}}%
+                        </div>
+                        <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
+                            Danger
+                        </div>-->
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col-sm-6 col-md-8">
-            <h2 class="entry-title">Need for Speed Rivals</h2>
-            <small class="price">$190.00</small>
-            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
-            <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae.</p>
-            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod.</p>
+            <h2 class="entry-title">{{vmProduct.product.Name}}</h2>
+            <small class="price"><b>R$ {{vmProduct.product.Value}},00</b></small>
+            <div ng-bind-html="trustAsHtml(vmProduct.product.Description)"></div>
             <div class="addtocart-bar">
                 <form action="#">
-                    <label for="#">Quantity</label>
+                    <label for="#">Quantidade</label>
                     <select name="#">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                     </select>
-                    <input type="submit" value="Add to cart">
+                    <input type="submit" value="Comprar">
                 </form>
                 <div class="social-links square">
                     <strong>Share</strong>
@@ -48,7 +63,7 @@
         <div class="product">
             <div class="inner-product">
                 <div class="figure-image">
-                    <img src="dummy/game-1.jpg" alt="Game 1">
+                    <img src="images/game-1.jpg" alt="Game 1">
                 </div>
                 <h3 class="product-title"><a href="#">Alpha Protocol</a></h3>
                 <small class="price">$20.00</small>
@@ -61,7 +76,7 @@
         <div class="product">
             <div class="inner-product">
                 <div class="figure-image">
-                    <img src="dummy/game-2.jpg" alt="Game 2">
+                    <img src="images/game-2.jpg" alt="Game 2">
                 </div>
                 <h3 class="product-title"><a href="#">Grand Theft Auto V</a></h3>
                 <small class="price">$20.00</small>
@@ -74,7 +89,7 @@
         <div class="product">
             <div class="inner-product">
                 <div class="figure-image">
-                    <img src="dummy/game-3.jpg" alt="Game 3">
+                    <img src="images/game-3.jpg" alt="Game 3">
                 </div>
                 <h3 class="product-title"><a href="#">Need for Speed rivals</a></h3>
                 <small class="price">$20.00</small>
@@ -87,7 +102,7 @@
         <div class="product">
             <div class="inner-product">
                 <div class="figure-image">
-                    <img src="dummy/game-4.jpg" alt="Game 4">
+                    <img src="images/game-4.jpg" alt="Game 4">
                 </div>
                 <h3 class="product-title"><a href="#">Big game hunter</a></h3>
                 <small class="price">$20.00</small>
