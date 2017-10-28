@@ -9,6 +9,7 @@ namespace TicketGames.API.Models.Catalog
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public int Order { get; set; }
         public List<Department> Departments { get; set; }
 
         public Category()
@@ -19,10 +20,11 @@ namespace TicketGames.API.Models.Catalog
         {
             List<Category> categories = new List<Category>();
 
-            var objCategories = HttpContext.Current.Session["Categories"];
+            
+            //    var objCategories = HttpContext.Current.Session["Categories"];
 
-            if (objCategories == null)
-            {
+            //if (objCategories == null)
+            //{
                 List<Department> departments1 = new List<Department>();
                 departments1.Add(new Department() { Id = 1, Name = "Acessorios" });
                 departments1.Add(new Department() { Id = 2, Name = "Consoles" });
@@ -63,21 +65,21 @@ namespace TicketGames.API.Models.Catalog
                 departments8.Add(new Department() { Id = 23, Name = "Consoles" });
                 departments8.Add(new Department() { Id = 24, Name = "Jogos" });
 
-                categories.Add(new Category() { Id = 1, Name = "Playstation 3", Departments = departments1 });
-                categories.Add(new Category() { Id = 2, Name = "Playstation 4", Departments = departments2 });
-                categories.Add(new Category() { Id = 3, Name = "Xbox 360", Departments = departments3 });
-                categories.Add(new Category() { Id = 4, Name = "Xbox One", Departments = departments4 });
-                categories.Add(new Category() { Id = 5, Name = "Nintendo WII U", Departments = departments5 });
-                categories.Add(new Category() { Id = 6, Name = "Nintendo Switch", Departments = departments6 });
-                categories.Add(new Category() { Id = 7, Name = "Nintendo 3DS", Departments = departments7 });
-                categories.Add(new Category() { Id = 8, Name = "Playstation Vita", Departments = departments8 });
+                categories.Add(new Category() { Id = 1, Name = "PS3", Departments = departments1, Order = 1 });
+                categories.Add(new Category() { Id = 2, Name = "PS4", Departments = departments2, Order = 2 });
+                categories.Add(new Category() { Id = 3, Name = "Xbox 360", Departments = departments3, Order = 4 });
+                categories.Add(new Category() { Id = 4, Name = "Xbox One", Departments = departments4, Order = 5 });
+                categories.Add(new Category() { Id = 5, Name = "Nintendo WII U", Departments = departments5, Order = 7 });
+                categories.Add(new Category() { Id = 6, Name = "Nintendo Switch", Departments = departments6, Order = 8 });
+                categories.Add(new Category() { Id = 7, Name = "Nintendo 3DS", Departments = departments7, Order = 6 });
+                categories.Add(new Category() { Id = 8, Name = "PS Vita", Departments = departments8, Order = 3 });
 
-                HttpContext.Current.Session["Categories"] = categories;
-            }
-            else
-            {
-                categories = (List<Category>)objCategories;
-            }
+            //    HttpContext.Current.Session["Categories"] = categories;
+            //}
+            //else
+            //{
+            //    categories = (List<Category>)objCategories;
+            //}
 
             return categories;
         }
