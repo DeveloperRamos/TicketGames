@@ -21,8 +21,7 @@ ticketGamesApp.run(['$rootScope', '$route', '$location', '$cookieStore', '$templ
             //}
             //else {
             //    $rootScope.Logged = false;
-            //}
-
+            //}            
 
             if ($rootScope.bread && $rootScope.showcase) {
                 if ($location.url() === "" || $location.url() === "/") {
@@ -39,6 +38,12 @@ ticketGamesApp.run(['$rootScope', '$route', '$location', '$cookieStore', '$templ
         });
 
         $rootScope.$on('$routeChangeSuccess', function (e, current, pre) {
+
+            var teste = 'marcio ramos';
+            var rot = 'trocou de rota';
+            e.currentScope.isPaneShown = true;
+
+
 
             //var gtm_obj = $rootScope.getGTMObj('page', $location.path());
             //var gtm_settings = $route.current.$$route.settings ? $route.current.$$route.settings.gtm : null;

@@ -68,6 +68,8 @@
     <Content Include="app\controllers\searchController.js" />
     <Content Include="app\directives\breadcrumb\breadcrumb.html" />
     <Content Include="app\directives\breadcrumb\breadcrumbDirective.js" />
+    <Content Include="app\directives\loading\loading.html" />
+    <Content Include="app\directives\loading\loadingDirective.js" />
     <Content Include="app\directives\showcase\showcase.html" />
     <Content Include="app\directives\showcase\showcaseDirective.js" />
     <Content Include="app\services\cartService.js" />
@@ -126,6 +128,7 @@
     <Content Include="images\CrashTrilogy.png" />
     <Content Include="images\DragonDogma.png" />
     <Content Include="images\Fifa18.png" />
+    <Content Include="images\giphy.gif" />
     <Content Include="images\GTA.png" />
     <Content Include="images\halo_5.png" />
     <Content Include="images\PokemonX.png" />

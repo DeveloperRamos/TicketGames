@@ -8,6 +8,9 @@ ticketGamesApp
 
 
             var initialize = function () {
+
+                //$scope.loading = true;
+                var teste = $scope;
                 getCategories();
                 getCart();
 
