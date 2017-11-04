@@ -7,6 +7,18 @@ ticketGamesApp
 
             var initialize = function () {
 
+                if ($rootScope.bread) {
+                    $rootScope.bread.show();
+                    $rootScope.showcase.hide();
+
+                    var obj = {
+                        "title": "Pesquisa",
+                        "pages": []
+                    };
+
+                    $rootScope.bread.text(obj);
+                }
+
             };
 
 
