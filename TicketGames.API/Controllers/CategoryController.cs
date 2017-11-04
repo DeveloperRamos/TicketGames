@@ -21,6 +21,6 @@ namespace TicketGames.API.Controllers
             List<Category> categories = category.GetCategories();
 
             return Ok(categories);
-        }
+        }        
     }
 }
