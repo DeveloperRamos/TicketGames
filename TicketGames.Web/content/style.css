@@ -2927,6 +2927,11 @@ table.cart {
     border: 0px solid white !important;
 }
 
+.imgCart {
+    width: 118px;
+    height: 134px;
+}
+
 .loading {
     position: page;
 }

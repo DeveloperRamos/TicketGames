@@ -1,0 +1,44 @@
+﻿
+<table class="cart">
+    <thead>
+        <tr>
+            <th class="product-name">Produto</th>
+            <th class="product-price">Valor</th>
+            <th class="product-qty">Quantidade</th>
+            <th class="product-total">Total</th>
+            <th class="action"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="cart in vmCart.carts">
+            <td class="product-name">
+                <div class="product-thumbnail">
+                    <img src="images/{{cart.ProductId + '.png'}}" alt="" class="imgCart">
+                </div>
+                <div class="product-detail">
+                    <h3 class="product-title">{{cart.Product}}</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure nobis architecto dolorum, alias laborum sit odit, saepe expedita similique eius enim quasi obcaecati voluptates, autem eveniet ratione veniam omnis modi.</p>
+                </div>
+            </td>
+            <td class="product-price">{{cart.Price | currency: 'R$ '}}</td>
+            <td class="product-qty">
+                <select name="#">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </td>
+            <td class="product-total">{{cart.Price | currency: 'R$ '}}</td>
+            <td class="action"><a href="" ng-click="vmCart.remove(cart.Id)" ><i class="fa fa-times"></i></a></td>
+        </tr>        
+    </tbody>
+</table> <!-- .cart -->
+<div class="cart-total">
+    <p><strong>Subtotal:</strong>R$ 40,00</p>
+    <p><strong>Frete:</strong> Gratis</p>
+    <p class="total"><strong>Total</strong><span class="num">R$ 40,00</span></p>
+    <p>
+        <a href="#" class="button muted">Comprar mais</a>
+        <a href="#" class="button">Próximo</a>
+    </p>
+</div> <!-- .cart-total -->

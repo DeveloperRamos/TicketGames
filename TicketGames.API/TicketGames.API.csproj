@@ -109,6 +109,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ParticipantController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -124,6 +125,7 @@
     <Compile Include="Models\Catalog\Showcase.cs" />
     <Compile Include="Models\Enum\ImageType.cs" />
     <Compile Include="Models\Enum\ShowcaseType.cs" />
+    <Compile Include="Models\Order\Cart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\SimpleAuthorizationServerProvider.cs" />
     <Compile Include="Startup.cs" />

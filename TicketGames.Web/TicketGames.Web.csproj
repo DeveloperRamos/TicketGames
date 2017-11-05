@@ -63,6 +63,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\controllers\cartController.js" />
     <Content Include="app\controllers\indexController.js" />
     <Content Include="app\controllers\productController.js" />
     <Content Include="app\controllers\searchController.js" />
@@ -79,6 +80,7 @@
     <Content Include="app\services\productService.js" />
     <Content Include="app\services\searchService.js" />
     <Content Include="app\services\showcaseService.js" />
+    <Content Include="app\views\cart.html" />
     <Content Include="app\views\product.html" />
     <Content Include="app\views\search.html" />
     <Content Include="content\bootstrap-theme.css" />
