@@ -9,15 +9,18 @@
     };
 
 
-    function getCart() {
+    function getCart(successCallback, errorCallback) {
 
-        return $http.get(global.service + urlBase)
-            .success(function (data) {
-                return data;
+        $http.get(global.service + urlBase)
+            .then(successCallback, errorCallback);
 
-            })
-            .error(function (error, status) {
-            });
+        //return $http.get(global.service + urlBase)
+        //    .success(function (data) {
+        //        return data;
+
+        //    })
+        //    .error(function (error, status) {
+        //    });
     };
 
     function addCart(cart) {
@@ -44,15 +47,9 @@
             });
     };
 
-    function removeCart(productid) {
-        return $http.delete(global.service + urlBase + productid)
-            .success(function (data) {
-                return data;
-
-            })
-            .error(function (error, status) {
-                common.errorMessage(error, null, status);
-            });
+    function removeCart(id, successCallback, errorCallback) {
+        $http.delete(global.service + urlBase + '/' + id)
+            .then(successCallback, errorCallback);
     }
 
     return service;
