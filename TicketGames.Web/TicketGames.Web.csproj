@@ -63,6 +63,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\controllers\addressController.js" />
     <Content Include="app\controllers\cartController.js" />
     <Content Include="app\controllers\indexController.js" />
     <Content Include="app\controllers\productController.js" />
@@ -80,6 +81,7 @@
     <Content Include="app\services\productService.js" />
     <Content Include="app\services\searchService.js" />
     <Content Include="app\services\showcaseService.js" />
+    <Content Include="app\views\address.html" />
     <Content Include="app\views\cart.html" />
     <Content Include="app\views\product.html" />
     <Content Include="app\views\search.html" />
@@ -174,6 +176,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
+    <Content Include="Scripts\formulario.js" />
     <Content Include="Scripts\jquery-3.2.1.js" />
     <Content Include="Scripts\jquery-3.2.1.min.js" />
     <Content Include="Scripts\jquery-3.2.1.slim.js" />

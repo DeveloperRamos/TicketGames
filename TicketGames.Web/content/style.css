@@ -2954,3 +2954,17 @@ table.cart {
         height: 100%;
         background: url("http://oi58.tinypic.com/2emfu9w.jpg") center center no-repeat;
     }*/
+
+/*Formulario*/
+h11 {
+    color: red;
+}
+
+#logo {
+    width: 50%;
+    height: 50%;
+}
+
+.panel-heading {
+    font-size: 150%;
+}

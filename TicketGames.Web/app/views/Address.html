@@ -1,0 +1,157 @@
+﻿<form class="form-horizontal" style="text-align:center">
+    <fieldset>
+        <div class="panel panel-primary">
+            <div class="panel-heading">Informação para recebimento</div>
+
+            <div class="panel-body" style="width:130%">
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="Nome">Nome <h11>*</h11></label>
+                    <div class="col-md-8">
+                        <input id="Nome" name="Nome" placeholder="" class="form-control input-md" ng-model="address.name" required="" type="text" style="width:450px">
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="Nome">CPF <h11>*</h11></label>
+                    <div class="col-md-2">
+                        <input id="cpf" name="cpf" placeholder="Apenas números" class="form-control input-md" type="text" maxlength="14" pattern="[0-9]+$" OnKeyPress="formatar('###.###.###-##', this)">
+                    </div>
+
+                    <label class="col-md-1 control-label" for="Nome">Nascimento<h11>*</h11></label>
+                    <div class="col-md-2">
+                        <input id="dtnasc" name="dtnasc" placeholder="DD/MM/AAAA" class="form-control input-md" required="" type="text" maxlength="10" OnKeyPress="formatar('##/##/####', this)" onBlur="showhide()">
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="prependedtext">Telefone <h11>*</h11></label>
+                    <div class="col-md-2">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                            <input id="prependedtext" name="prependedtext" class="form-control" placeholder="XX XXXX-XXXX" required="" type="text" maxlength="12" pattern="\[0-9]{2}\ [0-9]{4,6}-[0-9]{3,4}$"
+                                   OnKeyPress="formatar('## ####-####', this)">
+                        </div>
+                    </div>
+
+                    <label class="col-md-1 control-label" for="prependedtext">Celular</label>
+                    <div class="col-md-2">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                            <input id="prependedtext" name="prependedtext" class="form-control" placeholder="XX XXXXX-XXXX" type="text" maxlength="13" pattern="\[0-9]{2}\ [0-9]{4,6}-[0-9]{3,4}$"
+                                   OnKeyPress="formatar('## #####-####', this)">
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="prependedtext">Email <h11>*</h11></label>
+                    <div class="col-md-5">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                            <input id="prependedtext" name="prependedtext" class="form-control" placeholder="email@email.com" required="" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="CEP">CEP <h11>*</h11></label>
+                    <div class="col-md-2">
+                        <input id="cep" name="cep" OnKeyPress="formatar('#####-###', this)" placeholder="Apenas números" class="form-control input-md" value="" style="width:60%; height:20%; text-align: center" type="search" maxlength="9" pattern="[0-9]+$" />
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-primary" onclick="pesquisacep(cep.value)">Pesquisar</button>
+                    </div>
+                </div>
+
+                <br />
+
+                <!-- Prepended text-->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="prependedtext">Endereço</label>
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <span class="input-group-addon">Rua</span>
+                            <input id="rua" name="rua" class="form-control" placeholder="" required="" readonly="readonly" type="text" />
+                        </div>
+
+                    </div>
+                    <div class="col-md-2">
+                        <div class="input-group">
+                            <span class="input-group-addon">Nº <h11>*</h11></span>
+                            <input id="numero" name="numero" class="form-control" placeholder="" required="" type="text">
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <br />
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="prependedtext"></label>
+                    <div class="col-md-4">
+                        <div class="input-group">
+
+                            <span class="input-group-addon">Complemento</span>
+                            <input id="complemento" name="complemento" class="form-control" placeholder="" required="" type="text" />
+                        </div>
+
+                    </div>
+                    <div class="col-md-2">
+                        <div class="input-group">
+                            <span class="input-group-addon">Bairro</span>
+                            <input id="bairro" name="bairro" class="form-control" placeholder="" required="" readonly="readonly" type="text">
+                        </div>
+
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="prependedtext"></label>
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <span class="input-group-addon">Cidade</span>
+                            <input id="cidade" name="cidade" class="form-control" placeholder="" required="" readonly="readonly" type="text">
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="input-group">
+                            <span class="input-group-addon">Estado</span>
+                            <input id="estado" name="estado" class="form-control" placeholder="" required="" readonly="readonly" type="text">
+                        </div>
+
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="Nome">Ponto de referência</label>
+                    <div class="col-md-8">
+                        <input id="referencia" name="referencia" placeholder="" class="form-control input-md" type="text" style="width:450px">
+                    </div>
+                </div>
+                <br />
+            </div>
+
+            <br />
+
+            <button type="submit" class="btn btn-primary" ng-click="save(user)" value="Ir para pagamento">Ir para pagamento</button>
+            <br />
+            <br />
+        </div>
+
+    </fieldset>
+</form>
