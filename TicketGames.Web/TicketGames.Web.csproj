@@ -66,6 +66,7 @@
     <Content Include="app\controllers\addressController.js" />
     <Content Include="app\controllers\cartController.js" />
     <Content Include="app\controllers\indexController.js" />
+    <Content Include="app\controllers\paymentController.js" />
     <Content Include="app\controllers\productController.js" />
     <Content Include="app\controllers\registerController.js" />
     <Content Include="app\controllers\searchController.js" />
@@ -84,6 +85,7 @@
     <Content Include="app\services\showcaseService.js" />
     <Content Include="app\views\address.html" />
     <Content Include="app\views\cart.html" />
+    <Content Include="app\views\payment.html" />
     <Content Include="app\views\product.html" />
     <Content Include="app\views\register.html" />
     <Content Include="app\views\search.html" />

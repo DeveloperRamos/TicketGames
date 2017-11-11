@@ -16,8 +16,8 @@
 
 
                 <h3 ng-show="product.SalesMade == 100"><b>Sorteio {{ product.RaffleDate | date: 'dd/MM/yyyy' }}</b></h3>
-                
-                <div class="progress" >
+
+                <div class="progress">
                     <div class="progress-bar progress-bar-success" role="progressbar" style="width:{{product.SalesMade}}%" alt="O sorteio ocorrerá quando chegar a 100%">
                         {{product.SalesMade}}%
                     </div>
@@ -64,8 +64,8 @@
                         {{product.MissingtoSell}}%
                     </div>
                     <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
-                    Danger
-                </div>-->
+                        Danger
+                    </div>-->
                 </div>
 
                 <a href="cart.html" class="button">Comprar</a>
