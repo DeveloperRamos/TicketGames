@@ -13,6 +13,6 @@
         .when('/Busca', { templateUrl: 'app/views/search.html', controller: 'searchController', controllerAs: 'vmSearch' })
         .when('/Carrinho', { templateUrl: 'app/views/cart.html', controller: 'cartController', controllerAs: 'vmCart' })
         .when('/Endereco', { templateUrl: 'app/views/address.html', controller: 'addressController', controllerAs: 'vmAddress' })
-        //.when('/Acesso', { templateUrl: 'app/Views/Login.html', controller: 'LoginController', controllerAs: 'vmLogin' })        
+        .when('/Cadastro', { templateUrl: 'app/Views/register.html', controller: 'registerController', controllerAs: 'vmRegister' })        
         .otherwise({ redirectTo: '/' });
 }]);
