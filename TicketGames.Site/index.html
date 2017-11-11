@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html ng-app="ticketGamesApp">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Page title set in pageTitle directive -->
+    <title page-title></title>
+    <!-- Bootstrap -->
+    <link href="content/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font awesome -->
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+    <!-- Main Inspinia CSS files -->
+    <link href="content/css/animate.css" rel="stylesheet">
+    <link id="loadBefore" href="content/css/style.css" rel="stylesheet">
+</head>
+<body ng-controller="indexController as vmIndex" ng-init="vmIndex.inicio()" landing-scrollspy id="page-top">
+
+
+    <!-- Main view  -->
+    <div ui-view></div>
+
+
+    <!--Scripts-->
+    <!--<script src="Scripts/angular.js"></script>-->
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/angular-sanitize.js"></script>
+    <script src="Scripts/plugins/oclazyload/dist/ocLazyLoad.min.js"></script>
+    <script src="Scripts/angular-translate/angular-translate.min.js"></script>
+    <script src="Scripts/ui-router/angular-ui-router.min.js"></script>
+    <script src="Scripts/bootstrap/ui-bootstrap-tpls-1.1.2.min.js"></script>
+    <script src="Scripts/plugins/angular-idle/angular-idle.js"></script>
+
+
+    <!-- jQuery and Bootstrap -->
+    <script src="Scripts/jquery/jquery-3.1.1.min.js"></script>
+    <script src="Scripts/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="Scripts/bootstrap/bootstrap.min.js"></script>
+
+    <!-- MetsiMenu -->
+    <script src="Scripts/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <!-- SlimScroll -->
+    <script src="Scripts/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <!-- Peace JS -->
+    <script src="Scripts/plugins/pace/pace.min.js"></script>
+    <!-- Custom and plugin javascript -->
+    <script src="Scripts/inspinia.js"></script>
+
+
+
+    <!--Application-->
+    <script src="app/app.js"></script>
+    <script src="app/config.js"></script>
+    <script src="app/global.js"></script>
+
+
+    <!-- Controllers -->
+    <script src="app/controllers/homeController.js"></script>
+    <script src="app/controllers/indexController.js"></script>
+
+
+</body>
+</html>

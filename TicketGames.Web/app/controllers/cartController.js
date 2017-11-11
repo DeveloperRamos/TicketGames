@@ -1,8 +1,8 @@
 ﻿'use strict';
 
 ticketGamesApp
-    .controller('cartController', ['$scope', '$cookieStore', '$rootScope', 'cartService',
-        function ($scope, $cookieStore, $rootScope, cartSevice) {
+    .controller('cartController', ['$scope', '$cookieStore', '$rootScope', '$location', 'cartService',
+        function ($scope, $cookieStore, $rootScope, $location, cartSevice) {
             var vmCart = this;
 
             var initialize = function () {
@@ -43,7 +43,7 @@ ticketGamesApp
                         var log = [];
                         angular.forEach(responseC.data, function (value, key) {
 
-                            if (value.Id != cartId) {                                
+                            if (value.Id != cartId) {
                             }
 
                         }, log);
@@ -55,6 +55,17 @@ ticketGamesApp
                 });
 
 
+            };
+
+            vmCart.next = function () {
+                $rootScope.cart = {};
+
+                $rootScope.cart = {
+                    cartId: 21,
+                    address: {}
+                };
+
+                $location.path('/Endereco');
             };
 
 

@@ -2968,3 +2968,20 @@ h11 {
 .panel-heading {
     font-size: 150%;
 }
+
+
+.panel-primary > .panel-heading {
+    color: #fff !important;
+    background-color: #898e90 !important;
+    border-color: #898e90 !important;
+}
+
+.panel-primary {
+    border-color: #898e90 !important;
+}
+
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+    cursor: not-allowed !important;
+    background-color: #eee !important;
+    opacity: 1 !important;
+}
