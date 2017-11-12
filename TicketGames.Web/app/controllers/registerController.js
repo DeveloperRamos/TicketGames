@@ -1,8 +1,8 @@
 ﻿'use strict';
 
 ticketGamesApp
-    .controller('registerController', ['$scope', '$cookieStore', '$rootScope',
-        function ($scope, $cookieStore, $rootScope) {
+    .controller('registerController', ['$scope', '$cookieStore', '$rootScope', 'searchService',
+        function ($scope, $cookieStore, $rootScope, searchService) {
             var vmRegister = this;
 
             var initialize = function () {
@@ -19,6 +19,33 @@ ticketGamesApp
                 }
             };
 
+            vmRegister.search = function (valor) {
+
+                //Nova variável "cep" somente com dígitos.
+                var cep = valor.replace(/\D/g, '');
+
+                //Verifica se campo cep possui valor informado.
+                if (cep !== "") {
+
+                    //Expressão regular para validar o CEP.
+                    var validacep = /^[0-9]{8}$/;
+
+                    searchService.searchCep(cep, function (response) {
+
+                        $scope.participant.address.street = response.data.logradouro;
+                        $scope.participant.address.district = response.data.bairro;
+                        $scope.participant.address.city = response.data.localidade;
+                        $scope.participant.address.state = response.data.uf;
+
+                    });
+
+
+                } //end if.
+                else {
+                    //cep sem valor, limpa formulário.
+                    alert("Formato de CEP inválido.");
+                }
+            };
 
 
             vmRegister.save = function (register) {

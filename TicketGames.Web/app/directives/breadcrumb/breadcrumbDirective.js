@@ -14,7 +14,7 @@
             $rootScope.bread = {
                 text: function (obj) {
 
-                    var html = '';
+                    var html = '<a href="#/">Início</a>';
 
 
                     angular.forEach(obj.pages, function (value, key) {
