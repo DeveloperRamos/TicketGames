@@ -15,6 +15,9 @@
     <link href="content/bootstrap.css" rel="stylesheet" media="all" />
     <link href="content/bootstrap.min.css" rel="stylesheet" media="all" />
     <script src="Scripts/formulario.js"></script>
+
+
+
     <!--[if lt IE 9]>
     <script src="content/js/ie-support/html5.js"></script>
     <script src="content/js/ie-support/respond.js"></script>
@@ -22,7 +25,7 @@
 </head>
 <!--<body class="slider-collapse" ng-controller="indexController as vmIndex">-->
 <body ng-controller="indexController as vmIndex">
-    
+
     <!--<loading class="loading"></loading>-->
     <div id="site-content">
         <div class="site-header">
@@ -36,7 +39,7 @@
                 </a> <!-- #branding -->
                 <div class="right-section pull-right">
                     <a href="#/Carrinho" class="cart"><i class="icon-cart"></i> 0 iten no carrinho</a>
-                    <a href="#" class="login-button">Acessar/Cadastrar</a>
+                    <a href="" class="login-button">Acessar/Cadastrar</a>
                 </div> <!-- .right-section -->
                 <div class="main-navigation">
                     <button class="toggle-menu"><i class="fa fa-bars"></i></button>
@@ -134,7 +137,7 @@
     </div>
     <div class="overlay"></div>
     <div class="auth-popup popup">
-        <a href="#" class="close"><i class="fa fa-times"></i></a>
+        <a href="" class="close"><i class="fa fa-times"></i></a>
         <div class="row">
             <div class="col-md-6">
                 <h2 class="section-title">Acessar</h2>
@@ -148,8 +151,9 @@
                 <h2 class="section-title">Criar uma conta</h2>
                 <form action="#">
                     <input type="text" placeholder="CPF">
-                    <input type="text" placeholder="Seu email...">
-                    <input type="submit" value="Cadastrar">
+                    <input type="text" placeholder="Seu email...">                                        
+                    <!--<input type="submit" value="Cadastrar">-->
+                    <button ng-click="vmIndex.register()" class="button">Cadastrar</button>
                 </form>
             </div> <!-- .column -->
         </div> <!-- .row -->
@@ -160,8 +164,9 @@
     <script src="Scripts/angular-cookies.js"></script>
     <script src="Scripts/angular-animate.js"></script>
     <script src="Scripts/i18n/angular-locale_pt-br.js"></script>
-    <!--<script src="Scripts/angular-resource.js"></script>
     <script src="Scripts/angular-sanitize.js"></script>
+    <!--<script src="Scripts/angular-resource.js"></script>
+
     <script src="Scripts/angular-touch.js"></script>
     <script src="Scripts/angular-loader.js"></script>-->
     <script src="content/js/jquery-1.11.1.min.js"></script>
@@ -184,8 +189,6 @@
 
     <!--<script src="app/directives/detail/detailDirective.js"></script>-->
     <!--<script src="app/Directive/phoneMask.js"></script>-->
-
-
     <!-- Services -->
     <script src="app/services/globalService.js"></script>
     <script src="app/services/showcaseService.js"></script>

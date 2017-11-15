@@ -1,8 +1,8 @@
 ﻿'use strict';
 
 ticketGamesApp
-    .controller('homeController', ['$scope', '$cookieStore', 'showcaseService',
-        function ($scope, $cookieStore, showcaseService) {
+    .controller('homeController', ['$scope', '$cookieStore','$rootScope', 'showcaseService',
+        function ($scope, $cookieStore, $rootScope, showcaseService) {
             var vmHome = this;
 
 
@@ -16,6 +16,7 @@ ticketGamesApp
                 showcaseService.getShowcases(2, function (response) {
 
                     vmHome.recent = response.data;
+                    $rootScope.showcase.show();
 
                 });
 
