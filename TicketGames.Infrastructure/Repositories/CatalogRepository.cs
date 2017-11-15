@@ -1,0 +1,47 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using TicketGames.Domain.Repositories;
+using TicketGames.Infrastructure.Context;
+
+namespace TicketGames.Infrastructure.Repositories
+{
+    public class CatalogRepository : ICatalogRepository
+    {
+        private readonly TicketGamesContext _context;
+        public CatalogRepository()
+        {
+            this._context = new TicketGamesContext();
+        }
+
+
+
+        //        List<Catalog> catalogs = new List<Catalog>();
+        //        List<Category> categorys = new List<Category>();
+        //        List<Product> products = new List<Product>();
+        //        Discount discount = new Discount();
+
+        //        var campaignCompany = this._context.CampaignCompanys
+        //                                    .Include(c => c.Campaign)
+        //                                        .Where(x => x.Id == contractId).FirstOrDefault();
+
+        //        var catalogsCampaign = this._context.CatalogCampaigns
+        //                                                .Include(c => c.Catalog)
+        //                                                    .Where(c => c.CampaignId == campaignCompany.CampaignId).ToList();
+
+        //            if (catalogsCampaign.Count <= 0)
+        //            {
+        //                var catalogsPartner = this._context.CatalogPartners
+        //                                                        .Include(c => c.Catalog)
+        //                                                            .Where(c => c.PartnerId == campaignCompany.Campaign.PartnerId).ToList();
+
+        //                foreach (var catalogPartner in catalogsPartner)
+        //                {
+        //                    catalogPartner.Catalog.DiscountId = catalogPartner.DiscountId;
+        //                    catalogs.Add(catalogPartner.Catalog);
+        //                }
+        //}
+    }
+}
