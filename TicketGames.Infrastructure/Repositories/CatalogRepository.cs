@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TicketGames.Domain.Model;
 using TicketGames.Domain.Repositories;
 using TicketGames.Infrastructure.Context;
 
@@ -14,6 +15,14 @@ namespace TicketGames.Infrastructure.Repositories
         public CatalogRepository()
         {
             this._context = new TicketGamesContext();
+        }
+
+        public List<Category> GetCategories()
+        {
+
+            List<Category> categories = this._context.Categories.ToList();
+
+            return categories;
         }
 
 

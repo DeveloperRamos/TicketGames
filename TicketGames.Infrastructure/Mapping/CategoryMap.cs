@@ -13,7 +13,7 @@ namespace TicketGames.Infrastructure.Mapping
             // Properties
             this.Property(t => t.Name)
                 .IsRequired()
-                .HasMaxLength(200);
+                .HasMaxLength(100);
 
             this.Property(t => t.Description)
                 .HasMaxLength(250);
@@ -23,6 +23,7 @@ namespace TicketGames.Infrastructure.Mapping
             this.Property(t => t.Id).HasColumnName("Id");
             this.Property(t => t.Name).HasColumnName("Name");
             this.Property(t => t.Description).HasColumnName("Description");
+            this.Property(t => t.Ordem).HasColumnName("Ordem");
             this.Property(t => t.InsertDate).HasColumnName("InsertDate");
             this.Property(t => t.UpdateDate).HasColumnName("UpdateDate");
             this.Property(t => t.Active).HasColumnName("Active");

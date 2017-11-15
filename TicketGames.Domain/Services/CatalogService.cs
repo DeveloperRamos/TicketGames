@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TicketGames.Domain.Contract;
+using TicketGames.Domain.Model;
 using TicketGames.Domain.Repositories;
 
 namespace TicketGames.Domain.Services
@@ -15,6 +16,11 @@ namespace TicketGames.Domain.Services
         public CatalogService(ICatalogRepository catalogsRepository)
         {
             this._catalogsRepository = catalogsRepository;
+        }
+
+        public List<Category> GetCategories()
+        {
+            return this._catalogsRepository.GetCategories();
         }
     }
 }
