@@ -35,7 +35,7 @@ namespace TicketGames.API.Controllers
 
             var result = this._catalogService.GetCategories();
 
-            List<Category> categories = category.GetCategories();
+            List<Category> categories = category.MappingCategories(result);
 
             return Ok(categories);
         }
