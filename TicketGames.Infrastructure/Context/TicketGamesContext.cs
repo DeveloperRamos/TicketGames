@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.Entity;
+using System;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
@@ -7,6 +8,7 @@ using TicketGames.Infrastructure.Mapping;
 
 namespace TicketGames.Infrastructure.Context
 {
+    [DbConfigurationType(typeof(MySqlEFConfiguration))]
     public class TicketGamesContext : DbContext
     {
         static TicketGamesContext()
@@ -16,7 +18,7 @@ namespace TicketGames.Infrastructure.Context
 
         public TicketGamesContext() : base("Name=TicketGamesContext")
         {
-            Database.ExecuteSqlCommand("SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED");
+            //Database.ExecuteSqlCommand("SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED");
 
             Configuration.ProxyCreationEnabled = false;
             Configuration.LazyLoadingEnabled = false;
