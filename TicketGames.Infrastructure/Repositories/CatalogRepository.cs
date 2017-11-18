@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TicketGames.Domain.Model;
 using TicketGames.Domain.Repositories;
 using TicketGames.Infrastructure.Context;
+using System.Data.Entity;
 
 namespace TicketGames.Infrastructure.Repositories
 {
@@ -20,11 +21,10 @@ namespace TicketGames.Infrastructure.Repositories
         public List<Category> GetCategories()
         {
 
-            List<Category> categories = this._context.Categories.ToList();
+            List<Category> categories = this._context.Categories.Include(c => c.Departaments).ToList();
 
             return categories;
         }
-
 
 
         //        List<Catalog> catalogs = new List<Catalog>();

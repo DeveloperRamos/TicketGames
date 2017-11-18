@@ -6,26 +6,21 @@ using System.Threading.Tasks;
 
 namespace TicketGames.Domain.Model
 {
-    public class Category
+    public class Department
     {
-
-        public Category()
+        public Department()
         {
-            this.Departaments = new List<Department>();
             this.Products = new List<Product>();
-            //this.CatalogCategories = new List<CatalogCategory>();
         }
 
         public int Id { get; set; }
+        public int CategoryId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public int Ordem { get; set; }
         public DateTime InsertDate { get; set; }
         public Nullable<DateTime> UpdateDate { get; set; }
         public bool Active { get; set; }
-        public ICollection<Department> Departaments { get; set; }
+        public virtual Category Category { get; set; }
         public virtual ICollection<Product> Products { get; set; }
-        //public ICollection<CatalogCategory> CatalogCategories { get; set; }
-
     }
 }
