@@ -25,8 +25,14 @@ namespace TicketGames.Infrastructure.Context
 
         }
 
-
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<ImageType> ImageTypes { get; set; }
+        public DbSet<Image> Images { get; set; }
+        public DbSet<ShowcaseType> ShowcaseTypes { get; set; }
+        public DbSet<Showcase> Showcases { get; set; }
+        public DbSet<ShowcaseProduct> ShowcaseProducts { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -36,6 +42,13 @@ namespace TicketGames.Infrastructure.Context
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
 
             modelBuilder.Configurations.Add(new CategoryMap());
+            modelBuilder.Configurations.Add(new DepartmentMap());
+            modelBuilder.Configurations.Add(new ProductMap());
+            modelBuilder.Configurations.Add(new ImageTypeMap());
+            modelBuilder.Configurations.Add(new ImageMap());
+            modelBuilder.Configurations.Add(new ShowcaseTypeMap());
+            modelBuilder.Configurations.Add(new ShowcaseMap());
+            modelBuilder.Configurations.Add(new ShowcaseProductMap());
         }
 
         public override int SaveChanges()

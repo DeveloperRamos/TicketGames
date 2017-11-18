@@ -11,16 +11,16 @@ namespace TicketGames.Domain.Services
 {
     public class CatalogService : ICatalogService
     {
-        private readonly ICatalogRepository _catalogsRepository;
+        private readonly ICatalogRepository _catalogRepository;
 
         public CatalogService(ICatalogRepository catalogsRepository)
         {
-            this._catalogsRepository = catalogsRepository;
+            this._catalogRepository = catalogsRepository;
         }
 
         public List<Category> GetCategories()
         {
-            return this._catalogsRepository.GetCategories();
+            return this._catalogRepository.GetCategories();
         }
     }
 }
