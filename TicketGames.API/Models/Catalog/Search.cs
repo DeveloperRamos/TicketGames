@@ -7,8 +7,15 @@ namespace TicketGames.API.Models.Catalog
 {
     public class Search
     {
-        public long CategoryId { get; set; }
-        public long DepartmentId { get; set; }
+        public int CategoryId { get; set; }
+        public int DepartmentId { get; set; }
         public string Word { get; set; }
+
+        public Search()
+        {
+            this.CategoryId = 0;
+            this.DepartmentId = 0;
+            this.Word = string.Empty;
+        }
     }
 }

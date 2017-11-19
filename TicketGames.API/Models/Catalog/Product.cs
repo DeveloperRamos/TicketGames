@@ -48,7 +48,16 @@ namespace TicketGames.API.Models.Catalog
 
         public List<Product> MappingProducts(List<Domain.Model.Product> products)
         {
-            return new List<Product>();
+            List<Product> _products = new List<Product>();
+
+            foreach (Domain.Model.Product product in products)
+            {
+                var _product = new Product(product);
+
+                _products.Add(_product);
+            }
+
+            return _products;
         }
 
 

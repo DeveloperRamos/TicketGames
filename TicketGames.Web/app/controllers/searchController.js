@@ -1,8 +1,8 @@
 ﻿'use strict';
 
 ticketGamesApp
-    .controller('searchController', ['$scope', '$cookieStore', '$rootScope', '$routeParams', '$sce',
-        function ($scope, $cookieStore, $rootScope, $routeParams, $sce) {
+    .controller('searchController', ['$scope', '$cookieStore', '$rootScope', '$routeParams', '$sce', 'searchService',
+        function ($scope, $cookieStore, $rootScope, $routeParams, $sce, searchService) {
             var vmSearch = this;
 
             var initialize = function () {
@@ -18,6 +18,21 @@ ticketGamesApp
 
                     $rootScope.bread.text(obj);
                 }
+
+                var search = {
+                    CategoryId: parseInt($routeParams.cat),
+                    DepartmentId: $routeParams.dep ? $routeParams.dep : 0,
+                    Word: $routeParams.prod ? $routeParams.prod : ''
+                };
+
+                searchProducts(search);
+
+            };
+
+            var searchProducts = function (search) {
+                searchService.searchProducts(search, function (response) {
+                    vmSearch.products = response.data;
+                });
 
             };
 

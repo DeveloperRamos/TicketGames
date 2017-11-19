@@ -7,5 +7,7 @@ namespace TicketGames.Domain.Contract
     {
         List<Category> GetCategories();
         Product GetProduct(long productId);
+        List<Product> GetProducts(int categoryId);
+        List<Product> GetProducts(string name);
     }
 }
