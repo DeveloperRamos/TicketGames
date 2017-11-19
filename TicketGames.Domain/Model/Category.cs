@@ -19,7 +19,7 @@ namespace TicketGames.Domain.Model
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public int Ordem { get; set; }
+        public int Order { get; set; }
         public DateTime InsertDate { get; set; }
         public Nullable<DateTime> UpdateDate { get; set; }
         public bool Active { get; set; }

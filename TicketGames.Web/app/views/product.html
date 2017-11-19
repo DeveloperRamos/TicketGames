@@ -6,7 +6,7 @@
                     <a href="../../images/{{vmProduct.product.Id + '.png'}}"><img src="../../images/{{vmProduct.product.Id + '.png'}}" alt="{{vmProduct.product.Name}}"></a>
                 </figure>
                 <div class="thumbnails">
-                    <a ng-repeat="image in vmProduct.product.Images | filter: { ImageType: 2 }" href="../../images/{{image.URL}}"><img src="../../images/{{image.URL}}" alt=""></a>
+                    <a ng-repeat="image in vmProduct.product.Images | filter: { ImageType: 3 }" href="../../images/{{image.URL}}"><img src="../../images/{{image.URL}}" alt=""></a>
                 </div>
 
                 <br />

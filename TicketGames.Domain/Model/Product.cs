@@ -21,7 +21,7 @@ namespace TicketGames.Domain.Model
         public string Description { get; set; }
         public string DescriptionShort { get; set; }
         public float Value { get; set; }
-        public int Order { get; set; }
+        public Nullable<int> Order { get; set; }
         public DateTime InsertDate { get; set; }
         public Nullable<DateTime> UpdateDate { get; set; }
         public bool Active { get; set; }

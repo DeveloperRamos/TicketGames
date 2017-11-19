@@ -5,10 +5,10 @@
     </header>
     <div class="product-list">
 
-        <div ng-repeat="product in vmHome.recent.Products" class="product" style="text-align:center">
+        <div ng-repeat="product in vmHome.recent.Products | orderBy: 'Order'" class="product" style="text-align:center">
             <div class="inner-product">
                 <div class="figure-image">
-                    <a href="#/Produto/{{product.Id}}"><img src="../../images/{{product.Id + '.png'}}" alt="{{product.Name}}"></a>
+                    <a href="#/Produto/{{product.Id}}"><img src="../../images/{{product.Id + '.png'}}" alt="{{product.Name}}" class="img204x234"></a>
                 </div>
                 <h3 class="product-title"><a href="#/Produto/{{product.Id}}">{{product.Name}}</a></h3>
                 <small class="price">R$ {{product.Value}},00</small>
@@ -44,10 +44,10 @@
     </header>
     <div class="product-list">
 
-        <div ng-repeat="product in vmHome.popular.Products" class="product" style="text-align:center">
+        <div ng-repeat="product in vmHome.popular.Products | orderBy: 'Order'" class="product" style="text-align:center">
             <div class="inner-product">
                 <div class="figure-image">
-                    <a href="#/Produto/{{product.Id}}"><img src="../../images/{{product.Id + '.png'}}" alt="{{product.Name}}"></a>
+                    <a href="#/Produto/{{product.Id}}"><img src="../../images/{{product.Id + '.png'}}" alt="{{product.Name}}" class="img204x234"></a>
                 </div>
                 <h3 class="product-title"><a href="#/Produto/{{product.Id}}">{{product.Name}}</a></h3>
                 <small class="price">R$ {{product.Value}},00</small>

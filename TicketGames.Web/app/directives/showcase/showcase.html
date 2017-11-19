@@ -1,44 +1,43 @@
 ﻿<div class="home-slider" style="display: none;">
     <ul class="slides">
-        <!--<li data-bg-image="images/the-last-of-us-N-for-Nerds.png">-->
-        <li style="background-image: url('images/the-last-of-us-N-for-Nerds.png')">
+        <!--<li ng-repeat="product in banner.Products" data-bg-image="images/slide-1.jpg">-->
+        <li ng-repeat="product in banner.Products | orderBy: 'Order'" style="background-image: url('images/{{product.Id + '-B.png'}}')" class="imgBanner" >
             <div class="container">
                 <div class="slide-content">
-                    <h2 class="slide-title">The Last Of Us</h2>
-                    <small class="slide-subtitle">R$ 10.00</small>
+                    <!--<h2 class="slide-title">{{product.Name}}</h2>
+                    <small class="slide-subtitle"><b>R$ {{product.Value}},00</b></small>
 
-                    <p>The Last of Us é um jogo eletrônico de ação-aventura e sobrevivência desenvolvido pela Naughty Dog e publicado pela Sony Computer Entertainment.</p>
+                    <p>{{product.ShortDescription}}</p>
 
-                    <a href="/" class="button">Comprar</a>
+                    <a href="/" class="button">Comprar</a>-->
                 </div>
-                <img src="images/190.png" class="slide-image" style="width: 344px; height: 394px">
+                <a href="#/Produto/{{product.Id}}"><img ng-repeat="image in product.Images | filter: { ImageType: 2 } | limitTo: 1" src="images/{{image.URL}}" class="img344x394 slide-image"></a>
             </div>
         </li>
-        <!--<li style="background-image: url('images/halo_5.png')">
+        <!--<li data-bg-image="images/slide-2.jpg">
             <div class="container">
                 <div class="slide-content">
-                    <h2 class="slide-title">Halo 5</h2>
-                    <small class="slide-subtitle">R$ 10.00</small>
+                    <h2 class="slide-title">Kill Zone 3</h2>
+                    <small class="slide-subtitle">$190.00</small>
 
-                    <p>Halo 5: Guardians é um videojogo de tiro na primeira pessoa, parte da série Halo e sequela de Halo 4.</p>
+                    <p>Perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.</p>
 
-                    <a href="/" class="button">Comprar</a>
+                    <a href="cart.html" class="button">Add to cart</a>
                 </div>
-                <img src="images/200.png" class="slide-image" style="width: 344px; height: 394px">
+                <img src="images/game-cover-2.jpg" class="slide-image">
             </div>
-        </li>-->
-        <!--
-        <li style="background-image: url('images/slide-3.jpg')">
+        </li>
+        <li data-bg-image="images/slide-3.jpg">
             <div class="container">
                 <div class="slide-content">
-                    <h2 class="slide-title">The Legend of Zelda</h2>
-                    <small class="slide-subtitle">R$ 20.00</small>
+                    <h2 class="slide-title">Kill Zone 3</h2>
+                    <small class="slide-subtitle">$190.00</small>
 
-                    <p>The Legend of Zelda: Breath of the Wild é um jogo eletrônico de ação-aventura desenvolvido pela Nintendo Entertainment Planning & Development e publicado pela Nintendo.</p>
+                    <p>Perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.</p>
 
-                    <a href="/" class="button">Comprar</a>
+                    <a href="cart.html" class="button">Add to cart</a>
                 </div>
-                <img src="images/320.png" class="slide-image" style="width: 344px; height: 394px">
+                <img src="images/game-cover-3.jpg" class="slide-image">
             </div>
         </li>-->
     </ul> <!-- .slides -->

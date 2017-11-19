@@ -23,7 +23,7 @@ namespace TicketGames.Infrastructure.Mapping
             this.Property(t => t.Id).HasColumnName("Id");
             this.Property(t => t.Name).HasColumnName("Name");
             this.Property(t => t.Description).HasColumnName("Description");
-            this.Property(t => t.Ordem).HasColumnName("Ordem");
+            this.Property(t => t.Order).HasColumnName("Order");
             this.Property(t => t.InsertDate).HasColumnName("InsertDate");
             this.Property(t => t.UpdateDate).HasColumnName("UpdateDate");
             this.Property(t => t.Active).HasColumnName("Active");

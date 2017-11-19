@@ -6,6 +6,9 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using TicketGames.API.Models.Catalog;
+using TicketGames.Domain.Contract;
+using TicketGames.Domain.Services;
+using TicketGames.Infrastructure.Repositories;
 
 namespace TicketGames.API.Controllers
 {
@@ -13,67 +16,26 @@ namespace TicketGames.API.Controllers
     [ApiExplorerSettings(IgnoreApi = false)]
     public class ShowcaseController : ApiController
     {
+        private readonly IShowcaseService _showcaseService;
+        public ShowcaseController(IShowcaseService showcaseService)
+        {
+            this._showcaseService = showcaseService;
+        }
+        public ShowcaseController()
+            : this(new ShowcaseService(new ShowcaseRepository()))
+        {
+
+        }
+
         //[Authorize]
         [HttpGet, Route("{type}")]
         public IHttpActionResult Get(ShowcaseType type)
-        {           
-            Showcase showcase = new Showcase();
+        {
+            Showcase showcase = null;
 
-            switch (type)
-            {
-                case ShowcaseType.Banner:
-                    {
+            var result = this._showcaseService.GetShowcase((int)type);
 
-                        #region Buscando vitrine banner
-
-
-                        showcase.Id = 1;
-                        showcase.Name = "Vitrine do banner";
-                        showcase.ShowcaseType = ShowcaseType.Banner;
-                        showcase.GetShowcase();
-                        
-                        #endregion
-
-                        break;
-                    }
-                case ShowcaseType.Recent:
-                    {
-                        #region Buscando vitrine de categorias
-
-                        showcase.Id = 2;
-                        showcase.Name = "Vitrine dos produtos recentes";
-                        showcase.ShowcaseType = ShowcaseType.Recent;
-                        showcase.GetShowcase();                        
-
-                        #endregion
-
-                        break;
-                    }
-                case ShowcaseType.Popular:
-                    {
-                        #region Buscando vitrine de produtos
-                        
-                        showcase.Id = 3;
-                        showcase.Name = "Vitrine dos mais vendidos";
-                        showcase.ShowcaseType = ShowcaseType.Popular;
-                        showcase.GetShowcase();                        
-
-                        #endregion
-                        break;
-                    }
-                case ShowcaseType.Console:
-                    {
-                        #region Buscando vitrine dos consoles
-                        
-                        showcase.Id = 4;
-                        showcase.Name = "Vitrine dos consoles";
-                        showcase.ShowcaseType = ShowcaseType.Console;
-                        showcase.GetShowcase();
-                       
-                        #endregion
-                        break;
-                    }
-            }
+            showcase = new Showcase(result);
 
             return Ok(showcase);
         }

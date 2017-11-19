@@ -16,7 +16,7 @@ namespace TicketGames.Infrastructure.Mapping
             this.HasKey(t => t.Id);
 
             // Table & Column Mappings
-            this.ToTable("Tb_Product");
+            this.ToTable("Tb_ShowcaseProduct");
             this.Property(t => t.Id).HasColumnName("Id");
             this.Property(t => t.ShowcaseId).HasColumnName("ShowcaseId");
             this.Property(t => t.ProductId).HasColumnName("ProductId");

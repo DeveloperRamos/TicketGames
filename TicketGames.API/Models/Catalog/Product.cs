@@ -13,10 +13,9 @@ namespace TicketGames.API.Models.Catalog
         public Department Department { get; set; }
         public string ShortDescription { get; set; }
         public string Description { get; set; }
-        public decimal Value { get; set; }
+        public float Value { get; set; }
         public List<Image> Images { get; set; }
-        public string UrlImage { get; set; }
-        public string UrlImageBanner { get; set; }
+        public int? Order { get; set; }
         public DateTime RaffleDate { get; set; }
         public int SalesMade { get; set; }
         public int MissingtoSell { get; set; }
@@ -24,11 +23,43 @@ namespace TicketGames.API.Models.Catalog
         public Product()
         {
             this.Id = 0;
-            this.Name = this.ShortDescription = this.UrlImage = this.UrlImageBanner = string.Empty;
+            this.Name = this.ShortDescription = string.Empty;
+            this.Order = 0;
             this.Category = new Category();
             this.Department = new Department();
             this.Images = new List<Image>();
         }
+
+        public Product(Domain.Model.Product product)
+        {
+            this.Id = product.Id;
+            this.Name = product.Name;
+            this.ShortDescription = product.DescriptionShort;
+            this.Description = product.Description;
+            this.Value = product.Value;
+            this.Order = product.Order;
+            this.Images = new Image().MappingImages(product.Images.ToList());
+            this.Category = new Category(product.Category);
+            this.Department = new Department();
+            this.SalesMade = 100;
+            this.MissingtoSell = 0;
+            this.RaffleDate = DateTime.Now.AddDays(4);
+        }
+
+        public List<Product> MappingProducts(List<Domain.Model.Product> products)
+        {
+            List<Product> _products = new List<Product>();
+
+            foreach (Domain.Model.Product product in products)
+            {
+                var _product = new Product(product);
+
+                _products.Add(_product);
+            }
+
+            return _products;
+        }
+
 
 
         public Product GetProductById(long id)
@@ -51,7 +82,7 @@ namespace TicketGames.API.Models.Catalog
                 Department = new Department() { Id = 1, Name = "Jogos" },
                 ShortDescription = "Watch Dogs 2 é um jogo eletrônico desenvolvido pela Ubisoft Montreal que sucede o popular Watch Dogs, de 2014.",
                 Description = "Sequência do jogo de ação da Ubisoft de 2014. O jogo agora se passa em São Francisco e traz um novo protagonista, Marcus Holloway, um jovem hacker brilhante que vive no berço da revolução da tecnologia, próximo a região do Vale do Silício, lar de empresas como Facebook, Google e Twitter, para continuar contando sua história sobre vida digital, excesso de compartilhamento de dados pessoais e espionagem estabelecida no primeiro jogo da franquia.",
-                Value = 10.00m,
+                Value = 10.00f,
                 Images = images,
                 SalesMade = 100,
                 MissingtoSell = 0,
@@ -75,8 +106,7 @@ namespace TicketGames.API.Models.Catalog
                             Category = new Category() { Id = 1, Name = "Playstation 4" },
                             Department = new Department() { Id = 1, Name = "Jogos" },
                             ShortDescription = "Watch Dogs 2 é um jogo eletrônico desenvolvido pela Ubisoft Montreal que sucede o popular Watch Dogs, de 2014.",
-                            Value = 10.00m,
-                            UrlImage = "120.png",
+                            Value = 10.00f,
                             SalesMade = 50,
                             MissingtoSell = 50
                         };
@@ -90,8 +120,7 @@ namespace TicketGames.API.Models.Catalog
                             Category = new Category() { Id = 1, Name = "Playstation 4" },
                             Department = new Department() { Id = 1, Name = "Jogos" },
                             ShortDescription = "Gears of War 4 é um jogo de tiro em terceira pessoa produzido pelo estúdio canadense The Coalition. O quinto título da série Gears of War, foi publicado pela Microsoft Studios para Microsoft Windows e Xbox One em 11 de Outubro de 2016",
-                            Value = 5.00m,
-                            UrlImage = "130.png",
+                            Value = 5.00f,
                             SalesMade = 20,
                             MissingtoSell = 80
                         };
@@ -105,8 +134,7 @@ namespace TicketGames.API.Models.Catalog
                             Category = new Category() { Id = 1, Name = "Playstation 4" },
                             Department = new Department() { Id = 1, Name = "Jogos" },
                             ShortDescription = "Super Bomberman R é um jogo de ação, desenvolvido pela Konami e HexaDrive. O jogo foi lançado em 3 de Março de 2017 como um dos títulos de lançamento para o Nintendo Switch",
-                            Value = 15.00m,
-                            UrlImage = "140.png",
+                            Value = 15.00f,
                             SalesMade = 31,
                             MissingtoSell = 69
                         };
@@ -120,8 +148,7 @@ namespace TicketGames.API.Models.Catalog
                             Category = new Category() { Id = 1, Name = "Playstation 4" },
                             Department = new Department() { Id = 1, Name = "Jogos" },
                             ShortDescription = "Super Bomberman R é um jogo de ação, desenvolvido pela Konami e HexaDrive. O jogo foi lançado em 3 de Março de 2017 como um dos títulos de lançamento para o Nintendo Switch",
-                            Value = 15.00m,
-                            UrlImage = "150.png",
+                            Value = 15.00f,
                             SalesMade = 40,
                             MissingtoSell = 60
                         };
@@ -135,8 +162,7 @@ namespace TicketGames.API.Models.Catalog
                             Category = new Category() { Id = 1, Name = "Playstation 4" },
                             Department = new Department() { Id = 1, Name = "Jogos" },
                             ShortDescription = "Super Bomberman R é um jogo de ação, desenvolvido pela Konami e HexaDrive. O jogo foi lançado em 3 de Março de 2017 como um dos títulos de lançamento para o Nintendo Switch",
-                            Value = 15.00m,
-                            UrlImage = "160.png",
+                            Value = 15.00f,
                             SalesMade = 31,
                             MissingtoSell = 69
                         };
@@ -150,8 +176,7 @@ namespace TicketGames.API.Models.Catalog
                             Category = new Category() { Id = 1, Name = "Playstation 4" },
                             Department = new Department() { Id = 1, Name = "Jogos" },
                             ShortDescription = "Super Bomberman R é um jogo de ação, desenvolvido pela Konami e HexaDrive. O jogo foi lançado em 3 de Março de 2017 como um dos títulos de lançamento para o Nintendo Switch",
-                            Value = 15.00m,
-                            UrlImage = "170.png",
+                            Value = 15.00f,
                             SalesMade = 50,
                             MissingtoSell = 50
                         };
@@ -169,8 +194,7 @@ namespace TicketGames.API.Models.Catalog
                             Category = new Category() { Id = 4, Name = "Xbox One" },
                             Department = new Department() { Id = 4, Name = "Jogos" },
                             ShortDescription = "Watch Dogs 2 é um jogo eletrônico desenvolvido pela Ubisoft Montreal que sucede o popular Watch Dogs, de 2014.",
-                            Value = 10.00m,
-                            UrlImage = "200.png",
+                            Value = 10.00f,
                             SalesMade = 31,
                             MissingtoSell = 69
                         };
@@ -184,8 +208,7 @@ namespace TicketGames.API.Models.Catalog
                             Category = new Category() { Id = 4, Name = "Xbox One" },
                             Department = new Department() { Id = 4, Name = "Jogos" },
                             ShortDescription = "Gears of War 4 é um jogo de tiro em terceira pessoa produzido pelo estúdio canadense The Coalition. O quinto título da série Gears of War, foi publicado pela Microsoft Studios para Microsoft Windows e Xbox One em 11 de Outubro de 2016",
-                            Value = 5.00m,
-                            UrlImage = "210.png",
+                            Value = 5.00f,
                             SalesMade = 70,
                             MissingtoSell = 30
                         };
@@ -199,8 +222,7 @@ namespace TicketGames.API.Models.Catalog
                             Category = new Category() { Id = 4, Name = "Xbox One" },
                             Department = new Department() { Id = 4, Name = "Jogos" },
                             ShortDescription = "Super Bomberman R é um jogo de ação, desenvolvido pela Konami e HexaDrive. O jogo foi lançado em 3 de Março de 2017 como um dos títulos de lançamento para o Nintendo Switch",
-                            Value = 15.00m,
-                            UrlImage = "220.png",
+                            Value = 15.00f,
                             SalesMade = 70,
                             MissingtoSell = 30
                         };
@@ -214,8 +236,8 @@ namespace TicketGames.API.Models.Catalog
                             Category = new Category() { Id = 4, Name = "Xbox One" },
                             Department = new Department() { Id = 4, Name = "Jogos" },
                             ShortDescription = "Super Bomberman R é um jogo de ação, desenvolvido pela Konami e HexaDrive. O jogo foi lançado em 3 de Março de 2017 como um dos títulos de lançamento para o Nintendo Switch",
-                            Value = 15.00m,
-                            UrlImage = "230.png",
+                            Value = 15.00f,
+
                             SalesMade = 80,
                             MissingtoSell = 20
                         };
@@ -229,8 +251,8 @@ namespace TicketGames.API.Models.Catalog
                             Category = new Category() { Id = 4, Name = "Xbox One" },
                             Department = new Department() { Id = 4, Name = "Jogos" },
                             ShortDescription = "Super Bomberman R é um jogo de ação, desenvolvido pela Konami e HexaDrive. O jogo foi lançado em 3 de Março de 2017 como um dos títulos de lançamento para o Nintendo Switch",
-                            Value = 15.00m,
-                            UrlImage = "240.png",
+                            Value = 15.00f,
+
                             SalesMade = 70,
                             MissingtoSell = 30
                         };
@@ -244,8 +266,7 @@ namespace TicketGames.API.Models.Catalog
                             Category = new Category() { Id = 4, Name = "Xbox One" },
                             Department = new Department() { Id = 4, Name = "Jogos" },
                             ShortDescription = "Super Bomberman R é um jogo de ação, desenvolvido pela Konami e HexaDrive. O jogo foi lançado em 3 de Março de 2017 como um dos títulos de lançamento para o Nintendo Switch",
-                            Value = 15.00m,
-                            UrlImage = "250.png",
+                            Value = 15.00f,
                             SalesMade = 90,
                             MissingtoSell = 10
                         };

@@ -15,8 +15,19 @@ namespace TicketGames.API.Models.Catalog
 
         public Category()
         {
+            this.Id = 0;
+            this.Name = string.Empty;
+            this.Order = 0;
             this.Departments = new List<Department>();
         }
+        public Category(Domain.Model.Category category)
+        {
+            this.Id = category.Id;
+            this.Name = category.Name;
+            this.Order = category.Order;
+            this.Departments = new List<Department>();
+        }
+
         public List<Category> MappingCategories(List<Domain.Model.Category> categories)
         {
             List<Category> lstCategories = new List<Category>();
@@ -27,8 +38,8 @@ namespace TicketGames.API.Models.Catalog
                 {
                     Id = category.Id,
                     Name = category.Name,
-                    Order = category.Ordem,
-                    Departments = new List<Department>()
+                    Order = category.Order,
+                    Departments = new Department().MappingDepartments(category.Departaments.ToList())
                 });
             }
 
