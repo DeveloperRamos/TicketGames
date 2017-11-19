@@ -26,6 +26,16 @@ namespace TicketGames.Infrastructure.Repositories
             return categories;
         }
 
+        public Product GetProductById(long id)
+        {
+            Product product = this._context.Products
+                                            .Include(p => p.Images)
+                                            .Include(p => p.Category)
+                                            .Where(p => p.Id == id).FirstOrDefault();
+
+            return product;
+        }
+
 
         //        List<Catalog> catalogs = new List<Catalog>();
         //        List<Category> categorys = new List<Category>();

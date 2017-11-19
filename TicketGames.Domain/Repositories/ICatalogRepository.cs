@@ -5,6 +5,7 @@ namespace TicketGames.Domain.Repositories
 {
     public interface ICatalogRepository
     {
-        List<Category> GetCategories();        
+        List<Category> GetCategories();
+        Product GetProductById(long id);
     }
 }

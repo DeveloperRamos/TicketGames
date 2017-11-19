@@ -9,7 +9,7 @@ namespace TicketGames.API.Models.Catalog
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public ShowcaseType ShowcaseType { get; set; }
+        public ShowcaseType ShowcaseType { get; set; }        
         public List<Product> Products { get; set; }
 
         public Showcase()
@@ -17,78 +17,27 @@ namespace TicketGames.API.Models.Catalog
             this.Products = new List<Product>();
         }
 
+        public Showcase(Domain.Model.Showcase showcase)
+        {
+            this.Id = showcase.Id;
+            this.Name = showcase.Name;
+            this.ShowcaseType = (ShowcaseType)showcase.ShowcaseTypeId;
+            this.Products = new List<Product>();
+
+            foreach (Domain.Model.ShowcaseProduct showcaseProduct in showcase.ShowcaseProducts)
+            {
+                showcaseProduct.Product.Order = showcaseProduct.Order;
+                Product product = new Product(showcaseProduct.Product);
+
+                this.Products.Add(product);
+            }
+        }
+
         public void GetShowcase()
         {
 
             switch (this.ShowcaseType)
             {
-                case ShowcaseType.Banner:
-                    {
-
-                        List<Image> images = new List<Image>();
-
-                        images.Add(new Image() { Id = 1, ImageType = ImageType.Cover, URL = "1.png" });
-                        images.Add(new Image() { Id = 2, ImageType = ImageType.Detail, URL = "1-D-1.png" });
-                        images.Add(new Image() { Id = 3, ImageType = ImageType.Detail, URL = "1-D-2.png" });
-                        images.Add(new Image() { Id = 4, ImageType = ImageType.Detail, URL = "1-D-3.png" });
-                        images.Add(new Image() { Id = 5, ImageType = ImageType.Detail, URL = "1-D-4.png" });
-                        images.Add(new Image() { Id = 6, ImageType = ImageType.Detail, URL = "1-D-5.png" });
-                        images.Add(new Image() { Id = 7, ImageType = ImageType.Banner, URL = "1-B.png" });
-
-                        Product productone = new Product()
-                        {
-                            Id = 1,
-                            Name = "Watch Dogs 2",
-                            Category = new Category() { Id = 1, Name = "Playstation 4" },
-                            Department = new Department() { Id = 1, Name = "Jogos" },
-                            ShortDescription = "Watch Dogs 2 é um jogo eletrônico desenvolvido pela Ubisoft Montreal que sucede o popular Watch Dogs, de 2014.",
-                            Value = 10.00m,
-                            Images = images,
-                            SalesMade = 98,
-                            MissingtoSell = 2
-                        };
-
-                        this.Products.Add(productone);
-
-
-                        List<Image> imagestwo = new List<Image>();
-
-                        imagestwo.Add(new Image() { Id = 8, ImageType = ImageType.Cover, URL = "10.png" });
-                        imagestwo.Add(new Image() { Id = 9, ImageType = ImageType.Banner, URL = "10-B.png" });
-
-                        Product producttwo = new Product()
-                        {
-                            Id = 10,
-                            Name = "Gears of War 4",
-                            Category = new Category() { Id = 4, Name = "Xbox One" },
-                            Department = new Department() { Id = 4, Name = "Jogos" },
-                            ShortDescription = "Gears of War 4 é um jogo de tiro em terceira pessoa produzido pelo estúdio canadense The Coalition. O quinto título da série Gears of War, foi publicado pela Microsoft Studios para Microsoft Windows e Xbox One em 11 de Outubro de 2016",
-                            Value = 5.00m,
-                            Images = imagestwo,
-                            SalesMade = 20,
-                            MissingtoSell = 80
-                        };
-
-                        this.Products.Add(producttwo);
-
-                        Product productthree = new Product()
-                        {
-                            Id = 100,
-                            Name = "Super Bomberman R",
-                            Category = new Category() { Id = 8, Name = "Nintendo Switch" },
-                            Department = new Department() { Id = 8, Name = "Jogos" },
-                            ShortDescription = "Super Bomberman R é um jogo de ação, desenvolvido pela Konami e HexaDrive. O jogo foi lançado em 3 de Março de 2017 como um dos títulos de lançamento para o Nintendo Switch",
-                            Value = 15.00m,
-                            UrlImage = "100.png",
-                            UrlImageBanner = "100-B.png",
-                            SalesMade = 98,
-                            MissingtoSell = 2
-                        };
-
-                        this.Products.Add(productthree);
-
-                        break;
-                    }
                 case ShowcaseType.Recent:
                     {
                         #region Xbox One
@@ -100,8 +49,8 @@ namespace TicketGames.API.Models.Catalog
                             Category = new Category() { Id = 4, Name = "Xbox One" },
                             Department = new Department() { Id = 4, Name = "Jogos" },
                             ShortDescription = "Watch Dogs 2 é um jogo eletrônico desenvolvido pela Ubisoft Montreal que sucede o popular Watch Dogs, de 2014.",
-                            Value = 10.00m,
-                            UrlImage = "260.png",
+                            Value = 10.00f,
+                            
                             SalesMade = 79,
                             MissingtoSell = 21,
                         };
@@ -115,8 +64,8 @@ namespace TicketGames.API.Models.Catalog
                             Category = new Category() { Id = 4, Name = "Xbox One" },
                             Department = new Department() { Id = 4, Name = "Jogos" },
                             ShortDescription = "Gears of War 4 é um jogo de tiro em terceira pessoa produzido pelo estúdio canadense The Coalition. O quinto título da série Gears of War, foi publicado pela Microsoft Studios para Microsoft Windows e Xbox One em 11 de Outubro de 2016",
-                            Value = 5.00m,
-                            UrlImage = "261.png",
+                            Value = 5.00f,
+                            
                             SalesMade = 8,
                             MissingtoSell = 92
                         };
@@ -136,8 +85,8 @@ namespace TicketGames.API.Models.Catalog
                             Category = new Category() { Id = 1, Name = "Playstation 4" },
                             Department = new Department() { Id = 1, Name = "Jogos" },
                             ShortDescription = "Watch Dogs 2 é um jogo eletrônico desenvolvido pela Ubisoft Montreal que sucede o popular Watch Dogs, de 2014.",
-                            Value = 10.00m,
-                            UrlImage = "180.png",
+                            Value = 10.00f,
+                            
                             SalesMade = 98,
                             MissingtoSell = 2
                         };
@@ -155,8 +104,8 @@ namespace TicketGames.API.Models.Catalog
                             Category = new Category() { Id = 8, Name = "Nintendo Switch" },
                             Department = new Department() { Id = 8, Name = "Jogos" },
                             ShortDescription = "Watch Dogs 2 é um jogo eletrônico desenvolvido pela Ubisoft Montreal que sucede o popular Watch Dogs, de 2014.",
-                            Value = 10.00m,
-                            UrlImage = "400.png",
+                            Value = 10.00f,
+                            
                             SalesMade = 100,
                             MissingtoSell = 0,
                             RaffleDate = DateTime.Now.AddDays(1)
@@ -177,8 +126,8 @@ namespace TicketGames.API.Models.Catalog
                             Category = new Category() { Id = 4, Name = "Xbox One" },
                             Department = new Department() { Id = 4, Name = "Jogos" },
                             ShortDescription = "Super Bomberman R é um jogo de ação, desenvolvido pela Konami e HexaDrive. O jogo foi lançado em 3 de Março de 2017 como um dos títulos de lançamento para o Nintendo Switch",
-                            Value = 15.00m,
-                            UrlImage = "262.png",
+                            Value = 15.00f,
+                            
                             SalesMade = 39,
                             MissingtoSell = 61
                         };
@@ -192,8 +141,8 @@ namespace TicketGames.API.Models.Catalog
                             Category = new Category() { Id = 1, Name = "Playstation 4" },
                             Department = new Department() { Id = 1, Name = "Jogos" },
                             ShortDescription = "Super Bomberman R é um jogo de ação, desenvolvido pela Konami e HexaDrive. O jogo foi lançado em 3 de Março de 2017 como um dos títulos de lançamento para o Nintendo Switch",
-                            Value = 15.00m,
-                            UrlImage = "191.png",
+                            Value = 15.00f,
+                            
                             SalesMade = 98,
                             MissingtoSell = 2
                         };
@@ -207,8 +156,8 @@ namespace TicketGames.API.Models.Catalog
                             Category = new Category() { Id = 1, Name = "Playstation 4" },
                             Department = new Department() { Id = 1, Name = "Jogos" },
                             ShortDescription = "Super Bomberman R é um jogo de ação, desenvolvido pela Konami e HexaDrive. O jogo foi lançado em 3 de Março de 2017 como um dos títulos de lançamento para o Nintendo Switch",
-                            Value = 15.00m,
-                            UrlImage = "192.png",
+                            Value = 15.00f,
+                            
                             SalesMade = 98,
                             MissingtoSell = 2
                         };
@@ -222,8 +171,8 @@ namespace TicketGames.API.Models.Catalog
                             Category = new Category() { Id = 8, Name = "Nintendo Switch" },
                             Department = new Department() { Id = 8, Name = "Jogos" },
                             ShortDescription = "Gears of War 4 é um jogo de tiro em terceira pessoa produzido pelo estúdio canadense The Coalition. O quinto título da série Gears of War, foi publicado pela Microsoft Studios para Microsoft Windows e Xbox One em 11 de Outubro de 2016",
-                            Value = 5.00m,
-                            UrlImage = "410.png",
+                            Value = 5.00f,
+                            
                             SalesMade = 100,
                             MissingtoSell = 0,
                             RaffleDate = DateTime.Now.AddDays(3)

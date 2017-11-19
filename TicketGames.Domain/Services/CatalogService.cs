@@ -22,5 +22,10 @@ namespace TicketGames.Domain.Services
         {
             return this._catalogRepository.GetCategories();
         }
+
+        public Product GetProduct(long productId)
+        {
+            return this._catalogRepository.GetProductById(productId);
+        }
     }
 }

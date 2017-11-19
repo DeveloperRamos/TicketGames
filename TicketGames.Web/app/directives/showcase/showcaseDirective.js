@@ -7,8 +7,8 @@
         },
         replace: false,
         templateUrl: "app/directives/showcase/showcase.html",
-        controller: function ($scope, $rootScope) {
-            var vm = this;
+        controller: function ($scope, $rootScope, showcaseService) {
+            var vmShowcase = this;
 
             $rootScope.showcase = {
                 show: function () {
@@ -24,6 +24,23 @@
                     $(".home-slider").hide();
                 },
             };
+
+
+
+            showcaseService.getShowcases(1, function (response) {
+                $scope.banner = response.data;
+                $rootScope.showcase.show();
+            });
+
+
+            //var getShowcases = function () {
+
+            //    showcaseService.getShowcases(1, function (response) {
+
+            //        vmShowcase.banner = response.data;
+            //    });                
+            //};
+
 
             //$scope.trustAsHtml = function () {
             //    if ($rootScope.regulations && $rootScope.regulations.length) {

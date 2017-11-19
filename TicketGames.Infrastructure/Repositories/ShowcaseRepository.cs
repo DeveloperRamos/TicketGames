@@ -20,12 +20,14 @@ namespace TicketGames.Infrastructure.Repositories
 
         public Showcase GetShowcaseByTypeId(int showcaseTypeId)
         {
-            Showcase showcase = this._context.Showcases
-                                            .Include(s => s.ShowcaseProducts)
-                                            .Where(s => s.ShowcaseTypeId == showcaseTypeId)
-                                            .FirstOrDefault();
+            List<ShowcaseProduct> showcaseProducts = this._context.ShowcaseProducts
+                .Include(s => s.Showcase)
+                .Include(s => s.Product.Images)
+                .Include(s => s.Product.Category)
+                .Where(s => s.Showcase.ShowcaseTypeId == showcaseTypeId && s.Showcase.Active == true && s.Active == true && s.Product.Active == true)
+                .ToList();
 
-            return showcase;
+            return showcaseProducts.Select(s => s.Showcase).FirstOrDefault();
         }
     }
 }

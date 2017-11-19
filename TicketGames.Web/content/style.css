@@ -7,7 +7,6 @@
 /*=========================================== 
  * Importing CSS Libraries
  *===========================================*/
-
 article,
 aside,
 details,
@@ -19,22 +18,22 @@ hgroup,
 nav,
 section,
 summary {
-    display: block !important;
+    display: block;
 }
 
 audio,
 canvas,
 video {
-    display: inline-block !important;
+    display: inline-block;
 }
 
     audio:not([controls]) {
-        display: none !important;
-        height: 0 !important;
+        display: none;
+        height: 0;
     }
 
 [hidden], template {
-    display: none !important;
+    display: none;
 }
 
 html {
@@ -262,7 +261,7 @@ body {
     background-color: #e9e9e9 !important;
     color: #898e90 !important;
     font-family: "Roboto", "Open Sans", sans-serif !important;
-    font-size: 13px !important;
+    font-size: 14px !important;
     font-weight: 300 !important;
     line-height: normal !important;
 }
@@ -2349,224 +2348,224 @@ form textarea {
     }
 
 .home-slider {
-    position: relative !important;
-    margin-top: -40px !important;
-    margin-bottom: 30px !important;
-    background: #2b2b2b !important;
+    position: relative;
+    margin-top: -40px;
+    margin-bottom: 30px;
+    background: #2b2b2b;
 }
 
     .home-slider .slides {
-        *zoom: 1 !important;
+        *zoom: 1;
     }
 
         .home-slider .slides:after {
-            content: " " !important;
-            clear: both !important;
-            display: block !important;
-            overflow: hidden !important;
-            height: 0 !important;
+            content: " ";
+            clear: both;
+            display: block;
+            overflow: hidden;
+            height: 0;
         }
 
         .home-slider .slides li {
-            min-height: 575px !important;
-            padding-top: 100px !important;
-            padding-bottom: 50px !important;
-            background-size: cover !important;
-            background-position: center center !important;
+            min-height: 575px;
+            padding-top: 100px;
+            padding-bottom: 50px;
+            background-size: cover;
+            background-position: center center;
         }
 
     .home-slider .flex-control-nav {
-        position: absolute !important;
-        left: 0 !important;
-        right: 0 !important;
-        bottom: 30px !important;
-        margin: auto !important;
-        text-align: center !important;
-        z-index: 9 !important;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 30px;
+        margin: auto;
+        text-align: center;
+        z-index: 9;
     }
 
         .home-slider .flex-control-nav li {
-            display: inline-block !important;
-            margin: 0 3px !important;
+            display: inline-block;
+            margin: 0 3px;
         }
 
             .home-slider .flex-control-nav li a {
-                width: 10px !important;
-                height: 10px !important;
-                display: block !important;
-                border-radius: 50% !important;
-                background-color: white !important;
-                cursor: pointer !important;
-                overflow: hidden !important;
-                text-indent: -9999px !important;
+                width: 10px;
+                height: 10px;
+                display: block;
+                border-radius: 50%;
+                background-color: white;
+                cursor: pointer;
+                overflow: hidden;
+                text-indent: -9999px;
             }
 
                 .home-slider .flex-control-nav li a.flex-active {
-                    background-color: #45b77d !important;
+                    background-color: #45b77d;
                 }
 
     .home-slider .slide-content {
-        float: left !important;
-        width: 40% !important;
+        float: left;
+        width: 40%;
     }
 
 @media screen and (max-width: 768px) {
     .home-slider .slide-content {
-        width: 50% !important;
-        padding-right: 20px !important;
+        width: 50%;
+        padding-right: 20px;
     }
 }
 
 @media screen and (max-width: 480px) {
     .home-slider .slide-content {
-        width: 100% !important;
-        margin-bottom: 30px !important;
+        width: 100%;
+        margin-bottom: 30px;
     }
 }
 
 .home-slider .slide-title {
-    font-size: 65px !important;
-    font-size: 4.6428571429em !important;
-    font-weight: 300 !important;
-    color: white !important;
-    margin-bottom: 10px !important;
+    font-size: 65px;
+    font-size: 4.6428571429em;
+    font-weight: 300;
+    color: white;
+    margin-bottom: 10px;
 }
 
 .home-slider .slide-subtitle {
-    font-size: 24px !important;
-    font-size: 1.7142857143em !important;
-    color: #45b77d !important;
-    margin-bottom: 30px !important;
-    display: block !important;
+    font-size: 24px;
+    font-size: 1.7142857143em;
+    color: #45b77d;
+    margin-bottom: 30px;
+    display: block;
 }
 
 .home-slider p {
-    margin-bottom: 30px !important;
+    margin-bottom: 30px;
 }
 
 .home-slider .slide-image {
-    float: right !important;
-    border: 5px solid white !important;
-    border-radius: 5px !important;
-    max-width: 100% !important;
-    height: auto !important;
+    float: right;
+    border: 5px solid white;
+    border-radius: 5px;
+    max-width: 100%;
+    height: auto;
 }
 
 @media screen and (max-width: 768px) {
     .home-slider .slide-image {
-        width: 50% !important;
+        width: 50%;
     }
 }
 
 @media screen and (max-width: 480px) {
     .home-slider .slide-image {
-        width: 100% !important;
+        width: 100%;
     }
 }
 
 .product-list {
-    margin: 0 -15px !important;
-    *zoom: 1 !important;
+    margin: 0 -15px;
+    *zoom: 1;
 }
 
     .product-list:after {
-        content: " " !important;
-        clear: both !important;
-        display: block !important;
-        overflow: hidden !important;
-        height: 0 !important;
+        content: " ";
+        clear: both;
+        display: block;
+        overflow: hidden;
+        height: 0;
     }
 
     .product-list .product {
-        width: 25% !important;
-        padding: 0 15px !important;
-        float: left !important;
-        margin-bottom: 30px !important;
+        width: 25%;
+        padding: 0 15px;
+        float: left;
+        margin-bottom: 30px;
     }
 
 @media screen and (max-width: 990px) {
     .product-list .product {
-        width: 50% !important;
+        width: 50%;
     }
 }
 
 @media screen and (max-width: 480px) {
     .product-list .product {
-        width: 100% !important;
+        width: 100%;
     }
 }
 
 .product-list .product .inner-product {
-    background: white !important;
-    padding: 30px !important;
-    border-radius: 3px !important;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3) !important;
+    background: white;
+    padding: 30px;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
 }
 
     .product-list .product .inner-product a.button {
-        margin-bottom: 10px !important;
+        margin-bottom: 10px;
     }
 
 @media screen and (max-width: 480px) {
     .product-list .product .inner-product > a.button {
-        display: block !important;
-        margin-bottom: 10px !important;
-        text-align: center !important;
+        display: block;
+        margin-bottom: 10px;
+        text-align: center;
     }
 }
 
 @media screen and (min-width: 991px) and (max-width: 1200px) {
     .product-list .product .inner-product > a.button {
-        display: block !important;
-        margin-bottom: 10px !important;
-        text-align: center !important;
+        display: block;
+        margin-bottom: 10px;
+        text-align: center;
     }
 }
 
 .product-list .product .figure-image {
-    border: 4px solid #dedede !important;
-    border-radius: 3px !important;
-    overflow: hidden !important;
-    margin-bottom: 30px !important;
+    border: 4px solid #dedede;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 30px;
 }
 
     .product-list .product .figure-image img {
-        max-width: 100% !important;
-        width: 100% !important;
-        display: block !important;
-        height: auto !important;
+        max-width: 100%;
+        width: 100%;
+        display: block;
+        height: auto;
     }
 
 .product-list .product .product-title {
-    font-size: 18px !important;
-    font-size: 1.2857142857em !important;
-    color: #666a6c !important;
-    margin: 0 !important;
-    text-align: left !important;
-    font-weight: 400 !important;
+    font-size: 18px;
+    font-size: 1.2857142857em;
+    color: #666a6c;
+    margin: 0;
+    text-align: left;
+    font-weight: 400;
 }
 
     .product-list .product .product-title a {
-        color: #666a6c !important;
-        -webkit-transition: .3s ease !important;
-        transition: .3s ease !important;
+        color: #666a6c;
+        -webkit-transition: .3s ease;
+        transition: .3s ease;
     }
 
         .product-list .product .product-title a:hover {
-            color: #45b77d !important;
+            color: #45b77d;
         }
 
 .product-list .product .price {
-    color: #45b77d !important;
-    font-size: 16px !important;
-    font-size: 1.1428571429em !important;
-    text-align: left !important;
-    margin-bottom: 20px !important;
-    display: block !important;
+    color: #45b77d;
+    font-size: 16px;
+    font-size: 1.1428571429em;
+    text-align: left;
+    margin-bottom: 20px;
+    display: block;
 }
 
 .product-list .product .button, .product-list .product form input[type="submit"], form .product-list .product input[type="submit"], .product-list .product form button, form .product-list .product button, .product-list .product form input[type="reset"], form .product-list .product input[type="reset"] {
-    padding: 5px 10px !important;
+    padding: 5px 10px;
 }
 
 section {
@@ -2900,88 +2899,21 @@ table.cart {
             color: #898e90 !important;
         }
 
-/*
- * override the default CSS as an example
- */
-
-#loading-bar .bar {
-    background: #2c3e50;
+.imgCart {
+    width: 118px !important;
+    height: 134px !important;
 }
-
-#loading-bar-spinner .spinner-icon {
-    border-top-color: #2c3e50;
-    border-left-color: #2c3e50;
-}
-
-#loading-bar .peg {
-    -moz-box-shadow: #2c3e50 1px 0 6px 1px;
-    -ms-box-shadow: #2c3e50 1px 0 6px 1px;
-    -webkit-box-shadow: #2c3e50 1px 0 6px 1px;
-    box-shadow: #2c3e50 1px 0 6px 1px;
-}
-
 
 .img344x394 {
-    width: 344px;
-    height: 394px;
-    border: 0px solid white !important;
+    width: 344px !important;
+    height: 394px !important;
 }
 
-.imgCart {
-    width: 118px;
-    height: 134px;
+.imgBanner {
+    background-size: 100% 100% !important;
 }
-
-.loading {
-    position: page;
-}
-
-    .loading img {
-        margin: 0;
-        /*background: yellow;*/
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin-right: -50%;
-        transform: translate(-50%, -50%);
-        z-index: 1;
-    }
-
-
-/*.loading .spinner-image {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background: url("http://oi58.tinypic.com/2emfu9w.jpg") center center no-repeat;
-    }*/
-
-/*Formulario*/
-h11 {
-    color: red;
-}
-
-#logo {
-    width: 50%;
-    height: 50%;
-}
-
-.panel-heading {
-    font-size: 150%;
-}
-
-
-.panel-primary > .panel-heading {
-    color: #fff !important;
-    background-color: #898e90 !important;
-    border-color: #898e90 !important;
-}
-
-.panel-primary {
-    border-color: #898e90 !important;
-}
-
-.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
-    cursor: not-allowed !important;
-    background-color: #eee !important;
-    opacity: 1 !important;
+.img204x234 {
+    width: 204px !important;
+    height: 234px !important;
+    background-position: center center;
 }
