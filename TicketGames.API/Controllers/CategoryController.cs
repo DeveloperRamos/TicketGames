@@ -6,6 +6,8 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using TicketGames.API.Models.Catalog;
+using TicketGames.CrossCutting.Cache;
+using TicketGames.CrossCutting.Cache.Redis;
 using TicketGames.Domain.Contract;
 using TicketGames.Domain.Services;
 using TicketGames.Infrastructure.Repositories;
@@ -16,7 +18,6 @@ namespace TicketGames.API.Controllers
     [ApiExplorerSettings(IgnoreApi = false)]
     public class CategoryController : ApiController
     {
-
         private readonly ICatalogService _catalogService;
         public CategoryController(ICatalogService catalogService)
         {
@@ -25,7 +26,7 @@ namespace TicketGames.API.Controllers
         public CategoryController()
             : this(new CatalogService(new CatalogRepository()))
         {
-
+            CacheManager.SetProvider(new CacheProvider());
         }
 
         [HttpGet, Route()]
@@ -33,11 +34,22 @@ namespace TicketGames.API.Controllers
         {
             Category category = new Category();
 
-            var result = this._catalogService.GetCategories();
 
-            List<Category> categories = category.MappingCategories(result);
+            var key = "categories";
+            IList<Category> categories_ = null;
+            categories_ = CacheManager.GetObject<List<Category>>(key);
 
-            return Ok(categories);
+            if (categories_ == null)
+            {
+                var result = this._catalogService.GetCategories();
+
+                categories_ = category.MappingCategories(result);
+
+                if (categories_ != null && categories_.Count > 0)
+                    CacheManager.StoreObject(key, categories_, LifetimeProfile.Longest);
+            }
+
+            return Ok(categories_);
         }
     }
 }
