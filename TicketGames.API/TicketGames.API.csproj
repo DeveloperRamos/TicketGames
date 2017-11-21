@@ -23,6 +23,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -158,6 +159,10 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TicketGames.CrossCutting\TicketGames.CrossCutting.csproj">
+      <Project>{abee84e9-8ae5-4b03-a6fd-171b1e8a89c0}</Project>
+      <Name>TicketGames.CrossCutting</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TicketGames.Domain\TicketGames.Domain.csproj">
       <Project>{b8527a9c-ce07-4ee8-9370-9b7b717056fd}</Project>
       <Name>TicketGames.Domain</Name>
