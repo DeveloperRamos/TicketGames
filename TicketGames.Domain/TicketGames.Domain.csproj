@@ -47,6 +47,8 @@
     <Compile Include="Model\Image.cs" />
     <Compile Include="Model\ImageType.cs" />
     <Compile Include="Model\Product.cs" />
+    <Compile Include="Model\Raffle.cs" />
+    <Compile Include="Model\RaffleStatus.cs" />
     <Compile Include="Model\Showcase.cs" />
     <Compile Include="Model\ShowcaseProduct.cs" />
     <Compile Include="Model\ShowcaseType.cs" />

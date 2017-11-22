@@ -6,6 +6,8 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using TicketGames.API.Models.Catalog;
+using TicketGames.CrossCutting.Cache;
+using TicketGames.CrossCutting.Cache.Redis;
 using TicketGames.Domain.Contract;
 using TicketGames.Domain.Services;
 using TicketGames.Infrastructure.Repositories;
@@ -24,7 +26,7 @@ namespace TicketGames.API.Controllers
         public ShowcaseController()
             : this(new ShowcaseService(new ShowcaseRepository()))
         {
-
+            CacheManager.SetProvider(new CacheProvider());
         }
 
         //[Authorize]
@@ -33,9 +35,19 @@ namespace TicketGames.API.Controllers
         {
             Showcase showcase = null;
 
-            var result = this._showcaseService.GetShowcase((int)type);
+            var key = string.Concat("showcase.", type.ToString());
 
-            showcase = new Showcase(result);
+            showcase = CacheManager.GetObject<Showcase>(key);
+
+            if (showcase == null)
+            {
+                var result = this._showcaseService.GetShowcase((int)type);
+
+                showcase = new Showcase(result);
+
+                if (showcase != null)
+                    CacheManager.StoreObject(key, showcase, LifetimeProfile.Longest);
+            }
 
             return Ok(showcase);
         }
