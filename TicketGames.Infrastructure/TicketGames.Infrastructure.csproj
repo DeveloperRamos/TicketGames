@@ -58,11 +58,14 @@
     <Compile Include="Mapping\ImageMap.cs" />
     <Compile Include="Mapping\ImageTypeMap.cs" />
     <Compile Include="Mapping\ProductMap.cs" />
+    <Compile Include="Mapping\RaffleMap.cs" />
+    <Compile Include="Mapping\RaffleStatusMap.cs" />
     <Compile Include="Mapping\ShowcaseMap.cs" />
     <Compile Include="Mapping\ShowcaseProductMap.cs" />
     <Compile Include="Mapping\ShowcaseTypeMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CatalogRepository.cs" />
+    <Compile Include="Repositories\RaffleRepository.cs" />
     <Compile Include="Repositories\ShowcaseRepository.cs" />
   </ItemGroup>
   <ItemGroup />
