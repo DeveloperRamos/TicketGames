@@ -24,6 +24,7 @@ namespace TicketGames.Infrastructure.Repositories
                 .Include(s => s.Showcase)
                 .Include(s => s.Product.Images)
                 .Include(s => s.Product.Category)
+                .Include(s => s.Product.Raffles)
                 .Where(s => s.Showcase.ShowcaseTypeId == showcaseTypeId && s.Showcase.Active == true && s.Active == true && s.Product.Active == true)
                 .ToList();
 
