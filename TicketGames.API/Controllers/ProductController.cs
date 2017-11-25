@@ -6,6 +6,8 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using TicketGames.API.Models.Catalog;
+using TicketGames.CrossCutting.Cache;
+using TicketGames.CrossCutting.Cache.Redis;
 using TicketGames.Domain.Contract;
 using TicketGames.Domain.Services;
 using TicketGames.Infrastructure.Repositories;
@@ -24,7 +26,7 @@ namespace TicketGames.API.Controllers
         public ProductController()
             : this(new CatalogService(new CatalogRepository()))
         {
-
+            CacheManager.SetProvider(new CacheProvider());
         }
 
         [HttpGet, Route("{id}")]
@@ -36,12 +38,21 @@ namespace TicketGames.API.Controllers
                 return BadRequest("Id de produto invalido!");
             }
 
-
             Product product = null;
 
-            var result = this._catalogService.GetProduct(id);
+            var key = string.Concat("Catalog:Products:", id.ToString());
 
-            product = new Product(result);
+            product = CacheManager.GetObject<Product>(key);
+
+            if (product == null)
+            {
+                var result = this._catalogService.GetProduct(id);
+
+                product = new Product(result);
+
+                if (product != null)
+                    CacheManager.StoreObject(key, product, LifetimeProfile.Moderate);
+            }
 
             return Ok(product);
         }
@@ -50,6 +61,7 @@ namespace TicketGames.API.Controllers
         public IHttpActionResult Searchs(Search search)
         {
             List<Product> products = null;
+
 
             if (search.CategoryId > 0 && search.DepartmentId == 0 && string.IsNullOrEmpty(search.Word))
             {

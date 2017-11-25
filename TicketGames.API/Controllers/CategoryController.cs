@@ -35,7 +35,7 @@ namespace TicketGames.API.Controllers
             Category category = new Category();
 
 
-            var key = "categories";
+            var key = "Catalog:Categories";
             IList<Category> categories_ = null;
             categories_ = CacheManager.GetObject<List<Category>>(key);
 

@@ -15,14 +15,14 @@
                 <!--<p>Com a tecnologia Frostbite™, o EA SPORTS™FIFA 18 elimina o limite entre o mundo virtual e o real, dando vida aos jogadores, times e climas envolventes do maior esporte do mundo.</p>-->
 
 
-                <h3 ng-show="product.SalesMade == 100"><b>Sorteio {{ product.RaffleDate | date: 'dd/MM/yyyy' }}</b></h3>
+                <h3 ng-show="product.Raffle.SalesMade == 100"><b>Sorteio {{ product.Raffle.RaffleDate | date: 'dd/MM/yyyy' }}</b></h3>
 
                 <div class="progress">
-                    <div class="progress-bar progress-bar-success" role="progressbar" style="width:{{product.SalesMade}}%" alt="O sorteio ocorrerá quando chegar a 100%">
-                        {{product.SalesMade}}%
+                    <div class="progress-bar progress-bar-success" role="progressbar" style="width:{{product.Raffle.SalesMade}}%" alt="O sorteio ocorrerá quando chegar a 100%">
+                        {{product.Raffle.SalesMade}}%
                     </div>
-                    <div class="progress-bar progress-bar-warning" role="progressbar" style="width:{{product.MissingtoSell}}%" alt="O sorteio ocorrerá quando chegar a 100%">
-                        {{product.MissingtoSell}}%
+                    <div class="progress-bar progress-bar-warning" role="progressbar" style="width:{{product.Raffle.MissingtoSell}}%" alt="O sorteio ocorrerá quando chegar a 100%">
+                        {{product.Raffle.MissingtoSell}}%
                     </div>
                     <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
                         Danger
@@ -54,14 +54,14 @@
                 <!--<p>Com a tecnologia Frostbite™, o EA SPORTS™FIFA 18 elimina o limite entre o mundo virtual e o real, dando vida aos jogadores, times e climas envolventes do maior esporte do mundo.</p>-->
 
 
-                <h3 ng-show="product.SalesMade == 100"><b>Sorteio {{ product.RaffleDate | date: 'dd/MM/yyyy' }}</b></h3>
+                <h3 ng-show="product.Raffle.SalesMade == 100"><b>Sorteio {{ product.Raffle.RaffleDate | date: 'dd/MM/yyyy' }}</b></h3>
 
                 <div class="progress">
-                    <div class="progress-bar progress-bar-success" role="progressbar" style="width:{{product.SalesMade}}%" alt="O sorteio ocorrerá quando chegar a 100%">
-                        {{product.SalesMade}}%
+                    <div class="progress-bar progress-bar-success" role="progressbar" style="width:{{product.Raffle.SalesMade}}%" alt="O sorteio ocorrerá quando chegar a 100%">
+                        {{product.Raffle.SalesMade}}%
                     </div>
-                    <div class="progress-bar progress-bar-warning" role="progressbar" style="width:{{product.MissingtoSell}}%" alt="O sorteio ocorrerá quando chegar a 100%">
-                        {{product.MissingtoSell}}%
+                    <div class="progress-bar progress-bar-warning" role="progressbar" style="width:{{product.Raffle.MissingtoSell}}%" alt="O sorteio ocorrerá quando chegar a 100%">
+                        {{product.Raffle.MissingtoSell}}%
                     </div>
                     <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
                         Danger
