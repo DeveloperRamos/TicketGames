@@ -35,7 +35,7 @@ namespace TicketGames.API.Controllers
         {
             Showcase showcase = null;
 
-            var key = string.Concat("showcase.", type.ToString());
+            var key = string.Concat("Catalog:Showcase:", type.ToString());
 
             showcase = CacheManager.GetObject<Showcase>(key);
 

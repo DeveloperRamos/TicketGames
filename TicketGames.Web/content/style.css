@@ -261,8 +261,8 @@ body {
     background-color: #e9e9e9 !important;
     color: #898e90 !important;
     font-family: "Roboto", "Open Sans", sans-serif !important;
-    font-size: 14px !important;
-    font-weight: 300 !important;
+    font-size: 13px !important;
+    font-weight: 400 !important;
     line-height: normal !important;
 }
 
@@ -2912,6 +2912,29 @@ table.cart {
 .imgBanner {
     background-size: 100% 100% !important;
 }
+
+.activeSlide {
+    width: 100%;
+    float: left;
+    margin-right: -100%;
+    position: relative;
+    opacity: 1;
+    display: block;
+    transition: opacity 0.6s ease;
+    z-index: 2;
+}
+
+.disableSlide {
+    width: 100%;
+    float: left;
+    margin-right: -100%;
+    position: relative;
+    opacity: 0;
+    display: block;
+    transition: opacity 0.6s ease;
+    z-index: 1;
+}
+
 .img204x234 {
     width: 204px !important;
     height: 234px !important;

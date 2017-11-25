@@ -12,5 +12,6 @@ namespace TicketGames.API.Controllers
     [ApiExplorerSettings(IgnoreApi = false)]
     public class ParticipantController : ApiController
     {
+
     }
 }
