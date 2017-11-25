@@ -31,6 +31,7 @@ namespace TicketGames.Infrastructure.Repositories
             Product product = this._context.Products
                                             .Include(p => p.Images)
                                             .Include(p => p.Category)
+                                            .Include(p => p.Raffles)
                                             .Where(p => p.Id == id).FirstOrDefault();
 
             return product;
@@ -41,6 +42,7 @@ namespace TicketGames.Infrastructure.Repositories
             List<Product> products = this._context.Products
                                 .Include(p => p.Images)
                                 .Include(p => p.Category)
+                                .Include(p => p.Raffles)
                                 .Where(p => p.CategoryId == categoryId).ToList();
 
             return products;

@@ -137,9 +137,11 @@
     <Compile Include="Models\Catalog\Department.cs" />
     <Compile Include="Models\Catalog\Image.cs" />
     <Compile Include="Models\Catalog\Product.cs" />
+    <Compile Include="Models\Catalog\Raffle.cs" />
     <Compile Include="Models\Catalog\Search.cs" />
     <Compile Include="Models\Catalog\Showcase.cs" />
     <Compile Include="Models\Enum\ImageType.cs" />
+    <Compile Include="Models\Enum\RaffleStatus.cs" />
     <Compile Include="Models\Enum\ShowcaseType.cs" />
     <Compile Include="Models\Order\Cart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
