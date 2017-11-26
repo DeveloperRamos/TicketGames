@@ -33,7 +33,13 @@ ticketGamesApp.run(['$rootScope', '$route', '$location', '$cookieStore', '$templ
                     $rootScope.showcase.hide();
 
                 }
+            }
+            else {
+                if ($(".home-slider").is(":visible"))
+                    return true;
 
+                $(".home-slider").show();
+                return false;
             }
         });
 

@@ -1,5 +1,5 @@
 ﻿ticketGamesApp.service('searchService', function ($http) {
-    var urlBase = '/v1/search';
+    var urlBase = '/v1/product/search';
 
     var service = {
         getCategories: getCategories,
