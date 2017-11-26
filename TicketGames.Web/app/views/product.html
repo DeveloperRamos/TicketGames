@@ -57,60 +57,36 @@
 
 <section>
     <header>
-        <h2 class="section-title">Similiar Product</h2>
+        <h2 class="section-title">Mais produtos do {{vmProduct.product.Category.Name}}</h2>
     </header>
     <div class="product-list">
-        <div class="product">
+        <div ng-repeat="product in vmProduct.recent | orderBy: 'Order'" class="product">
             <div class="inner-product">
                 <div class="figure-image">
-                    <img src="images/game-1.jpg" alt="Game 1">
+                    <!--<a href="#/Produto/{{product.Id}}"><img src="../../images/{{product.Id + '.png'}}" alt="{{product.Name}}" class="img204x234"></a>-->
+                    <img src="../../images/{{product.Id + '.png'}}" alt="{{product.Name}}" class="img204x234">
                 </div>
-                <h3 class="product-title"><a href="#">Alpha Protocol</a></h3>
-                <small class="price">$20.00</small>
-                <p>Lorem ipsum dolor sit consectetur adipiscing elit do eiusmod tempor...</p>
-                <a href="#" class="button">Add to cart</a>
-                <a href="#" class="button muted">Read Details</a>
-            </div>
-        </div> <!-- .product -->
+                <h3 class="product-title"><a href="#/Produto/{{product.Id}}">{{product.Name}}</a></h3>
+                <small class="price">R$ {{vmProduct.product.Value}}.00</small>
+                <!--<p>Lorem ipsum dolor sit consectetur adipiscing elit do eiusmod tempor...</p>-->
 
-        <div class="product">
-            <div class="inner-product">
-                <div class="figure-image">
-                    <img src="images/game-2.jpg" alt="Game 2">
+                <h3 ng-show="product.Raffle.SalesMade == 100"><b>Sorteio {{ product.Raffle.RaffleDate | date: 'dd/MM/yyyy' }}</b></h3>
+
+                <div class="progress">
+                    <div class="progress-bar progress-bar-success" role="progressbar" style="width:{{product.Raffle.SalesMade}}%" alt="O sorteio ocorrerá quando chegar a 100%">
+                        {{product.Raffle.SalesMade}}%
+                    </div>
+                    <div class="progress-bar progress-bar-warning" role="progressbar" style="width:{{product.Raffle.MissingtoSell}}%" alt="O sorteio ocorrerá quando chegar a 100%">
+                        {{product.Raffle.MissingtoSell}}%
+                    </div>
+                    <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
+                        Danger
+                    </div>-->
                 </div>
-                <h3 class="product-title"><a href="#">Grand Theft Auto V</a></h3>
-                <small class="price">$20.00</small>
-                <p>Lorem ipsum dolor sit consectetur adipiscing elit do eiusmod tempor...</p>
-                <a href="#" class="button">Add to cart</a>
-                <a href="#" class="button muted">Read Details</a>
-            </div>
-        </div> <!-- .product -->
 
-        <div class="product">
-            <div class="inner-product">
-                <div class="figure-image">
-                    <img src="images/game-3.jpg" alt="Game 3">
-                </div>
-                <h3 class="product-title"><a href="#">Need for Speed rivals</a></h3>
-                <small class="price">$20.00</small>
-                <p>Lorem ipsum dolor sit consectetur adipiscing elit do eiusmod tempor...</p>
-                <a href="#" class="button">Add to cart</a>
-                <a href="#" class="button muted">Read Details</a>
+                <a href="#" class="button">Comprar</a>
+                <a href="#/Produto/{{product.Id}}" class="button muted">Detalhe</a>
             </div>
-        </div> <!-- .product -->
-
-        <div class="product">
-            <div class="inner-product">
-                <div class="figure-image">
-                    <img src="images/game-4.jpg" alt="Game 4">
-                </div>
-                <h3 class="product-title"><a href="#">Big game hunter</a></h3>
-                <small class="price">$20.00</small>
-                <p>Lorem ipsum dolor sit consectetur adipiscing elit do eiusmod tempor...</p>
-                <a href="#" class="button">Add to cart</a>
-                <a href="#" class="button muted">Read Details</a>
-            </div>
-        </div> <!-- .product -->
-
+        </div>
     </div> <!-- .product-list -->
 </section>

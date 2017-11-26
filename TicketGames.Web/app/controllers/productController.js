@@ -33,9 +33,17 @@ ticketGamesApp
 
                     vmProduct.product = response.data;
 
+                    getProductsRecent(vmProduct.product.Category.Id);
 
                 });
             };
+
+            var getProductsRecent = function (categoryId) {
+
+                productService.getRecentProducts(categoryId, function (response) {
+                    vmProduct.recent = response.data;
+                });
+            }
 
             $scope.trustAsHtml = function (html) {
 
