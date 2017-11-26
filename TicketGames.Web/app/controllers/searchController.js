@@ -19,6 +19,7 @@ ticketGamesApp
                     $rootScope.bread.text(obj);
 
                     vmSearch.pages = [];
+                    vmSearch.products = [];
                 }
 
                 var search = {
@@ -33,24 +34,39 @@ ticketGamesApp
 
             var searchProducts = function (search) {
                 searchService.searchProducts(search, function (response) {
-                    vmSearch.products = response.data;
-                    pagination(response.data.length, 8);
+                    //vmSearch.products = response.data;
+                    $scope.products = response.data;
+                    pagination(response.data, 8);
                 });
 
             };
 
-            var pagination = function (qtdProducts, productsPage) {
+            var pagination = function (products, productsPage) {
 
-                var pages_ = qtdProducts / productsPage;
+                var pages_ = products.length / productsPage;
 
-                pages_ = pages_ > 1 ? pages_ : 1;
+                pages_ = pages_ > 1 ? Math.ceil(pages_) : 1;
 
                 var number = 1;
 
                 for (var i = 0; i < pages_; i++) {
                     vmSearch.pages.push({ number: number + i });
                 }
+
+                var log = [];
+                angular.forEach(products, function (value, key) {
+                    
+                    if (key < productsPage) {
+                        vmSearch.products.push(value);
+                    }
+
+                }, log);
+
+
+
             }
+
+
 
 
             $scope.trustAsHtml = function (html) {

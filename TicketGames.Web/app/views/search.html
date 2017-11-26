@@ -32,7 +32,7 @@
     <div class="pagination">        
         <a href="#" class="page-number"><i class="fa fa-angle-left"></i></a>
         <span class="page-number current">1</span>
-        <a ng-show="vmSearch.pages.length <== 1" ng-repeat="page in vmSearch.pages" href="" class="page-number">{{page.number + 1}}</a>
+        <a ng-repeat="page in vmSearch.pages" href="" class="page-number">{{page.number + 1}}</a>
         <!--<a href="#" class="page-number">3</a>
         <a href="#" class="page-number">...</a>
         <a href="#" class="page-number">12</a>-->
