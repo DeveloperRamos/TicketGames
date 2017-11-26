@@ -17,6 +17,8 @@ ticketGamesApp
                     };
 
                     $rootScope.bread.text(obj);
+
+                    vmSearch.pages = [];
                 }
 
                 var search = {
@@ -32,9 +34,23 @@ ticketGamesApp
             var searchProducts = function (search) {
                 searchService.searchProducts(search, function (response) {
                     vmSearch.products = response.data;
+                    pagination(response.data.length, 8);
                 });
 
             };
+
+            var pagination = function (qtdProducts, productsPage) {
+
+                var pages_ = qtdProducts / productsPage;
+
+                pages_ = pages_ > 1 ? pages_ : 1;
+
+                var number = 1;
+
+                for (var i = 0; i < pages_; i++) {
+                    vmSearch.pages.push({ number: number + i });
+                }
+            }
 
 
             $scope.trustAsHtml = function (html) {

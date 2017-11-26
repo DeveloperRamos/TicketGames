@@ -60,14 +60,32 @@ namespace TicketGames.API.Controllers
         [HttpPost, Route("search")]
         public IHttpActionResult Searchs(Search search)
         {
-            List<Product> products = null;
+            IList<Product> products = null;
 
-
-            if (search.CategoryId > 0 && search.DepartmentId == 0 && string.IsNullOrEmpty(search.Word))
+            if (search.CategoryId > 0)
             {
-                var result = this._catalogService.GetProducts(search.CategoryId);
+                var key = string.Concat("Catalog:Products:Category:", search.CategoryId.ToString());
 
-                products = new Product().MappingProducts(result);
+                products = CacheManager.GetObject<List<Product>>(key);
+
+                if (products == null)
+                {
+                    var result = this._catalogService.GetProducts(search.CategoryId);
+
+                    products = new Product().MappingProducts(result);
+
+                    if (products != null && products.Count > 0)
+                        CacheManager.StoreObject(key, products, LifetimeProfile.Longest);
+                }
+            }
+            else
+            {
+                if (search.CategoryId > 0 && search.DepartmentId == 0 && string.IsNullOrEmpty(search.Word))
+                {
+                    var result = this._catalogService.GetProducts(search.CategoryId);
+
+                    products = new Product().MappingProducts(result);
+                }
             }
 
             return Ok(products);

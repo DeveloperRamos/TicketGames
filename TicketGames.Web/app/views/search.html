@@ -29,123 +29,64 @@
             </select>
         </span>
     </div> <!-- .filter -->
-    <div class="pagination">
+    <div class="pagination">        
         <a href="#" class="page-number"><i class="fa fa-angle-left"></i></a>
         <span class="page-number current">1</span>
-        <a href="#" class="page-number">2</a>
-        <a href="#" class="page-number">3</a>
+        <a ng-show="vmSearch.pages.length <== 1" ng-repeat="page in vmSearch.pages" href="" class="page-number">{{page.number + 1}}</a>
+        <!--<a href="#" class="page-number">3</a>
         <a href="#" class="page-number">...</a>
-        <a href="#" class="page-number">12</a>
+        <a href="#" class="page-number">12</a>-->
         <a href="#" class="page-number"><i class="fa fa-angle-right"></i></a>
     </div> <!-- .pagination -->
 </div> <!-- .filter-bar -->
 
-<div class="product-list">
-    <div class="product">
-        <div class="inner-product">
-            <div class="figure-image">
-                <a href="single.html"><img src="dummy/game-1.jpg" alt="Game 1"></a>
-            </div>
-            <h3 class="product-title"><a href="#">Alpha Protocol</a></h3>
-            <p>Lorem ipsum dolor sit consectetur adipiscing elit do eiusmod tempor...</p>
-            <a href="#" class="button">Add to cart</a>
-            <a href="#" class="button muted">Read Details</a>
-        </div>
-    </div> <!-- .product -->
-    <div class="product">
-        <div class="inner-product">
-            <div class="figure-image">
-                <a href="single.html"><img src="dummy/game-2.jpg" alt="Game 2"></a>
-            </div>
-            <h3 class="product-title"><a href="#">Grand Theft Auto V</a></h3>
-            <p>Lorem ipsum dolor sit consectetur adipiscing elit do eiusmod tempor...</p>
-            <a href="#" class="button">Add to cart</a>
-            <a href="#" class="button muted">Read Details</a>
-        </div>
-    </div> <!-- .product -->
-    <div class="product">
-        <div class="inner-product">
-            <div class="figure-image">
-                <a href="single.html"><img src="dummy/game-3.jpg" alt="Game 3"></a>
-            </div>
-            <h3 class="product-title"><a href="#">Need for Speed rivals</a></h3>
-            <p>Lorem ipsum dolor sit consectetur adipiscing elit do eiusmod tempor...</p>
-            <a href="#" class="button">Add to cart</a>
-            <a href="#" class="button muted">Read Details</a>
-        </div>
-    </div> <!-- .product -->
-    <div class="product">
-        <div class="inner-product">
-            <div class="figure-image">
-                <a href="single.html"><img src="dummy/game-4.jpg" alt="Game 4"></a>
-            </div>
-            <h3 class="product-title"><a href="#">Big game hunter</a></h3>
-            <p>Lorem ipsum dolor sit consectetur adipiscing elit do eiusmod tempor...</p>
-            <a href="#" class="button">Add to cart</a>
-            <a href="#" class="button muted">Read Details</a>
-        </div>
-    </div> <!-- .product -->
+<div class="product-list" style="text-align: center">
 
-    <div class="product">
+    <div class="product" style="width: 100%;" ng-show="vmSearch.products.length <= 0">
         <div class="inner-product">
-            <div class="figure-image">
-                <a href="single.html"><img src="dummy/game-5.jpg" alt="Game 1"></a>
-            </div>
-            <h3 class="product-title"><a href="#">Watch Dogs</a></h3>
-            <p>Lorem ipsum dolor sit consectetur adipiscing elit do eiusmod tempor...</p>
-            <a href="#" class="button">Add to cart</a>
-            <a href="#" class="button muted">Read Details</a>
+            <h1>Não foi encontrado produto</h1>
         </div>
     </div> <!-- .product -->
 
 
-    <div class="product">
+    <div ng-repeat="product in vmSearch.products | orderBy: 'Order'" class="product">
         <div class="inner-product">
             <div class="figure-image">
-                <a href="single.html"><img src="dummy/game-6.jpg" alt="Game 2"></a>
+
+                <a href="#/Produto/{{product.Id}}"><img src="../../images/{{product.Id + '.png'}}" alt="{{product.Name}}" class="img204x234"></a>
+                <!--<a href="single.html"><img src="images/game-1.jpg" alt="Game 1"></a>-->
             </div>
-            <h3 class="product-title"><a href="#">Mortal Kombat X</a></h3>
-            <p>Lorem ipsum dolor sit consectetur adipiscing elit do eiusmod tempor...</p>
-            <a href="#" class="button">Add to cart</a>
-            <a href="#" class="button muted">Read Details</a>
+            <h3 class="product-title"><a href="#/Produto/{{product.Id}}">{{product.Name}}</a></h3>
+            <!--<p>Lorem ipsum dolor sit consectetur adipiscing elit do eiusmod tempor...</p>-->
+
+            <h3 ng-show="product.Raffle.SalesMade == 100"><b>Sorteio {{ product.Raffle.RaffleDate | date: 'dd/MM/yyyy' }}</b></h3>
+
+            <div class="progress">
+                <div class="progress-bar progress-bar-success" role="progressbar" style="width:{{product.Raffle.SalesMade}}%" alt="O sorteio ocorrerá quando chegar a 100%">
+                    {{product.Raffle.SalesMade}}%
+                </div>
+                <div class="progress-bar progress-bar-warning" role="progressbar" style="width:{{product.Raffle.MissingtoSell}}%" alt="O sorteio ocorrerá quando chegar a 100%">
+                    {{product.Raffle.MissingtoSell}}%
+                </div>
+                <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
+                    Danger
+                </div>-->
+            </div>
+
+            <a href="#" class="button">Comprar</a>
+            <a href="#/Produto/{{product.Id}}" class="button muted">Detalhe</a>
         </div>
     </div> <!-- .product -->
-
-
-    <div class="product">
-        <div class="inner-product">
-            <div class="figure-image">
-                <a href="single.html"><img src="dummy/game-7.jpg" alt="Game 3"></a>
-            </div>
-            <h3 class="product-title"><a href="#">Metal Gear Solid V</a></h3>
-            <p>Lorem ipsum dolor sit consectetur adipiscing elit do eiusmod tempor...</p>
-            <a href="#" class="button">Add to cart</a>
-            <a href="#" class="button muted">Read Details</a>
-        </div>
-    </div> <!-- .product -->
-
-
-    <div class="product">
-        <div class="inner-product">
-            <div class="figure-image">
-                <a href="single.html"><img src="dummy/game-8.jpg" alt="Game 4"></a>
-            </div>
-            <h3 class="product-title"><a href="#">Nascar '14</a></h3>
-            <p>Lorem ipsum dolor sit consectetur adipiscing elit do eiusmod tempor...</p>
-            <a href="#" class="button">Add to cart</a>
-            <a href="#" class="button muted">Read Details</a>
-        </div>
-    </div> <!-- .product -->
-
 </div> <!-- .product-list -->
 <div class="pagination-bar">
     <div class="pagination">
         <a href="#" class="page-number"><i class="fa fa-angle-left"></i></a>
         <span class="page-number current">1</span>
-        <a href="#" class="page-number">2</a>
+        <a ng-show="vmSearch.pages.length <== 1" ng-repeat="page in vmSearch.pages" href="" class="page-number">{{page.number + 1}}</a>    
+    <!--<a href="#" class="page-number">2</a>
         <a href="#" class="page-number">3</a>
         <a href="#" class="page-number">...</a>
-        <a href="#" class="page-number">12</a>
+        <a href="#" class="page-number">12</a>-->
         <a href="#" class="page-number"><i class="fa fa-angle-right"></i></a>
     </div> <!-- .pagination -->
 </div>
