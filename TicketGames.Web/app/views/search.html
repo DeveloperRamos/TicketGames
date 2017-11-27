@@ -29,7 +29,7 @@
             </select>
         </span>
     </div> <!-- .filter -->
-    <div class="pagination">        
+    <div class="pagination">
         <a href="#" class="page-number"><i class="fa fa-angle-left"></i></a>
         <span class="page-number current">1</span>
         <a ng-repeat="page in vmSearch.pages" href="" class="page-number">{{page.number + 1}}</a>
@@ -56,8 +56,9 @@
                 <a href="#/Produto/{{product.Id}}"><img src="../../images/{{product.Id + '.png'}}" alt="{{product.Name}}" class="img204x234"></a>
                 <!--<a href="single.html"><img src="images/game-1.jpg" alt="Game 1"></a>-->
             </div>
-            <h3 class="product-title"><a href="#/Produto/{{product.Id}}">{{product.Name}}</a></h3>
+            <h3 class="product-title" style="text-align: center !important;"><a href="#/Produto/{{product.Id}}">{{product.Name}}</a></h3>
             <!--<p>Lorem ipsum dolor sit consectetur adipiscing elit do eiusmod tempor...</p>-->
+            <small class="price" style="text-align: center !important;">R$ {{product.Value}}.00</small>
 
             <h3 ng-show="product.Raffle.SalesMade == 100"><b>Sorteio {{ product.Raffle.RaffleDate | date: 'dd/MM/yyyy' }}</b></h3>
 
@@ -82,11 +83,11 @@
     <div class="pagination">
         <a href="#" class="page-number"><i class="fa fa-angle-left"></i></a>
         <span class="page-number current">1</span>
-        <a ng-show="vmSearch.pages.length <== 1" ng-repeat="page in vmSearch.pages" href="" class="page-number">{{page.number + 1}}</a>    
-    <!--<a href="#" class="page-number">2</a>
-        <a href="#" class="page-number">3</a>
-        <a href="#" class="page-number">...</a>
-        <a href="#" class="page-number">12</a>-->
+        <a ng-show="vmSearch.pages.length <== 1" ng-repeat="page in vmSearch.pages" href="" class="page-number">{{page.number + 1}}</a>
+        <!--<a href="#" class="page-number">2</a>
+            <a href="#" class="page-number">3</a>
+            <a href="#" class="page-number">...</a>
+            <a href="#" class="page-number">12</a>-->
         <a href="#" class="page-number"><i class="fa fa-angle-right"></i></a>
     </div> <!-- .pagination -->
 </div>

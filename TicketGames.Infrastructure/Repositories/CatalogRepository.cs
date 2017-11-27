@@ -53,6 +53,19 @@ namespace TicketGames.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
+        public List<Product> GetRecentProductsByCategory(long categoryId)
+        {
+            List<Product> products = this._context.Products
+                                   .Include(p => p.Images)
+                                   .Include(p => p.Category)
+                                   .Include(p => p.Raffles)
+                                   .Where(p => p.CategoryId == categoryId)
+                                   .Take(4).OrderByDescending(p => p.Id).ToList();
+
+            return products;
+
+        }
+
 
         //        List<Catalog> catalogs = new List<Catalog>();
         //        List<Category> categorys = new List<Category>();

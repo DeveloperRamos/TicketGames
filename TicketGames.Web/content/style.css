@@ -2905,7 +2905,7 @@ table.cart {
 }
 
 .img344x394 {
-    width: 344px !important;
+    width: 344px;
     height: 394px !important;
 }
 
@@ -2936,7 +2936,7 @@ table.cart {
 }
 
 .img204x234 {
-    width: 204px !important;
-    height: 234px !important;
+    width: 204px;
+    height: 100% !important;
     background-position: center center;
 }

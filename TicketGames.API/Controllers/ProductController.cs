@@ -90,5 +90,26 @@ namespace TicketGames.API.Controllers
 
             return Ok(products);
         }
+        [HttpGet, Route("recent/{categoryId}")]
+        public IHttpActionResult ProductsByCategory(long categoryId)
+        {
+            IList<Product> products = null;
+
+            var key = string.Concat("Catalog:Products:Category:Recent:", categoryId.ToString());
+
+            products = CacheManager.GetObject<List<Product>>(key);
+
+            if (products == null)
+            {
+                var result = this._catalogService.GetRecentProducts(categoryId);
+
+                products = new Product().MappingProducts(result);
+
+                if (products != null && products.Count > 0)
+                    CacheManager.StoreObject(key, products, LifetimeProfile.Longest);
+            }
+
+            return Ok(products);
+        }
     }
 }
