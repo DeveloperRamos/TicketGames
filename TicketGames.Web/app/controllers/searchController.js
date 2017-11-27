@@ -43,31 +43,29 @@ ticketGamesApp
 
             var pagination = function (products, productsPage) {
 
-                var pages_ = products.length / productsPage;
+                if (products) {
 
-                pages_ = pages_ > 1 ? Math.ceil(pages_) : 1;
+                    var pages_ = products.length / productsPage;
 
-                var number = 1;
+                    pages_ = pages_ > 1 ? Math.ceil(pages_) : 1;
 
-                for (var i = 0; i < pages_; i++) {
-                    vmSearch.pages.push({ number: number + i });
-                }
+                    var number = 1;
 
-                var log = [];
-                angular.forEach(products, function (value, key) {
-                    
-                    if (key < productsPage) {
-                        vmSearch.products.push(value);
+                    for (var i = 0; i < pages_; i++) {
+                        vmSearch.pages.push({ number: number + i });
                     }
 
-                }, log);
+                    var log = [];
+                    angular.forEach(products, function (value, key) {
 
+                        if (key < productsPage) {
+                            vmSearch.products.push(value);
+                        }
 
+                    }, log);
 
+                }
             }
-
-
-
 
             $scope.trustAsHtml = function (html) {
 
