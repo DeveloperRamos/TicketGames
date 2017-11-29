@@ -37,6 +37,8 @@ namespace TicketGames.Infrastructure.Context
         public DbSet<ShowcaseProduct> ShowcaseProducts { get; set; }
         public DbSet<Raffle> Raffles { get; set; }
         public DbSet<RaffleStatus> RaffleStatus { get; set; }
+        public DbSet<ParticipantStatus> ParticipantStatus { get; set; }
+        public DbSet<Participant> Participants { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -55,7 +57,8 @@ namespace TicketGames.Infrastructure.Context
             modelBuilder.Configurations.Add(new ShowcaseProductMap());
             modelBuilder.Configurations.Add(new RaffleMap());
             modelBuilder.Configurations.Add(new RaffleStatusMap());
-
+            modelBuilder.Configurations.Add(new ParticipantStatusMap());
+            modelBuilder.Configurations.Add(new ParticipantMap());
         }
 
         public override int SaveChanges()
