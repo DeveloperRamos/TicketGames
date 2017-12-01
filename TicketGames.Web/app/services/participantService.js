@@ -4,7 +4,17 @@
     var service = {
         getParticipant: getParticipant,
         login: login,
-        update: update
+        update: update,
+        createParticipant: createParticipant
+    };
+
+
+    function createParticipant(participant, successCallback, errorCallback) {
+        var model = JSON.stringify(participant);
+
+        $http.post(global.service + urlBase, model)
+            .then(successCallback, errorCallback);
+
     };
 
 

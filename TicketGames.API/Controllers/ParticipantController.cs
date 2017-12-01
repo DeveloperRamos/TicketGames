@@ -30,9 +30,20 @@ namespace TicketGames.API.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost, Route()]
         public IHttpActionResult Post(Participant participant)
         {
+            if (participant.ParticipantId == 0)
+            {
+                var result = this._participantService.GetParticipant(participant.CPF, participant.CPF);
+
+                if (result.Id > 0)
+                {
+                    return BadRequest("Participante já cadastrado!");
+                }
+
+            }
+
             return Ok();
         }
     }

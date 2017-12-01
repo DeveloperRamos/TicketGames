@@ -1,8 +1,8 @@
 ﻿'use strict';
 
 ticketGamesApp
-    .controller('indexController', ['$scope', '$cookieStore', '$rootScope', '$location', 'cartService', 'categoryService',
-        function ($scope, $cookieStore, $rootScope, $location, cartService, categoryService) {
+    .controller('indexController', ['$scope', '$cookieStore', '$rootScope', '$location', 'cartService', 'categoryService', 'participantService',
+        function ($scope, $cookieStore, $rootScope, $location, cartService, categoryService, partcipantService) {
             var vmIndex = this;
 
 
@@ -36,9 +36,16 @@ ticketGamesApp
 
             };
 
-            vmIndex.register = function () {               
+            vmIndex.register = function (participant) {
 
-                $location.path('/Cadastro');
+                if (participant.CPF && participant.Email) {
+
+                    partcipantService.createParticipant(participant, function (response) {
+
+
+                        $location.path('Cadastro');
+                    });
+                }
             };
 
             initialize();
