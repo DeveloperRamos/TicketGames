@@ -7,5 +7,6 @@ namespace TicketGames.Domain.Contract
         bool CreateOrUpdate(Participant participant);
         Participant GetParticipant(string login, string cpf);
         Participant GetParticipant(long id);
+        bool ValidateSession(string session);
     }
 }

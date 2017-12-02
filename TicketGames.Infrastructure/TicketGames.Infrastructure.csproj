@@ -68,6 +68,7 @@
     <Compile Include="Mapping\ProductMap.cs" />
     <Compile Include="Mapping\RaffleMap.cs" />
     <Compile Include="Mapping\RaffleStatusMap.cs" />
+    <Compile Include="Mapping\SessionMap.cs" />
     <Compile Include="Mapping\ShowcaseMap.cs" />
     <Compile Include="Mapping\ShowcaseProductMap.cs" />
     <Compile Include="Mapping\ShowcaseTypeMap.cs" />

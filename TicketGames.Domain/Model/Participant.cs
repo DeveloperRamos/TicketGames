@@ -5,6 +5,10 @@ namespace TicketGames.Domain.Model
 {
     public class Participant
     {
+        public Participant()
+        {
+            this.Sessions = new List<Session>();
+        }
         public long Id { get; set; }
         public int ParticipantStatusId { get; set; }
         public string Login { get; set; }
@@ -27,6 +31,7 @@ namespace TicketGames.Domain.Model
         public DateTime InsertDate { get; set; }
         public Nullable<DateTime> UpdateDate { get; set; }
         public virtual ParticipantStatus ParticipantStatus { get; set; }
+        public virtual ICollection<Session> Sessions { get; set; }
 
     }
 }

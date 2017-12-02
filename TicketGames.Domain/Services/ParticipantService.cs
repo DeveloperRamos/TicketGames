@@ -51,5 +51,16 @@ namespace TicketGames.Domain.Services
         {
             throw new NotImplementedException();
         }
+
+        public bool ValidateSession(string session)
+        {
+            var result = this._participantRepository.GetSessionBySession(session);
+
+            if (result != null)
+                return true;
+
+            return false;
+
+        }
     }
 }

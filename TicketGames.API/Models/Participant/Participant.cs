@@ -28,6 +28,7 @@ namespace TicketGames.API.Models.Participant
         public string District { get; set; }
         public string City { get; set; }
         public string State { get; set; }
+        public string Session { get; set; }
 
         public Participant()
         {
@@ -56,7 +57,7 @@ namespace TicketGames.API.Models.Participant
                 Complement = this.Complement,
                 District = this.District,
                 City = this.City,
-                State = this.State
+                State = this.State                
             };
 
             return participant;

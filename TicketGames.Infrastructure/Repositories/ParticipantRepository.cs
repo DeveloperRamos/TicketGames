@@ -22,6 +22,13 @@ namespace TicketGames.Infrastructure.Repositories
         }
         public Participant Create(Participant participant)
         {
+
+            Session session = new Session();
+            session.ExpirationDate = DateTime.Now.AddDays(3);
+            session.Session_ = Guid.NewGuid().ToString();
+
+            participant.Sessions.Add(session);
+
             var result = this._context.Set<Participant>().Add(participant);
 
             this._context.SaveChanges();
@@ -51,6 +58,24 @@ namespace TicketGames.Infrastructure.Repositories
                 connect.Close();
 
                 return participant;
+            }
+        }
+
+        public Session GetSessionBySession(string session)
+        {
+            using (var connect = new MySqlConnection(connection))
+            {
+                Session _session = new Session();
+
+                string query = @"Select * From Tb_Session Where Session = @session And Expiration < @date And Activated = 0;";
+
+                connect.Open();
+
+                _session = connect.Query<Session>(query, new { Session = session, Expiration = DateTime.Now }).FirstOrDefault();
+
+                connect.Close();
+
+                return _session;
             }
         }
 

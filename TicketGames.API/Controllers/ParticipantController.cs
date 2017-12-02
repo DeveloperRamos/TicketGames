@@ -54,6 +54,12 @@ namespace TicketGames.API.Controllers
                 }
                 else
                 {
+
+                    if(!string.IsNullOrEmpty(participant.Session))
+                    {
+
+                    }
+
                     return BadRequest("Participante já cadastrado!");
                 }
 

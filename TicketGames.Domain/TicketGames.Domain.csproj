@@ -53,6 +53,7 @@
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\Raffle.cs" />
     <Compile Include="Model\RaffleStatus.cs" />
+    <Compile Include="Model\Session.cs" />
     <Compile Include="Model\Showcase.cs" />
     <Compile Include="Model\ShowcaseProduct.cs" />
     <Compile Include="Model\ShowcaseType.cs" />

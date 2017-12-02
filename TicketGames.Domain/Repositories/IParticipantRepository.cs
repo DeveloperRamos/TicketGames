@@ -8,5 +8,6 @@ namespace TicketGames.Domain.Repositories
         Participant Update(Participant participant);
         Participant GetParticipantByLoginAndCPF(string login, string cpf);
         Participant GetParticipantById(long id);
+        Session GetSessionBySession(string session);
     }
 }
