@@ -13,8 +13,6 @@
                 <h3 class="product-title"><a href="#/Produto/{{product.Id}}">{{product.Name}}</a></h3>
                 <small class="price">R$ {{product.Value}},00</small>
                 <!--<p>Com a tecnologia Frostbite™, o EA SPORTS™FIFA 18 elimina o limite entre o mundo virtual e o real, dando vida aos jogadores, times e climas envolventes do maior esporte do mundo.</p>-->
-
-
                 <h3 ng-show="product.Raffle.SalesMade == 100"><b>Sorteio {{ product.Raffle.RaffleDate | date: 'dd/MM/yyyy' }}</b></h3>
 
                 <div class="progress">

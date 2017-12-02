@@ -1,8 +1,8 @@
 ﻿'use strict';
 
 ticketGamesApp
-    .controller('homeController', ['$scope', '$cookieStore','$rootScope', 'showcaseService',
-        function ($scope, $cookieStore, $rootScope, showcaseService) {
+    .controller('homeController', ['$scope', '$cookieStore', '$rootScope', 'showcaseService', 'productService',
+        function ($scope, $cookieStore, $rootScope, showcaseService, productService) {
             var vmHome = this;
 
 
@@ -26,6 +26,20 @@ ticketGamesApp
 
                 });
             };
+
+            vmHome.getRaffle = function (productId) {
+
+                if (productId) {
+
+                    productService.getRaffle(productId, function (response) {
+
+                        vmHome.raffle = response.data;
+                        return true;
+                    });
+                }
+
+            };
+
 
             $scope.random = function () {
                 var tes = 0.5 - Math.random();

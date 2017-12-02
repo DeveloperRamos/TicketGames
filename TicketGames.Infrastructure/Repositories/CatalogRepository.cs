@@ -7,12 +7,16 @@ using TicketGames.Domain.Model;
 using TicketGames.Domain.Repositories;
 using TicketGames.Infrastructure.Context;
 using System.Data.Entity;
+using MySql.Data.MySqlClient;
+using System.Configuration;
+using Dapper;
 
 namespace TicketGames.Infrastructure.Repositories
 {
     public class CatalogRepository : ICatalogRepository
     {
         private readonly TicketGamesContext _context;
+        private string connection = ConfigurationManager.ConnectionStrings["TicketGamesContext"].ConnectionString;
         public CatalogRepository()
         {
             this._context = new TicketGamesContext();
@@ -28,13 +32,27 @@ namespace TicketGames.Infrastructure.Repositories
 
         public Product GetProductById(long id)
         {
-            Product product = this._context.Products
-                                            .Include(p => p.Images)
-                                            .Include(p => p.Category)
-                                            .Include(p => p.Raffles)
-                                            .Where(p => p.Id == id).FirstOrDefault();
+            using (var connect = new MySqlConnection(connection))
+            {
+                connect.Open();
 
-            return product;
+                var product = connect.Query<Product>("Select * From Tb_Product Where Id = @id;", new { Id = id }).Single();
+
+                if (product.Id > 0)
+                {
+                    product.Category = connect.Query<Category>("Select * From Tb_Category Where Id = @categoryId;", new { categoryId = product.CategoryId }).Single();
+
+                    product.Department = connect.Query<Department>("Select * From Tb_Department Where Id = @departmentId;", new { departmentId = product.DepartmentId }).Single();
+
+                    product.Images = connect.Query<Image>("Select * From Tb_Image Where ProductId = @productId;", new { productId = product.Id }).ToList();
+
+                    product.Raffles = connect.Query<Raffle>("Select * From Tb_Raffle Where RaffleStatusId In(4,3) And ProductId = @productId;", new { productId = product.Id }).ToList();
+                }
+
+                connect.Close();
+
+                return product;
+            }
         }
 
         public List<Product> GetProducts(int categoryId)
