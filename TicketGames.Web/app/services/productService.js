@@ -3,7 +3,8 @@
 
     var service = {
         getProduct: getProduct,
-        getRecentProducts: getRecentProducts
+        getRecentProducts: getRecentProducts,
+        getRaffle: getRaffle
     };
 
 
@@ -15,6 +16,11 @@
 
     function getRecentProducts(categoryId, successCallback, errorCallback) {
         $http.get(global.service + urlBase + '/recent/' + categoryId)
+            .then(successCallback, errorCallback);
+    };
+
+    function getRaffle(productId, successCallback, errorCallback) {
+        $http.get(global.service + urlBase + '/raffle/' + productId)
             .then(successCallback, errorCallback);
     }
 

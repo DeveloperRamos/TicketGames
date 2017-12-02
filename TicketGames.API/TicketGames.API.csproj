@@ -141,9 +141,11 @@
     <Compile Include="Models\Catalog\Search.cs" />
     <Compile Include="Models\Catalog\Showcase.cs" />
     <Compile Include="Models\Enum\ImageType.cs" />
+    <Compile Include="Models\Enum\ParticipantStatus.cs" />
     <Compile Include="Models\Enum\RaffleStatus.cs" />
     <Compile Include="Models\Enum\ShowcaseType.cs" />
     <Compile Include="Models\Order\Cart.cs" />
+    <Compile Include="Models\Participant\Participant.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\SimpleAuthorizationServerProvider.cs" />
     <Compile Include="Startup.cs" />

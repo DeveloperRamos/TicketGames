@@ -19,12 +19,15 @@ namespace TicketGames.API.Controllers
     public class ProductController : ApiController
     {
         private readonly ICatalogService _catalogService;
-        public ProductController(ICatalogService catalogService)
+        private readonly IRaffleService _raffleService;
+
+        public ProductController(ICatalogService catalogService, IRaffleService raffleService)
         {
             this._catalogService = catalogService;
+            this._raffleService = raffleService;
         }
         public ProductController()
-            : this(new CatalogService(new CatalogRepository()))
+            : this(new CatalogService(new CatalogRepository()), new RaffleService(new RaffleRepository()))
         {
             CacheManager.SetProvider(new CacheProvider());
         }
@@ -48,10 +51,16 @@ namespace TicketGames.API.Controllers
             {
                 var result = this._catalogService.GetProduct(id);
 
+                if (result == null)
+                {
+                    return BadRequest("Produto não encontrado!");
+                }
+
+
                 product = new Product(result);
 
-                if (product != null)
-                    CacheManager.StoreObject(key, product, LifetimeProfile.Moderate);
+
+                CacheManager.StoreObject(key, product, LifetimeProfile.Moderate);
             }
 
             return Ok(product);
@@ -110,6 +119,29 @@ namespace TicketGames.API.Controllers
             }
 
             return Ok(products);
+        }
+
+        [HttpGet, Route("raffle/{productId}")]
+        public IHttpActionResult RaffleByProductId(long productId)
+        {
+
+            Raffle raffle = null;
+
+            var key = string.Concat("Catalog:Products:Raffle:", productId.ToString());
+
+            raffle = CacheManager.GetObject<Raffle>(key);
+
+            if (raffle == null)
+            {
+                var result = this._raffleService.GetRaffle(productId);
+
+                raffle = new Raffle(result);
+
+                if (raffle != null)
+                    CacheManager.StoreObject(key, raffle, LifetimeProfile.Long);
+            }
+
+            return Ok(raffle);
         }
     }
 }

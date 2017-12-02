@@ -7,12 +7,16 @@ using TicketGames.Domain.Model;
 using TicketGames.Domain.Repositories;
 using TicketGames.Infrastructure.Context;
 using System.Data.Entity;
+using MySql.Data.MySqlClient;
+using System.Configuration;
+using Dapper;
 
 namespace TicketGames.Infrastructure.Repositories
 {
     public class CatalogRepository : ICatalogRepository
     {
         private readonly TicketGamesContext _context;
+        private string connection = ConfigurationManager.ConnectionStrings["TicketGamesContext"].ConnectionString;
         public CatalogRepository()
         {
             this._context = new TicketGamesContext();
@@ -28,24 +32,88 @@ namespace TicketGames.Infrastructure.Repositories
 
         public Product GetProductById(long id)
         {
-            Product product = this._context.Products
-                                            .Include(p => p.Images)
-                                            .Include(p => p.Category)
-                                            .Include(p => p.Raffles)
-                                            .Where(p => p.Id == id).FirstOrDefault();
+            using (var connect = new MySqlConnection(connection))
+            {
+                string query = @"Select * From Tb_Product P " +
+                                "Inner Join Tb_Category C On(P.CategoryId = C.Id) " +
+                                "Inner Join Tb_Department D On(P.DepartmentId = D.Id) " +
+                                "Inner Join Tb_Image I On(P.Id = I.ProductId) " +
+                                "Inner Join Tb_Raffle R On(P.Id = R.ProductId) " +
+                                "Where P.Active = 1 And C.Active = 1 And D.Active = 1 And I.Active = 1 And P.Id = @id";
 
-            return product;
+                connect.Open();
+
+                var productDictionary = new Dictionary<long, Product>();
+
+                var result = connect.Query<Product, Category, Department, Image, Raffle, Product>(query,
+                  (product, category, department, images, raffles) =>
+                {
+                    Product productEntity;
+
+                    if (!productDictionary.TryGetValue(product.Id, out productEntity))
+                    {
+                        productEntity = product;
+                        productEntity.Images = new List<Image>();
+                        productEntity.Raffles = new List<Raffle>();
+                        productDictionary.Add(product.Id, productEntity);
+                        productEntity.Category = category;
+                        productEntity.Department = department;
+                    }
+
+                    productEntity.Images.Add(images);
+                    productEntity.Raffles.Add(raffles);
+
+                    return productEntity;
+
+                }, new { Id = id }).Distinct().FirstOrDefault();
+
+                connect.Close();
+
+                return result;
+            }
         }
 
         public List<Product> GetProducts(int categoryId)
         {
-            List<Product> products = this._context.Products
-                                .Include(p => p.Images)
-                                .Include(p => p.Category)
-                                .Include(p => p.Raffles)
-                                .Where(p => p.CategoryId == categoryId).ToList();
+            using (var connect = new MySqlConnection(connection))
+            {
+                string query = @"Select * From Tb_Product P " +
+                                "Inner Join Tb_Category C On(P.CategoryId = C.Id) " +
+                                "Inner Join Tb_Department D On(P.DepartmentId = D.Id) " +
+                                "Inner Join Tb_Image I On(P.Id = I.ProductId) " +
+                                "Inner Join Tb_Raffle R On(P.Id = R.ProductId) " +
+                                "Where P.Active = 1 And C.Active = 1 And D.Active = 1 And I.Active = 1 And P.CategoryId = @categoryId";
 
-            return products;
+                connect.Open();
+
+                var productDictionary = new Dictionary<long, Product>();
+
+                var results = connect.Query<Product, Category, Department, Image, Raffle, Product>(query,
+                  (product, category, department, images, raffles) =>
+                  {
+                      Product productEntity;
+
+                      if (!productDictionary.TryGetValue(product.Id, out productEntity))
+                      {
+                          productEntity = product;
+                          productEntity.Images = new List<Image>();
+                          productEntity.Raffles = new List<Raffle>();
+                          productDictionary.Add(product.Id, productEntity);
+                          productEntity.Category = category;
+                          productEntity.Department = department;
+                      }
+
+                      productEntity.Images.Add(images);
+                      productEntity.Raffles.Add(raffles);
+
+                      return productEntity;
+
+                  }, new { CategoryId = categoryId }).Distinct().ToList();
+
+                connect.Close();
+
+                return results;
+            }
         }
 
         public List<Product> GetProducts(string name)
@@ -55,42 +123,46 @@ namespace TicketGames.Infrastructure.Repositories
 
         public List<Product> GetRecentProductsByCategory(long categoryId)
         {
-            List<Product> products = this._context.Products
-                                   .Include(p => p.Images)
-                                   .Include(p => p.Category)
-                                   .Include(p => p.Raffles)
-                                   .Where(p => p.CategoryId == categoryId)
-                                   .Take(4).OrderByDescending(p => p.Id).ToList();
+            using (var connect = new MySqlConnection(connection))
+            {
+                string query = @"Select * From Tb_Product P " +
+                                "Inner Join Tb_Category C On(P.CategoryId = C.Id) " +
+                                "Inner Join Tb_Department D On(P.DepartmentId = D.Id) " +
+                                "Inner Join Tb_Image I On(P.Id = I.ProductId) " +
+                                "Inner Join Tb_Raffle R On(P.Id = R.ProductId) " +
+                                "Where P.Active = 1 And C.Active = 1 And D.Active = 1 And I.Active = 1 And P.CategoryId = @categoryId";
 
-            return products;
+                connect.Open();
 
+                var productDictionary = new Dictionary<long, Product>();
+
+                var results = connect.Query<Product, Category, Department, Image, Raffle, Product>(query,
+                  (product, category, department, images, raffles) =>
+                  {
+                      Product productEntity;
+
+                      if (!productDictionary.TryGetValue(product.Id, out productEntity))
+                      {
+                          productEntity = product;
+                          productEntity.Images = new List<Image>();
+                          productEntity.Raffles = new List<Raffle>();
+                          productDictionary.Add(product.Id, productEntity);
+                          productEntity.Category = category;
+                          productEntity.Department = department;
+                      }
+
+                      productEntity.Images.Add(images);
+                      productEntity.Raffles.Add(raffles);
+
+                      return productEntity;
+
+                  }, new { CategoryId = categoryId })
+                  .Distinct().Take(4).OrderByDescending(p => p.Id).ToList();
+
+                connect.Close();
+
+                return results;
+            }
         }
-
-
-        //        List<Catalog> catalogs = new List<Catalog>();
-        //        List<Category> categorys = new List<Category>();
-        //        List<Product> products = new List<Product>();
-        //        Discount discount = new Discount();
-
-        //        var campaignCompany = this._context.CampaignCompanys
-        //                                    .Include(c => c.Campaign)
-        //                                        .Where(x => x.Id == contractId).FirstOrDefault();
-
-        //        var catalogsCampaign = this._context.CatalogCampaigns
-        //                                                .Include(c => c.Catalog)
-        //                                                    .Where(c => c.CampaignId == campaignCompany.CampaignId).ToList();
-
-        //            if (catalogsCampaign.Count <= 0)
-        //            {
-        //                var catalogsPartner = this._context.CatalogPartners
-        //                                                        .Include(c => c.Catalog)
-        //                                                            .Where(c => c.PartnerId == campaignCompany.Campaign.PartnerId).ToList();
-
-        //                foreach (var catalogPartner in catalogsPartner)
-        //                {
-        //                    catalogPartner.Catalog.DiscountId = catalogPartner.DiscountId;
-        //                    catalogs.Add(catalogPartner.Catalog);
-        //                }
-        //}
     }
 }

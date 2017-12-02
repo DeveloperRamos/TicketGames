@@ -17,6 +17,12 @@ namespace TicketGames.Domain.Services
         {
             this._showcaseRepository = showcaseRepository;
         }
+
+        public List<Product> GetProducts(int showcaseTypeId)
+        {
+            return this._showcaseRepository.GetProductsByShowcaseTypeId(showcaseTypeId);
+        }
+
         public Showcase GetShowcase(int typeId)
         {
             Showcase showcase = this._showcaseRepository.GetShowcaseByTypeId(typeId);

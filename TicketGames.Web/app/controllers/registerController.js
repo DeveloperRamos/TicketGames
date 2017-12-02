@@ -1,11 +1,15 @@
 ﻿'use strict';
 
 ticketGamesApp
-    .controller('registerController', ['$scope', '$cookieStore', '$rootScope', 'searchService',
-        function ($scope, $cookieStore, $rootScope, searchService) {
+    .controller('registerController', ['$scope', '$cookieStore', '$rootScope', '$routeParams', '$location', 'searchService',
+        function ($scope, $cookieStore, $rootScope, $routeParams, $location, searchService) {
             var vmRegister = this;
 
             var initialize = function () {
+
+                if (!$routeParams.session)
+                    $location.path('/');
+
                 if ($rootScope.bread) {
                     $rootScope.bread.show();
                     $rootScope.showcase.hide();

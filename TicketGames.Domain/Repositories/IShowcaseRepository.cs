@@ -10,5 +10,6 @@ namespace TicketGames.Domain.Repositories
     public interface IShowcaseRepository
     {
         Showcase GetShowcaseByTypeId(int showcaseTypeId);
+        List<Product> GetProductsByShowcaseTypeId(int showcaseTypeId);
     }
 }

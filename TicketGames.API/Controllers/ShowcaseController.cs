@@ -33,23 +33,30 @@ namespace TicketGames.API.Controllers
         [HttpGet, Route("{type}")]
         public IHttpActionResult Get(ShowcaseType type)
         {
-            Showcase showcase = null;
+            IList<Product> products = null;
 
             var key = string.Concat("Catalog:Showcase:", type.ToString());
 
-            showcase = CacheManager.GetObject<Showcase>(key);
+            products = CacheManager.GetObject<List<Product>>(key);
 
-            if (showcase == null)
+            if (products == null)
             {
-                var result = this._showcaseService.GetShowcase((int)type);
+                var result = this._showcaseService.GetProducts((int)type);
 
-                showcase = new Showcase(result);
-
-                if (showcase != null)
-                    CacheManager.StoreObject(key, showcase, LifetimeProfile.Longest);
+                if (result.Count > 0)
+                {
+                    products = new Product().MappingProducts(result);
+                    CacheManager.StoreObject(key, products, LifetimeProfile.Longest);
+                }
+                else
+                {
+                    return BadRequest("Vitrine não encontrada!");
+                }
             }
 
-            return Ok(showcase);
+            return Ok(products);
+
+
         }
     }
 }

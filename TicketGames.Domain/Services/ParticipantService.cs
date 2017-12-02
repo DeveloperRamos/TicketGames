@@ -44,12 +44,23 @@ namespace TicketGames.Domain.Services
 
         public Participant GetParticipant(string login, string cpf)
         {
-            throw new NotImplementedException();
+            return this._participantRepository.GetParticipantByLoginAndCPF(login, cpf);
         }
 
         public Participant GetParticipant(long id)
         {
             throw new NotImplementedException();
+        }
+
+        public bool ValidateSession(string session)
+        {
+            var result = this._participantRepository.GetSessionBySession(session);
+
+            if (result != null)
+                return true;
+
+            return false;
+
         }
     }
 }

@@ -19,7 +19,7 @@ namespace TicketGames.Domain.Services
         }
         public Raffle GetRaffle(long productId)
         {
-            throw new NotImplementedException();
+            return this._raffleRepository.GetRaffleByProductId(productId);
         }
     }
 }

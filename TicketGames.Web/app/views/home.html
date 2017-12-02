@@ -5,16 +5,14 @@
     </header>
     <div class="product-list">
 
-        <div ng-repeat="product in vmHome.recent.Products | orderBy: 'Order'" class="product" style="text-align:center">
+        <div ng-repeat="product in vmHome.recent | orderBy: 'Order'" class="product" style="text-align:center">
             <div class="inner-product">
                 <div class="figure-image">
                     <a href="#/Produto/{{product.Id}}"><img src="../../images/{{product.Id + '.png'}}" alt="{{product.Name}}" class="img204x234"></a>
                 </div>
                 <h3 class="product-title"><a href="#/Produto/{{product.Id}}">{{product.Name}}</a></h3>
-                <small class="price">R$ {{product.Value}},00</small>
+                <small class="price">{{product.Value | currency: 'R$ '}}</small>
                 <!--<p>Com a tecnologia Frostbite™, o EA SPORTS™FIFA 18 elimina o limite entre o mundo virtual e o real, dando vida aos jogadores, times e climas envolventes do maior esporte do mundo.</p>-->
-
-
                 <h3 ng-show="product.Raffle.SalesMade == 100"><b>Sorteio {{ product.Raffle.RaffleDate | date: 'dd/MM/yyyy' }}</b></h3>
 
                 <div class="progress">
@@ -44,13 +42,13 @@
     </header>
     <div class="product-list">
 
-        <div ng-repeat="product in vmHome.popular.Products | orderBy: 'Order'" class="product" style="text-align:center">
+        <div ng-repeat="product in vmHome.popular | orderBy: 'Order'" class="product" style="text-align:center">
             <div class="inner-product">
                 <div class="figure-image">
                     <a href="#/Produto/{{product.Id}}"><img src="../../images/{{product.Id + '.png'}}" alt="{{product.Name}}" class="img204x234"></a>
                 </div>
                 <h3 class="product-title"><a href="#/Produto/{{product.Id}}">{{product.Name}}</a></h3>
-                <small class="price">R$ {{product.Value}},00</small>
+                <small class="price">{{product.Value | currency: 'R$ '}}</small>
                 <!--<p>Com a tecnologia Frostbite™, o EA SPORTS™FIFA 18 elimina o limite entre o mundo virtual e o real, dando vida aos jogadores, times e climas envolventes do maior esporte do mundo.</p>-->
 
 
