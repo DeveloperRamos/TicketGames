@@ -31,7 +31,7 @@
             $scope.increment = function () {
                 $scope.$apply(function () {
 
-                    if ($scope.count !== $scope.banner.Products.length) {
+                    if ($scope.count !== $scope.banner.length) {
                         var slideA = angular.element(document.querySelector('#slide-' + $scope.count));
                         slideA.removeClass('activeSlide');
                         slideA.addClass('disableSlide');
@@ -44,7 +44,7 @@
 
                     } else {
 
-                        var slideA = angular.element(document.querySelector('#slide-' + $scope.banner.Products.length));
+                        var slideA = angular.element(document.querySelector('#slide-' + $scope.banner.length));
                         slideA.removeClass('activeSlide');
                         slideA.addClass('disableSlide');
 
@@ -59,7 +59,7 @@
             };
             showcaseService.getShowcases(1, function (response) {
                 $scope.banner = response.data;                
-                setInterval($scope.increment, 8000);
+                setInterval($scope.increment, 6500);
             });            
         }
     }

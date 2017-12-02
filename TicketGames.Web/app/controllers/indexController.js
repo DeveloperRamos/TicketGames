@@ -43,7 +43,12 @@ ticketGamesApp
                     partcipantService.createParticipant(participant, function (response) {
 
 
-                        $location.path('Cadastro');
+
+
+
+                    }, function (error) {
+
+                        var teste = error;
                     });
                 }
             };

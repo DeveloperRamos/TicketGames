@@ -12,7 +12,7 @@
     function createParticipant(participant, successCallback, errorCallback) {
         var model = JSON.stringify(participant);
 
-        $http.post(global.service + urlBase, model)
+        $http.post(global.service + urlBase, participant)
             .then(successCallback, errorCallback);
 
     };
