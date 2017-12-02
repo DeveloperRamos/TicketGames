@@ -51,10 +51,16 @@ namespace TicketGames.API.Controllers
             {
                 var result = this._catalogService.GetProduct(id);
 
+                if (result == null)
+                {
+                    return BadRequest("Produto não encontrado!");
+                }
+
+
                 product = new Product(result);
 
-                if (product != null)
-                    CacheManager.StoreObject(key, product, LifetimeProfile.Moderate);
+
+                CacheManager.StoreObject(key, product, LifetimeProfile.Moderate);
             }
 
             return Ok(product);
