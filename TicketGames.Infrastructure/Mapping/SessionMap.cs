@@ -13,7 +13,7 @@ namespace TicketGames.Infrastructure.Mapping
             // Table & Column Mappings
             this.ToTable("Tb_Session");
             this.Property(t => t.Id).HasColumnName("Id");
-            this.Property(t => t.Session_).HasColumnName("Session");
+            this.Property(t => t.SessionKey).HasColumnName("SessionKey");
             this.Property(t => t.ParticipantId).HasColumnName("ParticipantId");
             this.Property(t => t.ExpirationDate).HasColumnName("ExpirationDate");
             this.Property(t => t.InsertDate).HasColumnName("InsertDate");

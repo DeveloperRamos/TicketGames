@@ -30,6 +30,7 @@ namespace TicketGames.Infrastructure.Mapping
             this.Property(t => t.District).HasColumnName("District");
             this.Property(t => t.City).HasColumnName("City");
             this.Property(t => t.State).HasColumnName("State");
+            this.Property(t => t.ZipCode).HasColumnName("ZipCode");
             this.Property(t => t.InsertDate).HasColumnName("InsertDate");
             this.Property(t => t.UpdateDate).HasColumnName("UpdateDate");
 

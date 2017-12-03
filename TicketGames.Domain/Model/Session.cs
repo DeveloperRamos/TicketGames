@@ -9,7 +9,7 @@ namespace TicketGames.Domain.Model
     public class Session
     {
         public long Id { get; set; }
-        public string Session_ { get; set; }
+        public string SessionKey { get; set; }
         public long ParticipantId { get; set; }
         public DateTime ExpirationDate { get; set; }
         public DateTime InsertDate { get; set; }

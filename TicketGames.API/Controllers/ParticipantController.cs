@@ -28,7 +28,31 @@ namespace TicketGames.API.Controllers
         {
             CacheManager.SetProvider(new CacheProvider());
         }
+        [HttpGet, Route("session/{session}")]
+        public IHttpActionResult GetParticipantBySession(string session)
+        {
+            if (string.IsNullOrEmpty(session))
+                return BadRequest("Sessão invalida!");
 
+            Participant participant = null;
+
+            var key = string.Concat("Participant:Sessions:", session);
+
+            participant = CacheManager.GetObject<Participant>(key);
+
+            if (participant == null)
+            {
+
+                var result = this._participantService.GetParticipant(session);
+
+                participant = new Participant(result);
+
+                if (participant != null)
+                    CacheManager.StoreObject(key, participant, LifetimeProfile.Longest);
+            }
+
+            return Ok(participant);
+        }
 
         [HttpPost, Route()]
         public IHttpActionResult Post(Participant participant)
@@ -52,17 +76,37 @@ namespace TicketGames.API.Controllers
                     }
 
                 }
-                else
-                {
+            }
+            else
+            {
 
-                    if(!string.IsNullOrEmpty(participant.Session))
+                var result = this._participantService.GetParticipant(participant.CPF, participant.CPF);
+
+                if (!string.IsNullOrEmpty(participant.Session))
+                {
+                    var condition = this._participantService.ValidateSession(participant.Session, result.Id);
+
+                    if (condition)
                     {
+                        var keySession = string.Concat("Participant:Sessions:", participant.Session);
+
+                        participant.Id = result.Id;
+
+                        var participantDomain = participant.MappingDomain();
+
+                        CacheManager.StoreObject(keySession, participant, LifetimeProfile.Short);
+
+                        participantDomain.Sessions.Add(this._participantService.GetSession(participant.Session));
+
+                        if (this._participantService.CreateOrUpdate(participantDomain))
+                            return Ok("Cadastro atualizado.");
+                        else
+                            return BadRequest("Não foi possível atualizar o cadastro.");
 
                     }
-
-                    return BadRequest("Participante já cadastrado!");
                 }
 
+                return BadRequest("Participante já cadastrado!");
             }
 
             return Ok();

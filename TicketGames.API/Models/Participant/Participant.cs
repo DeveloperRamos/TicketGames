@@ -14,6 +14,7 @@ namespace TicketGames.API.Models.Participant
         public string Login { get; set; }
         public string Password { get; set; }
         public string Salt { get; set; }
+        public string Confirmpass { get; set; }
         public string Name { get; set; }
         public string Gender { get; set; }
         public Nullable<DateTime> BirthDate { get; set; }
@@ -28,11 +29,31 @@ namespace TicketGames.API.Models.Participant
         public string District { get; set; }
         public string City { get; set; }
         public string State { get; set; }
+        public string ZipCode { get; set; }
         public string Session { get; set; }
 
         public Participant()
         {
 
+        }
+        public Participant(Domain.Model.Participant participant)
+        {
+            this.Id = participant.Id;
+            this.Name = participant.Name;
+            this.Gender = participant.Gender;
+            this.BirthDate = participant.BirthDate;
+            this.CPF = participant.CPF;
+            this.RG = participant.RG;
+            this.Email = participant.Email;
+            this.HomePhone = participant.HomePhone;
+            this.CellPhone = participant.CellPhone;
+            this.Street = participant.Street;
+            this.Number = participant.Number;
+            this.Complement = participant.Complement;
+            this.District = participant.District;
+            this.City = participant.City;
+            this.State = participant.State;
+            this.ZipCode = participant.ZipCode;
         }
 
         public Domain.Model.Participant MappingDomain()
@@ -57,7 +78,8 @@ namespace TicketGames.API.Models.Participant
                 Complement = this.Complement,
                 District = this.District,
                 City = this.City,
-                State = this.State                
+                State = this.State,
+                ZipCode = this.ZipCode
             };
 
             return participant;
