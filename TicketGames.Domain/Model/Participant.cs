@@ -28,6 +28,7 @@ namespace TicketGames.Domain.Model
         public string District { get; set; }
         public string City { get; set; }
         public string State { get; set; }
+        public string ZipCode { get; set; }
         public DateTime InsertDate { get; set; }
         public Nullable<DateTime> UpdateDate { get; set; }
         public virtual ParticipantStatus ParticipantStatus { get; set; }

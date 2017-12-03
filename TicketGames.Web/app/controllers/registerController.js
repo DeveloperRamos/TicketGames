@@ -1,14 +1,22 @@
 ﻿'use strict';
 
 ticketGamesApp
-    .controller('registerController', ['$scope', '$cookieStore', '$rootScope', '$routeParams', '$location', 'searchService',
-        function ($scope, $cookieStore, $rootScope, $routeParams, $location, searchService) {
+    .controller('registerController', ['$scope', '$cookieStore', '$rootScope', '$routeParams', '$location', 'searchService', 'participantService',
+        function ($scope, $cookieStore, $rootScope, $routeParams, $location, searchService, participantService) {
             var vmRegister = this;
 
             var initialize = function () {
+                vmRegister.participant = {};
+
 
                 if (!$routeParams.session)
                     $location.path('/');
+
+                if ($routeParams.session) {
+                    $scope.session = $routeParams.session;
+
+                    getParticipantBySession($scope.session);
+                }
 
                 if ($rootScope.bread) {
                     $rootScope.bread.show();
@@ -36,10 +44,10 @@ ticketGamesApp
 
                     searchService.searchCep(cep, function (response) {
 
-                        $scope.participant.address.street = response.data.logradouro;
-                        $scope.participant.address.district = response.data.bairro;
-                        $scope.participant.address.city = response.data.localidade;
-                        $scope.participant.address.state = response.data.uf;
+                        vmRegister.participant.Street = response.data.logradouro;
+                        vmRegister.participant.District = response.data.bairro;
+                        vmRegister.participant.City = response.data.localidade;
+                        vmRegister.participant.State = response.data.uf;
 
                     });
 
@@ -54,8 +62,26 @@ ticketGamesApp
 
             vmRegister.save = function (register) {
 
-                var teste = register;
 
+                participantService.createParticipant(register, function (response) {
+                    $location.path('/');
+                });
+
+            };
+
+
+            var getParticipantBySession = function (session) {
+
+                participantService.getParticipantBySession(session, function (response) {
+
+                    vmRegister.participant = response.data;
+                    vmRegister.participant.session = $scope.session;
+
+                }, function (error) {
+
+                    $location.path('/');
+
+                });
             };
 
             initialize();

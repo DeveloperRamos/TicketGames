@@ -3,6 +3,7 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -67,11 +68,11 @@ namespace TicketGames.Infrastructure.Repositories
             {
                 Session _session = new Session();
 
-                string query = @"Select * From Tb_Session Where Session = @session And Expiration < @date And Activated = 0;";
+                string query = @"Select * From Tb_Session Where Session = @session And ExpirationDate < @date And Activated = 0;";
 
                 connect.Open();
 
-                _session = connect.Query<Session>(query, new { Session = session, Expiration = DateTime.Now }).FirstOrDefault();
+                _session = connect.Query<Session>(query, new { session = session, date = DateTime.Now }).FirstOrDefault();
 
                 connect.Close();
 
@@ -81,7 +82,21 @@ namespace TicketGames.Infrastructure.Repositories
 
         public Participant Update(Participant participant)
         {
-            throw new NotImplementedException();
+            this._context.Entry(participant).State = EntityState.Modified;
+
+            if (participant.Sessions.Count > 0)
+            {
+                foreach (var session in participant.Sessions)
+                {
+                    session.Activated = true;
+
+                    this._context.Entry(session).State = EntityState.Modified;
+                }
+            }
+
+            this._context.SaveChanges();
+
+            return participant;
         }
     }
 }

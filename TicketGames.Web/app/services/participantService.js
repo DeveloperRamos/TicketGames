@@ -5,9 +5,9 @@
         getParticipant: getParticipant,
         login: login,
         update: update,
-        createParticipant: createParticipant
+        createParticipant: createParticipant,
+        getParticipantBySession: getParticipantBySession
     };
-
 
     function createParticipant(participant, successCallback, errorCallback) {
         var model = JSON.stringify(participant);
@@ -17,6 +17,10 @@
 
     };
 
+    function getParticipantBySession(session, successCallback, errorCallback) {
+        $http.get(global.service + urlBase + '/session/' + session)
+            .then(successCallback, errorCallback);
+    };
 
     function getParticipant(participant) {
         var model = JSON.stringify(participant);
