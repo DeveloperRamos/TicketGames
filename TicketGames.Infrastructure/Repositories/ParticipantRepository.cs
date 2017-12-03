@@ -26,7 +26,7 @@ namespace TicketGames.Infrastructure.Repositories
 
             Session session = new Session();
             session.ExpirationDate = DateTime.Now.AddDays(3);
-            session.Session_ = Guid.NewGuid().ToString();
+            session.SessionKey = Guid.NewGuid().ToString();
 
             participant.Sessions.Add(session);
 
@@ -68,7 +68,7 @@ namespace TicketGames.Infrastructure.Repositories
             {
                 Session _session = new Session();
 
-                string query = @"Select * From Tb_Session Where Session = @session And ExpirationDate < @date And Activated = 0;";
+                string query = @"Select * From Tb_Session Where SessionKey = @session And ExpirationDate > @date And Activated = 0;";
 
                 connect.Open();
 
@@ -82,17 +82,65 @@ namespace TicketGames.Infrastructure.Repositories
 
         public Participant Update(Participant participant)
         {
-            this._context.Entry(participant).State = EntityState.Modified;
+            var participantModified = new Participant();
+            var sessionModified = new Session();
 
-            if (participant.Sessions.Count > 0)
+            using (var connect = new MySqlConnection(connection))
             {
-                foreach (var session in participant.Sessions)
-                {
-                    session.Activated = true;
+                connect.Open();
 
-                    this._context.Entry(session).State = EntityState.Modified;
+                if (participant.Sessions.Count > 0)
+                {
+                    string querySession = @"Select * From Tb_Session Where SessionKey = @session And ExpirationDate > @date And Activated = 0;";
+
+                    foreach (var session in participant.Sessions)
+                    {
+                        sessionModified = connect.Query<Session>(querySession, new { session = session.SessionKey, date = DateTime.Now }).FirstOrDefault();
+                    }
                 }
+
+                string queryParticipant = @"Select * From Tb_Participant Where Id = @participantId;";
+
+                participantModified = connect.Query<Participant>(queryParticipant, new { participantId = participant.Id }).FirstOrDefault();
+
+                connect.Close();
             }
+
+            if (sessionModified.Id > 0)
+            {
+                sessionModified.Activated = true;
+
+                this._context.Entry(sessionModified).State = EntityState.Modified;
+            }
+
+            participantModified.ParticipantStatusId = participant.ParticipantStatusId;
+            participantModified.Name = participant.Name;
+            participantModified.Gender = participant.Gender;
+
+            if (!string.IsNullOrEmpty(participant.Password) && !string.IsNullOrEmpty(participant.Salt))
+            {
+                participantModified.Password = participant.Password;
+                participantModified.Salt = participant.Salt;
+            }
+
+            if (participant.BirthDate.HasValue)
+            {
+                participantModified.BirthDate = (DateTime)participant.BirthDate;
+            }
+
+            participantModified.RG = participant.RG;
+            participantModified.Email = participant.Email;
+            participantModified.HomePhone = participant.HomePhone;
+            participantModified.CellPhone = participant.CellPhone;
+            participantModified.Street = participant.Street;
+            participantModified.Number = participant.Number;
+            participantModified.Complement = participant.Complement;
+            participantModified.District = participant.District;
+            participantModified.City = participant.City;
+            participantModified.State = participant.State;
+            participantModified.ZipCode = participant.ZipCode;
+
+            this._context.Entry(participantModified).State = EntityState.Modified;
 
             this._context.SaveChanges();
 

@@ -88,9 +88,13 @@ namespace TicketGames.API.Controllers
 
                     if (condition)
                     {
-                        participant.Id = result.Id;                       
+                        var keySession = string.Concat("Participant:Sessions:", participant.Session);
+
+                        participant.Id = result.Id;
 
                         var participantDomain = participant.MappingDomain();
+
+                        CacheManager.StoreObject(keySession, participant, LifetimeProfile.Short);
 
                         participantDomain.Sessions.Add(this._participantService.GetSession(participant.Session));
 

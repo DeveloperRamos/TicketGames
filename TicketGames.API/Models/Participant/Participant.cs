@@ -78,7 +78,8 @@ namespace TicketGames.API.Models.Participant
                 Complement = this.Complement,
                 District = this.District,
                 City = this.City,
-                State = this.State
+                State = this.State,
+                ZipCode = this.ZipCode
             };
 
             return participant;
