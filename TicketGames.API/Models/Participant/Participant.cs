@@ -84,7 +84,7 @@ namespace TicketGames.API.Models.Participant
 
             return participant;
         }
-        private string GeraMD5Hash(string texto)
+        public string GeraMD5Hash(string texto)
         {
             //cria instância da classe MD5CryptoServiceProvider
 

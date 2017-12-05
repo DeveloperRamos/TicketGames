@@ -17,6 +17,12 @@ namespace TicketGames.Domain.Services
         {
             this._participantRepository = participantRepository;
         }
+
+        public Participant Authenticate(string login, string password, string salt)
+        {
+            return this._participantRepository.Authenticate(login, password, salt);
+        }
+
         public bool CreateOrUpdate(Participant participant)
         {
             try

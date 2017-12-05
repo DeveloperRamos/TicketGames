@@ -9,5 +9,6 @@ namespace TicketGames.Domain.Repositories
         Participant GetParticipantByLoginAndCPF(string login, string cpf);
         Participant GetParticipantById(long id);
         Session GetSessionBySession(string session);
+        Participant Authenticate(string login, string password, string salt);
     }
 }
