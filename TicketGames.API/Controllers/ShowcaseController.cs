@@ -29,7 +29,7 @@ namespace TicketGames.API.Controllers
             CacheManager.SetProvider(new CacheProvider());
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet, Route("{type}")]
         public IHttpActionResult Get(ShowcaseType type)
         {

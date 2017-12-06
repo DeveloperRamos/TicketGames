@@ -30,11 +30,13 @@ namespace TicketGames.API.Models.Catalog
 
         public Product(Domain.Model.Product product)
         {
+            CrossCutting.Raffle.Raffle raffle = new CrossCutting.Raffle.Raffle();
+
             this.Id = product.Id;
             this.Name = product.Name;
             this.ShortDescription = product.DescriptionShort;
             this.Description = product.Description;
-            this.Value = product.Value;
+            this.Value = raffle.value(product);
             this.Order = product.Order;
             this.Images = new Image().MappingImages(product.Images.ToList());
             this.Category = new Category(product.Category);

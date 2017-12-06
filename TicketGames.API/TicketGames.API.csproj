@@ -119,6 +119,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Image\default.png" />
     <Content Include="Image\WebAPI.gif" />
     <Content Include="Index.html" />
     <Content Include="Web.config" />
