@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using TicketGames.API.Models.Participant;
+using TicketGames.CrossCutting.Cryptography;
 using TicketGames.Domain.Contract;
 using TicketGames.Domain.Repositories;
 using TicketGames.Domain.Services;
@@ -39,11 +40,12 @@ namespace TicketGames.API.Security
 
             IParticipantService _participantService = new ParticipantService(new ParticipantRepository());
             Participant participantModel = new Participant();
+            Hash baseCrypt = new Hash();
 
-            string password = participantModel.GeraMD5Hash(context.Password);
-            string salt = participantModel.GeraMD5Hash(context.Password + "@senha@");
+            var user = _participantService.GetParticipant(context.UserName, context.UserName);            
+            string password = baseCrypt.GetHash(context.Password, user.Salt, CypherType.SHA512);
 
-            var participant = _participantService.Authenticate(context.UserName, password, salt);
+            var participant = _participantService.Authenticate(context.UserName, password, user.Salt);
 
             if (participant == null)
             {

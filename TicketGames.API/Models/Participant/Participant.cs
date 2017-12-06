@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
+using TicketGames.CrossCutting.Cryptography;
 
 namespace TicketGames.API.Models.Participant
 {
@@ -58,13 +59,23 @@ namespace TicketGames.API.Models.Participant
 
         public Domain.Model.Participant MappingDomain()
         {
+            Hash baseCrypt = new Hash();
+            var salt = string.Empty;
+            var password = string.Empty;
+
+            if (!string.IsNullOrEmpty(this.Password))
+            {
+                salt = Guid.NewGuid().ToString();
+                password = baseCrypt.GetHash(this.Password, salt, CypherType.SHA512);
+            }
+
             Domain.Model.Participant participant = new Domain.Model.Participant()
             {
                 Id = this.Id,
                 ParticipantStatusId = (this.Id > 0) ? (int)ParticipantStatus.Active : (int)ParticipantStatus.Pending,
                 Login = (this.Id > 0) ? this.Login : this.CPF,
-                Password = !string.IsNullOrEmpty(this.Password) ? GeraMD5Hash(this.Password) : string.Empty,
-                Salt = !string.IsNullOrEmpty(this.Password) ? GeraMD5Hash(this.Password + "@senha@") : string.Empty,
+                Password = !string.IsNullOrEmpty(password) ? password : string.Empty,
+                Salt = !string.IsNullOrEmpty(salt) ? salt : string.Empty,
                 Name = this.Name,
                 Gender = this.Gender,
                 BirthDate = this.BirthDate,
@@ -83,31 +94,6 @@ namespace TicketGames.API.Models.Participant
             };
 
             return participant;
-        }
-        public string GeraMD5Hash(string texto)
-        {
-            //cria instância da classe MD5CryptoServiceProvider
-
-            MD5CryptoServiceProvider MD5provider = new MD5CryptoServiceProvider();
-
-            //gera o hash do texto
-
-            byte[] valorHash = MD5provider.ComputeHash(Encoding.Default.GetBytes(texto));
-
-            StringBuilder str = new StringBuilder();
-
-            //retorna o hash
-
-            for (int contador = 0; contador < valorHash.Length; contador++)
-
-            {
-
-                str.Append(valorHash[contador].ToString("x2"));
-
-            }
-
-            return str.ToString();
-
-        }
+        }        
     }
 }
