@@ -157,7 +157,7 @@ namespace TicketGames.Infrastructure.Repositories
                       return productEntity;
 
                   }, new { CategoryId = categoryId })
-                  .Distinct().Take(4).OrderByDescending(p => p.Id).ToList();
+                  .Distinct().OrderByDescending(p => p.Id).Take(4).ToList();
 
                 connect.Close();
 

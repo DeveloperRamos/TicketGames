@@ -143,5 +143,17 @@ namespace TicketGames.API.Controllers
 
             return Ok(raffle);
         }
+
+        [HttpGet, Route("value/{productId}")]
+        public IHttpActionResult value(long productId)
+        {
+            CrossCutting.Raffle.Raffle raffle = new CrossCutting.Raffle.Raffle();
+
+            var result = this._catalogService.GetProduct(productId);
+
+            var value = raffle.value(result);
+
+            return Ok(value);
+        }
     }
 }

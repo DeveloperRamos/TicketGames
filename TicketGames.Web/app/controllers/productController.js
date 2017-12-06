@@ -33,6 +33,11 @@ ticketGamesApp
 
                     vmProduct.product = response.data;
 
+                    //productService.getValue(productId, function (value) {                       
+
+                    //    vmProduct.product.Value = value.data;
+                    //});
+
                     getProductsRecent(vmProduct.product.Category.Id);
 
                 });
@@ -43,7 +48,17 @@ ticketGamesApp
                 productService.getRecentProducts(categoryId, function (response) {
                     vmProduct.recent = response.data;
                 });
-            }
+            };
+
+            var value = function (productId) {
+
+                productService.getValue(productId, function (response) {
+
+                    return response.data;
+
+                });
+            };
+
 
             $scope.trustAsHtml = function (html) {
 

@@ -21,6 +21,25 @@ namespace TicketGames.Infrastructure.Repositories
         {
             this._context = new TicketGamesContext();
         }
+
+        public Participant Authenticate(string login, string password, string salt)
+        {
+            using (var connect = new MySqlConnection(connection))
+            {
+                Participant participant = new Participant();
+
+                string query = @"Select * From Tb_Participant Where Login = @login And Password = @password And Salt = @salt And ParticipantStatusId = 1;";
+
+                connect.Open();
+
+                participant = connect.Query<Participant>(query, new { login = login, password = password, salt = salt }).FirstOrDefault();
+
+                connect.Close();
+
+                return participant;
+            }
+        }
+
         public Participant Create(Participant participant)
         {
 

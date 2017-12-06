@@ -3,10 +3,10 @@
         <div class="col-sm-6 col-md-4">
             <div class="product-images">
                 <figure class="large-image">
-                    <a href="../../images/{{vmProduct.product.Id + '.png'}}"><img src="../../images/{{vmProduct.product.Id + '.png'}}" alt="{{vmProduct.product.Name}}"></a>
+                    <a href="../../images/{{vmProduct.product.Id ? vmProduct.product.Id + '.png' : 'default.png'}}"><img src="../../images/{{vmProduct.product.Id + '.png'}}" alt="{{vmProduct.product.Name}}"></a>
                 </figure>
                 <div class="thumbnails">
-                    <a ng-repeat="image in vmProduct.product.Images | filter: { ImageType: 3 }" href="../../images/{{image.URL}}"><img src="../../images/{{image.URL}}" alt=""></a>
+                    <a ng-repeat="image in vmProduct.product.Images | filter: { ImageType: 3 }" ng-show="image ? true : false" href="../../images/{{image.URL}}"><img src="../../images/{{image.URL}}" alt=""></a>
                 </div>
 
                 <br />
@@ -67,7 +67,7 @@
                     <img src="../../images/{{product.Id + '.png'}}" alt="{{product.Name}}" class="img204x234">
                 </div>
                 <h3 class="product-title" style="text-align: center !important;"><a href="#/Produto/{{product.Id}}">{{product.Name}}</a></h3>
-                <small class="price" style="text-align: center !important;">{{vmProduct.product.Value | currency: 'R$ '}}</small>
+                <small class="price" style="text-align: center !important;">{{product.Value | currency: 'R$ '}}</small>
                 <!--<p>Lorem ipsum dolor sit consectetur adipiscing elit do eiusmod tempor...</p>-->
 
                 <h3 ng-show="product.Raffle.SalesMade == 100"><b>Sorteio {{ product.Raffle.RaffleDate | date: 'dd/MM/yyyy' }}</b></h3>
