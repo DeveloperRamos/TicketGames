@@ -23,17 +23,28 @@
         //    });
     };
 
-    function addCart(cart) {
-        var model = JSON.stringify(cart);
+    function addCart(productId, quantity = 1, addCart = false, successCallback, errorCallback) {
+        var data = "ProductId=" + productId + "&Quantity=" + quantity;
 
-        return $http.post(global.service + urlBase, model)
-            .success(function (data) {
-                return data;
-
-            })
-            .error(function (error, status) {
-            });
+        $http.post(global.service + urlBase + "/" + addCart, data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+            .then(function (successCallback) {
+                alert('Produto adicionado com sucesso!');
+            },
+            errorCallback);
     };
+
+
+    //function addCart(cart) {
+    //    var model = JSON.stringify(cart);
+
+    //    return $http.post(global.service + urlBase, model)
+    //        .success(function (data) {
+    //            return data;
+
+    //        })
+    //        .error(function (error, status) {
+    //        });
+    //};
 
     function updateCart(cart) {
         var model = JSON.stringify(cart);

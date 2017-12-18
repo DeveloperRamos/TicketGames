@@ -40,10 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contract\ICartService.cs" />
     <Compile Include="Contract\ICatalogService.cs" />
     <Compile Include="Contract\IParticipantService.cs" />
     <Compile Include="Contract\IRaffleService.cs" />
     <Compile Include="Contract\IShowcaseService.cs" />
+    <Compile Include="Model\Cart.cs" />
+    <Compile Include="Model\CartItem.cs" />
+    <Compile Include="Model\CartStatus.cs" />
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\Department.cs" />
     <Compile Include="Model\Image.cs" />
@@ -58,10 +62,12 @@
     <Compile Include="Model\ShowcaseProduct.cs" />
     <Compile Include="Model\ShowcaseType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ICartRepository.cs" />
     <Compile Include="Repositories\ICatalogRepository.cs" />
     <Compile Include="Repositories\IParticipantRepository.cs" />
     <Compile Include="Repositories\IRaffleRepository.cs" />
     <Compile Include="Repositories\IShowcaseRepository.cs" />
+    <Compile Include="Services\CartService.cs" />
     <Compile Include="Services\CatalogService.cs" />
     <Compile Include="Services\ParticipantService.cs" />
     <Compile Include="Services\RaffleService.cs" />

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using TicketGames.API.Models.Catalog;
@@ -11,6 +12,7 @@ using TicketGames.CrossCutting.Cache.Redis;
 using TicketGames.Domain.Contract;
 using TicketGames.Domain.Services;
 using TicketGames.Infrastructure.Repositories;
+using System.Security.Claims;
 
 namespace TicketGames.API.Controllers
 {
@@ -28,8 +30,7 @@ namespace TicketGames.API.Controllers
         {
             CacheManager.SetProvider(new CacheProvider());
         }
-
-        //[Authorize]
+        
         [HttpGet, Route("{type}")]
         public IHttpActionResult Get(ShowcaseType type)
         {
@@ -46,7 +47,7 @@ namespace TicketGames.API.Controllers
                 if (result.Count > 0)
                 {
                     products = new Product().MappingProducts(result);
-                    CacheManager.StoreObject(key, products, LifetimeProfile.Longest);
+                    CacheManager.StoreObject(key, products, LifetimeProfile.FourHours);
                 }
                 else
                 {

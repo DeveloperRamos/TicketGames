@@ -104,19 +104,9 @@ namespace TicketGames.API.Controllers
         {
             IList<Product> products = null;
 
-            var key = string.Concat("Catalog:Products:Category:Recent:", categoryId.ToString());
+            var result = this._catalogService.GetRecentProducts(categoryId);
 
-            products = CacheManager.GetObject<List<Product>>(key);
-
-            if (products == null)
-            {
-                var result = this._catalogService.GetRecentProducts(categoryId);
-
-                products = new Product().MappingProducts(result);
-
-                if (products != null && products.Count > 0)
-                    CacheManager.StoreObject(key, products, LifetimeProfile.Longest);
-            }
+            products = new Product().MappingProducts(result);
 
             return Ok(products);
         }

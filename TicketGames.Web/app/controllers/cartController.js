@@ -28,13 +28,16 @@ ticketGamesApp
 
                     vmCart.carts = response.data;
 
+                }, function (error) {
+
+                    $location.path('/');
+                    var teste = error;
                 });
             };
 
             vmCart.remove = function (cartId) {
 
                 cartSevice.removeCart(cartId, function (response) {
-
 
                     cartSevice.getCart(function (responseC) {
 
@@ -52,6 +55,10 @@ ticketGamesApp
 
 
 
+                }, function (error) {
+
+                    $location.path('/');
+                    var teste = error;
                 });
 
 
