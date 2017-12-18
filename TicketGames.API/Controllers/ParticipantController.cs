@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Web.Http;
 using System.Web.Http.Description;
 using TicketGames.API.Models.Participant;
@@ -28,6 +29,49 @@ namespace TicketGames.API.Controllers
         {
             CacheManager.SetProvider(new CacheProvider());
         }
+        [Authorize]
+        [HttpGet, Route("me")]
+        public IHttpActionResult Get()
+        {
+            try
+            {
+                long participantId;
+
+                ClaimsPrincipal principal = Request.GetRequestContext().Principal as ClaimsPrincipal;
+
+                long.TryParse(principal.Claims.Where(c => c.Type == "participant_Id").Single().Value, out participantId);
+
+                if (participantId > 0)
+                {
+                    Participant participant = null;
+
+                    var key = string.Concat("Participant:Id:", participantId.ToString(),":Register");
+
+                    participant = CacheManager.GetObject<Participant>(key);
+
+                    if (participant == null)
+                    {
+                        var result = this._participantService.GetParticipant(participantId);
+
+                        participant = new Participant(result);
+
+                        if (participant != null)
+                            CacheManager.StoreObject(key, participant, LifetimeProfile.Longest);
+                    }
+
+                    return Ok(participant);
+                }
+                else
+                {
+                    return BadRequest("Você precisa está logado.");
+                }
+            }
+            catch (Exception ex)
+            {
+                return NotFound();
+            }
+        }
+
         [HttpGet, Route("session/{session}")]
         public IHttpActionResult GetParticipantBySession(string session)
         {

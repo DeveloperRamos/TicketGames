@@ -40,6 +40,9 @@ namespace TicketGames.Infrastructure.Context
         public DbSet<ParticipantStatus> ParticipantStatus { get; set; }
         public DbSet<Participant> Participants { get; set; }
         public DbSet<Session> Sessions { get; set; }
+        public DbSet<CartStatus> CartStatus { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -61,6 +64,9 @@ namespace TicketGames.Infrastructure.Context
             modelBuilder.Configurations.Add(new ParticipantStatusMap());
             modelBuilder.Configurations.Add(new ParticipantMap());
             modelBuilder.Configurations.Add(new SessionMap());
+            modelBuilder.Configurations.Add(new CartStatusMap());
+            modelBuilder.Configurations.Add(new CartMap());
+            modelBuilder.Configurations.Add(new CartItemMap());
         }
 
         public override int SaveChanges()

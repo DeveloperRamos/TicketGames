@@ -1,21 +1,33 @@
 ﻿'use strict';
 
 ticketGamesApp
-    .controller('registerController', ['$scope', '$cookieStore', '$rootScope', '$routeParams', '$location', 'searchService', 'participantService',
-        function ($scope, $cookieStore, $rootScope, $routeParams, $location, searchService, participantService) {
+    .controller('registerController', ['$scope', '$cookieStore', '$rootScope', '$routeParams', '$location', 'searchService', 'participantService', 'globalService',
+        function ($scope, $cookieStore, $rootScope, $routeParams, $location, searchService, participantService, globalService) {
             var vmRegister = this;
 
             var initialize = function () {
                 vmRegister.participant = {};
 
+                var logged = globalService.getItem('logged');
 
-                if (!$routeParams.session)
-                    $location.path('/');
+                logged = logged ? true : false;
+                var isSession = $routeParams.session ? true : false;
+
+                if (!logged) {
+                    if (!isSession) {
+                        $location.path('/');
+                    } else {
+                        $location.path('/');
+                    }
+                }
 
                 if ($routeParams.session) {
                     $scope.session = $routeParams.session;
 
                     getParticipantBySession($scope.session);
+                }
+                else {
+                    getParticipant();
                 }
 
                 if ($rootScope.bread) {
@@ -83,6 +95,13 @@ ticketGamesApp
 
                 });
             };
+
+            var getParticipant = function () {
+
+                participantService.getParticipant(function (response) {
+                    vmRegister.participant = response.data;
+                });
+            }
 
             initialize();
         }]);

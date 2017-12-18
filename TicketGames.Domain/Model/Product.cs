@@ -34,6 +34,7 @@ namespace TicketGames.Domain.Model
 
         public virtual ICollection<ShowcaseProduct> ShowcaseProducts { get; set; }
         public virtual ICollection<Raffle> Raffles { get; set; }
+        public virtual ICollection<CartItem> CartItems { get; set; }
 
     }
 }

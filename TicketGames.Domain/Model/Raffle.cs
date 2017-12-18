@@ -22,5 +22,6 @@ namespace TicketGames.Domain.Model
         public Nullable<int> DrawNumber { get; set; }
         public virtual RaffleStatus RaffleStatus { get; set; }
         public virtual Product Product { get; set; }
+        public virtual ICollection<CartItem> CartItems { get; set; }
     }
 }

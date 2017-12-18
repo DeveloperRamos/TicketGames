@@ -55,7 +55,7 @@ namespace TicketGames.Domain.Services
 
         public Participant GetParticipant(long id)
         {
-            throw new NotImplementedException();
+            return this._participantRepository.GetParticipantById(id);
         }
 
         public Participant GetParticipant(string session)

@@ -33,6 +33,7 @@ namespace TicketGames.Domain.Model
         public Nullable<DateTime> UpdateDate { get; set; }
         public virtual ParticipantStatus ParticipantStatus { get; set; }
         public virtual ICollection<Session> Sessions { get; set; }
+        public virtual ICollection<Cart> Carts { get; set; }
 
     }
 }

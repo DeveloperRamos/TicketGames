@@ -22,28 +22,16 @@
             .then(successCallback, errorCallback);
     };
 
-    function getParticipant(participant) {
-        var model = JSON.stringify(participant);
-
-        return $http.post(global.service + urlBase + '/authenticate', model)
-            .success(function (data) {
-                return data;
-
-            })
-            .error(function (error, status) {
-            });
+    function getParticipant(successCallback, errorCallback) {        
+        $http.get(global.service + urlBase + '/me')
+            .then(successCallback, errorCallback);
     };
 
-    function login(participant) {
-        var model = JSON.stringify(participant);
+    function login(participant, successCallback, errorCallback) {
+        var data = "grant_type=password&username=" + participant.login + "&password=" + participant.password;                   
 
-        return $http.post(global.service + urlBase + '/authenticate', model)
-            .success(function (data) {
-                return data;
-
-            })
-            .error(function (error, status) {
-            });
+        $http.post(global.service + '/token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+            .then(successCallback, errorCallback);
     };
 
     function update(dataModel) {

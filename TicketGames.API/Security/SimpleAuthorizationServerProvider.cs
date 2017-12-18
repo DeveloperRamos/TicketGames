@@ -42,7 +42,7 @@ namespace TicketGames.API.Security
             Participant participantModel = new Participant();
             Hash baseCrypt = new Hash();
 
-            var user = _participantService.GetParticipant(context.UserName, context.UserName);            
+            var user = _participantService.GetParticipant(context.UserName, context.UserName);
             string password = baseCrypt.GetHash(context.Password, user.Salt, CypherType.SHA512);
 
             var participant = _participantService.Authenticate(context.UserName, password, user.Salt);
@@ -70,6 +70,7 @@ namespace TicketGames.API.Security
             identity.AddClaim(new Claim(ClaimTypes.Sid, participant.Id.ToString()));
             identity.AddClaim(new Claim("sub", context.UserName));
             identity.AddClaim(new Claim("role", "user"));
+            identity.AddClaim(new Claim("participant_Id", participant.Id.ToString()));
 
             context.Validated(identity);
         }
