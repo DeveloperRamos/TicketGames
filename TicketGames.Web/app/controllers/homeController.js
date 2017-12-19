@@ -22,11 +22,9 @@ ticketGamesApp
 
                     vmHome.recent = response.data;
                     globalService.setObj('recents', response.data);                    
-                    $rootScope.showcase.show();
+                    //$rootScope.showcase.show();
 
                     });
-                }else{
-                    $rootScope.showcase.show();
                 }
                 
                 vmHome.popular = globalService.getObj('popular');

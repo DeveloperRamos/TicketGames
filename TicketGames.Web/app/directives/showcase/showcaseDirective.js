@@ -64,10 +64,13 @@
                 showcaseService.getShowcases(1, function (response) {
                     $scope.banner = response.data;
                     globalService.setObj('banner', response.data);              
+                    $rootScope.showcase.show();
                     setInterval($scope.increment, 6500);
+
                 });
             }
             else{
+            $rootScope.showcase.show();
             setInterval($scope.increment, 6500);
             }           
         }
