@@ -22,6 +22,11 @@ namespace TicketGames.Infrastructure.Repositories
             this._context = new TicketGamesContext();
         }
 
+        public Image CreateImage(Product product)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Category> GetCategories()
         {
 
@@ -162,6 +167,31 @@ namespace TicketGames.Infrastructure.Repositories
                 connect.Close();
 
                 return results;
+            }
+        }
+
+        public Image UpdateImage(int typeImageId, long productId, string newUrl)
+        {
+            using (var connect = new MySqlConnection(connection))
+            {
+                connect.Open();
+
+                string queryImage = @"Select * From Tb_Image Where ImageTypeId = @imageTypeId And ProductId = @productId And Active = 1;";
+
+                var imageModified = connect.Query<Image>(queryImage, new { imageTypeId = typeImageId, productId = productId }).FirstOrDefault();
+
+                connect.Close();
+
+                if (imageModified.Id > 0)
+                {
+                    imageModified.Url = newUrl;
+
+                    this._context.Entry(imageModified).State = EntityState.Modified;
+
+                    this._context.SaveChanges();
+                }
+
+                return imageModified != null ? imageModified : new Image();
             }
         }
     }

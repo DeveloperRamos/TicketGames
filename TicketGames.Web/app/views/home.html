@@ -8,7 +8,8 @@
         <div ng-repeat="product in vmHome.recent | orderBy: 'Order'" class="product" style="text-align:center">
             <div class="inner-product">
                 <div class="figure-image">
-                    <a href="#/Produto/{{product.Id}}"><img src="../../images/{{product.Id + '.png'}}" alt="{{product.Name}}" class="img204x234"></a>
+                    <a ng-repeat="image in product.Images | filter: { ImageType: 2 }" href="#/Produto/{{product.Id}}"><img src="{{image.URL}}" alt="{{product.Name}}" class="img204x234"></a>
+                    <!--<a href="#/Produto/{{product.Id}}"><img src="../../images/{{product.Id + '.png'}}" alt="{{product.Name}}" class="img204x234"></a>-->
                 </div>
                 <h3 class="product-title"><a href="#/Produto/{{product.Id}}">{{product.Name}}</a></h3>
                 <small class="price">{{product.Value | currency: 'R$ '}}</small>
@@ -46,7 +47,8 @@
         <div ng-repeat="product in vmHome.popular | orderBy: 'Order'" class="product" style="text-align:center">
             <div class="inner-product">
                 <div class="figure-image">
-                    <a href="#/Produto/{{product.Id}}"><img src="../../images/{{product.Id + '.png'}}" alt="{{product.Name}}" class="img204x234"></a>
+                    <a ng-repeat="image in product.Images | filter: { ImageType: 2 }" href="#/Produto/{{product.Id}}"><img src="{{image.URL}}" alt="{{product.Name}}" class="img204x234"></a>
+                    <!--<a href="#/Produto/{{product.Id}}"><img src="../../images/{{product.Id + '.png'}}" alt="{{product.Name}}" class="img204x234"></a>-->
                 </div>
                 <h3 class="product-title"><a href="#/Produto/{{product.Id}}">{{product.Name}}</a></h3>
                 <small class="price">{{product.Value | currency: 'R$ '}}</small>
