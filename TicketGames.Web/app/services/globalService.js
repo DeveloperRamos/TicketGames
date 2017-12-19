@@ -6,7 +6,9 @@
         getItem: getItem,
         clear: clear,
         configuration: configuration,
-        participant: participant
+        participant: participant,
+        setObj: setObj,
+        getObj: getObj
     };
     function configuration(obj) {
         if (obj) {
@@ -31,12 +33,19 @@
         localStorage.setItem(name, value);
     };
 
+    function setObj(name, value) {
+        setItem(name, JSON.stringify(value))       
+    };
+
     function removeItem(name) {
         localStorage.removeItem(name);
     };
 
     function getItem(name) {
         return localStorage.getItem(name);
+    };
+    function getObj(name) {
+        return JSON.parse(getItem(name));;
     };
 
     function property(name, value) {

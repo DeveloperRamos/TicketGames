@@ -14,20 +14,31 @@ ticketGamesApp
             };
 
             var getShowcases = function () {
-
-
-                showcaseService.getShowcases(2, function (response) {
+            
+                vmHome.recent = globalService.getObj('recents');
+            
+                if(!vmHome.recent){
+                    showcaseService.getShowcases(2, function (response) {
 
                     vmHome.recent = response.data;
+                    globalService.setObj('recents', response.data);                    
                     $rootScope.showcase.show();
 
-                });
+                    });
+                }else{
+                    $rootScope.showcase.show();
+                }
+                
+                vmHome.popular = globalService.getObj('popular');
 
-                showcaseService.getShowcases(3, function (response) {
+                if(!vmHome.popular){
+                    showcaseService.getShowcases(3, function (response) {
 
-                    vmHome.popular = response.data;
+                        vmHome.popular = response.data;
+                        globalService.setObj('popular', response.data);
 
-                });
+                    });
+                }
             };
 
             vmHome.getRaffle = function (productId) {

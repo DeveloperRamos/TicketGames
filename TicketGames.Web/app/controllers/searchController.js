@@ -1,8 +1,8 @@
 ﻿'use strict';
 
 ticketGamesApp
-    .controller('searchController', ['$scope', '$cookieStore', '$rootScope', '$routeParams', '$sce', 'searchService',
-        function ($scope, $cookieStore, $rootScope, $routeParams, $sce, searchService) {
+    .controller('searchController', ['$scope', '$cookieStore', '$rootScope', '$routeParams', '$sce', 'searchService', 'globalService', 'cartService',
+        function ($scope, $cookieStore, $rootScope, $routeParams, $sce, searchService, globalService, cartService) {
             var vmSearch = this;
 
             var initialize = function () {
@@ -71,6 +71,20 @@ ticketGamesApp
 
                 return $sce.trustAsHtml(html);
 
+            };
+
+          vmSearch.addCart = function (productId) {
+
+                var logged = globalService.getItem('logged');
+
+                logged = logged ? logged : false;
+
+                if (logged) {
+                    cartService.addCart(productId);
+                }
+                else {
+                    alert('Você precisa se logar!');
+                }
             };
 
             initialize();
