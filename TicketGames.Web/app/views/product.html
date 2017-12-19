@@ -34,14 +34,17 @@
             <small class="price"><b>{{vmProduct.product.Value | currency: 'R$ '}}</b></small>
             <div ng-bind-html="trustAsHtml(vmProduct.product.Description)"></div>
             <div class="addtocart-bar">
-                <form action="#">
+                <form>
                     <label for="#">Quantidade</label>
-                    <select name="#">
+                    <select name="#" ng-model="vmProduct.quantity">                       
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
                     </select>
-                    <input type="submit" value="Comprar">
+                    <button ng-click="vmProduct.addCart(vmProduct.product.Id, vmProduct.quantity)" class="button">Comprar</button>
+                    <!--<input type="submit" value="Comprar">-->
                 </form>
                 <div class="social-links square">
                     <strong>Share</strong>
@@ -84,7 +87,8 @@
                     </div>-->
                 </div>
 
-                <a href="#" class="button">Comprar</a>
+                <button ng-click="vmProduct.addCart(vmProduct.product.Id)" class="button">Comprar</button>
+                <!--<a href="#" class="button">Comprar</a>-->
                 <a href="#/Produto/{{product.Id}}" class="button muted">Detalhe</a>
             </div>
         </div>

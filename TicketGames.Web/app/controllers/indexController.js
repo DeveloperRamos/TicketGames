@@ -1,8 +1,8 @@
 ﻿'use strict';
 
 ticketGamesApp
-    .controller('indexController', ['$scope', '$cookieStore', '$rootScope', '$location', 'cartService', 'categoryService', 'participantService', 'globalService', '$window',
-        function ($scope, $cookieStore, $rootScope, $location, cartService, categoryService, partcipantService, globalService, $window) {
+    .controller('indexController',['$scope', '$cookieStore', '$rootScope', '$location', 'cartService', 'categoryService', 'participantService', 'globalService', '$window','cookieService',
+        function ($scope, $cookieStore, $rootScope, $location, cartService, categoryService, partcipantService, globalService, $window, cookieService) {
             var vmIndex = this;
 
 
@@ -33,11 +33,16 @@ ticketGamesApp
 
             var getCategories = function () {
 
+            vmIndex.categories = cookieService.getItem('categories');
+            
+            if(!vmIndex.categories){
+
                 categoryService.getCategories(function (response) {
 
-                    vmIndex.categories = response.data;
-
+                    vmIndex.categories = response.data;                    
+                    cookieService.setItem('categories', response.data);
                 });
+                }
 
             };
 

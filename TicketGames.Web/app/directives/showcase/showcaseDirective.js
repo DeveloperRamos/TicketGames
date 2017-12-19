@@ -7,7 +7,7 @@
         },
         replace: false,
         templateUrl: "app/directives/showcase/showcase.html",
-        controller: function ($scope, $rootScope, $timeout, showcaseService) {
+        controller: function ($scope, $rootScope, $timeout, showcaseService, globalService) {
             var vmShowcase = this;
             $scope.count = 1;
 
@@ -57,10 +57,19 @@
 
                 });
             };
-            showcaseService.getShowcases(1, function (response) {
-                $scope.banner = response.data;                
-                setInterval($scope.increment, 6500);
-            });            
+
+            $scope.banner = globalService.getObj('banner');
+        
+            if(!$scope.banner){
+                showcaseService.getShowcases(1, function (response) {
+                    $scope.banner = response.data;
+                    globalService.setObj('banner', response.data);              
+                    setInterval($scope.increment, 6500);
+                });
+            }
+            else{
+            setInterval($scope.increment, 6500);
+            }           
         }
     }
 

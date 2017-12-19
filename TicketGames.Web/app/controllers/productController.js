@@ -1,8 +1,8 @@
 ﻿'use strict';
 
 ticketGamesApp
-    .controller('productController', ['$scope', '$cookieStore', '$rootScope', '$routeParams', '$sce', 'productService',
-        function ($scope, $cookieStore, $rootScope, $routeParams, $sce, productService) {
+    .controller('productController', ['$scope', '$cookieStore', '$rootScope', '$routeParams', '$sce', 'productService', 'cartService', 'globalService',
+        function ($scope, $cookieStore, $rootScope, $routeParams, $sce, productService, cartService, globalService) {
             var vmProduct = this;
 
             var initialize = function () {
@@ -32,6 +32,7 @@ ticketGamesApp
                     }
 
                     vmProduct.product = response.data;
+                    vmProduct.quantity = [];
 
                     //productService.getValue(productId, function (value) {                       
 
@@ -66,5 +67,20 @@ ticketGamesApp
 
             };
 
+            vmProduct.addCart = function (productId, quantity) {
+
+                var logged = globalService.getItem('logged');
+
+                logged = logged ? logged : false;
+
+                if (logged) {
+                    cartService.addCart(productId,quantity);
+                }
+                else {
+                    alert('Você precisa se logar!');
+                }
+            };
+
             initialize();
+
         }]);

@@ -23,6 +23,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -82,6 +83,7 @@
     <Content Include="app\directives\showcase\showcaseDirective.js" />
     <Content Include="app\services\cartService.js" />
     <Content Include="app\services\categoryService.js" />
+    <Content Include="app\services\cookieService.js" />
     <Content Include="app\services\globalService.js" />
     <Content Include="app\services\participantService.js" />
     <Content Include="app\services\productService.js" />
