@@ -11,5 +11,8 @@ namespace TicketGames.Domain.Repositories
     {
         Cart Create(Cart cart);
         Cart Update(Cart cart);
+        Cart GetCartByParticipantId(long participantId);
+        OrderDeliveryAddress Create(OrderDeliveryAddress orderDeliveryAddress);
+        OrderDeliveryAddress GetDeliveryAddressByPartIdAndCartId(long participantId, long cartId);
     }
 }

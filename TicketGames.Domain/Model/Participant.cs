@@ -8,6 +8,8 @@ namespace TicketGames.Domain.Model
         public Participant()
         {
             this.Sessions = new List<Session>();
+            this.Carts = new List<Cart>();
+            this.OrderDeliveryAddress = new List<OrderDeliveryAddress>();
         }
         public long Id { get; set; }
         public int ParticipantStatusId { get; set; }
@@ -34,6 +36,7 @@ namespace TicketGames.Domain.Model
         public virtual ParticipantStatus ParticipantStatus { get; set; }
         public virtual ICollection<Session> Sessions { get; set; }
         public virtual ICollection<Cart> Carts { get; set; }
+        public virtual ICollection<OrderDeliveryAddress> OrderDeliveryAddress { get; set; }
 
     }
 }

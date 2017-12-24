@@ -29,14 +29,14 @@
                 </select>
             </td>
             <td class="product-total">{{cart.Price | currency: 'R$ '}}</td>
-            <td class="action"><a href="" ng-click="vmCart.remove(cart.Id)" ><i class="fa fa-times"></i></a></td>
-        </tr>        
+            <td class="action"><a href="" ng-click="vmCart.remove(cart.Id)"><i class="fa fa-times"></i></a></td>
+        </tr>
     </tbody>
 </table> <!-- .cart -->
 <div class="cart-total">
-    <p><strong>Subtotal:</strong>R$ 40,00</p>
-    <p><strong>Frete:</strong> Gratis</p>
-    <p class="total"><strong>Total</strong><span class="num">R$ 40,00</span></p>
+    <p><strong>Subtotal:</strong>{{vmCart.Subtotal | currency: 'R$ '}}</p>
+    <p><strong>Frete:</strong> Pago pela Ticket Games</p>
+    <p class="total"><strong>Total</strong><span class="num">{{vmCart.Total | currency: 'R$ '}}</span></p>
     <p>
         <a href="#" class="button muted">Comprar mais</a>
         <button ng-click="vmCart.next()" class="button">Próximo</button>

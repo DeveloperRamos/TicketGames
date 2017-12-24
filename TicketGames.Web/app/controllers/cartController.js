@@ -5,6 +5,9 @@ ticketGamesApp
         function ($scope, $cookieStore, $rootScope, $location, cartSevice) {
             var vmCart = this;
 
+            vmCart.Subtotal = 0.00;
+            vmCart.Total = 0.00;
+
             var initialize = function () {
                 if ($rootScope.bread) {
                     $rootScope.bread.show();
@@ -27,6 +30,18 @@ ticketGamesApp
                 cartSevice.getCart(function (response) {
 
                     vmCart.carts = response.data;
+
+
+                    if (response.data)
+                    {
+                        var log = [];
+                        angular.forEach(response.data, function (value, key) {
+
+                            vmCart.Subtotal += (value.Price * value.Quantity);
+                            vmCart.Total += (value.Price * value.Quantity);
+                            
+                        }, log);
+                    }
 
                 }, function (error) {
 

@@ -5,22 +5,15 @@
         getCart: getCart,
         addCart: addCart,
         updateCart: updateCart,
-        removeCart: removeCart
+        removeCart: removeCart,
+        addAddress: addAddress
     };
 
 
     function getCart(successCallback, errorCallback) {
 
         $http.get(global.service + urlBase)
-            .then(successCallback, errorCallback);
-
-        //return $http.get(global.service + urlBase)
-        //    .success(function (data) {
-        //        return data;
-
-        //    })
-        //    .error(function (error, status) {
-        //    });
+            .then(successCallback, errorCallback);     
     };
 
     function addCart(productId, quantity = 1, addCart = false, successCallback, errorCallback) {
@@ -32,6 +25,14 @@
             },
             errorCallback);
     };
+
+    function addAddress(address, successCallback, errorCallback) {
+        var data = "Street=" + address.street + "&Number=" + address.number + "&Complement=" + address.complement + "&District=" + address.district + "&City=" + address.city + "&State=" +
+            address.state + "&ZipCode=" + address.zipCode + "&Reference=" + address.reference + "&Email=" + address.email + "&HomePhone=" + address.homePhone + "&CellPhone=" + address.cellPhone;
+
+        $http.post(global.service + urlBase + "/address", data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+            .then(successCallback,errorCallback);
+    }
 
 
     //function addCart(cart) {

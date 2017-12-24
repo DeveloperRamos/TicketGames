@@ -26,11 +26,27 @@ namespace TicketGames.Infrastructure.Repositories
             {
                 connect.Open();
 
-                var raffle = connect.Query<Raffle>("Select * From Tb_Raffle Where ProductId = @prodId", new { prodId = productId }).Single();               
+                var raffleDictionary = new Dictionary<long, Raffle>();
+
+                var result = connect.Query<Raffle, Product, Raffle>("Select * From Tb_Raffle R Inner Join Tb_Product P On(P.Id = R.ProductId) Where R.ProductId = @productId And R.RaffleStatusId In(3,4);",
+                 (raffle, product) =>
+                 {
+                     Raffle raffleEntity;
+
+                     if (!raffleDictionary.TryGetValue(raffle.Id, out raffleEntity))
+                     {
+                         raffleEntity = raffle;
+                         raffleDictionary.Add(raffle.Id, raffleEntity);
+                         raffleEntity.Product = product;
+                     }
+
+                     return raffleEntity;
+
+                 }, new { productId = productId }).Distinct().FirstOrDefault();
 
                 connect.Close();
 
-                return raffle;
+                return result;
             }
         }
     }

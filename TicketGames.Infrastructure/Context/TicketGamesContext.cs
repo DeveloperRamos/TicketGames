@@ -43,6 +43,7 @@ namespace TicketGames.Infrastructure.Context
         public DbSet<CartStatus> CartStatus { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
+        public DbSet<OrderDeliveryAddress> OrderDeliveryAddress { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -67,6 +68,7 @@ namespace TicketGames.Infrastructure.Context
             modelBuilder.Configurations.Add(new CartStatusMap());
             modelBuilder.Configurations.Add(new CartMap());
             modelBuilder.Configurations.Add(new CartItemMap());
+            modelBuilder.Configurations.Add(new OrderDeliveryAddressMap());
         }
 
         public override int SaveChanges()

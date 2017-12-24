@@ -52,6 +52,7 @@
     <Compile Include="Model\Department.cs" />
     <Compile Include="Model\Image.cs" />
     <Compile Include="Model\ImageType.cs" />
+    <Compile Include="Model\OrderDeliveryAddress.cs" />
     <Compile Include="Model\Participant.cs" />
     <Compile Include="Model\ParticipantStatus.cs" />
     <Compile Include="Model\Product.cs" />

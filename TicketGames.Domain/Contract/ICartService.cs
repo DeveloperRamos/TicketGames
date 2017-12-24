@@ -10,5 +10,8 @@ namespace TicketGames.Domain.Contract
     public interface ICartService
     {
         Cart Add(Cart cart);
+        Cart Get(long participantId);
+        OrderDeliveryAddress Add(OrderDeliveryAddress orderDeliveryAddress);
+        OrderDeliveryAddress Get(long participantId, long cartId);
     }
 }
