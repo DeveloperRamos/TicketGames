@@ -1,4 +1,4 @@
-﻿ticketGamesApp.service('cartService', function ($http) {
+﻿ticketGamesApp.service('cartService', function ($http, $rootScope) {
     var urlBase = '/v1/cart';
 
     var service = {
@@ -13,7 +13,7 @@
     function getCart(successCallback, errorCallback) {
 
         $http.get(global.service + urlBase)
-            .then(successCallback, errorCallback);     
+            .then(successCallback, errorCallback);
     };
 
     function addCart(productId, quantity = 1, addCart = false, successCallback, errorCallback) {
@@ -21,6 +21,13 @@
 
         $http.post(global.service + urlBase + "/" + addCart, data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
             .then(function (successCallback) {
+
+                getCart(function (response) {
+                    if (response.data) {
+                        $rootScope.sumCart = response.data.length;
+                    }
+                });
+
                 alert('Produto adicionado com sucesso!');
             },
             errorCallback);
@@ -31,7 +38,7 @@
             address.state + "&ZipCode=" + address.zipCode + "&Reference=" + address.reference + "&Email=" + address.email + "&HomePhone=" + address.homePhone + "&CellPhone=" + address.cellPhone;
 
         $http.post(global.service + urlBase + "/address", data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
-            .then(successCallback,errorCallback);
+            .then(successCallback, errorCallback);
     }
 
 
@@ -59,8 +66,8 @@
             });
     };
 
-    function removeCart(id, successCallback, errorCallback) {
-        $http.delete(global.service + urlBase + '/' + id)
+    function removeCart(productId, successCallback, errorCallback) {
+        $http.delete(global.service + urlBase + '/' + productId)
             .then(successCallback, errorCallback);
     }
 

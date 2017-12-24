@@ -194,10 +194,45 @@ namespace TicketGames.API.Controllers
             return Ok();
         }
 
-        [HttpDelete, Route("{cartId}")]
-        public IHttpActionResult Delete(long cartId)
+        [Authorize]
+        [HttpDelete, Route("{productId}")]
+        public IHttpActionResult Delete(long productId)
         {
-            return Ok(cartId);
+            try
+            {
+                ClaimsPrincipal principal = Request.GetRequestContext().Principal as ClaimsPrincipal;
+
+                long.TryParse(principal.Claims.Where(c => c.Type == "participant_Id").Single().Value, out this.participantId);
+
+
+                Domain.Model.Cart domainCart = null;
+
+                var key = string.Concat("Participant:Id:", this.participantId.ToString(), ":Cart");
+
+                domainCart = CacheManager.GetObject<Domain.Model.Cart>(key);
+
+                if (domainCart != null)
+                {
+                    if (domainCart.CartItems.Count == 1)
+                    {
+                        CacheManager.KeyDelete(key);
+                    }
+                    else
+                    {
+                        domainCart.CartItems.Remove(domainCart.CartItems.Where(i => i.ProductId == productId).First());
+
+                        CacheManager.StoreObject(key, domainCart, LifetimeProfile.Long);
+                    }
+                }
+
+                var result = this._cartService.Delete(this.participantId, productId);
+
+                return Ok("Item removido!");
+            }
+            catch (Exception ex)
+            {
+                return NotFound();
+            }
         }
 
 

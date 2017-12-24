@@ -22,14 +22,26 @@
             </td>
             <td class="product-price">{{cart.Price | currency: 'R$ '}}</td>
             <td class="product-qty">
-                <select name="#">
+                <!--<select name="Quantity" id="Quantity" ng-model="cart.Quantity" ng-init="cart.Quantity">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
-                </select>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>-->
+
+                <select ng-model="yourSelect" ng-options="option as option for option in vmCart.options" ng-change="vmCart.update(cart.ProductId, yourSelect)" ng-init="yourSelect=cart.Quantity"></select>
+
+                <!--<select name="#" ng-model="cart.Quantity">
+                    <option value="1" ng-init="cart.Quantity === '1'">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>-->
             </td>
             <td class="product-total">{{cart.Price | currency: 'R$ '}}</td>
-            <td class="action"><a href="" ng-click="vmCart.remove(cart.Id)"><i class="fa fa-times"></i></a></td>
+            <td class="action"><a ng-click="vmCart.remove(cart.ProductId)"><i class="fa fa-times"></i></a></td>
         </tr>
     </tbody>
 </table> <!-- .cart -->

@@ -5,6 +5,8 @@ ticketGamesApp
         function ($scope, $cookieStore, $rootScope, $routeParams, $sce, productService, cartService, globalService) {
             var vmProduct = this;
 
+            vmProduct.options = [1, 2, 3, 4, 5];
+
             var initialize = function () {
                 getProduct();
             };
@@ -32,7 +34,7 @@ ticketGamesApp
                     }
 
                     vmProduct.product = response.data;
-                    vmProduct.quantity = [];
+                    vmProduct.quantity = 1;
 
                     //productService.getValue(productId, function (value) {                       
 

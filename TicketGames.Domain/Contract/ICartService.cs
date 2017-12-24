@@ -11,6 +11,7 @@ namespace TicketGames.Domain.Contract
     {
         Cart Add(Cart cart);
         Cart Get(long participantId);
+        Cart Delete(long participantId, long productId);
         OrderDeliveryAddress Add(OrderDeliveryAddress orderDeliveryAddress);
         OrderDeliveryAddress Get(long participantId, long cartId);
     }

@@ -1,10 +1,11 @@
 ﻿'use strict';
 
 ticketGamesApp
-    .controller('indexController',['$scope', '$cookieStore', '$rootScope', '$location', 'cartService', 'categoryService', 'participantService', 'globalService', '$window','cookieService',
+    .controller('indexController', ['$scope', '$cookieStore', '$rootScope', '$location', 'cartService', 'categoryService', 'participantService', 'globalService', '$window', 'cookieService',
         function ($scope, $cookieStore, $rootScope, $location, cartService, categoryService, partcipantService, globalService, $window, cookieService) {
             var vmIndex = this;
 
+            vmIndex.sumCart = 0;
 
 
             var initialize = function () {
@@ -16,32 +17,26 @@ ticketGamesApp
 
                 vmIndex.logged = logged ? logged : false;
 
-                getCategories();
-                getCart();
+                getCategories();                
 
                 if ($rootScope.bread) {
                     $rootScope.bread.hide();
                 }
 
 
-            };
-
-            var getCart = function () {
-
-
-            };
+            };            
 
             var getCategories = function () {
 
-            vmIndex.categories = cookieService.getItem('categories');
-            
-            if(!vmIndex.categories){
+                vmIndex.categories = cookieService.getItem('categories');
 
-                categoryService.getCategories(function (response) {
+                if (!vmIndex.categories) {
 
-                    vmIndex.categories = response.data;                    
-                    cookieService.setItem('categories', response.data);
-                });
+                    categoryService.getCategories(function (response) {
+
+                        vmIndex.categories = response.data;
+                        cookieService.setItem('categories', response.data);
+                    });
                 }
 
             };
@@ -69,7 +64,7 @@ ticketGamesApp
 
                         globalService.setItem('logged', true);
 
-                        $window.location.reload();                       
+                        $window.location.reload();
 
                     }, function (error) {
 
@@ -77,7 +72,7 @@ ticketGamesApp
                     });
 
                 }
-            };            
+            };
 
             initialize();
         }]);

@@ -77,6 +77,61 @@ namespace TicketGames.Infrastructure.Repositories
 
         }
 
+        public Cart DeleteCartItemByPartIdAndProdId(long participantId, long productId)
+        {
+            using (var connect = new MySqlConnection(connection))
+            {
+                string query = @"Select * From Tb_Cart C " +
+                                "Inner Join Tb_CartItem I On(C.Id = I.CartId) " +
+                                "Inner Join Tb_Product P On(P.Id = I.ProductId) " +
+                                "Inner Join Tb_Raffle R On(R.Id = I.RaffleId) " +
+                                "Where ParticipantId = @participantId And CartStatusId = 2 And R.RaffleStatusId In(3,4);";
+
+                connect.Open();
+
+                var cartDictionary = new Dictionary<long, Cart>();
+
+                var result = connect.Query<Cart, CartItem, Product, Raffle, Cart>(query,
+                  (cart, cartItem, product, raffle) =>
+                  {
+                      Cart cartEntity;
+
+                      if (!cartDictionary.TryGetValue(cart.Id, out cartEntity))
+                      {
+                          cartEntity = cart;
+                          cartEntity.CartItems = new List<CartItem>();
+                          cartDictionary.Add(cart.Id, cartEntity);
+                      }
+
+                      cartItem.Product = product;
+                      cartItem.Raffle = raffle;
+                      cartEntity.CartItems.Add(cartItem);
+
+                      return cartEntity;
+
+                  }, new { participantId = participantId }).Distinct().FirstOrDefault();
+
+
+                if(result != null)
+                {
+                    var cartItemId = result.CartItems.Where(p => p.ProductId == productId).Select(s => s.Id).First();
+
+                    connect.Query(@"Delete From Tb_CartItem Where Id = @cartItemId;", new { cartItemId = cartItemId });
+
+                    if (result.CartItems.Count == 1)
+                    {
+                        connect.Query(@"Delete From Tb_OrderDeliveryAddress Where CartId = @cartId And ParticipantId = @participantId;", new { cartId = result.Id, participantId = participantId });
+
+                        connect.Query(@"Delete From Tb_Cart Where Id = @cartId And ParticipantId = @participantId;", new { cartId = result.Id, participantId = participantId });
+                    }
+                }               
+
+                connect.Close();
+
+                return result ?? new Cart();
+            }
+        }
+
         public Cart GetCartByParticipantId(long participantId)
         {
             using (var connect = new MySqlConnection(connection))

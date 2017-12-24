@@ -36,13 +36,16 @@
             <div class="addtocart-bar">
                 <form>
                     <label for="#">Quantidade</label>
-                    <select name="#" ng-model="vmProduct.quantity">                       
+                    
+                    <select ng-model="vmProduct.quantity" ng-options="option as option for option in vmProduct.options" ng-init="vmProduct.quantity='1'"></select>
+                    
+                    <!--<select name="#" ng-model="vmProduct.quantity">                       
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
-                    </select>
+                    </select>-->
                     <button ng-click="vmProduct.addCart(vmProduct.product.Id, vmProduct.quantity)" class="button">Comprar</button>
                     <!--<input type="submit" value="Comprar">-->
                 </form>

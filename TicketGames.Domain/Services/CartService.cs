@@ -28,6 +28,11 @@ namespace TicketGames.Domain.Services
             return this._cartRepository.Create(orderDeliveryAddress);
         }
 
+        public Cart Delete(long participantId, long productId)
+        {
+            return this._cartRepository.DeleteCartItemByPartIdAndProdId(participantId, productId);
+        }
+
         public Cart Get(long participantId)
         {
             return this._cartRepository.GetCartByParticipantId(participantId);
