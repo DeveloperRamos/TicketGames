@@ -8,6 +8,7 @@ namespace TicketGames.Domain.Model
         public Cart()
         {
             this.CartItems = new List<CartItem>();
+            this.OrderDeliveryAddress = new List<OrderDeliveryAddress>();
         }
         public long Id { get; set; }
         public long ParticipantId { get; set; }
@@ -17,5 +18,6 @@ namespace TicketGames.Domain.Model
         public virtual Participant Participant { get; set; }
         public virtual CartStatus CartStatus { get; set; }
         public virtual ICollection<CartItem> CartItems { get; set; }
+        public virtual ICollection<OrderDeliveryAddress> OrderDeliveryAddress { get; set; }
     }
 }

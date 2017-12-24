@@ -22,5 +22,25 @@ namespace TicketGames.Domain.Services
         {
             return this._cartRepository.Create(cart);
         }
+
+        public OrderDeliveryAddress Add(OrderDeliveryAddress orderDeliveryAddress)
+        {
+            return this._cartRepository.Create(orderDeliveryAddress);
+        }
+
+        public Cart Delete(long participantId, long productId)
+        {
+            return this._cartRepository.DeleteCartItemByPartIdAndProdId(participantId, productId);
+        }
+
+        public Cart Get(long participantId)
+        {
+            return this._cartRepository.GetCartByParticipantId(participantId);
+        }
+
+        public OrderDeliveryAddress Get(long participantId, long cartId)
+        {
+            return this._cartRepository.GetDeliveryAddressByPartIdAndCartId(participantId, cartId);
+        }
     }
 }

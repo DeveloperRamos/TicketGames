@@ -1,8 +1,8 @@
 ﻿'use strict';
 
 ticketGamesApp
-    .controller('addressController', ['$scope', '$cookieStore', '$rootScope', '$location', 'searchService',
-        function ($scope, $cookieStore, $rootScope, $location, searchService) {
+    .controller('addressController', ['$scope', '$cookieStore', '$rootScope', '$location', 'searchService', 'cartService',
+        function ($scope, $cookieStore, $rootScope, $location, searchService, cartService) {
             var vmAddress = this;
 
             var initialize = function () {
@@ -34,8 +34,9 @@ ticketGamesApp
 
                 $rootScope.cart.address = address;
 
-                $location.path('/Pagamento');
-
+                cartService.addAddress(address, function () {
+                    $location.path('/Pagamento');
+                });
             };
 
             vmAddress.search = function (valor) {

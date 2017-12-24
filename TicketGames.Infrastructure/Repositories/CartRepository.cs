@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Dapper;
+using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,7 +23,7 @@ namespace TicketGames.Infrastructure.Repositories
         }
 
         public Cart Create(Cart cart)
-        {           
+        {
             cart.CartStatusId = 2;
 
             var result = this._context.Set<Cart>().Add(cart);
@@ -28,6 +31,166 @@ namespace TicketGames.Infrastructure.Repositories
             this._context.SaveChanges();
 
             return result;
+        }
+
+        public OrderDeliveryAddress Create(OrderDeliveryAddress orderDeliveryAddress)
+        {
+            OrderDeliveryAddress deliveryAddressModified = null;
+
+            if (orderDeliveryAddress.Id > 0)
+            {
+
+
+                using (var connect = new MySqlConnection(connection))
+                {
+                    connect.Open();
+
+                    string query = @"Select A.* From Tb_OrderDeliveryAddress A Inner Join Tb_Cart C On(A.CartId = C.Id) Where A.Id = @orderDeliveryAddressId And C.CartStatusId = 2;";
+
+                    deliveryAddressModified = connect.Query<OrderDeliveryAddress>(query, new { orderDeliveryAddressId = orderDeliveryAddress.Id }).FirstOrDefault();
+
+                    connect.Close();
+                }
+
+                deliveryAddressModified.Street = orderDeliveryAddress.Street;
+                deliveryAddressModified.Number = orderDeliveryAddress.Number;
+                deliveryAddressModified.Complement = orderDeliveryAddress.Complement;
+                deliveryAddressModified.District = orderDeliveryAddress.District;
+                deliveryAddressModified.City = orderDeliveryAddress.City;
+                deliveryAddressModified.State = orderDeliveryAddress.State;
+                deliveryAddressModified.Reference = orderDeliveryAddress.Reference;
+                deliveryAddressModified.ZipCode = orderDeliveryAddress.ZipCode;
+                deliveryAddressModified.Email = orderDeliveryAddress.Email;
+                deliveryAddressModified.CellPhone = orderDeliveryAddress.CellPhone;
+                deliveryAddressModified.HomePhone = orderDeliveryAddress.HomePhone;
+
+                this._context.Entry(deliveryAddressModified).State = EntityState.Modified;
+            }
+            else
+            {
+                deliveryAddressModified = this._context.Set<OrderDeliveryAddress>().Add(orderDeliveryAddress);
+            }
+
+            this._context.SaveChanges();
+
+            return deliveryAddressModified;
+
+        }
+
+        public Cart DeleteCartItemByPartIdAndProdId(long participantId, long productId)
+        {
+            using (var connect = new MySqlConnection(connection))
+            {
+                string query = @"Select * From Tb_Cart C " +
+                                "Inner Join Tb_CartItem I On(C.Id = I.CartId) " +
+                                "Inner Join Tb_Product P On(P.Id = I.ProductId) " +
+                                "Inner Join Tb_Raffle R On(R.Id = I.RaffleId) " +
+                                "Where ParticipantId = @participantId And CartStatusId = 2 And R.RaffleStatusId In(3,4);";
+
+                connect.Open();
+
+                var cartDictionary = new Dictionary<long, Cart>();
+
+                var result = connect.Query<Cart, CartItem, Product, Raffle, Cart>(query,
+                  (cart, cartItem, product, raffle) =>
+                  {
+                      Cart cartEntity;
+
+                      if (!cartDictionary.TryGetValue(cart.Id, out cartEntity))
+                      {
+                          cartEntity = cart;
+                          cartEntity.CartItems = new List<CartItem>();
+                          cartDictionary.Add(cart.Id, cartEntity);
+                      }
+
+                      cartItem.Product = product;
+                      cartItem.Raffle = raffle;
+                      cartEntity.CartItems.Add(cartItem);
+
+                      return cartEntity;
+
+                  }, new { participantId = participantId }).Distinct().FirstOrDefault();
+
+
+                if(result != null)
+                {
+                    var cartItemId = result.CartItems.Where(p => p.ProductId == productId).Select(s => s.Id).First();
+
+                    connect.Query(@"Delete From Tb_CartItem Where Id = @cartItemId;", new { cartItemId = cartItemId });
+
+                    if (result.CartItems.Count == 1)
+                    {
+                        connect.Query(@"Delete From Tb_OrderDeliveryAddress Where CartId = @cartId And ParticipantId = @participantId;", new { cartId = result.Id, participantId = participantId });
+
+                        connect.Query(@"Delete From Tb_Cart Where Id = @cartId And ParticipantId = @participantId;", new { cartId = result.Id, participantId = participantId });
+                    }
+                }               
+
+                connect.Close();
+
+                return result ?? new Cart();
+            }
+        }
+
+        public Cart GetCartByParticipantId(long participantId)
+        {
+            using (var connect = new MySqlConnection(connection))
+            {
+                //Cart cart = new Cart();
+
+                string query = @"Select * From Tb_Cart C " +
+                                "Inner Join Tb_CartItem I On(C.Id = I.CartId) " +
+                                "Inner Join Tb_Product P On(P.Id = I.ProductId) " +
+                                "Inner Join Tb_Raffle R On(R.Id = I.RaffleId) " +
+                                "Where ParticipantId = @participantId And CartStatusId = 2 And R.RaffleStatusId In(3,4);";
+
+                connect.Open();
+
+                //cart = connect.Query<Cart>(query, new { participantId = participantId }).FirstOrDefault();
+
+
+                var cartDictionary = new Dictionary<long, Cart>();
+
+                var result = connect.Query<Cart, CartItem, Product, Raffle, Cart>(query,
+                  (cart, cartItem, product, raffle) =>
+                  {
+                      Cart cartEntity;
+
+                      if (!cartDictionary.TryGetValue(cart.Id, out cartEntity))
+                      {
+                          cartEntity = cart;
+                          cartEntity.CartItems = new List<CartItem>();
+                          cartDictionary.Add(cart.Id, cartEntity);
+                      }
+
+                      cartItem.Product = product;
+                      cartItem.Raffle = raffle;
+                      cartEntity.CartItems.Add(cartItem);
+
+                      return cartEntity;
+
+                  }, new { participantId = participantId }).Distinct().FirstOrDefault();
+
+                connect.Close();
+
+                return result ?? new Cart();
+            }
+        }
+
+        public OrderDeliveryAddress GetDeliveryAddressByPartIdAndCartId(long participantId, long cartId)
+        {
+            using (var connect = new MySqlConnection(connection))
+            {
+                connect.Open();
+
+                string query = @"Select A.* From Tb_OrderDeliveryAddress A Inner Join Tb_Cart C On(A.CartId = C.Id) Where A.ParticipantId = @participantId And C.CartStatusId = 2;";
+
+                var deliveryAddress = connect.Query<OrderDeliveryAddress>(query, new { participantId = participantId }).FirstOrDefault();
+
+                connect.Close();
+
+                return deliveryAddress ?? new OrderDeliveryAddress();
+            }
         }
 
         public Cart Update(Cart cart)

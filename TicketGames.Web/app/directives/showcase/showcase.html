@@ -14,7 +14,7 @@
                     <a href="/" class="button">Comprar</a>-->
                 </div>
                 <a href="#/Produto/{{product.Id}}">
-                    <img ng-repeat="image in product.Images | filter: { ImageType: 2 } | limitTo: 1" src="images/{{image.URL}}" class="img344x394 slide-image">
+                    <img ng-repeat="image in product.Images | filter: { ImageType: 2 } | limitTo: 1" src="{{image.URL}}" class="img344x394 slide-image">
                 </a>
             </div>
         </li>

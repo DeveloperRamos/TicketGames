@@ -3,10 +3,10 @@
         <div class="col-sm-6 col-md-4">
             <div class="product-images">
                 <figure class="large-image">
-                    <a href="../../images/{{vmProduct.product.Id ? vmProduct.product.Id + '.png' : 'default.png'}}"><img src="../../images/{{vmProduct.product.Id + '.png'}}" alt="{{vmProduct.product.Name}}"></a>
+                    <a ng-repeat="image in vmProduct.product.Images | filter: { ImageType: 2 }" href="{{image.URL}}"><img src="{{image.URL}}" alt="{{vmProduct.product.Name}}"></a>
                 </figure>
                 <div class="thumbnails">
-                    <a ng-repeat="image in vmProduct.product.Images | filter: { ImageType: 3 }" ng-show="image ? true : false" href="../../images/{{image.URL}}"><img src="../../images/{{image.URL}}" alt=""></a>
+                    <a ng-repeat="image in vmProduct.product.Images | filter: { ImageType: 3 }" ng-show="image ? true : false" href="{{image.URL}}"><img src="{{image.URL}}" alt=""></a>
                 </div>
 
                 <br />
@@ -36,13 +36,16 @@
             <div class="addtocart-bar">
                 <form>
                     <label for="#">Quantidade</label>
-                    <select name="#" ng-model="vmProduct.quantity">                       
+                    
+                    <select ng-model="vmProduct.quantity" ng-options="option as option for option in vmProduct.options" ng-init="vmProduct.quantity='1'"></select>
+                    
+                    <!--<select name="#" ng-model="vmProduct.quantity">                       
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
-                    </select>
+                    </select>-->
                     <button ng-click="vmProduct.addCart(vmProduct.product.Id, vmProduct.quantity)" class="button">Comprar</button>
                     <!--<input type="submit" value="Comprar">-->
                 </form>
@@ -66,8 +69,9 @@
         <div ng-repeat="product in vmProduct.recent | orderBy: 'Order'" class="product">
             <div class="inner-product" style="text-align: center !important;">
                 <div class="figure-image">
-                    <!--<a href="#/Produto/{{product.Id}}"><img src="../../images/{{product.Id + '.png'}}" alt="{{product.Name}}" class="img204x234"></a>-->
-                    <img src="../../images/{{product.Id + '.png'}}" alt="{{product.Name}}" class="img204x234">
+                    <!--<a href="#/Produto/{{product.Id}}"><img src="../../images/{{product.Id + '.png'}}" alt="{{product.Name}}" class="img204x234"></a>-->                   
+                    
+                    <img ng-repeat="image in product.Images | filter: { ImageType: 2 }" src="{{image.URL}}" alt="{{product.Name}}" class="img204x234">
                 </div>
                 <h3 class="product-title" style="text-align: center !important;"><a href="#/Produto/{{product.Id}}">{{product.Name}}</a></h3>
                 <small class="price" style="text-align: center !important;">{{product.Value | currency: 'R$ '}}</small>

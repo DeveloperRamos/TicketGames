@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.13
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Presentation", "0 - Presentation", "{96ED9419-4942-4482-B185-7FFE1C81EABD}"
 EndProject
@@ -28,6 +28,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicktGames.PagSeguro.Tests", "TicktGames.PagSeguro.Tests\TicktGames.PagSeguro.Tests.csproj", "{2957365F-10C5-4C81-A9C1-B07397375B2B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketGames.Web", "TicketGames.Web\TicketGames.Web.csproj", "{667FB12E-C6B5-4E40-A9D2-41FE7CC9B762}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Process", "4 - Process", "{C8FA0CC9-CD05-4A07-802F-B5041E698CC6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketGames.Images", "TicketGames.Images\TicketGames.Images.csproj", "{7DDB8398-98E8-4DF8-90BE-527B203312ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +67,10 @@ Global
 		{667FB12E-C6B5-4E40-A9D2-41FE7CC9B762}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{667FB12E-C6B5-4E40-A9D2-41FE7CC9B762}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{667FB12E-C6B5-4E40-A9D2-41FE7CC9B762}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DDB8398-98E8-4DF8-90BE-527B203312ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DDB8398-98E8-4DF8-90BE-527B203312ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DDB8398-98E8-4DF8-90BE-527B203312ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DDB8398-98E8-4DF8-90BE-527B203312ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,5 +84,9 @@ Global
 		{0CE278AC-257E-4C16-945C-DA15AD981D42} = {C4F38FDF-F7A5-4117-9F07-0E2BD135E7F9}
 		{2957365F-10C5-4C81-A9C1-B07397375B2B} = {0CE278AC-257E-4C16-945C-DA15AD981D42}
 		{667FB12E-C6B5-4E40-A9D2-41FE7CC9B762} = {96ED9419-4942-4482-B185-7FFE1C81EABD}
+		{7DDB8398-98E8-4DF8-90BE-527B203312ED} = {C8FA0CC9-CD05-4A07-802F-B5041E698CC6}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5A67DA84-B317-459F-9D40-81B1F34B65DB}
 	EndGlobalSection
 EndGlobal

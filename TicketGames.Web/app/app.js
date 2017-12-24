@@ -7,10 +7,18 @@
 ]);
 
 // Handle routing errors and success events
-ticketGamesApp.run(['$rootScope', '$route', '$location', '$cookieStore', '$templateCache', 'globalService', '$q', '$routeParams', '$document',
-    function ($rootScope, $route, $location, $cookieStore, $templateCache, globalService, $q, $routeParams, $document) {
+ticketGamesApp.run(['$rootScope', '$route', '$location', '$cookieStore', '$templateCache', 'globalService', '$q', '$routeParams', '$document', 'cartService',
+    function ($rootScope, $route, $location, $cookieStore, $templateCache, globalService, $q, $routeParams, $document, cartService) {
 
         $rootScope.$on("$locationChangeStart", function (event, next, current) {
+
+            $rootScope.sumCart = 0;
+
+            var logged = globalService.getItem('logged');
+
+            logged = logged ? true : false;
+
+
 
             // $rootScope.globalService = globalService;
             //$rootScope.configuration = GlobalService.configuration();
@@ -21,7 +29,20 @@ ticketGamesApp.run(['$rootScope', '$route', '$location', '$cookieStore', '$templ
             //}
             //else {
             //    $rootScope.Logged = false;
-            //}            
+            //}
+
+
+            if (logged) {
+                cartService.getCart(function (response) {
+                    if (response.data) {
+                        $rootScope.sumCart = response.data.length;
+                    }
+                });
+            }
+            else {
+                $rootScope.sumCart = 0;
+            }
+
 
             if ($rootScope.bread && $rootScope.showcase) {
                 if ($location.url() === "" || $location.url() === "/") {

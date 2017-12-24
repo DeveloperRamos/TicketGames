@@ -1,9 +1,14 @@
 ﻿'use strict';
 
 ticketGamesApp
-    .controller('cartController', ['$scope', '$cookieStore', '$rootScope', '$location', 'cartService',
-        function ($scope, $cookieStore, $rootScope, $location, cartSevice) {
+    .controller('cartController', ['$scope', '$cookieStore', '$rootScope', '$location', '$window', 'cartService',
+        function ($scope, $cookieStore, $rootScope, $location, $window, cartSevice) {
             var vmCart = this;
+
+            vmCart.Subtotal = 0.00;
+            vmCart.Total = 0.00;
+
+            vmCart.options = [1, 2, 3, 4, 5];
 
             var initialize = function () {
                 if ($rootScope.bread) {
@@ -28,6 +33,17 @@ ticketGamesApp
 
                     vmCart.carts = response.data;
 
+
+                    if (response.data) {
+                        var log = [];
+                        angular.forEach(response.data, function (value, key) {
+
+                            vmCart.Subtotal += (value.Price * value.Quantity);
+                            vmCart.Total += (value.Price * value.Quantity);
+
+                        }, log);
+                    }
+
                 }, function (error) {
 
                     $location.path('/');
@@ -39,29 +55,13 @@ ticketGamesApp
 
                 cartSevice.removeCart(cartId, function (response) {
 
-                    cartSevice.getCart(function (responseC) {
-
-                        vmCart.carts = null;
-
-                        var log = [];
-                        angular.forEach(responseC.data, function (value, key) {
-
-                            if (value.Id != cartId) {
-                            }
-
-                        }, log);
-
-                    });
-
-
-
-                }, function (error) {
-
-                    $location.path('/');
-                    var teste = error;
+                    $window.location.reload();
                 });
+            };
 
-
+            vmCart.update = function (productId, quantity) {
+                var prod = productId;
+                var quant = quantity;
             };
 
             vmCart.next = function () {
