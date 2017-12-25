@@ -2,35 +2,25 @@
     var urlBase = '/v1/cart';
 
     var service = {
-        getCart: getCart,
-        addCart: addCart,
-        updateCart: updateCart,
-        removeCart: removeCart,
+        get: get,
+        add: add,
+        update: update,
+        remove: remove,
         addAddress: addAddress
     };
 
 
-    function getCart(successCallback, errorCallback) {
+    function get(successCallback, errorCallback) {
 
         $http.get(global.service + urlBase)
             .then(successCallback, errorCallback);
     };
 
-    function addCart(productId, quantity = 1, addCart = false, successCallback, errorCallback) {
+    function add(productId, quantity = 1, addCart = false, successCallback, errorCallback) {
         var data = "ProductId=" + productId + "&Quantity=" + quantity;
 
         $http.post(global.service + urlBase + "/" + addCart, data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
-            .then(function (successCallback) {
-
-                getCart(function (response) {
-                    if (response.data) {
-                        $rootScope.sumCart = response.data.length;
-                    }
-                });
-
-                alert('Produto adicionado com sucesso!');
-            },
-            errorCallback);
+            .then(successCallback,errorCallback);
     };
 
     function addAddress(address, successCallback, errorCallback) {
@@ -54,19 +44,14 @@
     //        });
     //};
 
-    function updateCart(cart) {
-        var model = JSON.stringify(cart);
+    function update(productId, quantity, successCallback, errorCallback) {
+        var data = "ProductId=" + productId + "&Quantity=" + quantity;
 
-        return $http.put(global.service + urlBase + '/me', model)
-            .success(function (data) {
-                return data;
-
-            }).error(function (error, status) {
-
-            });
+        $http.put(global.service + urlBase, data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+            .then(successCallback,errorCallback);
     };
 
-    function removeCart(productId, successCallback, errorCallback) {
+    function remove(productId, successCallback, errorCallback) {
         $http.delete(global.service + urlBase + '/' + productId)
             .then(successCallback, errorCallback);
     }

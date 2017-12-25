@@ -33,7 +33,7 @@ ticketGamesApp.run(['$rootScope', '$route', '$location', '$cookieStore', '$templ
 
 
             if (logged) {
-                cartService.getCart(function (response) {
+                cartService.get(function (response) {
                     if (response.data) {
                         $rootScope.sumCart = response.data.length;
                     }

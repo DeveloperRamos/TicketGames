@@ -22,13 +22,88 @@ namespace TicketGames.Infrastructure.Repositories
             this._context = new TicketGamesContext();
         }
 
-        public Cart Create(Cart cart)
+        public Cart Create(Cart _cart)
         {
-            cart.CartStatusId = 2;
+            Cart result = null;
 
-            var result = this._context.Set<Cart>().Add(cart);
+            if (_cart.Id > 0)
+            {
+                var items = _cart.CartItems.Where(i => i.Id == 0).ToList();
 
-            this._context.SaveChanges();
+                if (items.Count > 0)
+                {
+                    foreach (var cartItemAdd in items)
+                    {
+                        cartItemAdd.CartId = _cart.Id;
+                        cartItemAdd.Product = null;
+                        cartItemAdd.Raffle = null;
+                    }
+
+                    this._context.Set<CartItem>().AddRange(items);
+
+                    this._context.SaveChanges();
+                }
+
+                using (var connect = new MySqlConnection(connection))
+                {
+                    string query = @"Select * From Tb_Cart C " +
+                                    "Inner Join Tb_CartItem I On(C.Id = I.CartId) " +
+                                    "Inner Join Tb_Product P On(P.Id = I.ProductId) " +
+                                    "Inner Join Tb_Raffle R On(R.Id = I.RaffleId) " +
+                                    "Where ParticipantId = @participantId And CartStatusId = 2 And R.RaffleStatusId In(3,4);";
+
+                    connect.Open();
+
+                    var cartDictionary = new Dictionary<long, Cart>();
+
+                    result = connect.Query<Cart, CartItem, Product, Raffle, Cart>(query,
+                      (cart, cartItem, product, raffle) =>
+                      {
+                          Cart cartEntity;
+
+                          if (!cartDictionary.TryGetValue(cart.Id, out cartEntity))
+                          {
+                              cartEntity = cart;
+                              cartEntity.CartItems = new List<CartItem>();
+                              cartDictionary.Add(cart.Id, cartEntity);
+                          }
+
+                          cartItem.Product = product;
+                          cartItem.Raffle = raffle;
+                          cartEntity.CartItems.Add(cartItem);
+
+                          return cartEntity;
+
+                      }, new { participantId = _cart.ParticipantId }).Distinct().FirstOrDefault();
+
+                    connect.Close();
+
+                    foreach (var cartItemModified in result.CartItems)
+                    {
+                        var cartItem = _cart.CartItems.Where(i => i.ProductId == cartItemModified.ProductId).First();
+
+                        if (cartItemModified.Quantity != cartItem.Quantity)
+                        {
+                            cartItemModified.Quantity = cartItem.Quantity;
+
+                            this._context.Entry(cartItem).State = EntityState.Modified;
+
+                            this._context.SaveChanges();
+                        }
+
+                    }
+
+                }
+            }
+            else
+            {
+                _cart.CartStatusId = 2;
+
+                result = this._context.Set<Cart>().Add(_cart);
+
+                this._context.SaveChanges();
+
+            }
 
             return result;
         }
@@ -112,7 +187,7 @@ namespace TicketGames.Infrastructure.Repositories
                   }, new { participantId = participantId }).Distinct().FirstOrDefault();
 
 
-                if(result != null)
+                if (result != null)
                 {
                     var cartItemId = result.CartItems.Where(p => p.ProductId == productId).Select(s => s.Id).First();
 
@@ -124,7 +199,7 @@ namespace TicketGames.Infrastructure.Repositories
 
                         connect.Query(@"Delete From Tb_Cart Where Id = @cartId And ParticipantId = @participantId;", new { cartId = result.Id, participantId = participantId });
                     }
-                }               
+                }
 
                 connect.Close();
 

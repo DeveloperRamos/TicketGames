@@ -7,11 +7,6 @@ ticketGamesApp
 
             var initialize = function () {
 
-
-                if (!$rootScope.cart)
-                    $location.path('/Carrinho');
-
-
                 if ($rootScope.bread) {
                     $rootScope.bread.show();
                     $rootScope.showcase.hide();

@@ -176,6 +176,7 @@ namespace TicketGames.API.Controllers
                     foreach (var item in result.CartItems)
                     {
                         item.Cart = null;
+                        item.Product.CartItems = null;
                     }
 
                     CacheManager.StoreObject(key, result, LifetimeProfile.Long);
@@ -188,10 +189,41 @@ namespace TicketGames.API.Controllers
                 return NotFound();
             }
         }
+
+        [Authorize]
         [HttpPut, Route()]
-        public IHttpActionResult Put()
+        public IHttpActionResult Put([FromBody]TicketGames.API.Models.Order.Cart cart)
         {
-            return Ok();
+            try
+            {
+                ClaimsPrincipal principal = Request.GetRequestContext().Principal as ClaimsPrincipal;
+
+                long.TryParse(principal.Claims.Where(c => c.Type == "participant_Id").Single().Value, out this.participantId);
+
+                Domain.Model.Cart domainCart = null;
+
+                var key = string.Concat("Participant:Id:", this.participantId.ToString(), ":Cart");
+
+                domainCart = CacheManager.GetObject<Domain.Model.Cart>(key);
+
+                if (domainCart != null)
+                {
+                    var cartItem = domainCart.CartItems.Where(i => i.ProductId == cart.ProductId).First();
+
+                    if(cart.Quantity > 0)
+                    {
+                        cartItem.Quantity = cart.Quantity;
+
+                        CacheManager.StoreObject(key, domainCart, LifetimeProfile.Long);
+                    }                    
+                }
+
+                return Ok("Carrinho atualizado!");
+            }
+            catch (Exception ex)
+            {
+                return NotFound();
+            }
         }
 
         [Authorize]

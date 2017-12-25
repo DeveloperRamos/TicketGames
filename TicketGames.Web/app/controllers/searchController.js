@@ -73,14 +73,23 @@ ticketGamesApp
 
             };
 
-          vmSearch.addCart = function (productId) {
+            vmSearch.addCart = function (productId) {
 
                 var logged = globalService.getItem('logged');
 
                 logged = logged ? logged : false;
 
                 if (logged) {
-                    cartService.addCart(productId);
+                    cartService.add(productId, 1, false, function (response) {
+
+                        cartService.get(function (response) {
+                            if (response.data) {
+                                $rootScope.sumCart = response.data.length;
+                            }
+                        });
+
+                        alert('Produto adicionado com sucesso!');
+                    });
                 }
                 else {
                     alert('Você precisa se logar!');
