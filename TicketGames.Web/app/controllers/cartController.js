@@ -73,12 +73,15 @@ ticketGamesApp
 
                 if (logged) {
                     cartService.add(0, 1, true, function (response) {
+
+                        $rootScope.cartId = response.data;
+
                         $location.path('/Endereco');
                     });
                 }
                 else {
                     alert('Você precisa se logar!');
-                }                
+                }
             };
 
 

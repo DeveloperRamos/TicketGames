@@ -16,6 +16,7 @@ namespace TicketGames.Infrastructure.Mapping
             this.Property(t => t.CartId).HasColumnName("CartId");
             this.Property(t => t.ParticipantId).HasColumnName("ParticipantId");
             this.Property(t => t.OrderId).HasColumnName("OrderId");
+            this.Property(t => t.Name).HasColumnName("Name");
             this.Property(t => t.Street).HasColumnName("Street");
             this.Property(t => t.Number).HasColumnName("Number");
             this.Property(t => t.Complement).HasColumnName("Complement");

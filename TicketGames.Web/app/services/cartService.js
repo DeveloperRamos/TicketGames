@@ -6,12 +6,12 @@
         add: add,
         update: update,
         remove: remove,
-        addAddress: addAddress
+        addAddress: addAddress,
+        getAddess: getAddess
     };
 
 
     function get(successCallback, errorCallback) {
-
         $http.get(global.service + urlBase)
             .then(successCallback, errorCallback);
     };
@@ -29,7 +29,12 @@
 
         $http.post(global.service + urlBase + "/address", data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
             .then(successCallback, errorCallback);
-    }
+    };
+
+    function getAddess(cartId, successCallback, errorCallback) {
+        $http.get(global.service + urlBase + "/address/" + cartId)
+            .then(successCallback, errorCallback);
+    };
 
 
     //function addCart(cart) {

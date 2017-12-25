@@ -25,6 +25,7 @@ namespace TicketGames.Infrastructure.Repositories
         public Cart Create(Cart _cart)
         {
             Cart result = null;
+            bool SaveChanges = false;
 
             if (_cart.Id > 0)
             {
@@ -41,7 +42,7 @@ namespace TicketGames.Infrastructure.Repositories
 
                     this._context.Set<CartItem>().AddRange(items);
 
-                    this._context.SaveChanges();
+                    SaveChanges = true;
                 }
 
                 using (var connect = new MySqlConnection(connection))
@@ -80,19 +81,24 @@ namespace TicketGames.Infrastructure.Repositories
 
                     foreach (var cartItemModified in result.CartItems)
                     {
-                        var cartItem = _cart.CartItems.Where(i => i.ProductId == cartItemModified.ProductId).First();
-
-                        if (cartItemModified.Quantity != cartItem.Quantity)
+                        try
                         {
-                            cartItemModified.Quantity = cartItem.Quantity;
+                            var cartItem = _cart.CartItems.Where(i => i.ProductId == cartItemModified.ProductId).First();
 
-                            this._context.Entry(cartItem).State = EntityState.Modified;
+                            if (cartItemModified.Quantity != cartItem.Quantity)
+                            {
+                                cartItemModified.Quantity = cartItem.Quantity;
 
-                            this._context.SaveChanges();
+                                this._context.Entry(cartItem).State = EntityState.Modified;
+
+                                SaveChanges = true;
+                            }
                         }
+                        catch (Exception ex)
+                        {
 
+                        }
                     }
-
                 }
             }
             else
@@ -101,9 +107,11 @@ namespace TicketGames.Infrastructure.Repositories
 
                 result = this._context.Set<Cart>().Add(_cart);
 
-                this._context.SaveChanges();
-
+                SaveChanges = true;
             }
+
+            if (SaveChanges)
+                this._context.SaveChanges();
 
             return result;
         }
@@ -114,8 +122,6 @@ namespace TicketGames.Infrastructure.Repositories
 
             if (orderDeliveryAddress.Id > 0)
             {
-
-
                 using (var connect = new MySqlConnection(connection))
                 {
                     connect.Open();
@@ -127,6 +133,7 @@ namespace TicketGames.Infrastructure.Repositories
                     connect.Close();
                 }
 
+                deliveryAddressModified.Name = orderDeliveryAddress.Name;
                 deliveryAddressModified.Street = orderDeliveryAddress.Street;
                 deliveryAddressModified.Number = orderDeliveryAddress.Number;
                 deliveryAddressModified.Complement = orderDeliveryAddress.Complement;

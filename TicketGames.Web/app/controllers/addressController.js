@@ -5,6 +5,8 @@ ticketGamesApp
         function ($scope, $cookieStore, $rootScope, $location, searchService, cartService) {
             var vmAddress = this;
 
+            vmAddress.address = {};
+
             var initialize = function () {
 
                 if ($rootScope.bread) {
@@ -21,9 +23,17 @@ ticketGamesApp
 
                     $rootScope.bread.text(obj);
                 }
+
             };
 
+            var getAddress = function () {
 
+                cartService.getAddress($rootScope.cartId, function (response) {
+                    vmAddress.address = response.data;
+                });
+
+
+            };
 
             vmAddress.save = function (address) {
 

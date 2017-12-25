@@ -12,6 +12,7 @@ namespace TicketGames.Domain.Model
         public long CartId { get; set; }
         public long ParticipantId { get; set; }
         public Nullable<long> OrderId { get; set; }
+        public string Name { get; set; }
         public string Street { get; set; }
         public string Number { get; set; }
         public string Complement { get; set; }
