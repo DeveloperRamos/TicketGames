@@ -29,6 +29,7 @@ namespace TicketGames.API.Models.Order
 
         public DeliveryAddress(Domain.Model.OrderDeliveryAddress address)
         {
+            this.Name = address.Name;
             this.Street = address.Street;
             this.Number = address.Number;
             this.Complement = address.Complement;
