@@ -24,24 +24,30 @@ ticketGamesApp
                     $rootScope.bread.text(obj);
                 }
 
+                getAddress();
+
             };
 
             var getAddress = function () {
 
-                cartService.getAddress($rootScope.cartId, function (response) {
-                    vmAddress.address = response.data;
-                });
-
-
+                if (!$rootScope.cartId) {
+                    $location.path('/Carrinho');
+                } else {
+                    cartService.getAddress($rootScope.cartId, function (response) {
+                        vmAddress.address = response.data;
+                    });
+                }
             };
 
             vmAddress.save = function (address) {
 
-                $rootScope.cart.address = address;
-
-                cartService.addAddress(address, function () {
-                    $location.path('/Pagamento');
-                });
+                if (!address) {
+                    $location.path('/Carrinho');
+                } else {
+                    cartService.addAddress(address, function (response) {
+                        $location.path('/Pagamento');
+                    });
+                }
             };
 
             vmAddress.search = function (valor) {

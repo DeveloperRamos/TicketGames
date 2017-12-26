@@ -7,7 +7,7 @@
         update: update,
         remove: remove,
         addAddress: addAddress,
-        getAddess: getAddess
+        getAddress: getAddress
     };
 
 
@@ -24,14 +24,14 @@
     };
 
     function addAddress(address, successCallback, errorCallback) {
-        var data = "Street=" + address.street + "&Number=" + address.number + "&Complement=" + address.complement + "&District=" + address.district + "&City=" + address.city + "&State=" +
-            address.state + "&ZipCode=" + address.zipCode + "&Reference=" + address.reference + "&Email=" + address.email + "&HomePhone=" + address.homePhone + "&CellPhone=" + address.cellPhone;
+        var data = "Name=" + address.Name + "&Street=" + address.Street + "&Number=" + address.Number + "&Complement=" + address.Complement + "&District=" + address.District + "&City=" + address.City + "&State=" +
+            address.State + "&ZipCode=" + address.ZipCode + "&Reference=" + address.Reference + "&Email=" + address.Email + "&HomePhone=" + address.HomePhone + "&CellPhone=" + address.CellPhone;
 
         $http.post(global.service + urlBase + "/address", data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
             .then(successCallback, errorCallback);
     };
 
-    function getAddess(cartId, successCallback, errorCallback) {
+    function getAddress(cartId, successCallback, errorCallback) {
         $http.get(global.service + urlBase + "/address/" + cartId)
             .then(successCallback, errorCallback);
     };

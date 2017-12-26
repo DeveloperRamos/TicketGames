@@ -89,7 +89,10 @@ namespace TicketGames.Infrastructure.Repositories
                             {
                                 cartItemModified.Quantity = cartItem.Quantity;
 
-                                this._context.Entry(cartItem).State = EntityState.Modified;
+                                cartItemModified.Product = null;
+                                cartItemModified.Raffle = null;
+
+                                this._context.Entry(cartItemModified).State = EntityState.Modified;
 
                                 SaveChanges = true;
                             }
@@ -103,6 +106,13 @@ namespace TicketGames.Infrastructure.Repositories
             }
             else
             {
+
+                foreach (var cartItemAdd in _cart.CartItems)
+                {
+                    cartItemAdd.Product = null;
+                    cartItemAdd.Raffle = null;
+                }
+
                 _cart.CartStatusId = 2;
 
                 result = this._context.Set<Cart>().Add(_cart);

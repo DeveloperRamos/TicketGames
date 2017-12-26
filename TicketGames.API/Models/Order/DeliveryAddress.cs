@@ -93,6 +93,7 @@ namespace TicketGames.API.Models.Order
         {
             var deliveryAddress = new OrderDeliveryAddress();
 
+            deliveryAddress.Name = this.Name;
             deliveryAddress.Street = this.Street;
             deliveryAddress.Number = this.Number;
             deliveryAddress.Complement = this.Complement;

@@ -68,9 +68,12 @@ namespace TicketGames.API.Controllers
                     {
                         domainCart = this._cartService.Get(this.participantId);
 
-                        cart = new TicketGames.API.Models.Order.Cart().CreateCart(domainCart);
+                        if(domainCart.Id > 0)
+                        {
+                            cart = new TicketGames.API.Models.Order.Cart().CreateCart(domainCart);
 
-                        CacheManager.StoreObject(key, domainCart, LifetimeProfile.Long);
+                            CacheManager.StoreObject(key, domainCart, LifetimeProfile.Long);
+                        }                        
                     }
 
                     return Ok(cart);
@@ -93,8 +96,10 @@ namespace TicketGames.API.Controllers
         {
             try
             {
+                long cartId = 0;
+
                 ClaimsPrincipal principal = Request.GetRequestContext().Principal as ClaimsPrincipal;
-                
+
                 long.TryParse(principal.Claims.Where(c => c.Type == "participant_Id").Single().Value, out this.participantId);
 
                 Domain.Model.Cart domainCart = null;
@@ -173,18 +178,22 @@ namespace TicketGames.API.Controllers
                 }
                 else
                 {
-                    var result = this._cartService.Add(domainCart);
+                    domainCart = this._cartService.Add(domainCart);
 
-                    foreach (var item in result.CartItems)
+                    domainCart = this._cartService.Get(this.participantId);
+
+                    foreach (var item in domainCart.CartItems)
                     {
-                        item.Cart = null;
+                        item.Cart = null;                        
                         item.Product.CartItems = null;
                     }
 
-                    CacheManager.StoreObject(key, result, LifetimeProfile.Long);
+                    cartId = domainCart.Id;
+
+                    CacheManager.StoreObject(key, domainCart, LifetimeProfile.Long);
                 }
 
-                return Ok();
+                return Ok(cartId);
             }
             catch (Exception ex)
             {

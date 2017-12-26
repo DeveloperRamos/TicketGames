@@ -7,7 +7,7 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="Nome">Nome <h11>*</h11></label>
                     <div class="col-md-8">
-                        <input id="Nome" name="Nome" placeholder="" class="form-control input-md" ng-model="vmAddress.address.name" required="" type="text">
+                        <input id="Nome" name="Nome" placeholder="" class="form-control input-md" style="text-align: center" ng-model="vmAddress.address.Name" required="" type="text">
                     </div>
                 </div>
 
@@ -16,7 +16,7 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="Nome">CPF <h11>*</h11></label>
                     <div class="col-md-2">
-                        <input name="cpf" placeholder="Apenas números" required="" class="form-control input-md" ng-model="address.cpf" type="text" maxlength="14" OnKeyPress="formatar('###.###.###-##', this)">
+                        <input name="cpf" placeholder="Apenas números" required="" class="form-control input-md" style="text-align: center" ng-model="address.cpf" type="text" maxlength="14" OnKeyPress="formatar('###.###.###-##', this)">
                     </div>
                 </div>
 
@@ -27,7 +27,7 @@
                     <div class="col-md-2">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                            <input id="prependedtext" name="prependedtext" class="form-control" placeholder="XX XXXX-XXXX" ng-model="address.tel" required="" type="text" maxlength="12"
+                            <input id="prependedtext" name="prependedtext" class="form-control" placeholder="XX XXXX-XXXX" style="text-align: center" ng-model="vmAddress.address.HomePhone" required="" type="text" maxlength="12"
                                    OnKeyPress="formatar('## ####-####', this)">
                         </div>
                     </div>
@@ -36,7 +36,7 @@
                     <div class="col-md-2">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
-                            <input id="prependedtext" name="prependedtext" class="form-control" required="" placeholder="XX XXXXX-XXXX" ng-model="address.cell" type="text" maxlength="13"
+                            <input id="prependedtext" name="prependedtext" class="form-control" required="" placeholder="XX XXXXX-XXXX" style="text-align: center" ng-model="vmAddress.address.CellPhone" type="text" maxlength="13"
                                    OnKeyPress="formatar('## #####-####', this)">
                         </div>
                     </div>
@@ -49,7 +49,7 @@
                     <div class="col-md-5">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                            <input id="prependedtext" name="prependedtext" class="form-control" placeholder="email@email.com" required="" ng-model="address.mail" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                            <input id="prependedtext" name="prependedtext" class="form-control" placeholder="email@email.com" required="" style="text-align: center" ng-model="vmAddress.address.Email" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
                         </div>
                     </div>
                 </div>
@@ -59,10 +59,10 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="CEP">CEP <h11>*</h11></label>
                     <div class="col-md-2">
-                        <input id="cep" name="cep" OnKeyPress="formatar('#####-###', this)" placeholder="Apenas números" required="" ng-model="address.cep" class="form-control input-md" value="" style="height:20%; text-align: center" type="search" maxlength="9" />
+                        <input id="cep" name="cep" OnKeyPress="formatar('#####-###', this)" placeholder="Apenas números" required="" ng-model="vmAddress.address.ZipCode" class="form-control input-md" value="" style="height:20%; text-align: center" type="search" maxlength="9" />
                     </div>
                     <div class="col-md-2">
-                        <button type="button" class="btn btn-primary" ng-click="vmAddress.search(address.cep)">Pesquisar</button>
+                        <button type="button" class="btn btn-primary" ng-click="vmAddress.search(vmAddress.address.ZipCode)">Pesquisar</button>
                     </div>
                 </div>
 
@@ -74,14 +74,14 @@
                     <div class="col-md-4">
                         <div class="input-group">
                             <span class="input-group-addon">Rua</span>
-                            <input id="rua" name="rua" class="form-control" placeholder="" required="" readonly="readonly" ng-model="address.street" type="text" />
+                            <input id="rua" name="rua" class="form-control" placeholder="" required="" readonly="readonly" style="text-align: center" ng-model="vmAddress.address.Street" type="text" />
                         </div>
 
                     </div>
                     <div class="col-md-2">
                         <div class="input-group">
                             <span class="input-group-addon">Nº <h11>*</h11></span>
-                            <input id="numero" name="numero" class="form-control" placeholder="" ng-model="address.number" required="" type="text">
+                            <input id="numero" name="numero" class="form-control" placeholder="" ng-model="vmAddress.address.Number" style="text-align: center" required="" type="text">
                         </div>
 
                     </div>
@@ -96,14 +96,14 @@
                         <div class="input-group">
 
                             <span class="input-group-addon">Complemento</span>
-                            <input id="complemento" name="complemento" class="form-control" placeholder="" ng-model="address.complement" required="" type="text" />
+                            <input id="complemento" name="complemento" class="form-control" placeholder="" style="text-align: center" ng-model="vmAddress.address.Complement" required="" type="text" />
                         </div>
 
                     </div>
                     <div class="col-md-2">
                         <div class="input-group">
                             <span class="input-group-addon">Bairro</span>
-                            <input id="bairro" name="bairro" class="form-control" placeholder="" required="" ng-model="address.district" readonly="readonly" type="text">
+                            <input id="bairro" name="bairro" class="form-control" placeholder="" required="" style="text-align: center" ng-model="vmAddress.address.District" readonly="readonly" type="text">
                         </div>
 
                     </div>
@@ -116,7 +116,7 @@
                     <div class="col-md-4">
                         <div class="input-group">
                             <span class="input-group-addon">Cidade</span>
-                            <input id="cidade" name="cidade" class="form-control" placeholder="" required="" ng-model="address.city" readonly="readonly" type="text">
+                            <input id="cidade" name="cidade" class="form-control" placeholder="" required="" style="text-align: center" ng-model="vmAddress.address.City" readonly="readonly" type="text">
                         </div>
 
                     </div>
@@ -124,7 +124,7 @@
                     <div class="col-md-2">
                         <div class="input-group">
                             <span class="input-group-addon">Estado</span>
-                            <input id="estado" name="estado" class="form-control" placeholder="" required="" ng-model="address.state" readonly="readonly" type="text">
+                            <input id="estado" name="estado" class="form-control" placeholder="" required="" style="text-align: center" ng-model="vmAddress.address.State" readonly="readonly" type="text">
                         </div>
 
                     </div>
@@ -135,7 +135,7 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="Nome">Ponto de referência</label>
                     <div class="col-md-8">
-                        <input id="referencia" name="referencia" placeholder="" ng-model="address.refecepoint" class="form-control input-md" type="text">
+                        <input id="referencia" name="referencia" placeholder="" ng-model="vmAddress.address.Reference" style="text-align: center" class="form-control input-md" type="text">
                     </div>
                 </div>
                 <br />
@@ -143,7 +143,7 @@
 
             <br />            
 
-            <button type="submit" class="btn btn-primary" ng-click="vmAddress.save(address)" value="Ir para pagamento">Ir para pagamento</button>
+            <button type="submit" class="btn btn-primary" ng-click="vmAddress.save(vmAddress.address)" value="Ir para pagamento">Ir para pagamento</button>
             <br />
             <br />
         </div>
