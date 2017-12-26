@@ -63,10 +63,10 @@ ticketGamesApp
 
                     searchService.searchCep(cep, function (response) {
 
-                        $scope.address.street = response.data.logradouro;
-                        $scope.address.district = response.data.bairro;
-                        $scope.address.city = response.data.localidade;
-                        $scope.address.state = response.data.uf;
+                        vmAddress.address.Street = response.data.logradouro;
+                        vmAddress.address.District = response.data.bairro;
+                        vmAddress.address.City = response.data.localidade;
+                        vmAddress.address.State = response.data.uf;
 
                     });
 
