@@ -23,15 +23,17 @@ namespace TicketGames.API.Controllers
     {
         private readonly ICartService _cartService;
         private readonly IRaffleService _raffleService;
+        private readonly IParticipantService _participantService;
         private long participantId = 0;
 
-        public CartController(ICartService cartService, IRaffleService raffleService)
+        public CartController(ICartService cartService, IRaffleService raffleService, IParticipantService participantService)
         {
             this._cartService = cartService;
             this._raffleService = raffleService;
+            this._participantService = participantService;
         }
         public CartController()
-            : this(new CartService(new CartRepository()), new RaffleService(new RaffleRepository()))
+            : this(new CartService(new CartRepository()), new RaffleService(new RaffleRepository()), new ParticipantService(new ParticipantRepository()))
         {
             CacheManager.SetProvider(new CacheProvider());
 
@@ -66,9 +68,12 @@ namespace TicketGames.API.Controllers
                     {
                         domainCart = this._cartService.Get(this.participantId);
 
-                        cart = new TicketGames.API.Models.Order.Cart().CreateCart(domainCart);
+                        if(domainCart.Id > 0)
+                        {
+                            cart = new TicketGames.API.Models.Order.Cart().CreateCart(domainCart);
 
-                        CacheManager.StoreObject(key, domainCart, LifetimeProfile.Long);
+                            CacheManager.StoreObject(key, domainCart, LifetimeProfile.Long);
+                        }                        
                     }
 
                     return Ok(cart);
@@ -91,6 +96,8 @@ namespace TicketGames.API.Controllers
         {
             try
             {
+                long cartId = 0;
+
                 ClaimsPrincipal principal = Request.GetRequestContext().Principal as ClaimsPrincipal;
 
                 long.TryParse(principal.Claims.Where(c => c.Type == "participant_Id").Single().Value, out this.participantId);
@@ -171,27 +178,63 @@ namespace TicketGames.API.Controllers
                 }
                 else
                 {
-                    var result = this._cartService.Add(domainCart);
+                    domainCart = this._cartService.Add(domainCart);
 
-                    foreach (var item in result.CartItems)
+                    domainCart = this._cartService.Get(this.participantId);
+
+                    foreach (var item in domainCart.CartItems)
                     {
-                        item.Cart = null;
+                        item.Cart = null;                        
+                        item.Product.CartItems = null;
                     }
 
-                    CacheManager.StoreObject(key, result, LifetimeProfile.Long);
+                    cartId = domainCart.Id;
+
+                    CacheManager.StoreObject(key, domainCart, LifetimeProfile.Long);
                 }
 
-                return Ok();
+                return Ok(cartId);
             }
             catch (Exception ex)
             {
                 return NotFound();
             }
         }
+
+        [Authorize]
         [HttpPut, Route()]
-        public IHttpActionResult Put()
+        public IHttpActionResult Put([FromBody]TicketGames.API.Models.Order.Cart cart)
         {
-            return Ok();
+            try
+            {
+                ClaimsPrincipal principal = Request.GetRequestContext().Principal as ClaimsPrincipal;
+
+                long.TryParse(principal.Claims.Where(c => c.Type == "participant_Id").Single().Value, out this.participantId);
+
+                Domain.Model.Cart domainCart = null;
+
+                var key = string.Concat("Participant:Id:", this.participantId.ToString(), ":Cart");
+
+                domainCart = CacheManager.GetObject<Domain.Model.Cart>(key);
+
+                if (domainCart != null)
+                {
+                    var cartItem = domainCart.CartItems.Where(i => i.ProductId == cart.ProductId).First();
+
+                    if (cart.Quantity > 0)
+                    {
+                        cartItem.Quantity = cart.Quantity;
+
+                        CacheManager.StoreObject(key, domainCart, LifetimeProfile.Long);
+                    }
+                }
+
+                return Ok("Carrinho atualizado!");
+            }
+            catch (Exception ex)
+            {
+                return NotFound();
+            }
         }
 
         [Authorize]
@@ -244,6 +287,8 @@ namespace TicketGames.API.Controllers
             {
                 OrderDeliveryAddress orderDeliveryAddress = null;
 
+                long cartId = 0;
+
                 ClaimsPrincipal principal = Request.GetRequestContext().Principal as ClaimsPrincipal;
 
                 long.TryParse(principal.Claims.Where(c => c.Type == "participant_Id").Single().Value, out this.participantId);
@@ -278,7 +323,56 @@ namespace TicketGames.API.Controllers
                     orderDeliveryAddress = this._cartService.Add(orderDeliveryAddress);
                 }
 
-                return Ok("Endereço cadastrado!");
+
+                cartId = cart.Id;
+
+                return Ok(cartId);
+            }
+            catch (Exception ex)
+            {
+                return NotFound();
+            }
+        }
+
+        [Authorize]
+        [HttpGet, Route("Address/{cartId}")]
+        public IHttpActionResult CreateOrderDeliveryAddress(long cartId)
+        {
+            try
+            {
+                OrderDeliveryAddress orderDeliveryAddress = null;
+
+                DeliveryAddress deliveryAddress = null;
+
+                ClaimsPrincipal principal = Request.GetRequestContext().Principal as ClaimsPrincipal;
+
+                long.TryParse(principal.Claims.Where(c => c.Type == "participant_Id").Single().Value, out this.participantId);
+
+                var deliveryAddressResult = this._cartService.Get(this.participantId, cartId);
+
+                if (deliveryAddressResult != null && deliveryAddressResult.Id > 0)
+                {
+                    deliveryAddress = new DeliveryAddress(deliveryAddressResult);
+                }
+                else
+                {
+                    TicketGames.API.Models.Participant.Participant participant = null;
+
+                    var key = string.Concat("Participant:Id:", participantId.ToString(), ":Register");
+
+                    participant = CacheManager.GetObject<TicketGames.API.Models.Participant.Participant>(key);
+
+                    if (participant == null)
+                    {
+                        var result = this._participantService.GetParticipant(participantId);
+
+                        participant = new TicketGames.API.Models.Participant.Participant(result);
+                    }
+
+                    deliveryAddress = new DeliveryAddress(participant);
+                }
+
+                return Ok(deliveryAddress);
             }
             catch (Exception ex)
             {

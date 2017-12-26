@@ -5,12 +5,9 @@ ticketGamesApp
         function ($scope, $cookieStore, $rootScope, $location, searchService, cartService) {
             var vmAddress = this;
 
+            vmAddress.address = {};
+
             var initialize = function () {
-
-
-                if (!$rootScope.cart)
-                    $location.path('/Carrinho');
-
 
                 if ($rootScope.bread) {
                     $rootScope.bread.show();
@@ -26,17 +23,31 @@ ticketGamesApp
 
                     $rootScope.bread.text(obj);
                 }
+
+                getAddress();
+
             };
 
+            var getAddress = function () {
 
+                if (!$rootScope.cartId) {
+                    $location.path('/Carrinho');
+                } else {
+                    cartService.getAddress($rootScope.cartId, function (response) {
+                        vmAddress.address = response.data;
+                    });
+                }
+            };
 
             vmAddress.save = function (address) {
 
-                $rootScope.cart.address = address;
-
-                cartService.addAddress(address, function () {
-                    $location.path('/Pagamento');
-                });
+                if (!address) {
+                    $location.path('/Carrinho');
+                } else {
+                    cartService.addAddress(address, function (response) {
+                        $location.path('/Pagamento');
+                    });
+                }
             };
 
             vmAddress.search = function (valor) {
@@ -52,10 +63,10 @@ ticketGamesApp
 
                     searchService.searchCep(cep, function (response) {
 
-                        $scope.address.street = response.data.logradouro;
-                        $scope.address.district = response.data.bairro;
-                        $scope.address.city = response.data.localidade;
-                        $scope.address.state = response.data.uf;
+                        vmAddress.address.Street = response.data.logradouro;
+                        vmAddress.address.District = response.data.bairro;
+                        vmAddress.address.City = response.data.localidade;
+                        vmAddress.address.State = response.data.uf;
 
                     });
 

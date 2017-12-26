@@ -14,22 +14,22 @@ ticketGamesApp
             };
 
             var getShowcases = function () {
-            
+
                 vmHome.recent = globalService.getObj('recents');
-            
-                if(!vmHome.recent){
+
+                if (!vmHome.recent) {
                     showcaseService.getShowcases(2, function (response) {
 
-                    vmHome.recent = response.data;
-                    globalService.setObj('recents', response.data);                    
-                    //$rootScope.showcase.show();
+                        vmHome.recent = response.data;
+                        globalService.setObj('recents', response.data);
+                        //$rootScope.showcase.show();
 
                     });
                 }
-                
+
                 vmHome.popular = globalService.getObj('popular');
 
-                if(!vmHome.popular){
+                if (!vmHome.popular) {
                     showcaseService.getShowcases(3, function (response) {
 
                         vmHome.popular = response.data;
@@ -68,7 +68,15 @@ ticketGamesApp
                 logged = logged ? logged : false;
 
                 if (logged) {
-                    cartService.addCart(productId);
+                    cartService.add(productId, 1, false, function (response) {
+                        cartService.get(function (response) {
+                            if (response.data) {
+                                $rootScope.sumCart = response.data.length;
+                            }
+                        });
+
+                        alert('Produto adicionado com sucesso!');
+                    });
                 }
                 else {
                     alert('Você precisa se logar!');

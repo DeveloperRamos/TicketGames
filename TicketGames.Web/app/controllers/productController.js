@@ -76,7 +76,16 @@ ticketGamesApp
                 logged = logged ? logged : false;
 
                 if (logged) {
-                    cartService.addCart(productId,quantity);
+                    cartService.add(productId, quantity, false, function (reponse) {
+
+                        cartService.get(function (response) {
+                            if (response.data) {
+                                $rootScope.sumCart = response.data.length;
+                            }
+                        });
+
+                        alert('Produto adicionado com sucesso!');
+                    });
                 }
                 else {
                     alert('Você precisa se logar!');

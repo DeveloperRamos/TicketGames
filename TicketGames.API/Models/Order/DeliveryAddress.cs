@@ -8,6 +8,7 @@ namespace TicketGames.API.Models.Order
 {
     public class DeliveryAddress
     {
+        public string Name { get; set; }
         public string Street { get; set; }
         public string Number { get; set; }
         public string Complement { get; set; }
@@ -19,6 +20,43 @@ namespace TicketGames.API.Models.Order
         public string Email { get; set; }
         public string HomePhone { get; set; }
         public string CellPhone { get; set; }
+
+        public DeliveryAddress()
+        {
+            this.Street = this.Number = this.Complement = this.District = this.City = this.State = this.ZipCode = this.Reference = this.Email = this.HomePhone = this.CellPhone = string.Empty;
+
+        }
+
+        public DeliveryAddress(Domain.Model.OrderDeliveryAddress address)
+        {
+            this.Name = address.Name;
+            this.Street = address.Street;
+            this.Number = address.Number;
+            this.Complement = address.Complement;
+            this.District = address.District;
+            this.City = address.City;
+            this.State = address.State;
+            this.ZipCode = address.ZipCode;
+            this.Reference = address.Reference;
+            this.Email = address.Email;
+            this.HomePhone = address.HomePhone;
+            this.CellPhone = address.CellPhone;
+        }
+
+        public DeliveryAddress(TicketGames.API.Models.Participant.Participant participant)
+        {
+            this.Name = participant.Name;
+            this.Street = participant.Street;
+            this.Number = participant.Number;
+            this.Complement = participant.Complement;
+            this.District = participant.District;
+            this.City = participant.City;
+            this.State = participant.State;
+            this.ZipCode = participant.ZipCode;
+            this.Email = participant.Email;
+            this.HomePhone = participant.HomePhone;
+            this.CellPhone = participant.CellPhone;
+        }
 
         public string ValidationAddress()
         {
@@ -56,6 +94,7 @@ namespace TicketGames.API.Models.Order
         {
             var deliveryAddress = new OrderDeliveryAddress();
 
+            deliveryAddress.Name = this.Name;
             deliveryAddress.Street = this.Street;
             deliveryAddress.Number = this.Number;
             deliveryAddress.Complement = this.Complement;

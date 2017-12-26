@@ -1,8 +1,8 @@
 ﻿'use strict';
 
 ticketGamesApp
-    .controller('cartController', ['$scope', '$cookieStore', '$rootScope', '$location', '$window', 'cartService',
-        function ($scope, $cookieStore, $rootScope, $location, $window, cartSevice) {
+    .controller('cartController', ['$scope', '$cookieStore', '$rootScope', '$location', '$window', 'cartService', 'globalService',
+        function ($scope, $cookieStore, $rootScope, $location, $window, cartService, globalService) {
             var vmCart = this;
 
             vmCart.Subtotal = 0.00;
@@ -29,7 +29,7 @@ ticketGamesApp
 
             var getCart = function () {
 
-                cartSevice.getCart(function (response) {
+                cartService.get(function (response) {
 
                     vmCart.carts = response.data;
 
@@ -53,26 +53,35 @@ ticketGamesApp
 
             vmCart.remove = function (cartId) {
 
-                cartSevice.removeCart(cartId, function (response) {
+                cartService.remove(cartId, function (response) {
 
                     $window.location.reload();
                 });
             };
 
             vmCart.update = function (productId, quantity) {
-                var prod = productId;
-                var quant = quantity;
+
+                cartService.update(productId, quantity, function (response) {
+                    $window.location.reload();
+                });
             };
 
             vmCart.next = function () {
-                $rootScope.cart = {};
+                var logged = globalService.getItem('logged');
 
-                $rootScope.cart = {
-                    cartId: 21,
-                    address: {}
-                };
+                logged = logged ? logged : false;
 
-                $location.path('/Endereco');
+                if (logged) {
+                    cartService.add(0, 1, true, function (response) {
+
+                        $rootScope.cartId = response.data;
+
+                        $location.path('/Endereco');
+                    });
+                }
+                else {
+                    alert('Você precisa se logar!');
+                }
             };
 
 

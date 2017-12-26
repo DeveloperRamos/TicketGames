@@ -33,7 +33,7 @@ ticketGamesApp.run(['$rootScope', '$route', '$location', '$cookieStore', '$templ
 
 
             if (logged) {
-                cartService.getCart(function (response) {
+                cartService.get(function (response) {
                     if (response.data) {
                         $rootScope.sumCart = response.data.length;
                     }
@@ -130,8 +130,14 @@ ticketGamesApp.factory('BearerAuthInterceptor', function ($window, $q, globalSer
         request: function (config) {
             config.headers = config.headers || {};
             if (globalService.getItem('token')) {
-                // may also use sessionStorage
-                config.headers.Authorization = 'Bearer ' + globalService.getItem('token');
+
+                if (config.url.indexOf("viacep") != -1) {
+                    var teste = 'tem a string';
+                }
+                else {
+                    // may also use sessionStorage
+                    config.headers.Authorization = 'Bearer ' + globalService.getItem('token');
+                }
             }
             return config || $q.when(config);
         },
