@@ -52,7 +52,10 @@
                     </ul> <!-- .menu -->
                     <div class="search-form">
                         <label><img src="content/images/icon-search.png"></label>
-                        <input type="text" placeholder="Pesquisar...">
+                        <form ng-submit="vmIndex.search()">
+                            <input type="text" ng-model="vmIndex.word" placeholder="Pesquisar..." ng->
+                        </form>
+
                     </div> <!-- .search-form -->
                     <div class="mobile-navigation"></div> <!-- .mobile-navigation -->
                 </div> <!-- .main-navigation -->
