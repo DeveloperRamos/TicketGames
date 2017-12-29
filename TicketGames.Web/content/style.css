@@ -2049,302 +2049,302 @@ form textarea {
  * Header Styles
  */
 .site-header {
-    background-color: #2b2b2b !important;
-    position: relative !important;
+    background-color: #2b2b2b;
+    position: relative;
 }
 
     .site-header > .container {
-        *zoom: 1 !important;
-        position: relative !important;
-        padding: 60px 15px 0 !important;
+        *zoom: 1;
+        position: relative;
+        padding: 60px 15px 0;
     }
 
         .site-header > .container:after {
-            content: " " !important;
-            clear: both !important;
-            display: block !important;
-            overflow: hidden !important;
-            height: 0 !important;
+            content: " ";
+            clear: both;
+            display: block;
+            overflow: hidden;
+            height: 0;
         }
 
     .site-header .cart {
-        border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
-        padding-right: 20px !important;
-        -webkit-transition: .3s ease !important;
-        transition: .3s ease !important;
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+        padding-right: 20px;
+        -webkit-transition: .3s ease;
+        transition: .3s ease;
     }
 
         .site-header .cart .icon-cart {
-            color: #45b77d !important;
-            font-size: 18px !important;
-            font-size: 1.2857142857em !important;
-            margin-right: 5px !important;
-            vertical-align: baseline !important;
+            color: #45b77d;
+            font-size: 18px;
+            font-size: 1.2857142857em;
+            margin-right: 5px;
+            vertical-align: baseline;
         }
 
         .site-header .cart:hover {
-            color: #45b77d !important;
+            color: #45b77d;
         }
 
 @media screen and (max-width: 480px) {
     .site-header .cart {
-        border-right: none !important;
-        padding-right: 0 !important;
+        border-right: none;
+        padding-right: 0;
     }
 }
 
 #branding {
-    float: left !important;
-    margin-bottom: 60px !important;
+    float: left;
+    margin-bottom: 60px;
 }
 
     #branding .logo, #branding .logo-text {
-        display: inline-block !important;
-        vertical-align: middle !important;
+        display: inline-block;
+        vertical-align: middle;
     }
 
     #branding .logo {
-        margin-right: 10px !important;
+        margin-right: 10px;
     }
 
     #branding .site-title {
-        font-size: 16px !important;
-        font-size: 1.1428571429em !important;
-        color: white !important;
-        margin-bottom: 0 !important;
+        font-size: 16px;
+        font-size: 1.1428571429em;
+        color: white;
+        margin-bottom: 0;
     }
 
         #branding .site-title a {
-            color: white !important;
+            color: white;
         }
 
     #branding .site-description {
-        font-size: 10px !important;
-        font-size: 0.7142857143em !important;
+        font-size: 10px;
+        font-size: 0.7142857143em;
     }
 
 .main-navigation {
-    *zoom: 1 !important;
-    margin-top: 30px !important;
-    position: relative !important;
-    z-index: 999 !important;
-    clear: both !important;
-    width: 100% !important;
-    background-color: white !important;
-    border-radius: 3px !important;
+    *zoom: 1;
+    margin-top: 30px;
+    position: relative;
+    z-index: 999;
+    clear: both;
+    width: 100%;
+    background-color: white;
+    border-radius: 3px;
 }
 
     .main-navigation:after {
-        content: " " !important;
-        clear: both !important;
-        display: block !important;
-        overflow: hidden !important;
-        height: 0 !important;
+        content: " ";
+        clear: both;
+        display: block;
+        overflow: hidden;
+        height: 0;
     }
 
     .main-navigation .toggle-menu {
-        float: left !important;
-        border: none !important;
-        padding: 30px 20px !important;
-        background: transparent !important;
-        outline: none !important;
+        float: left;
+        border: none;
+        padding: 30px 20px;
+        background: transparent;
+        outline: none;
     }
 
 @media screen and (max-width: 990px) {
     .main-navigation .toggle-menu {
-        display: block !important;
+        display: block;
     }
 }
 
 @media screen and (min-width: 991px) {
     .main-navigation .toggle-menu {
-        display: none !important;
+        display: none;
     }
 }
 
 .main-navigation > .menu {
-    list-style: none !important;
-    float: left !important;
-    *zoom: 1 !important;
+    list-style: none;
+    float: left;
+    *zoom: 1;
 }
 
     .main-navigation > .menu:after {
-        content: " " !important;
-        clear: both !important;
-        display: block !important;
-        overflow: hidden !important;
-        height: 0 !important;
+        content: " ";
+        clear: both;
+        display: block;
+        overflow: hidden;
+        height: 0;
     }
 
 @media screen and (min-width: 991px) {
     .main-navigation > .menu {
-        display: block !important;
+        display: block;
     }
 }
 
 @media screen and (max-width: 991px) {
     .main-navigation > .menu {
-        display: none !important;
+        display: none;
     }
 }
 
 .main-navigation > .menu li {
-    float: left !important;
+    float: left;
 }
 
     .main-navigation > .menu li a {
-        display: block !important;
-        padding: 30px 15px !important;
-        font-size: 16px !important;
-        font-size: 1.1428571429em !important;
-        color: #666a6c !important;
-        position: relative !important;
-        -webkit-transition: .3s ease !important;
-        transition: .3s ease !important;
+        display: block;
+        padding: 30px 15px;
+        font-size: 16px;
+        font-size: 1.1428571429em;
+        color: #666a6c;
+        position: relative;
+        -webkit-transition: .3s ease;
+        transition: .3s ease;
     }
 
         .main-navigation > .menu li a:after {
-            content: "|" !important;
-            position: absolute !important;
-            right: 0 !important;
-            color: #ddd !important;
-            font-weight: 300 !important;
+            content: "|";
+            position: absolute;
+            right: 0;
+            color: #ddd;
+            font-weight: 300;
         }
 
     .main-navigation > .menu li.home {
-        padding-left: 30px !important;
-        padding-right: 30px !important;
-        position: relative !important;
+        padding-left: 30px;
+        padding-right: 30px;
+        position: relative;
     }
 
         .main-navigation > .menu li.home a {
-            padding: 30px 0 !important;
-            position: static !important;
+            padding: 30px 0;
+            position: static;
         }
 
             .main-navigation > .menu li.home a:after {
-                position: absolute !important;
-                right: 0 !important;
+                position: absolute;
+                right: 0;
             }
 
     .main-navigation > .menu li.current-menu-item a, .main-navigation > .menu li:hover a {
-        color: #45b77d !important;
-        border-bottom: 2px solid #45b77d !important;
+        color: #45b77d;
+        border-bottom: 2px solid #45b77d;
     }
 
 .mobile-navigation {
-    position: absolute !important;
-    top: 100% !important;
-    background: white !important;
-    width: 100% !important;
-    left: 0 !important;
-    padding: 10px 0 !important;
-    border-bottom-left-radius: 3px !important;
-    border-bottom-right-radius: 3px !important;
-    display: none !important;
+    position: absolute;
+    top: 100%;
+    background: white;
+    width: 100%;
+    left: 0;
+    padding: 10px 0;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    display: none;
 }
 
 @media screen and (min-width: 991px) {
     .mobile-navigation {
-        display: none !important;
+        display: none;
     }
 }
 
 .mobile-navigation .menu {
-    list-style: none !important;
+    list-style: none;
 }
 
     .mobile-navigation .menu a {
-        padding: 10px 20px !important;
-        display: block !important;
+        padding: 10px 20px;
+        display: block;
     }
 
 .search-form {
-    float: right !important;
-    position: absolute !important;
-    right: 0 !important;
-    top: 0 !important;
-    bottom: 0 !important;
-    width: 300px !important;
+    float: right;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 300px;
 }
 
 @media screen and (max-width: 480px) {
     .search-form {
-        width: 200px !important;
+        width: 200px;
     }
 }
 
 .search-form label {
-    position: absolute !important;
-    left: 0 !important;
-    color: #898e90 !important;
-    z-index: 1 !important;
-    top: 35px !important;
-    left: 20px !important;
+    position: absolute;
+    left: 0;
+    color: #898e90;
+    z-index: 1;
+    top: 35px;
+    left: 20px;
 }
 
 .search-form input {
-    position: absolute !important;
-    right: 0 !important;
-    top: 0 !important;
-    width: 100% !important;
-    bottom: 0 !important;
-    outline: none !important;
-    padding-left: 50px !important;
-    background: #eeeeee !important;
-    border: none !important;
-    border-top-right-radius: 3px !important;
-    border-bottom-right-radius: 3px !important;
-    box-shadow: inset 1px 0 2px rgba(0, 0, 0, 0.2) !important;
-    -webkit-transition: .3s ease !important;
-    transition: .3s ease !important;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    bottom: 0;
+    outline: none;
+    padding-left: 50px;
+    background: #eeeeee;
+    border: none;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    box-shadow: inset 1px 0 2px rgba(0, 0, 0, 0.2);
+    -webkit-transition: .3s ease;
+    transition: .3s ease;
 }
 
     .search-form input:hover, .search-form input:focus {
-        background-color: white !important;
+        background-color: white;
     }
 
 .right-section {
-    color: white !important;
+    color: white;
 }
 
     .right-section a {
-        color: white !important;
-        margin-left: 20px !important;
-        -webkit-transition: .3s ease !important;
-        transition: .3s ease !important;
+        color: white;
+        margin-left: 20px;
+        -webkit-transition: .3s ease;
+        transition: .3s ease;
     }
 
 @media screen and (max-width: 640px) {
     .right-section a {
-        display: block !important;
-        text-align: right !important;
-        margin-bottom: 5px !important;
+        display: block;
+        text-align: right;
+        margin-bottom: 5px;
     }
 }
 
 .right-section a small {
-    color: #e9e9e9 !important;
-    font-style: italic !important;
+    color: #e9e9e9;
+    font-style: italic;
 }
 
 .right-section a:hover {
-    color: #45b77d !important;
+    color: #45b77d;
 }
 
 .breadcrumbs {
-    padding: 30px 0 !important;
+    padding: 30px 0;
 }
 
     .breadcrumbs a:after {
-        content: " " !important;
-        width: 7px !important;
-        height: 5px !important;
-        background: url(images/arrow.png) no-repeat !important;
-        display: inline-block !important;
-        margin-left: 10px !important;
-        margin-right: 10px !important;
-        vertical-align: middle !important;
+        content: " ";
+        width: 7px;
+        height: 5px;
+        background: url(images/arrow.png) no-repeat;
+        display: inline-block;
+        margin-left: 10px;
+        margin-right: 10px;
+        vertical-align: middle;
     }
 
 .home-slider {
