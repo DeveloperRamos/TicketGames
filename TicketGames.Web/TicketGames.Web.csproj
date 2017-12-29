@@ -66,11 +66,13 @@
   <ItemGroup>
     <Content Include="app\controllers\addressController.js" />
     <Content Include="app\controllers\cartController.js" />
+    <Content Include="app\controllers\errorController.js" />
     <Content Include="app\controllers\indexController.js" />
     <Content Include="app\controllers\paymentController.js" />
     <Content Include="app\controllers\productController.js" />
     <Content Include="app\controllers\registerController.js" />
     <Content Include="app\controllers\searchController.js" />
+    <Content Include="app\controllers\successController.js" />
     <Content Include="app\directives\breadcrumb\breadcrumb.html" />
     <Content Include="app\directives\breadcrumb\breadcrumbDirective.js" />
     <Content Include="app\directives\loading\loading.html" />
@@ -91,10 +93,12 @@
     <Content Include="app\services\showcaseService.js" />
     <Content Include="app\views\address.html" />
     <Content Include="app\views\cart.html" />
+    <Content Include="app\views\error.html" />
     <Content Include="app\views\payment.html" />
     <Content Include="app\views\product.html" />
     <Content Include="app\views\register.html" />
     <Content Include="app\views\search.html" />
+    <Content Include="app\views\success.html" />
     <Content Include="content\bootstrap-theme.css" />
     <Content Include="content\bootstrap-theme.min.css" />
     <Content Include="content\bootstrap.css" />

@@ -42,7 +42,7 @@
 
 <div class="product-list" style="text-align: center">
 
-    <div class="product" style="width: 100%;" ng-show="vmSearch.products ? true : false">
+    <div class="product" style="width: 100%;" ng-show="{{vmSearch.hasProducts}}">
         <div class="inner-product">
             <h1>Não foi encontrado produto</h1>
         </div>
@@ -83,7 +83,7 @@
     <div class="pagination">
         <a href="#" class="page-number"><i class="fa fa-angle-left"></i></a>
         <span class="page-number current">1</span>
-        <a ng-show="vmSearch.pages.length <== 1" ng-repeat="page in vmSearch.pages" href="" class="page-number">{{page.number + 1}}</a>
+        <a ng-show="{{vmSearch.hasProducts}}" ng-repeat="page in vmSearch.pages" href="" class="page-number">{{page.number + 1}}</a>
         <!--<a href="#" class="page-number">2</a>
             <a href="#" class="page-number">3</a>
             <a href="#" class="page-number">...</a>

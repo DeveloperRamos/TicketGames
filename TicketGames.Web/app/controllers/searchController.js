@@ -5,6 +5,8 @@ ticketGamesApp
         function ($scope, $cookieStore, $rootScope, $routeParams, $sce, searchService, globalService, cartService) {
             var vmSearch = this;
 
+            vmSearch.hasProducts = false;
+
             var initialize = function () {
 
                 if ($rootScope.bread) {
@@ -36,6 +38,9 @@ ticketGamesApp
                 searchService.searchProducts(search, function (response) {
                     //vmSearch.products = response.data;
                     $scope.products = response.data;
+
+                    vmSearch.hasProducts = response.data.length > 0 ? true : false;
+
                     pagination(response.data, 8);
                 });
 
