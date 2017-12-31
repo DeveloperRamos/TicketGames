@@ -15,6 +15,8 @@
         .when('/Endereco', { templateUrl: 'app/views/address.html', controller: 'addressController', controllerAs: 'vmAddress' })
         .when('/Cadastro/:session', { templateUrl: 'app/views/register.html', controller: 'registerController', controllerAs: 'vmRegister' })
         .when('/Cadastro', { templateUrl: 'app/views/register.html', controller: 'registerController', controllerAs: 'vmRegister' })
-        .when('/Pagamento', { templateUrl: 'app/views/payment.html', controller:'paymentController', controllerAs: 'vmPayment'})
+        .when('/Pagamento', { templateUrl: 'app/views/payment.html', controller: 'paymentController', controllerAs: 'vmPayment' })
+        .when('/Sucesso', { templateUrl: 'app/views/success.html', controller: 'successController', controllerAs: 'vmSuccess' })
+        .when('/Error', { templateUrl: 'app/views/error.html', controller: 'errorController', controllerAs: 'vmError' })
         .otherwise({ redirectTo: '/' });
 }]);
