@@ -69,6 +69,11 @@ namespace TicketGames.Domain.Services
             throw new NotImplementedException();
         }
 
+        public List<Product> GetProducts(int categoryId, string name)
+        {
+            return this._catalogRepository.GetProducts(categoryId, name);
+        }
+
         public List<Product> GetRecentProducts(long categoryId)
         {
             return this._catalogRepository.GetRecentProductsByCategory(categoryId);

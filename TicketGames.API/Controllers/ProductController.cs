@@ -71,7 +71,7 @@ namespace TicketGames.API.Controllers
         {
             IList<Product> products = null;
 
-            if (search.CategoryId > 0)
+            if (search.CategoryId > 0 && string.IsNullOrEmpty(search.Word))
             {
                 var key = string.Concat("Catalog:Products:Category:", search.CategoryId.ToString());
 
@@ -89,9 +89,9 @@ namespace TicketGames.API.Controllers
             }
             else
             {
-                if (search.CategoryId > 0 && search.DepartmentId == 0 && string.IsNullOrEmpty(search.Word))
+                if (search.CategoryId > 0 && search.DepartmentId == 0 && !string.IsNullOrEmpty(search.Word))
                 {
-                    var result = this._catalogService.GetProducts(search.CategoryId);
+                    var result = this._catalogService.GetProducts(search.CategoryId, search.Word);
 
                     products = new Product().MappingProducts(result);
                 }

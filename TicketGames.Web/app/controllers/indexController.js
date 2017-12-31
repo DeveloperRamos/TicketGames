@@ -1,8 +1,8 @@
 ﻿'use strict';
 
 ticketGamesApp
-    .controller('indexController', ['$scope', '$cookieStore', '$rootScope', '$location', 'cartService', 'categoryService', 'participantService', 'globalService', '$window', 'cookieService',
-        function ($scope, $cookieStore, $rootScope, $location, cartService, categoryService, partcipantService, globalService, $window, cookieService) {
+    .controller('indexController', ['$scope', '$cookieStore', '$rootScope', '$location', '$routeParams', 'cartService', 'categoryService', 'participantService', 'globalService', '$window', 'cookieService',
+        function ($scope, $cookieStore, $rootScope, $location, $routeParams, cartService, categoryService, partcipantService, globalService, $window, cookieService) {
             var vmIndex = this;
 
             vmIndex.sumCart = 0;
@@ -17,14 +17,14 @@ ticketGamesApp
 
                 vmIndex.logged = logged ? logged : false;
 
-                getCategories();                
+                getCategories();
 
                 if ($rootScope.bread) {
                     $rootScope.bread.hide();
                 }
 
 
-            };            
+            };
 
             var getCategories = function () {
 
@@ -71,6 +71,22 @@ ticketGamesApp
                         var teste = error;
                     });
 
+                }
+            };
+
+            vmIndex.search = function () {
+
+                if (vmIndex.word) {
+
+                    if ($routeParams.cat) {
+                        var CategoryId = parseInt($routeParams.cat)
+
+                        $location.url('/Busca?cat=' + CategoryId + '&prod=' + vmIndex.word);
+                    }
+                    else {
+
+                        $location.url('/Busca?prod=' + vmIndex.word);
+                    }
                 }
             };
 

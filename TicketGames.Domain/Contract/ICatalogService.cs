@@ -10,6 +10,7 @@ namespace TicketGames.Domain.Contract
         List<Product> GetProducts(int categoryId);
         List<Product> GetProducts(string name);
         List<Product> GetRecentProducts(long categoryId);
+        List<Product> GetProducts(int categoryId, string name);
         bool CreateOrUpdateImage(Product product);
     }
 }
