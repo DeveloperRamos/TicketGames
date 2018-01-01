@@ -17,6 +17,7 @@ ticketGamesApp
 
                     var obj = {
                         "title": 'Error',
+                        "fa": 'fa fa-male',
                         "pages": []
                     };
 
