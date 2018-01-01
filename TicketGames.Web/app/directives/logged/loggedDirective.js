@@ -7,8 +7,17 @@
         },
         replace: false,
         templateUrl: "app/directives/logged/logged.html",
-        controller: function ($scope, $rootScope, $window, $sce, globalService) {
+        controller: function ($scope, $rootScope, $window, $sce, globalService, accountService) {
             var vmLogged = this;
+
+            $scope.balance = 0;
+
+            accountService.get(function (response) {
+
+                $scope.balance = response.data.Balance;
+
+            });
+
 
 
             $rootScope.logged = {

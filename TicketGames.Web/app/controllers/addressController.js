@@ -15,9 +15,11 @@ ticketGamesApp
 
                     var obj = {
                         "title": 'Endereço',
+                        "fa": 'fa fa-bars',
                         "pages": [{
                             "page": "Carrinho",
-                            "title": "Carrinho"
+                            "title": "Carrinho",
+                            "fa": "fa fa-shopping-cart"
                         }]
                     };
 

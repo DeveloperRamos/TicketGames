@@ -140,7 +140,7 @@ q {
     }
 
 small {
-    font-size: 80% !important;
+    font-size: 100% !important;
 }
 
 sub,
@@ -2497,7 +2497,7 @@ form textarea {
 
 .product-list .product .inner-product {
     background: white;
-    padding: 30px;
+    padding: 20px;
     border-radius: 3px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
 }

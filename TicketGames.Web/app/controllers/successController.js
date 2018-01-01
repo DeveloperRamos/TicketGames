@@ -17,6 +17,7 @@ ticketGamesApp
 
                     var obj = {
                         "title": 'Sucesso',
+                        "fa": 'fa fa-child',
                         "pages": []
                     };
 

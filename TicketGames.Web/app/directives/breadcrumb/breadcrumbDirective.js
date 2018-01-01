@@ -14,7 +14,7 @@
             $rootScope.bread = {
                 text: function (obj) {
 
-                    var html = '<a href="#/">Início</a>';
+                    var html = '<a href="#/"><i class="icon-home"></i> Início</a>';
 
 
                     angular.forEach(obj.pages, function (value, key) {
@@ -22,12 +22,22 @@
                         //<a href="#/">Início</a>
                         //    <span>Cart</span>
 
+                        if (value.fa) {
+                            html = html + '<a href="#/' + value.page + '"><i class="' + value.fa + '"></i> ' + value.title + '</a> ';
+                        } else {
+                            html = html + '<a href="#/' + value.page + '">' + value.title + '</a> ';
+                        }
 
-                        html = html + '<a href="#/' + value.page + '">' + value.title + '</a> ';
 
                     });
 
-                    html = html + '<span>' + obj.title + '</span>';
+                    if (obj.fa) {
+                        html = html + '<span><i class="' + obj.fa + '"></i> ' + obj.title + '</span>';
+                    } else {
+                        html = html + '<span>' + obj.title + '</span>';
+                    }
+
+
 
                     $scope.html = html;
 
@@ -47,10 +57,10 @@
                 }
             }
 
-            $scope.trustAsHtml = function (html) {             
+            $scope.trustAsHtml = function (html) {
 
                 return $sce.trustAsHtml(html);
-              
+
             };
 
 

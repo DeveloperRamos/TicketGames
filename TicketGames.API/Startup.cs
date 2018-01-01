@@ -29,7 +29,7 @@ namespace TicketGames.API
             {
                 AllowInsecureHttp = true,
                 TokenEndpointPath = new PathString("/token"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
+                AccessTokenExpireTimeSpan = TimeSpan.FromHours(2),
                 Provider = new SimpleAuthorizationServerProvider()
             };
 

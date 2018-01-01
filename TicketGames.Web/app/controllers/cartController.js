@@ -17,6 +17,7 @@ ticketGamesApp
 
                     var obj = {
                         "title": 'Carrinho',
+                        "fa": 'fa fa-shopping-cart',
                         "pages": []
                     };
 
