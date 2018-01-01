@@ -32,7 +32,7 @@ namespace TicketGames.API.Controllers
         }
 
         [Authorize]
-        [HttpGet, Route()]
+        [HttpGet, Route("me")]
         public async Task<IHttpActionResult> Get()
         {
             try

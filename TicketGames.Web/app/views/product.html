@@ -36,10 +36,10 @@
             <div class="addtocart-bar">
                 <form>
                     <label for="#">Quantidade</label>
-                    
+
                     <select ng-model="vmProduct.quantity" ng-options="option as option for option in vmProduct.options" ng-init="vmProduct.quantity='1'"></select>
-                    
-                    <!--<select name="#" ng-model="vmProduct.quantity">                       
+
+                    <!--<select name="#" ng-model="vmProduct.quantity">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -69,11 +69,11 @@
         <div ng-repeat="product in vmProduct.recent | orderBy: 'Order'" class="product">
             <div class="inner-product" style="text-align: center !important;">
                 <div class="figure-image">
-                    <!--<a href="#/Produto/{{product.Id}}"><img src="../../images/{{product.Id + '.png'}}" alt="{{product.Name}}" class="img204x234"></a>-->                   
-                    
+                    <!--<a href="#/Produto/{{product.Id}}"><img src="../../images/{{product.Id + '.png'}}" alt="{{product.Name}}" class="img204x234"></a>-->
+
                     <img ng-repeat="image in product.Images | filter: { ImageType: 2 }" src="{{image.URL}}" alt="{{product.Name}}" class="img204x234">
                 </div>
-                <h3 class="product-title" style="text-align: center !important;"><a href="#/Produto/{{product.Id}}">{{product.Name}}</a></h3>
+                <h3 class="product-title" style="text-align: center !important;"><a href="#/Produto/{{product.Id}}"><b>{{product.Name}}</b></a></h3>
                 <small class="price" style="text-align: center !important;">{{product.Value | currency: 'R$ '}}</small>
                 <!--<p>Lorem ipsum dolor sit consectetur adipiscing elit do eiusmod tempor...</p>-->
 

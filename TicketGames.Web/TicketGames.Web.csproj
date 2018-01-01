@@ -83,6 +83,7 @@
     <Content Include="app\directives\modal\modalDirective.js" />
     <Content Include="app\directives\showcase\showcase.html" />
     <Content Include="app\directives\showcase\showcaseDirective.js" />
+    <Content Include="app\services\accountService.js" />
     <Content Include="app\services\cartService.js" />
     <Content Include="app\services\categoryService.js" />
     <Content Include="app\services\cookieService.js" />

@@ -51,20 +51,7 @@ namespace TicketGames.API.Security
             {
                 context.SetError("invalid_grant", "The user name or password is incorrect.");
                 return;
-            }
-
-
-            //using (IUserRepository _repository = new UserRepository(new Data.DataContexts.OAuthServerDataContext()))
-            //{
-            //    var user = _repository.Authenticate(context.UserName, context.Password);
-
-            //    if (user == null)
-            //    {
-            //        context.SetError("invalid_grant", "The user name or password is incorrect.");
-            //        return;
-            //    }
-            //}           
-
+            }            
 
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
             identity.AddClaim(new Claim(ClaimTypes.Sid, participant.Id.ToString()));
@@ -72,7 +59,7 @@ namespace TicketGames.API.Security
             identity.AddClaim(new Claim("role", "user"));
             identity.AddClaim(new Claim("participant_Id", participant.Id.ToString()));
 
-            context.Validated(identity);
+            context.Validated(identity);            
         }
     }
 }
