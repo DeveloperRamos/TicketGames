@@ -60,7 +60,9 @@ ticketGamesApp
 
                     partcipantService.login(participant, function (response) {
 
-                        globalService.setItem('token', response.data.access_token);
+                        cookieService.setItem('token', response.data.access_token);
+
+                        //globalService.setItem('token', response.data.access_token);
 
                         globalService.setItem('logged', true);
 

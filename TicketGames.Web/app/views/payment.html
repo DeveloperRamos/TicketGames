@@ -4,7 +4,7 @@
             <th class="product-name" style="text-align:center !important">Produto</th>
             <th class="product-price" style="text-align:center !important">Valor</th>
             <th class="product-qty" style="text-align:center !important">Quantidade</th>
-            <th class="action"></th>
+            <th class="action" style="text-align:center !important"><a href=""><i class="fa fa-ticket"></i></a></th>
         </tr>
     </thead>
     <tbody>
@@ -44,3 +44,37 @@
         </tr>
     </tbody>
 </table>
+<div class="value-payment" style="text-align:center !important; width: 450px !important;">
+    <h1><b>Valor de pagamento</b></h1>
+    <p><strong>Pontos:</strong> 90,00</p>
+    <p><strong>Dinheiro:</strong> R$ 110,00</p>
+    <p class="total"><strong>Total</strong><span class="num"> R$ 200,00</span></p>
+    <!--<p>
+        <a href="#" class="button muted">Comprar mais</a>
+        <button ng-click="vmCart.next()" class="button">Próximo</button>
+
+    </p>-->
+</div> <!-- .cart-total -->
+<div class="form-payment" style="width: 450px !important;">
+    <h1 style="text-align:center !important"><b>Forma de pagamento</b></h1>
+    <p><strong>Nome:</strong>  <input type="text" /></p>
+    <p><strong>Número:</strong> <input type="text" /></p>
+    <p class="total"><strong>Total</strong><span class="num">{{vmCart.Total | currency: 'R$ '}}</span></p>
+    <p>
+        <button ng-click="" class="button">Próximo</button>
+        <!--<a href="#/Endereco" class="button">Próximo</a>-->
+    </p>
+</div> <!-- .cart-total -->
+<div class="delivery-address" style="text-align:center !important; width: 450px !important;">
+    <h1><b>Endereço de entrega</b></h1>
+
+    <address>
+        <strong>Marcio André Ramos Almeida</strong>
+        <br />
+        Rua Retiro, 95, Apartamento 117
+        <br />
+        Maranhão, SP 03073-005
+        <br>
+        <abbr title="Telefone para contato">Contato:</abbr> (11) 9 8020-3026
+    </address>
+</div> <!-- .cart-total -->

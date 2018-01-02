@@ -7,8 +7,10 @@
         clear: clear
     };   
 
-    function setItem(name, value) {
-        $cookieStore.put(name, value);        
+    function setItem(name, value, seconds = 7199) {
+        var expireDate = new Date();
+        expireDate.setSeconds(seconds);        
+        $cookies.put(name, JSON.stringify(value), { 'expires': expireDate });        
     };
 
     function removeItem(name) {
