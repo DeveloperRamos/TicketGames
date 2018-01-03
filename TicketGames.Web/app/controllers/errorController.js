@@ -1,13 +1,13 @@
 ﻿'use strict';
 
 ticketGamesApp
-    .controller('errorController', ['$scope', '$cookieStore', '$rootScope', 'globalService',
-        function ($scope, $cookieStore, $rootScope, globalService) {
+    .controller('errorController', ['$scope', '$cookieStore', '$rootScope', 'globalService', 'cookieService',
+        function ($scope, $cookieStore, $rootScope, globalService, cookieService) {
             var vmError = this;
 
             var initialize = function () {
-
-                var logged = globalService.getItem('logged');
+                
+                var logged = cookieService.getItem('logged');
 
                 vmError.logged = logged ? logged : false;
 

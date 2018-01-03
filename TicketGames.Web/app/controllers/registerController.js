@@ -1,14 +1,14 @@
 ﻿'use strict';
 
 ticketGamesApp
-    .controller('registerController', ['$scope', '$cookieStore', '$rootScope', '$routeParams', '$location', 'searchService', 'participantService', 'globalService',
-        function ($scope, $cookieStore, $rootScope, $routeParams, $location, searchService, participantService, globalService) {
+    .controller('registerController', ['$scope', '$cookieStore', '$rootScope', '$routeParams', '$location', 'searchService', 'participantService', 'globalService', 'cookieService',
+        function ($scope, $cookieStore, $rootScope, $routeParams, $location, searchService, participantService, globalService, cookieService) {
             var vmRegister = this;
 
             var initialize = function () {
                 vmRegister.participant = {};
 
-                var logged = globalService.getItem('logged');
+                var logged = cookieService.getItem('logged');
 
                 logged = logged ? true : false;
                 var isSession = $routeParams.session ? true : false;

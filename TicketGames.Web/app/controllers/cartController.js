@@ -1,8 +1,8 @@
 ﻿'use strict';
 
 ticketGamesApp
-    .controller('cartController', ['$scope', '$cookieStore', '$rootScope', '$location', '$window', 'cartService', 'globalService',
-        function ($scope, $cookieStore, $rootScope, $location, $window, cartService, globalService) {
+    .controller('cartController', ['$scope', '$cookieStore', '$rootScope', '$location', '$window', 'cartService', 'globalService', 'cookieService',
+        function ($scope, $cookieStore, $rootScope, $location, $window, cartService, globalService, cookieService) {
             var vmCart = this;
 
             vmCart.Subtotal = 0.00;
@@ -68,7 +68,8 @@ ticketGamesApp
             };
 
             vmCart.next = function () {
-                var logged = globalService.getItem('logged');
+
+                var logged = cookieService.getItem('logged');
 
                 logged = logged ? logged : false;
 
