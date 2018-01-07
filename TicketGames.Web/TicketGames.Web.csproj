@@ -88,6 +88,7 @@
     <Content Include="app\services\categoryService.js" />
     <Content Include="app\services\cookieService.js" />
     <Content Include="app\services\globalService.js" />
+    <Content Include="app\services\orderService.js" />
     <Content Include="app\services\participantService.js" />
     <Content Include="app\services\productService.js" />
     <Content Include="app\services\searchService.js" />
