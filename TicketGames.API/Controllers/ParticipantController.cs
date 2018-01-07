@@ -163,32 +163,6 @@ namespace TicketGames.API.Controllers
         {
             try
             {
-
-
-                string folder = @"C:\Configuration"; //nome do diretorio a ser criado
-
-                //Se o diretório não existir...
-
-                if (!Directory.Exists(folder))
-                {
-
-                    //Criamos um com o nome folder
-                    Directory.CreateDirectory(folder);
-
-                    var criado = Directory.Exists(folder);
-
-
-                    return Ok(string.Format("Diretorio criado ? {0}", criado.ToString()));
-
-                }
-                else
-                {
-                    return BadRequest("Diretorio já existe");
-                }
-
-
-
-
                 long participantId;
 
                 ClaimsPrincipal principal = Request.GetRequestContext().Principal as ClaimsPrincipal;

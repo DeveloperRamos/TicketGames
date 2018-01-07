@@ -6,6 +6,9 @@ ticketGamesApp
             var vmPayment = this;
 
             var startObjects = function () {
+
+                vmPayment.order = {};
+
                 vmPayment.balance = parseFloat(globalService.getItem('balance'));
 
                 vmPayment.bandImages = [];
@@ -18,6 +21,7 @@ ticketGamesApp
                 vmPayment.enableCredit = false;
                 vmPayment.enablePoint = false;
                 vmPayment.enableParcel = false;
+                vmPayment.order.paymentMethod = 1;
                 vmPayment.brand = '';
 
 
@@ -101,7 +105,8 @@ ticketGamesApp
 
                                 vmPayment.plots.push({
                                     parcel: sum,
-                                    description: value.quantity + ' x ' + "R$ " + value.installmentAmount.toFixed(2).replace(".", ",")
+                                    description: value.quantity + ' x ' + "R$ " + value.installmentAmount.toFixed(2).replace(".", ","),
+                                    value: value.installmentAmount.toFixed(2)
                                 });
                             }, log);
 
@@ -228,6 +233,8 @@ ticketGamesApp
 
             vmPayment.enable = function (payment) {
 
+                vmPayment.order = {};
+
                 switch (payment) {
                     case 'billet': {
 
@@ -235,18 +242,37 @@ ticketGamesApp
                         vmPayment.enableCredit = false;
                         vmPayment.enablePoint = false;
 
+                        vmPayment.order.paymentMethod = 2;
+
                         break;
                     }
                     case 'credit': {
 
+                        vmPayment.order.card = {
+                            brand: '',
+                            name: '',
+                            number: '',
+                            expiryMonth: '',
+                            expiryYear: '',
+                            cvv: '',
+                            parcel: {}
+                        };
+
+
                         vmPayment.enableBillet = false;
                         vmPayment.enableCredit = true;
                         vmPayment.enablePoint = false;
+
+                        vmPayment.order.paymentMethod = 3;
+
                         break;
                     }
                     default: {
+
                         vmPayment.enableBillet = false;
                         vmPayment.enableCredit = false;
+
+                        vmPayment.order.paymentMethod = 1;
                     }
                 }
             };
@@ -264,6 +290,7 @@ ticketGamesApp
                             var brand = response.brand.name;
 
                             vmPayment.brand = brand;
+                            vmPayment.order.card.brand = brand;
 
                             var band = angular.element(document.querySelector('#' + brand.toUpperCase()));
                             band.removeClass('creditHidden');
@@ -287,9 +314,37 @@ ticketGamesApp
 
             vmPayment.redemption = function (order) {
 
-                var fincla = order;
+                switch (order.paymentMethod) {
+                    case 3: {
 
+                        order.card.senderHash = PagSeguroDirectPayment.getSenderHash();
 
+                        PagSeguroDirectPayment.createCardToken({
+                            brand: order.card.brand,
+                            cardNumber: order.card.number,
+                            cvv: order.card.cvv,
+                            expirationMonth: order.card.expiryMonth,
+                            expirationYear: order.card.expiryYear,
+                            success: function (response) {
+                                //token gerado, esse deve ser usado na chamada da API do Checkout Transparente
+
+                                var teste = response;
+                                order.card.creditCardToken = response.card.token;
+                            },
+                            error: function (response) {
+                                //tratamento do erro
+                            },
+                            complete: function (response) {
+                                //tratamento comum para todas chamadas
+                            }
+                        });
+
+                        break;
+                    }
+                    default: {
+
+                    }
+                };                
             };
 
             $scope.trustAsHtml = function (html) {

@@ -7,7 +7,7 @@
         },
         replace: false,
         templateUrl: "app/directives/logged/logged.html",
-        controller: function ($scope, $rootScope, $window, $sce, globalService, accountService) {
+        controller: function ($scope, $rootScope, $window, $sce, globalService, accountService, cookieService) {
             var vmLogged = this;
 
             $scope.balance = 0;
@@ -47,6 +47,7 @@
             $scope.logout = function () {
 
                 globalService.clear();
+                cookieService.clear();
                 $window.location.href = "/";
             };
 

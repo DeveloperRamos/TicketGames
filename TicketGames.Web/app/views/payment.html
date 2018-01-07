@@ -77,13 +77,13 @@
         <div class="form-group">
             <label class="col-sm-3 control-label" for="card-holder-name">Nome</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" name="card-holder-name" ng-model="vmPayment.vmPayment.order.card.name" id="card-holder-name" placeholder="Nome impresso no cartão">
+                <input type="text" class="form-control" name="card-holder-name" ng-model="vmPayment.order.card.name" id="card-holder-name" placeholder="Nome impresso no cartão">
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-3 control-label" for="card-number">Cartão</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" maxlength="16" ng-change="vmPayment.getBrandAndParcel(vmPayment.vmPayment.order.card.number)" ng-model="vmPayment.vmPayment.order.card.number" name="card-number" id="card-number" placeholder="Número do cartão">
+                <input type="text" class="form-control" maxlength="16" ng-change="vmPayment.getBrandAndParcel(vmPayment.order.card.number)" ng-model="vmPayment.order.card.number" name="card-number" id="card-number" placeholder="Número do cartão">
             </div>
         </div>
         <div class="form-group">
@@ -110,17 +110,17 @@
                     </div>
                     <div class="col-xs-3">
                         <select class="form-control" name="expiry-year" ng-model="vmPayment.order.card.expiryYear" style="width: 147% !important">
-                            <option value="18">2018</option>
-                            <option value="19">2019</option>
-                            <option value="20">2020</option>
-                            <option value="21">2021</option>
-                            <option value="22">2022</option>
-                            <option value="23">2023</option>
-                            <option value="24">2024</option>
-                            <option value="25">2025</option>
-                            <option value="26">2026</option>
-                            <option value="27">2027</option>
-                            <option value="28">2028</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                            <option value="2026">2026</option>
+                            <option value="2027">2027</option>
+                            <option value="2028">2028</option>
                         </select>
                     </div>
                 </div>
@@ -129,13 +129,13 @@
         <div class="form-group">
             <label class="col-sm-3 control-label" for="cvv">Código</label>
             <div class="col-sm-3">
-                <input type="text" class="form-control" ng-model="vmPayment.vmPayment.order.card.cvv" name="cvv" maxlength="3" id="cvv" placeholder="CVV">
+                <input type="text" class="form-control" ng-model="vmPayment.order.card.cvv" name="cvv" maxlength="3" id="cvv" placeholder="CVV">
             </div>
         </div>
         <div class="form-group" ng-show="vmPayment.enableParcel">
             <label class="col-sm-3 control-label" for="install">Parcelas</label>
             <div class="col-sm-3">
-                <select ng-model="vmPayment.vmPayment.order.card.parcel" ng-options="option as option.description for option in vmPayment.plots track by option.parcel"></select>
+                <select ng-model="vmPayment.order.card.parcel" ng-options="option as option.description for option in vmPayment.plots track by option.parcel"></select>
             </div>
         </div>
     </div>
@@ -144,7 +144,7 @@
         <a href="#" class="button muted" ng-show="!vmPayment.enableCredit && !vmPayment.enableBillet">Comprar mais</a>
         <!--<button type="button" class="button muted" ng-show="!vmPayment.enableCredit && !vmPayment.enableBillet">Comprar mais</button>-->
         <button type="button" class="button muted" ng-click="vmPayment.enable()" ng-show="vmPayment.enableCredit || vmPayment.enableBillet">Voltar</button>
-        <button type="button" class="button" ng-click="vmPayment.redemption(vmPayment.vmPayment.order)" ng-show="vmPayment.enableCredit || vmPayment.enableBillet || vmPayment.enablePoint">Finalizar</button>
+        <button type="button" class="button" ng-click="vmPayment.redemption(vmPayment.order)" ng-show="vmPayment.enableCredit || vmPayment.enableBillet || vmPayment.enablePoint">Finalizar</button>
 
     </div>
     <!--<form class="form-horizontal" role="form">
