@@ -8,6 +8,7 @@ namespace TicketGames.API.Models.Order
 {
     public class Cart
     {
+        public long CartId { get; set; }
         public long ProductId { get; set; }
         public string Product { get; set; }
         public int Quantity { get; set; }
@@ -29,6 +30,7 @@ namespace TicketGames.API.Models.Order
 
                 carts.Add(new Cart()
                 {
+                    CartId = item.CartId,
                     ProductId = item.ProductId,
                     Product = item.Product.Name,
                     Quantity = item.Quantity,

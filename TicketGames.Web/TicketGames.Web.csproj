@@ -104,6 +104,13 @@
     <Content Include="content\bootstrap-theme.min.css" />
     <Content Include="content\bootstrap.css" />
     <Content Include="content\bootstrap.min.css" />
+    <Content Include="content\images\boleto-bancario.jpg" />
+    <Content Include="content\images\icon-boleto.png" />
+    <Content Include="content\images\icon-boleto2.png" />
+    <Content Include="content\images\icon-creditcard.png" />
+    <Content Include="content\images\ticketgames.png" />
+    <Content Include="content\images\TicketGames3.png" />
+    <Content Include="content\images\TicketGamesLogo.png" />
     <Content Include="content\js\loading-bar.js" />
     <Content Include="content\loading-bar.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

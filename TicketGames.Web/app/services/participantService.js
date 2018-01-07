@@ -6,7 +6,8 @@
         login: login,
         update: update,
         createParticipant: createParticipant,
-        getParticipantBySession: getParticipantBySession
+        getParticipantBySession: getParticipantBySession,
+        getSession: getSession
     };
 
     function createParticipant(participant, successCallback, errorCallback) {
@@ -22,13 +23,13 @@
             .then(successCallback, errorCallback);
     };
 
-    function getParticipant(successCallback, errorCallback) {        
+    function getParticipant(successCallback, errorCallback) {
         $http.get(global.service + urlBase + '/me')
             .then(successCallback, errorCallback);
     };
 
     function login(participant, successCallback, errorCallback) {
-        var data = "grant_type=password&username=" + participant.login + "&password=" + participant.password;                   
+        var data = "grant_type=password&username=" + participant.login + "&password=" + participant.password;
 
         $http.post(global.service + '/token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
             .then(successCallback, errorCallback);
@@ -41,7 +42,12 @@
             .error(function (error, status) {
                 common.errorMessage(error, null, status);
             });
-    }
+    };
+
+    function getSession(successCallback, errorCallback) {
+        $http.get(global.service + urlBase + '/session')
+            .then(successCallback, errorCallback);
+    };
 
 
     return service;

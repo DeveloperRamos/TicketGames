@@ -2967,6 +2967,15 @@ table.cart {
 
 .img204x234 {
     width: 100%;
-    height: 234px !important;
+    height: 234px;
     background-position: center center;
+}
+
+
+.creditHidden {
+    opacity: 0.3 !important;
+}
+
+.creditNotHidden {
+    opacity: 1.0 !important;
 }

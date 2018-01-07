@@ -23,9 +23,8 @@ ticketGamesApp
                     $rootScope.bread.hide();
                 }
 
-
             };
-
+           
             var getCategories = function () {
 
                 vmIndex.categories = cookieService.getItem('categories');
@@ -61,7 +60,7 @@ ticketGamesApp
                     partcipantService.login(participant, function (response) {
 
                         cookieService.setItem('token', response.data.access_token);
-                        
+
                         cookieService.setItem('logged', true);
 
                         $window.location.reload();

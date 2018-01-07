@@ -12,9 +12,15 @@ namespace TicketGames.PagSeguro
 {
     public class Session
     {
-        public string Id { get; set; }
+        public string Id;
 
-        public void CreateSession()
+
+        public Session()
+        {
+            this.Id = CreateSession();
+        }
+
+        private string CreateSession()
         {
             bool isSandbox = true;
             EnvironmentConfiguration.ChangeEnvironment(isSandbox);
@@ -25,11 +31,12 @@ namespace TicketGames.PagSeguro
 
                 Uol.PagSeguro.Domain.Direct.Session result = SessionService.CreateSession(credentials);
 
-                this.Id = result.id;
+                return result.id;
             }
             catch (PagSeguroServiceException exception)
             {
                 //Gravar Log do erro
+                return string.Empty;
             }
         }
     }

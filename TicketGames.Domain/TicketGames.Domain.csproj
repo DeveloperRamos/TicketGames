@@ -79,6 +79,11 @@
     <Compile Include="Services\ShowcaseService.cs" />
     <Compile Include="Services\TransactionService.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\TicketGames.PagSeguro\TicketGames.PagSeguro.csproj">
+      <Project>{0f5a2ffd-43be-490f-8b32-bdb4cc91831e}</Project>
+      <Name>TicketGames.PagSeguro</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
