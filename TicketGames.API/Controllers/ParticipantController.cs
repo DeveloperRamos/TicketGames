@@ -45,7 +45,7 @@ namespace TicketGames.API.Controllers
                 {
                     Participant participant = null;
 
-                    var key = string.Concat("Participant:Id:", participantId.ToString(),":Register");
+                    var key = string.Concat("Participant:Id:", participantId.ToString(), ":Register");
 
                     participant = CacheManager.GetObject<Participant>(key);
 
@@ -154,6 +154,45 @@ namespace TicketGames.API.Controllers
             }
 
             return Ok();
+        }
+
+        [Authorize]
+        [HttpGet, Route("session")]
+        public IHttpActionResult GetSessionPayment()
+        {
+            try
+            {
+                long participantId;
+
+                ClaimsPrincipal principal = Request.GetRequestContext().Principal as ClaimsPrincipal;
+
+                long.TryParse(principal.Claims.Where(c => c.Type == "participant_Id").Single().Value, out participantId);
+
+                if (participantId > 0)
+                {
+                    string session = null;
+
+                    var key = string.Concat("Participant:Id:", participantId.ToString(), ":Session");
+
+                    session = CacheManager.GetObject<string>(key);
+
+                    if (string.IsNullOrEmpty(session))
+                    {
+                        session = this._participantService.GetSession();
+
+                        if (!string.IsNullOrEmpty(session))
+                            CacheManager.StoreObject(key, session, LifetimeProfile.Long);
+                    }
+
+                    return Ok(session);
+                }
+
+                return BadRequest();
+            }
+            catch (Exception ex)
+            {
+                return NotFound();
+            }
         }
     }
 }

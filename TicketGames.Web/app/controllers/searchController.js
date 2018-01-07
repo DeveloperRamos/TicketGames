@@ -1,8 +1,8 @@
 ﻿'use strict';
 
 ticketGamesApp
-    .controller('searchController', ['$scope', '$cookieStore', '$rootScope', '$routeParams', '$sce', 'searchService', 'globalService', 'cartService',
-        function ($scope, $cookieStore, $rootScope, $routeParams, $sce, searchService, globalService, cartService) {
+    .controller('searchController', ['$scope', '$cookieStore', '$rootScope', '$routeParams', '$sce', 'searchService', 'globalService', 'cartService', 'cookieService',
+        function ($scope, $cookieStore, $rootScope, $routeParams, $sce, searchService, globalService, cartService, cookieService) {
             var vmSearch = this;
 
             vmSearch.hasProducts = false;
@@ -79,8 +79,8 @@ ticketGamesApp
             };
 
             vmSearch.addCart = function (productId) {
-
-                var logged = globalService.getItem('logged');
+                                
+                var logged = cookieService.getItem('logged');
 
                 logged = logged ? logged : false;
 

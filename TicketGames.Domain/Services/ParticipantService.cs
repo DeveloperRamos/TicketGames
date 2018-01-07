@@ -70,6 +70,14 @@ namespace TicketGames.Domain.Services
             return this._participantRepository.GetSessionBySession(session);
         }
 
+        public string GetSession()
+        {
+            var session = new TicketGames.PagSeguro.Session();            
+
+            return session.Id;
+
+        }
+
         public bool ValidateSession(string session, long participantId)
         {
             var result = this._participantRepository.GetSessionBySession(session);

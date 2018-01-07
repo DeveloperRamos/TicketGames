@@ -10,8 +10,7 @@ namespace TicktGames.PagSeguro.Tests
         [TestMethod]
         public void CreateSession()
         {
-            Session session = new Session();
-            session.CreateSession();
+            Session session = new Session();            
 
             Assert.IsTrue(!string.IsNullOrEmpty(session.Id));
 

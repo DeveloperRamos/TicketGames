@@ -1,14 +1,15 @@
 ﻿'use strict';
 
 ticketGamesApp
-    .controller('homeController', ['$scope', '$cookieStore', '$rootScope', 'showcaseService', 'productService', 'cartService', 'globalService',
-        function ($scope, $cookieStore, $rootScope, showcaseService, productService, cartService, globalService) {
+    .controller('homeController', ['$scope', '$cookieStore', '$rootScope', 'showcaseService', 'productService', 'cartService', 'globalService', 'cookieService',
+        function ($scope, $cookieStore, $rootScope, showcaseService, productService, cartService, globalService, cookieService) {
             var vmHome = this;
 
 
             var initialize = function () {
                 getShowcases();
-                var logged = globalService.getItem('logged');
+                
+                var logged = cookieService.getItem('logged');
 
                 vmHome.logged = logged ? logged : false;
             };
@@ -62,8 +63,8 @@ ticketGamesApp
 
 
             vmHome.addCart = function (productId) {
-
-                var logged = globalService.getItem('logged');
+                                
+                var logged = cookieService.getItem('logged');
 
                 logged = logged ? logged : false;
 

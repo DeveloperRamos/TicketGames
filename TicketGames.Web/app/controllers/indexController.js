@@ -13,7 +13,7 @@ ticketGamesApp
                 //$scope.loading = true;
                 var teste = $scope;
 
-                var logged = globalService.getItem('logged');
+                var logged = cookieService.getItem('logged');
 
                 vmIndex.logged = logged ? logged : false;
 
@@ -23,9 +23,8 @@ ticketGamesApp
                     $rootScope.bread.hide();
                 }
 
-
             };
-
+           
             var getCategories = function () {
 
                 vmIndex.categories = cookieService.getItem('categories');
@@ -60,9 +59,9 @@ ticketGamesApp
 
                     partcipantService.login(participant, function (response) {
 
-                        globalService.setItem('token', response.data.access_token);
+                        cookieService.setItem('token', response.data.access_token);
 
-                        globalService.setItem('logged', true);
+                        cookieService.setItem('logged', true);
 
                         $window.location.reload();
 

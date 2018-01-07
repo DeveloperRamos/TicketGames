@@ -2,7 +2,7 @@
 <div class="home-slider" style="display: none;">
     <ul class="slides">
         <!--<li ng-repeat="product in banner.Products" data-bg-image="images/slide-1.jpg">-->
-        <li ng-repeat="product in banner | orderBy: 'Order'" id="slide-{{$index + 1}}" ng-class="$index == 0 ? 'activeSlide' : 'disableSlide'" style="background-image: url('images/{{product.Id + '-B.png'}}')" class="imgBanner">
+        <li ng-repeat="product in banner | orderBy: 'Order'" id="slide-{{$index + 1}}" ng-class="$index == 0 ? 'activeSlide' : 'disableSlide'" style="background-image: url('images/{{product.Id + '-B.png'}}')" class="imgBanner">        
             <div class="container">
                 <div class="slide-content">
 

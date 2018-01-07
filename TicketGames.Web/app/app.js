@@ -7,15 +7,15 @@
 ]);
 
 // Handle routing errors and success events
-ticketGamesApp.run(['$rootScope', '$route', '$location', '$cookieStore', '$templateCache', 'globalService', '$q', '$routeParams', '$document', 'cartService', 'accountService',
-    function ($rootScope, $route, $location, $cookieStore, $templateCache, globalService, $q, $routeParams, $document, cartService, accountService) {
+ticketGamesApp.run(['$rootScope', '$route', '$location', '$cookieStore', '$templateCache', 'globalService', '$q', '$routeParams', '$document', 'cartService', 'accountService', 'cookieService',
+    function ($rootScope, $route, $location, $cookieStore, $templateCache, globalService, $q, $routeParams, $document, cartService, accountService, cookieService) {
 
         $rootScope.$on("$locationChangeStart", function (event, next, current) {
 
             $rootScope.sumCart = 0;
             $rootScope.balance = 0;
 
-            var logged = globalService.getItem('logged');
+            var logged = cookieService.getItem('logged');
 
             logged = logged ? true : false;
 
@@ -36,7 +36,7 @@ ticketGamesApp.run(['$rootScope', '$route', '$location', '$cookieStore', '$templ
                     if (response.data) {
                         $rootScope.sumCart = response.data.length;
                     }
-                });                
+                });
             }
             else {
                 $rootScope.sumCart = 0;
@@ -124,18 +124,18 @@ ticketGamesApp.run(['$rootScope', '$route', '$location', '$cookieStore', '$templ
 
     }]);
 
-ticketGamesApp.factory('BearerAuthInterceptor', function ($window, $q, globalService) {
+ticketGamesApp.factory('BearerAuthInterceptor', function ($window, $q, cookieService) {
     return {
         request: function (config) {
             config.headers = config.headers || {};
-            if (globalService.getItem('token')) {
+            if (cookieService.getItem('token')) {
 
                 if (config.url.indexOf("viacep") != -1) {
                     var teste = 'tem a string';
                 }
                 else {
-                    // may also use sessionStorage
-                    config.headers.Authorization = 'Bearer ' + globalService.getItem('token');
+                    // may also use sessionStorage                    
+                    config.headers.Authorization = 'Bearer ' + cookieService.getItem('token');
                 }
             }
             return config || $q.when(config);

@@ -16,6 +16,7 @@
     <link href="content/bootstrap.min.css" rel="stylesheet" media="all" />
     <script src="Scripts/formulario.js"></script>
 
+    <script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
 
 
     <!--[if lt IE 9]>
@@ -53,7 +54,7 @@
                     <div class="search-form">
                         <label><img src="content/images/icon-search.png"></label>
                         <form ng-submit="vmIndex.search()">
-                            <input type="text" ng-model="vmIndex.word" placeholder="Pesquisar..." ng->
+                            <input type="text" ng-model="vmIndex.word" placeholder="Pesquisar...">
                         </form>
                     </div> <!-- .search-form -->
                     <div class="mobile-navigation">

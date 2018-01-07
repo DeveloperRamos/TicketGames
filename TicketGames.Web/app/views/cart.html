@@ -41,7 +41,7 @@
                 </select>-->
             </td>
             <td class="product-total">{{(cart.Price * cart.Quantity) | currency: 'R$ '}}</td>
-            <td class="action"><a ng-click="vmCart.remove(cart.ProductId)"><i class="fa fa-times"></i></a></td>
+            <td class="action"><a ng-click="vmCart.remove(cart.ProductId)" href=""><i class="fa fa-times"></i></a></td>
         </tr>
     </tbody>
 </table> <!-- .cart -->

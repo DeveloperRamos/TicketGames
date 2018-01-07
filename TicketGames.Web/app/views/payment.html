@@ -4,43 +4,227 @@
             <th class="product-name" style="text-align:center !important">Produto</th>
             <th class="product-price" style="text-align:center !important">Valor</th>
             <th class="product-qty" style="text-align:center !important">Quantidade</th>
-            <th class="action"></th>
+            <th class="action" style="text-align:center !important"><a href=""><i class="fa fa-ticket"></i></a></th>
         </tr>
     </thead>
     <tbody>
-        <tr>
+        <tr ng-repeat="cart in vmPayment.carts">
             <td class="product-name">
                 <div class="product-thumbnail">
-                    <img src="images/230.png" alt="" class="imgCart">
+                    <img src="images/{{cart.ProductId + '.png'}}" alt="" class="imgCart">
                 </div>
                 <div class="product-detail">
                     <br />
                     <br />
                     <br />
                     <br />
-                    <h3 class="product-title">Mortal Kombat XL</h3>
+                    <h3 class="product-title">{{cart.Product}}</h3>
                 </div>
             </td>
-            <td class="product-price">{{10 | currency: 'R$ '}}</td>
-            <td class="product-qty">10</td>
-            <td class="action"><a href=""><i class="fa fa-ticket"></i></a></td>
-        </tr>
-        <tr>
-            <td class="product-name">
-                <div class="product-thumbnail">
-                    <img src="images/251.png" alt="" class="imgCart">
-                </div>
-                <div class="product-detail">
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <h3 class="product-title">Mortal Kombat XL</h3>
-                </div>
-            </td>
-            <td class="product-price">{{10 | currency: 'R$ '}}</td>
-            <td class="product-qty">10</td>
+            <td class="product-price">{{cart.Price | currency: 'R$ '}}</td>
+            <td class="product-qty">{{cart.Quantity}}</td>
             <td class="action"><a href=""><i class="fa fa-ticket"></i></a></td>
         </tr>
     </tbody>
 </table>
+<div class="value-payment" style="text-align:center !important; width: 450px !important;">
+    <h1><b>Valor de pagamento</b></h1>
+    <p><strong>Pontos:</strong> {{vmPayment.totalPoints | currency: ''}}</p>
+    <p><strong>Dinheiro:</strong> {{vmPayment.totalMoney | currency: 'R$ '}}</p>
+    <p class="total"><strong>Total</strong><span class="num"> {{vmPayment.Total | currency: 'R$ '}}</span></p>
+    <!--<p>
+        <a href="#" class="button muted">Comprar mais</a>
+        <button ng-click="vmCart.next()" class="button">Próximo</button>
+    </p>-->
+</div> <!-- .cart-total -->
+
+<div class="form-payment" style="width: 450px !important;">
+    <h1 style="text-align:center !important"><b>Forma de pagamento</b></h1>
+    <div class="form-horizontal" style="text-align:center !important" ng-show="!vmPayment.enableCredit && !vmPayment.enableBillet && !vmPayment.enablePoint">
+        <div class="form-group">
+            <a ng-click="vmPayment.enable('billet')" href="">
+                <!--<img src="../../content/images/icon-boleto.png" />-->
+                <img src="../../content/images/icon-boleto2.png" />
+                <p style="text-align: center">Boleto</p>
+            </a>
+            <a ng-click="vmPayment.enable('credit')" href="" style="text-align: center !important">
+                <img src="../../content/images/icon-creditcard.png" /><br />
+                <p style="text-align: center">Cartão de Crédito</p>
+            </a>
+
+        </div>
+    </div>
+
+    <div class="form-horizontal" ng-show="vmPayment.enablePoint">
+        <div class="form-group" style="text-align:center !important">
+            <img src="../../content/images/TicketGames3.png" />
+        </div>
+    </div>
+
+    <div class="form-horizontal" ng-show="vmPayment.enableBillet">
+        <div class="form-group" style="text-align:center !important">
+            <img src="../../content/images/boleto-bancario.jpg" style="width:100%; height:100%" />
+        </div>
+    </div>
+
+    <div class="form-horizontal" style="text-align:center !important" ng-show="vmPayment.enableCredit">
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="card-holder-name">Cartões</label>
+            <div class="col-sm-9" style="text-align: left">
+                <img ng-repeat="image in vmPayment.bandImages" src="{{image.url}}" id="{{image.band}}" class="creditHidden" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="card-holder-name">Nome</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" name="card-holder-name" ng-model="vmPayment.vmPayment.order.card.name" id="card-holder-name" placeholder="Nome impresso no cartão">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="card-number">Cartão</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" maxlength="16" ng-change="vmPayment.getBrandAndParcel(vmPayment.vmPayment.order.card.number)" ng-model="vmPayment.vmPayment.order.card.number" name="card-number" id="card-number" placeholder="Número do cartão">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="expiry-month">Vencimento</label>
+            <div class="col-sm-9">
+                <div class="row">
+                    <div class="col-xs-3" style="width: 50% !important;">
+
+                        <select class="form-control col-sm-2" ng-model="vmPayment.order.card.expiryMonth" style="width: 100% !important;" name="expiry-month" id="expiry-month">
+                            <option>Mês</option>
+                            <option value="1">Janeiro</option>
+                            <option value="2">Fevereiro</option>
+                            <option value="3">Março</option>
+                            <option value="4">Abril</option>
+                            <option value="5">Maio</option>
+                            <option value="6">Junho</option>
+                            <option value="7">Julho</option>
+                            <option value="8">Agosto</option>
+                            <option value="9">Setembro</option>
+                            <option value="10">Outubro</option>
+                            <option value="11">Novembro</option>
+                            <option value="12">Dezembro</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-3">
+                        <select class="form-control" name="expiry-year" ng-model="vmPayment.order.card.expiryYear" style="width: 147% !important">
+                            <option value="18">2018</option>
+                            <option value="19">2019</option>
+                            <option value="20">2020</option>
+                            <option value="21">2021</option>
+                            <option value="22">2022</option>
+                            <option value="23">2023</option>
+                            <option value="24">2024</option>
+                            <option value="25">2025</option>
+                            <option value="26">2026</option>
+                            <option value="27">2027</option>
+                            <option value="28">2028</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="cvv">Código</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" ng-model="vmPayment.vmPayment.order.card.cvv" name="cvv" maxlength="3" id="cvv" placeholder="CVV">
+            </div>
+        </div>
+        <div class="form-group" ng-show="vmPayment.enableParcel">
+            <label class="col-sm-3 control-label" for="install">Parcelas</label>
+            <div class="col-sm-3">
+                <select ng-model="vmPayment.vmPayment.order.card.parcel" ng-options="option as option.description for option in vmPayment.plots track by option.parcel"></select>
+            </div>
+        </div>
+    </div>
+    <div class="form-group" style="text-align:center !important">
+
+        <a href="#" class="button muted" ng-show="!vmPayment.enableCredit && !vmPayment.enableBillet">Comprar mais</a>
+        <!--<button type="button" class="button muted" ng-show="!vmPayment.enableCredit && !vmPayment.enableBillet">Comprar mais</button>-->
+        <button type="button" class="button muted" ng-click="vmPayment.enable()" ng-show="vmPayment.enableCredit || vmPayment.enableBillet">Voltar</button>
+        <button type="button" class="button" ng-click="vmPayment.redemption(vmPayment.vmPayment.order)" ng-show="vmPayment.enableCredit || vmPayment.enableBillet || vmPayment.enablePoint">Finalizar</button>
+
+    </div>
+    <!--<form class="form-horizontal" role="form">
+        <fieldset>
+            <legend>Payment</legend>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="card-holder-name">Name on Card</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="card-holder-name" id="card-holder-name" placeholder="Card Holder's Name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="card-number">Card Number</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="card-number" id="card-number" placeholder="Debit/Credit Card Number">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="expiry-month">Expiration Date</label>
+                <div class="col-sm-9">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <select class="form-control col-sm-2" name="expiry-month" id="expiry-month">
+                                <option>Month</option>
+                                <option value="01">Jan (01)</option>
+                                <option value="02">Feb (02)</option>
+                                <option value="03">Mar (03)</option>
+                                <option value="04">Apr (04)</option>
+                                <option value="05">May (05)</option>
+                                <option value="06">June (06)</option>
+                                <option value="07">July (07)</option>
+                                <option value="08">Aug (08)</option>
+                                <option value="09">Sep (09)</option>
+                                <option value="10">Oct (10)</option>
+                                <option value="11">Nov (11)</option>
+                                <option value="12">Dec (12)</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-3">
+                            <select class="form-control" name="expiry-year">
+                                <option value="13">2013</option>
+                                <option value="14">2014</option>
+                                <option value="15">2015</option>
+                                <option value="16">2016</option>
+                                <option value="17">2017</option>
+                                <option value="18">2018</option>
+                                <option value="19">2019</option>
+                                <option value="20">2020</option>
+                                <option value="21">2021</option>
+                                <option value="22">2022</option>
+                                <option value="23">2023</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="cvv">Card CVV</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" name="cvv" id="cvv" placeholder="Security Code">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <button type="button" class="btn btn-success">Pay Now</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>-->
+</div> <!-- .cart-total -->
+
+<div class="delivery-address" style="text-align:center !important; width: 450px !important;">
+    <h1><b>Endereço de entrega</b></h1>
+    <address>
+        <strong>{{vmPayment.address.Name}}</strong>
+        <br />
+        {{vmPayment.address.Street}}, {{vmPayment.address.Number}}, {{vmPayment.address.Complement}}
+        <br />
+        {{vmPayment.address.District}}, {{vmPayment.address.City}}-{{vmPayment.address.State}} {{vmPayment.address.ZipCode}}
+        <br>
+        <abbr title="Telefone para contato">Contato:</abbr> {{vmPayment.address.CellPhone}}
+    </address>
+</div> <!-- .cart-total -->

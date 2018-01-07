@@ -16,9 +16,8 @@
 
                 $scope.balance = response.data.Balance;
 
+                globalService.setItem('balance', response.data.Balance);
             });
-
-
 
             $rootScope.logged = {
                 text: function (obj) {
