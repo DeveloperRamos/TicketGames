@@ -5,68 +5,52 @@ ticketGamesApp
         function ($scope, $cookieStore, $rootScope, $routeParams, $sce, $location, cartService, cookieService, accountService, globalService, participantService) {
             var vmPayment = this;
 
-            vmPayment.bandImages = [];
-            vmPayment.band = [];
-            vmPayment.Total = 0;
-            vmPayment.totalPoints = 0;
-            vmPayment.totalMoney = 0;
-            vmPayment.installment = 1;
-            vmPayment.enableBillet = false;
-            vmPayment.enableCredit = false;
-            vmPayment.enablePoint = false;
-            vmPayment.enableParcel = false;
-            vmPayment.brand = '';
+            var startObjects = function () {
+                vmPayment.balance = parseFloat(globalService.getItem('balance'));
+
+                vmPayment.bandImages = [];
+                vmPayment.band = [];
+                vmPayment.Total = 0;
+                vmPayment.totalPoints = 0;
+                vmPayment.totalMoney = 0;
+                vmPayment.installment = 1;
+                vmPayment.enableBillet = false;
+                vmPayment.enableCredit = false;
+                vmPayment.enablePoint = false;
+                vmPayment.enableParcel = false;
+                vmPayment.brand = '';
 
 
-            vmPayment.expiryMonth = [
-                { dig: 1, description: 'Janeiro' },
-                { dig: 2, description: 'Fevereiro' },
-                { dig: 3, description: 'Março' },
-                { dig: 4, description: 'Abril' },
-                { dig: 5, description: 'Maio' },
-                { dig: 6, description: 'Junho' },
-                { dig: 7, description: 'Julho' },
-                { dig: 8, description: 'Agosto' },
-                { dig: 9, description: 'Setembro' },
-                { dig: 10, description: 'Outubro' },
-                { dig: 11, description: 'Novembro' },
-                { dig: 12, description: 'Dezembro' }]
+                vmPayment.expiryMonth = [
+                    { dig: 1, description: 'Janeiro' },
+                    { dig: 2, description: 'Fevereiro' },
+                    { dig: 3, description: 'Março' },
+                    { dig: 4, description: 'Abril' },
+                    { dig: 5, description: 'Maio' },
+                    { dig: 6, description: 'Junho' },
+                    { dig: 7, description: 'Julho' },
+                    { dig: 8, description: 'Agosto' },
+                    { dig: 9, description: 'Setembro' },
+                    { dig: 10, description: 'Outubro' },
+                    { dig: 11, description: 'Novembro' },
+                    { dig: 12, description: 'Dezembro' }]
 
 
-            vmPayment.expiryYear = [
-                { dig: 18, description: '2018' },
-                { dig: 19, description: '2019' },
-                { dig: 20, description: '2020' },
-                { dig: 21, description: '2021' },
-                { dig: 22, description: '2022' },
-                { dig: 23, description: '2023' },
-                { dig: 24, description: '2024' },
-                { dig: 25, description: '2025' }]
-
-
-
-
-            $rootScope.credit = {
-                show: function () {
-
-                    if ($(".credit").is(":visible"))
-                        return true;
-
-                    $(".credit").show();
-                    return false;
-                },
-
-                hide: function () {
-                    $(".credit").hide();
-                },
+                vmPayment.expiryYear = [
+                    { dig: 18, description: '2018' },
+                    { dig: 19, description: '2019' },
+                    { dig: 20, description: '2020' },
+                    { dig: 21, description: '2021' },
+                    { dig: 22, description: '2022' },
+                    { dig: 23, description: '2023' },
+                    { dig: 24, description: '2024' },
+                    { dig: 25, description: '2025' }]
             };
 
-
-            vmPayment.balance = parseFloat(globalService.getItem('balance'));
+            startObjects();
 
             var initialize = function () {
-                //if (!$rootScope.cart)
-                //    $location.path('/Carrinho');
+
                 getCart();
 
                 if ($rootScope.bread) {
