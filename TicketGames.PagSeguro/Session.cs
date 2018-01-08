@@ -13,7 +13,7 @@ namespace TicketGames.PagSeguro
     public class Session
     {
         public string Id;
-        private string configuration = ".../.../Configuration/PagSeguroConfig.xml";
+        private string configuration = "http://hml.ticketgames.com.br/Configuration/PagSeguroConfig.xml";
 
 
         public Session()

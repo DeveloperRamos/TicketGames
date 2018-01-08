@@ -109,7 +109,7 @@ namespace TicketGames.API.Controllers
             }
             catch (Exception ex)
             {
-                return NotFound();
+                return BadRequest(ex.Message);
             }
         }
     }

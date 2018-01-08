@@ -16,7 +16,7 @@ namespace TicketGames.PagSeguro
 {
     public class Transaction
     {
-        private string configuration = ".../.../Configuration/PagSeguroConfig.xml";
+        private string configuration = "http://hml.ticketgames.com.br/Configuration/PagSeguroConfig.xml";
 
         public void BilletCheckout(Billet billet)
         {
@@ -58,7 +58,7 @@ namespace TicketGames.PagSeguro
 
                 foreach (ServiceError element in exception.Errors)
                 {
-                    var erro = element;
+                    throw new System.ArgumentException(element.Message, "original");
                 }
             }
 
