@@ -86,7 +86,7 @@ ticketGamesApp
                 PagSeguroDirectPayment.getInstallments({
                     amount: vmPayment.totalMoney,
                     brand: brand,
-                    maxInstallmentNoInterest: 5,
+                    maxInstallmentNoInterest: 12,
                     success: function (response) {
                         //opções de parcelamento disponível
                         var result = response.installments;
@@ -333,6 +333,13 @@ ticketGamesApp
 
                                 var teste = response;
                                 order.card.creditCardToken = response.card.token;
+
+                                orderService.redemption(order, function (response) {
+
+                                });
+
+
+
                             },
                             error: function (response) {
                                 //tratamento do erro
@@ -348,10 +355,6 @@ ticketGamesApp
 
                     }
                 };
-
-                orderService.redemption(order, function (response) {
-
-                });
 
             };
 

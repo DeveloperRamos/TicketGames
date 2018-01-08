@@ -13,6 +13,7 @@ namespace TicketGames.PagSeguro
     public class Session
     {
         public string Id;
+        private string configuration = ".../.../Configuration/PagSeguroConfig.xml";
 
 
         public Session()
@@ -22,6 +23,8 @@ namespace TicketGames.PagSeguro
 
         private string CreateSession()
         {
+            PagSeguroConfiguration.UrlXmlConfiguration = this.configuration;
+
             bool isSandbox = true;
             EnvironmentConfiguration.ChangeEnvironment(isSandbox);
 

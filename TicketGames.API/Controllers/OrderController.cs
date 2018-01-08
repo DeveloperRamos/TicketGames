@@ -22,16 +22,18 @@ namespace TicketGames.API.Controllers
     {
         private readonly IParticipantService _participantService;
         private readonly ICartService _cartService;
+        private readonly IOrderService _orderService;
         private long participantId = 0;
 
 
-        public OrderController(IParticipantService participantService, ICartService cartService)
+        public OrderController(IParticipantService participantService, ICartService cartService, IOrderService orderService)
         {
             this._participantService = participantService;
             this._cartService = cartService;
+            this._orderService = orderService;
         }
         public OrderController()
-            : this(new ParticipantService(new ParticipantRepository()), new CartService(new CartRepository()))
+            : this(new ParticipantService(new ParticipantRepository()), new CartService(new CartRepository()), new OrderService(new OrderRepository()))
         {
             CacheManager.SetProvider(new CacheProvider());
         }
@@ -62,6 +64,10 @@ namespace TicketGames.API.Controllers
                         participant = new Participant(result);
                     }
 
+
+                    var domainParticipant = participant.MappingDomain();
+
+
                     #endregion
 
                     #region Get Cart
@@ -82,8 +88,18 @@ namespace TicketGames.API.Controllers
                     #endregion
 
 
+                    var credit = new Domain.Model.Credit();
+
+                    credit.Owner = order.Card.Owner;
+                    credit.SenderHash = order.Card.SenderHash;
 
 
+                    credit.CreditCardToken = order.Card.CreditCardToken;
+
+                    credit.Quantity = order.Card.Parcel.Quantity;
+                    credit.Value = order.Card.Parcel.Value;
+
+                    this._orderService.Redemption(domainParticipant, domainCart, deliveryAddressResult, credit);
 
 
                     var pedido = order;

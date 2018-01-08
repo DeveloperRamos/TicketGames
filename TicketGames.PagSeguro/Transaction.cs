@@ -16,8 +16,11 @@ namespace TicketGames.PagSeguro
 {
     public class Transaction
     {
+        private string configuration = ".../.../Configuration/PagSeguroConfig.xml";
+
         public void BilletCheckout(Billet billet)
         {
+            PagSeguroConfiguration.UrlXmlConfiguration = this.configuration;
             bool isSandbox = true;
             EnvironmentConfiguration.ChangeEnvironment(isSandbox);
 
@@ -38,12 +41,32 @@ namespace TicketGames.PagSeguro
 
         public void CreditCheckout(Credit credit)
         {
+            PagSeguroConfiguration.UrlXmlConfiguration = this.configuration;
             bool isSandbox = true;
             EnvironmentConfiguration.ChangeEnvironment(isSandbox);
+
+            // Instantiate a new checkout
+            CreditCardCheckout checkout = credit.MappingCreditCheckout();
+
+            try
+            {
+                AccountCredentials credentials = PagSeguroConfiguration.Credentials(isSandbox);
+                Uol.PagSeguro.Domain.Transaction result = TransactionService.CreateCheckout(credentials, checkout);
+            }
+            catch (PagSeguroServiceException exception)
+            {
+
+                foreach (ServiceError element in exception.Errors)
+                {
+                    var erro = element;
+                }
+            }
+
         }
 
         public void DebitCheckout(Debit debit)
         {
+            PagSeguroConfiguration.UrlXmlConfiguration = this.configuration;
             bool isSandbox = true;
             EnvironmentConfiguration.ChangeEnvironment(isSandbox);
         }
