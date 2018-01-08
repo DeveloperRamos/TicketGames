@@ -58,6 +58,7 @@
     <Compile Include="Cryptography\Hash.cs" />
     <Compile Include="Cryptography\RijndaelManagedEncryption.cs" />
     <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="Order\Redemption.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Raffle\Raffle.cs" />
     <Compile Include="Raffle\Value.cs" />

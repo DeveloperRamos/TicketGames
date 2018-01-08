@@ -30,8 +30,8 @@ namespace TicketGames.PagSeguro.Model
             checkout.ExtraAmount = 1.00m;
 
             // Add items
-            checkout.Items.Add(new Item("0001", "Resident Evil 6", 1, 10.00m));
-            checkout.Items.Add(new Item("0002", "Megaman Collection", 2, 20.00m));
+            checkout.Items.Add(new Uol.PagSeguro.Domain.Item("0001", "Resident Evil 6", 1, 10.00m));
+            checkout.Items.Add(new Uol.PagSeguro.Domain.Item("0002", "Megaman Collection", 2, 20.00m));
 
             // Sets the notification url
             checkout.NotificationURL = "http://www.lojamodelo.com.br";

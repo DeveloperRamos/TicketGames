@@ -1,11 +1,15 @@
 ﻿'use strict';
 
 ticketGamesApp
-    .controller('paymentController', ['$scope', '$cookieStore', '$rootScope', '$routeParams', '$sce', '$location', 'cartService', 'cookieService', 'accountService', 'globalService', 'participantService',
-        function ($scope, $cookieStore, $rootScope, $routeParams, $sce, $location, cartService, cookieService, accountService, globalService, participantService) {
+    .controller('paymentController',
+    ['$scope', '$cookieStore', '$rootScope', '$routeParams', '$sce', '$location', 'cartService', 'cookieService', 'accountService', 'globalService', 'participantService', 'searchService', 'orderService',
+        function ($scope, $cookieStore, $rootScope, $routeParams, $sce, $location, cartService, cookieService, accountService, globalService, participantService, searchService, orderService) {
             var vmPayment = this;
 
             var startObjects = function () {
+
+                vmPayment.order = {};
+
                 vmPayment.balance = parseFloat(globalService.getItem('balance'));
 
                 vmPayment.bandImages = [];
@@ -18,6 +22,7 @@ ticketGamesApp
                 vmPayment.enableCredit = false;
                 vmPayment.enablePoint = false;
                 vmPayment.enableParcel = false;
+                vmPayment.order.paymentType = 1;
                 vmPayment.brand = '';
 
 
@@ -81,7 +86,7 @@ ticketGamesApp
                 PagSeguroDirectPayment.getInstallments({
                     amount: vmPayment.totalMoney,
                     brand: brand,
-                    maxInstallmentNoInterest: 5,
+                    maxInstallmentNoInterest: 12,
                     success: function (response) {
                         //opções de parcelamento disponível
                         var result = response.installments;
@@ -100,8 +105,9 @@ ticketGamesApp
                                 sum = sum + 1;
 
                                 vmPayment.plots.push({
-                                    parcel: sum,
-                                    description: value.quantity + ' x ' + "R$ " + value.installmentAmount.toFixed(2).replace(".", ",")
+                                    quantity: sum,
+                                    description: value.quantity + ' x ' + "R$ " + value.installmentAmount.toFixed(2).replace(".", ","),
+                                    value: value.installmentAmount.toFixed(2)
                                 });
                             }, log);
 
@@ -228,6 +234,8 @@ ticketGamesApp
 
             vmPayment.enable = function (payment) {
 
+                vmPayment.order = {};
+
                 switch (payment) {
                     case 'billet': {
 
@@ -235,18 +243,39 @@ ticketGamesApp
                         vmPayment.enableCredit = false;
                         vmPayment.enablePoint = false;
 
+                        vmPayment.order.paymentType = 2;
+
                         break;
                     }
                     case 'credit': {
 
+                        vmPayment.order.card = {
+                            owner: true,
+                            brand: '',
+                            number: '',
+                            expiryMonth: '',
+                            expiryYear: '',
+                            cvv: '',
+                            parcel: {},
+                            billingAddress: {},
+                            creditCardHolder: {}
+                        };
+
+
                         vmPayment.enableBillet = false;
                         vmPayment.enableCredit = true;
                         vmPayment.enablePoint = false;
+
+                        vmPayment.order.paymentType = 3;
+
                         break;
                     }
                     default: {
+
                         vmPayment.enableBillet = false;
                         vmPayment.enableCredit = false;
+
+                        vmPayment.order.paymentType = 1;
                     }
                 }
             };
@@ -264,6 +293,7 @@ ticketGamesApp
                             var brand = response.brand.name;
 
                             vmPayment.brand = brand;
+                            vmPayment.order.card.brand = brand;
 
                             var band = angular.element(document.querySelector('#' + brand.toUpperCase()));
                             band.removeClass('creditHidden');
@@ -287,8 +317,44 @@ ticketGamesApp
 
             vmPayment.redemption = function (order) {
 
-                var fincla = order;
+                switch (order.paymentType) {
+                    case 3: {
 
+                        order.card.senderHash = PagSeguroDirectPayment.getSenderHash();
+
+                        PagSeguroDirectPayment.createCardToken({
+                            brand: order.card.brand,
+                            cardNumber: order.card.number,
+                            cvv: order.card.cvv,
+                            expirationMonth: order.card.expiryMonth,
+                            expirationYear: order.card.expiryYear,
+                            success: function (response) {
+                                //token gerado, esse deve ser usado na chamada da API do Checkout Transparente
+
+                                var teste = response;
+                                order.card.creditCardToken = response.card.token;
+
+                                orderService.redemption(order, function (response) {
+
+                                });
+
+
+
+                            },
+                            error: function (response) {
+                                //tratamento do erro
+                            },
+                            complete: function (response) {
+                                //tratamento comum para todas chamadas
+                            }
+                        });
+
+                        break;
+                    }
+                    default: {
+
+                    }
+                };
 
             };
 
@@ -296,6 +362,46 @@ ticketGamesApp
 
                 return $sce.trustAsHtml(html);
 
+            };
+
+            vmPayment.search = function (valor) {
+
+                //Nova variável "cep" somente com dígitos.
+                var cep = valor.replace(/\D/g, '');
+
+                //Verifica se campo cep possui valor informado.
+                if (cep !== "") {
+
+                    //Expressão regular para validar o CEP.
+                    var validacep = /^[0-9]{8}$/;
+
+                    searchService.searchCep(cep, function (response) {
+
+                        if (!response.data.logradouro) {
+                            var street = angular.element(document.querySelector('#street'));
+                            street[0].disabled = false;
+                        } else {
+                            vmPayment.order.card.billingAddress.Street = response.data.logradouro;
+                        }
+
+                        if (!response.data.bairro) {
+                            var district = angular.element(document.querySelector('#district'));
+                            district[0].disabled = false;
+                        } else {
+                            vmPayment.order.card.billingAddress.District = response.data.bairro;
+                        }
+
+                        vmPayment.order.card.billingAddress.City = response.data.localidade;
+                        vmPayment.order.card.billingAddress.State = response.data.uf;
+
+                    });
+
+
+                } //end if.
+                else {
+                    //cep sem valor, limpa formulário.
+                    alert("Formato de CEP inválido.");
+                }
             };
 
             initialize();

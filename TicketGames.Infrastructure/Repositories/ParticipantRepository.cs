@@ -58,9 +58,26 @@ namespace TicketGames.Infrastructure.Repositories
 
         public Participant GetParticipantById(long id)
         {
-            var participant = this._context.Participants.Find(id);
 
-            return participant;
+            using (var connect = new MySqlConnection(connection))
+            {
+                Participant participant = new Participant();
+
+                string query = @"Select * From Tb_Participant Where Id = @participantId;";
+
+                connect.Open();
+
+                participant = connect.Query<Participant>(query, new { participantId = id }).FirstOrDefault();
+
+                connect.Close();
+
+                return participant;
+            }
+
+
+            //var participant = this._context.Participants.Find(id);
+
+            //return participant;
         }
 
         public Participant GetParticipantByLoginAndCPF(string login, string cpf)

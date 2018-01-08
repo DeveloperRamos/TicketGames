@@ -26,7 +26,7 @@
     };
 
     function clear() {
-        angular.forEach($cookies, function (v, k) {
+        angular.forEach($cookies.getAll(), function (v, k) {
             $cookieStore.remove(k);
         });       
     };
