@@ -67,6 +67,8 @@
     <Compile Include="Mapping\ImageMap.cs" />
     <Compile Include="Mapping\ImageTypeMap.cs" />
     <Compile Include="Mapping\OrderDeliveryAddressMap.cs" />
+    <Compile Include="Mapping\OrderMap.cs" />
+    <Compile Include="Mapping\OrderStatusMap.cs" />
     <Compile Include="Mapping\ParticipantMap.cs" />
     <Compile Include="Mapping\ParticipantStatusMap.cs" />
     <Compile Include="Mapping\ProductMap.cs" />

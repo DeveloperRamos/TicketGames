@@ -96,7 +96,7 @@ namespace TicketGames.API.Controllers
 
                     credit.CreditCardToken = order.Card.CreditCardToken;
 
-                    credit.Quantity = order.Card.Parcel.Quantity;
+                    credit.Parcel = order.Card.Parcel.Quantity;
                     credit.Value = order.Card.Parcel.Value;
 
                     this._orderService.Redemption(domainParticipant, domainCart, deliveryAddressResult, credit);

@@ -83,7 +83,7 @@ namespace TicketGames.Domain.Services
 
             creditPagSeguro.Parcel = new Parcel();
 
-            creditPagSeguro.Parcel.Quantity = credit.Quantity;
+            creditPagSeguro.Parcel.Quantity = credit.Parcel;
             creditPagSeguro.Parcel.Value = credit.Value;
 
 

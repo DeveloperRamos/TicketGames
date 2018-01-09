@@ -11,6 +11,26 @@ namespace TicketGames.API.Models.Order
         public Card Card { get; set; }
 
 
+        //public OrderDeliveryAddress MappingDomain()
+        //{
+        //    var deliveryAddress = new OrderDeliveryAddress();
+
+        //    deliveryAddress.Name = this.Name;
+        //    deliveryAddress.Street = this.Street;
+        //    deliveryAddress.Number = this.Number;
+        //    deliveryAddress.Complement = this.Complement;
+        //    deliveryAddress.District = this.District;
+        //    deliveryAddress.City = this.City;
+        //    deliveryAddress.State = this.State;
+        //    deliveryAddress.ZipCode = this.ZipCode;
+        //    deliveryAddress.Reference = this.Reference;
+        //    deliveryAddress.Email = this.Email;
+        //    deliveryAddress.HomePhone = this.HomePhone;
+        //    deliveryAddress.CellPhone = this.CellPhone;
+
+        //    return deliveryAddress;
+        //}
+
     }
     public class Card
     {
