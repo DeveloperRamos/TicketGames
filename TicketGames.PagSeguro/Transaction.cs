@@ -39,7 +39,7 @@ namespace TicketGames.PagSeguro
             }
         }
 
-        public void CreditCheckout(Credit credit)
+        public PagSeguroResult CreditCheckout(Credit credit)
         {
             PagSeguroConfiguration.UrlXmlConfiguration = this.configuration;
             bool isSandbox = true;
@@ -51,15 +51,34 @@ namespace TicketGames.PagSeguro
             try
             {
                 AccountCredentials credentials = PagSeguroConfiguration.Credentials(isSandbox);
-                Uol.PagSeguro.Domain.Transaction result = TransactionService.CreateCheckout(credentials, checkout);
+                Uol.PagSeguro.Domain.Transaction transaction = TransactionService.CreateCheckout(credentials, checkout);
+
+                var result = new PagSeguroResult();
+
+
+                if (!string.IsNullOrEmpty(transaction.Code))
+                {
+                    result.Success = true;
+                    result.Code = transaction.Code;
+                    result.FeeAmount = transaction.FeeAmount;
+                    result.NetAmount = transaction.NetAmount;
+                    result.Reference = transaction.Reference;
+                    result.TransactionStatus = transaction.TransactionStatus.ToString();
+                }
+
+                return result;
             }
             catch (PagSeguroServiceException exception)
             {
 
-                foreach (ServiceError element in exception.Errors)
-                {
-                    throw new System.ArgumentException(element.Message, "original");
-                }
+                return new PagSeguroResult() { Success = false };
+
+                //foreach (ServiceError element in exception.Errors)
+                //{
+                //    throw new System.ArgumentException(element.Message, "original");
+                //}
+
+
             }
 
         }

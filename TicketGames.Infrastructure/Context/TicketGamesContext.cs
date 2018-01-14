@@ -18,7 +18,7 @@ namespace TicketGames.Infrastructure.Context
 
         public TicketGamesContext() : base("Name=TicketGamesContext")
         {
-            //Database.ExecuteSqlCommand("SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED");
+            //Database.ExecuteSqlCommand("SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED");            
 
             Configuration.ProxyCreationEnabled = false;
             Configuration.LazyLoadingEnabled = false;
@@ -46,8 +46,10 @@ namespace TicketGames.Infrastructure.Context
         public DbSet<OrderDeliveryAddress> OrderDeliveryAddress { get; set; }
         public DbSet<TransactionType> TransactionTypes { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
-
-
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<OrderHistory> OrderHistory { get; set; }
+        public DbSet<Credit> Credits { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -75,6 +77,12 @@ namespace TicketGames.Infrastructure.Context
             modelBuilder.Configurations.Add(new OrderDeliveryAddressMap());
             modelBuilder.Configurations.Add(new TransactionTypeMap());
             modelBuilder.Configurations.Add(new TransactionMap());
+            modelBuilder.Configurations.Add(new OrderMap());
+            modelBuilder.Configurations.Add(new OrderItemMap());
+            modelBuilder.Configurations.Add(new OrderHistoryMap());
+            modelBuilder.Configurations.Add(new CreditMap());
+
+
         }
 
         public override int SaveChanges()

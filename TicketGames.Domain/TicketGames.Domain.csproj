@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -53,9 +54,14 @@
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\Credit.cs" />
     <Compile Include="Model\Department.cs" />
+    <Compile Include="Model\Enum\OrderStatus.cs" />
     <Compile Include="Model\Image.cs" />
     <Compile Include="Model\ImageType.cs" />
+    <Compile Include="Model\Order.cs" />
     <Compile Include="Model\OrderDeliveryAddress.cs" />
+    <Compile Include="Model\OrderHistory.cs" />
+    <Compile Include="Model\OrderItem.cs" />
+    <Compile Include="Model\OrderStatus.cs" />
     <Compile Include="Model\Participant.cs" />
     <Compile Include="Model\ParticipantStatus.cs" />
     <Compile Include="Model\Product.cs" />

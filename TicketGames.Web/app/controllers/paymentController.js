@@ -83,44 +83,26 @@ ticketGamesApp
 
             var getInstallments = function (brand) {
 
-                PagSeguroDirectPayment.getInstallments({
-                    amount: vmPayment.totalMoney,
-                    brand: brand,
-                    maxInstallmentNoInterest: 12,
-                    success: function (response) {
-                        //opções de parcelamento disponível
-                        var result = response.installments;
+                orderService.getInstallments(brand, function (response) {
+                    //opções de parcelamento disponível
+                    var result = response.data;
 
+                    var log = [];
+                    var sum = 0;
+                    vmPayment.plots = [];
 
-                        var log = [];
-                        angular.forEach(result, function (value, key) {
+                    angular.forEach(result, function (value, key) {
 
-                            //vmPayment.plots = value;
+                        sum = sum + 1;
 
-                            var sum = 0;
-                            vmPayment.plots = [];
+                        vmPayment.plots.push({
+                            quantity: value.Quantity,
+                            description: value.Quantity + ' x ' + "R$ " + value.Value.toFixed(2).replace(".", ","),
+                            value: value.Value.toFixed(2)
+                        });
+                    }, log);
 
-                            angular.forEach(value, function (value, key) {
-
-                                sum = sum + 1;
-
-                                vmPayment.plots.push({
-                                    quantity: sum,
-                                    description: value.quantity + ' x ' + "R$ " + value.installmentAmount.toFixed(2).replace(".", ","),
-                                    value: value.installmentAmount.toFixed(2)
-                                });
-                            }, log);
-
-                        }, log);
-
-                        vmPayment.enableParcel = true;
-                    },
-                    error: function (response) {
-                        //tratamento do erro
-                    },
-                    complete: function (response) {
-                        //tratamento comum para todas chamadas
-                    }
+                    vmPayment.enableParcel = true;
                 });
             };
 
@@ -335,14 +317,21 @@ ticketGamesApp
                                 order.card.creditCardToken = response.card.token;
 
                                 orderService.redemption(order, function (response) {
+                                    var orderid = response.data;
 
+                                    if (orderid > 0) {
+                                        $location.path('/Sucesso/' + orderid);
+                                    } else {
+                                        $location.path('/Error');
+                                    }
+
+                                }, function (error) {
+                                    $location.path('/Error');
                                 });
-
-
-
                             },
                             error: function (response) {
                                 //tratamento do erro
+                                $location.path('/Error');
                             },
                             complete: function (response) {
                                 //tratamento comum para todas chamadas
@@ -352,7 +341,7 @@ ticketGamesApp
                         break;
                     }
                     default: {
-
+                        break;
                     }
                 };
 

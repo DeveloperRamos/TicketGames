@@ -13,6 +13,7 @@ namespace TicketGames.API.Models.Order
         public string Product { get; set; }
         public int Quantity { get; set; }
         public float Price { get; set; }
+        public long RaffleId { get; private set; }
 
         public Domain.Model.Cart MappingDomain()
         {
@@ -34,7 +35,8 @@ namespace TicketGames.API.Models.Order
                     ProductId = item.ProductId,
                     Product = item.Product.Name,
                     Quantity = item.Quantity,
-                    Price = new Raffle().value(item.Product)
+                    Price = new Raffle().value(item.Product),
+                    RaffleId = item.Raffle.Id
                 });
             }
 

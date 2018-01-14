@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TicketGames.Domain.Model
 {
     public class Raffle
     {
+        public Raffle()
+        {
+            this.CartItems = new List<CartItem>();
+            this.OrderItems = new List<OrderItem>();
+        }
+
         public long Id { get; set; }
         public long ProductId { get; set; }
         public int RaffleStatusId { get; set; }
@@ -23,5 +26,6 @@ namespace TicketGames.Domain.Model
         public virtual RaffleStatus RaffleStatus { get; set; }
         public virtual Product Product { get; set; }
         public virtual ICollection<CartItem> CartItems { get; set; }
+        public virtual ICollection<OrderItem> OrderItems { get; set; }
     }
 }

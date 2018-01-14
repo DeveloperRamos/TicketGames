@@ -15,5 +15,6 @@ namespace TicketGames.Domain.Repositories
         Cart DeleteCartItemByPartIdAndProdId(long participantId, long productId);
         OrderDeliveryAddress Create(OrderDeliveryAddress orderDeliveryAddress);
         OrderDeliveryAddress GetDeliveryAddressByPartIdAndCartId(long participantId, long cartId);
+        bool UpdateStatusByCartId(long cartId, int cartStatusId);
     }
 }

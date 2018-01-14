@@ -13,7 +13,7 @@ namespace TicketGames.Domain.Model
         public int TransactionTypeId { get; set; }
         public float Value { get; set; }
         public string Description { get; set; }
-        public long RaffleId { get; set; }
+        public long OrderId { get; set; }
         public DateTime InsertDate { get; set; }
         public Nullable<DateTime> UpdateDate { get; set; }
         public virtual Participant Participant { get; set; }

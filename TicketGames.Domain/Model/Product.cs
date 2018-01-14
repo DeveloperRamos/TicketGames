@@ -13,6 +13,7 @@ namespace TicketGames.Domain.Model
             this.Images = new List<Image>();
             this.ShowcaseProducts = new List<ShowcaseProduct>();
             this.Raffles = new List<Raffle>();
+            this.OrderItems = new List<OrderItem>();
         }
 
         public long Id { get; set; }
@@ -35,6 +36,7 @@ namespace TicketGames.Domain.Model
         public virtual ICollection<ShowcaseProduct> ShowcaseProducts { get; set; }
         public virtual ICollection<Raffle> Raffles { get; set; }
         public virtual ICollection<CartItem> CartItems { get; set; }
+        public virtual ICollection<OrderItem> OrderItems { get; set; }
 
     }
 }

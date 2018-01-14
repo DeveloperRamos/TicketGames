@@ -109,7 +109,7 @@ namespace TicketGames.PagSeguro.Model
             checkout.Token = this.CreditCardToken;
 
             //Sets the installments information
-            checkout.Installment = new Installment(this.Parcel.Quantity, Convert.ToDecimal(this.Parcel.Value),12);
+            checkout.Installment = new Uol.PagSeguro.Domain.Direct.Installment(this.Parcel.Quantity, Convert.ToDecimal(this.Parcel.Value), 12);
 
             // Sets the notification url
             checkout.NotificationURL = "https://ticketgames.com.br";

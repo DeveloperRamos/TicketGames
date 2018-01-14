@@ -51,6 +51,7 @@
     <Compile Include="SessionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TransactionTest.cs" />
+    <Compile Include="InstallmentTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
