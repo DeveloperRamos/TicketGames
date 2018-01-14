@@ -1,9 +1,8 @@
 ﻿using System.Data.Entity.ModelConfiguration;
-using TicketGames.Domain.Model;
 
 namespace TicketGames.Infrastructure.Mapping
 {
-    public class OrderStatusMap : EntityTypeConfiguration<OrderStatus>
+    public class OrderStatusMap : EntityTypeConfiguration<Domain.Model.OrderStatus>
     {
         public OrderStatusMap()
         {
@@ -15,6 +14,7 @@ namespace TicketGames.Infrastructure.Mapping
             this.Property(t => t.Id).HasColumnName("Id");
             this.Property(t => t.Name).HasColumnName("Name");
             this.Property(t => t.Description).HasColumnName("Description");
+            this.Property(t => t.External).HasColumnName("External");
         }
     }
 }

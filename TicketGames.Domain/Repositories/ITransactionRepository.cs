@@ -10,5 +10,6 @@ namespace TicketGames.Domain.Repositories
     public interface ITransactionRepository
     {
         List<Transaction> GetTransactionsByParticipantId(long participantId);
+        Transaction CreateTransaction(Transaction transaction);
     }
 }

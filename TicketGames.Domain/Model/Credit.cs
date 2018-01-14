@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,6 +31,9 @@ namespace TicketGames.Domain.Model
         public string City { get; set; }
         public string State { get; set; }
         public DateTime InsertDate { get; set; }
+        public float FeeAmount { get; set; }
+        public float NetAmount { get; set; }
+        public string Code { get; set; }
         public virtual Order Order { get; set; }
 
 
@@ -38,9 +42,13 @@ namespace TicketGames.Domain.Model
 
 
         #region PagSeguro Credit        
+        [NotMapped]
         public string NumberCard { get; set; }
+        [NotMapped]
         public string ExpiryMonth { get; set; }
+        [NotMapped]
         public string ExpiryYear { get; set; }
+        [NotMapped]
         public string CVV { get; set; }
 
 

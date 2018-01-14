@@ -289,5 +289,27 @@ namespace TicketGames.Infrastructure.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public bool UpdateStatusByCartId(long cartId, int cartStatusId)
+        {
+            var cartModified = new Cart();
+
+            using (var connect = new MySqlConnection(connection))
+            {
+                connect.Open();
+
+                string queryCart = @"Select * From Tb_Cart Where Id = @cartId;";
+
+                cartModified = connect.Query<Cart>(queryCart, new { cartId = cartId }).FirstOrDefault();
+
+                connect.Close();
+            }
+
+            cartModified.CartStatusId = cartStatusId;
+
+            this._context.Entry(cartModified).State = EntityState.Modified;
+
+            return this._context.SaveChanges() > 0;
+        }
     }
 }

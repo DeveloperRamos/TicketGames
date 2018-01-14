@@ -20,6 +20,16 @@ namespace TicketGames.Infrastructure.Repositories
         {
             this._context = new TicketGamesContext();
         }
+
+        public Transaction CreateTransaction(Transaction transaction)
+        {
+            var result = this._context.Set<Transaction>().Add(transaction);
+
+            this._context.SaveChanges();
+
+            return result;
+        }
+
         public List<Transaction> GetTransactionsByParticipantId(long participantId)
         {
             using (var connect = new MySqlConnection(connection))

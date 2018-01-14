@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,12 @@ namespace TicketGames.Domain.Model
 {
     public class Order
     {
+        public Order()
+        {
+            this.OrderItems = new List<OrderItem>();
+            this.Credits = new List<Credit>();
+            this.OrderHistory = new List<OrderHistory>();
+        }
         public long Id { get; set; }
         public long ParticipantId { get; set; }
         public int OrderStatusId { get; set; }
@@ -20,6 +27,12 @@ namespace TicketGames.Domain.Model
         public virtual Participant Participant { get; set; }
         public virtual OrderStatus OrderStatus { get; set; }
         public ICollection<OrderItem> OrderItems { get; set; }
+        public ICollection<Credit> Credits { get; set; }
+        public ICollection<OrderHistory> OrderHistory { get; set; }
+
+        [NotMapped]
+        public long CartId { get; set; }
+
 
     }
 }
