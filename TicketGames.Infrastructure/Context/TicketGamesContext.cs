@@ -50,6 +50,7 @@ namespace TicketGames.Infrastructure.Context
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<OrderHistory> OrderHistory { get; set; }
         public DbSet<Credit> Credits { get; set; }
+        public DbSet<Domain.Model.Configuration> Settings { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -81,6 +82,7 @@ namespace TicketGames.Infrastructure.Context
             modelBuilder.Configurations.Add(new OrderItemMap());
             modelBuilder.Configurations.Add(new OrderHistoryMap());
             modelBuilder.Configurations.Add(new CreditMap());
+            modelBuilder.Configurations.Add(new ConfigurationMap());
 
 
         }

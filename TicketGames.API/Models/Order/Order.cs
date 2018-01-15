@@ -80,6 +80,7 @@ namespace TicketGames.API.Models.Order
             creditPagSeguro.Parcel.Value = credit.Value;
             creditPagSeguro.Brand = credit.Brand;
             creditPagSeguro.Owner = credit.Owner;
+            creditPagSeguro.Session = credit.Session;
 
             return creditPagSeguro;
 

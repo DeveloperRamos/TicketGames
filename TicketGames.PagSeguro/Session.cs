@@ -13,28 +13,45 @@ namespace TicketGames.PagSeguro
     public class Session
     {
         public string Id;
-        private string configuration = "http://hml.ticketgames.com.br/Configuration/PagSeguroConfig.xml";
-
+        private string configuration = string.Empty;
+        private bool isSandbox;
+        private const string pagSeguro = "pagSeguro.";
 
         public Session()
         {
+            this.Id = string.Empty;
+        }
+
+        public Session(Dictionary<string, string> settings)
+        {
+            bool.TryParse(settings.Where(b => b.Key.ToUpper() == (pagSeguro + "isSandbox").ToUpper()).Select(s => s.Value).FirstOrDefault(), out this.isSandbox);
+
+            this.configuration = settings.Where(b => b.Key.ToUpper() == (pagSeguro + "urlXmlConfiguration").ToUpper()).Select(s => s.Value).FirstOrDefault();
+
+            this.configuration = string.Format(this.configuration, isSandbox ? "Homologation" : "Production");
+
             this.Id = CreateSession();
         }
 
         private string CreateSession()
         {
-            PagSeguroConfiguration.UrlXmlConfiguration = this.configuration;
-
-            bool isSandbox = true;
-            EnvironmentConfiguration.ChangeEnvironment(isSandbox);
-
             try
             {
-                AccountCredentials credentials = PagSeguroConfiguration.Credentials(isSandbox);
+                if (!string.IsNullOrEmpty(this.configuration))
+                {
+                    PagSeguroConfiguration.UrlXmlConfiguration = this.configuration;
 
-                Uol.PagSeguro.Domain.Direct.Session result = SessionService.CreateSession(credentials);
+                    //bool isSandbox = true;
+                    EnvironmentConfiguration.ChangeEnvironment(this.isSandbox);
 
-                return result.id;
+                    AccountCredentials credentials = PagSeguroConfiguration.Credentials(this.isSandbox);
+
+                    Uol.PagSeguro.Domain.Direct.Session result = SessionService.CreateSession(credentials);
+
+                    return result.id;
+                }
+
+                return string.Empty;
             }
             catch (PagSeguroServiceException exception)
             {
