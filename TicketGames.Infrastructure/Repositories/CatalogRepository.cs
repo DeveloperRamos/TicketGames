@@ -46,7 +46,7 @@ namespace TicketGames.Infrastructure.Repositories
                                 "Inner Join Tb_Raffle R On(P.Id = R.ProductId) " +
                                 "Where P.Active = 1 And C.Active = 1 And D.Active = 1 And I.Active = 1 And P.Id = @id";
 
-                connect.Open();
+                //connect.Open();
 
                 var productDictionary = new Dictionary<long, Product>();
 
@@ -72,7 +72,7 @@ namespace TicketGames.Infrastructure.Repositories
 
                 }, new { Id = id }).Distinct().FirstOrDefault();
 
-                connect.Close();
+                //connect.Close();
 
                 return result;
             }
@@ -89,7 +89,7 @@ namespace TicketGames.Infrastructure.Repositories
                                 "Inner Join Tb_Raffle R On(P.Id = R.ProductId) " +
                                 "Where P.Active = 1 And C.Active = 1 And D.Active = 1 And I.Active = 1 And P.CategoryId = @categoryId";
 
-                connect.Open();
+                //connect.Open();
 
                 var productDictionary = new Dictionary<long, Product>();
 
@@ -115,7 +115,7 @@ namespace TicketGames.Infrastructure.Repositories
 
                   }, new { CategoryId = categoryId }).Distinct().ToList();
 
-                connect.Close();
+                //connect.Close();
 
                 return results;
             }
@@ -139,7 +139,7 @@ namespace TicketGames.Infrastructure.Repositories
                                 "Inner Join Tb_Raffle R On(P.Id = R.ProductId) " +
                                 "Where P.Active = 1 And C.Active = 1 And D.Active = 1 And I.Active = 1 And P.CategoryId = @categoryId And P.Name Like CONCAT('%@name%');";
 
-                connect.Open();
+                //connect.Open();
 
                 var productDictionary = new Dictionary<long, Product>();
 
@@ -165,7 +165,7 @@ namespace TicketGames.Infrastructure.Repositories
 
                   }, new { CategoryId = categoryId, name = productName }).Distinct().ToList();
 
-                connect.Close();
+                //connect.Close();
 
                 return results;
             }
@@ -182,7 +182,7 @@ namespace TicketGames.Infrastructure.Repositories
                                 "Inner Join Tb_Raffle R On(P.Id = R.ProductId) " +
                                 "Where P.Active = 1 And C.Active = 1 And D.Active = 1 And I.Active = 1 And P.CategoryId = @categoryId";
 
-                connect.Open();
+                //connect.Open();
 
                 var productDictionary = new Dictionary<long, Product>();
 
@@ -209,7 +209,7 @@ namespace TicketGames.Infrastructure.Repositories
                   }, new { CategoryId = categoryId })
                   .Distinct().OrderByDescending(p => p.Id).Take(4).ToList();
 
-                connect.Close();
+                //connect.Close();
 
                 return results;
             }
@@ -219,13 +219,13 @@ namespace TicketGames.Infrastructure.Repositories
         {
             using (var connect = new MySqlConnection(connection))
             {
-                connect.Open();
+                //connect.Open();
 
                 string queryImage = @"Select * From Tb_Image Where ImageTypeId = @imageTypeId And ProductId = @productId And Active = 1;";
 
                 var imageModified = connect.Query<Image>(queryImage, new { imageTypeId = typeImageId, productId = productId }).FirstOrDefault();
 
-                connect.Close();
+                //connect.Close();
 
                 if (imageModified.Id > 0)
                 {

@@ -34,13 +34,13 @@ namespace TicketGames.Infrastructure.Repositories
         {
             using (var connect = new MySqlConnection(connection))
             {
-                connect.Open();
+                //connect.Open();
 
                 string query = @"Select * From Tb_Transaction Where ParticipantId = @participantId;";
 
                 var transactions = connect.Query<Transaction>(query, new { participantId = participantId }).ToList();
 
-                connect.Close();
+                //connect.Close();
 
 
                 return transactions ?? new List<Transaction>();

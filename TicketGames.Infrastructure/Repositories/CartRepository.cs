@@ -53,7 +53,7 @@ namespace TicketGames.Infrastructure.Repositories
                                     "Inner Join Tb_Raffle R On(R.Id = I.RaffleId) " +
                                     "Where ParticipantId = @participantId And CartStatusId = 2 And R.RaffleStatusId In(3,4);";
 
-                    connect.Open();
+                    //connect.Open();
 
                     var cartDictionary = new Dictionary<long, Cart>();
 
@@ -77,7 +77,7 @@ namespace TicketGames.Infrastructure.Repositories
 
                       }, new { participantId = _cart.ParticipantId }).Distinct().FirstOrDefault();
 
-                    connect.Close();
+                    //connect.Close();
 
                     foreach (var cartItemModified in result.CartItems)
                     {
@@ -134,13 +134,13 @@ namespace TicketGames.Infrastructure.Repositories
             {
                 using (var connect = new MySqlConnection(connection))
                 {
-                    connect.Open();
+                    //connect.Open();
 
                     string query = @"Select A.* From Tb_OrderDeliveryAddress A Inner Join Tb_Cart C On(A.CartId = C.Id) Where A.Id = @orderDeliveryAddressId And C.CartStatusId = 2;";
 
                     deliveryAddressModified = connect.Query<OrderDeliveryAddress>(query, new { orderDeliveryAddressId = orderDeliveryAddress.Id }).FirstOrDefault();
 
-                    connect.Close();
+                    //connect.Close();
                 }
 
                 deliveryAddressModified.Name = orderDeliveryAddress.Name;
@@ -179,7 +179,7 @@ namespace TicketGames.Infrastructure.Repositories
                                 "Inner Join Tb_Raffle R On(R.Id = I.RaffleId) " +
                                 "Where ParticipantId = @participantId And CartStatusId = 2 And R.RaffleStatusId In(3,4);";
 
-                connect.Open();
+                //connect.Open();
 
                 var cartDictionary = new Dictionary<long, Cart>();
 
@@ -218,7 +218,7 @@ namespace TicketGames.Infrastructure.Repositories
                     }
                 }
 
-                connect.Close();
+                //connect.Close();
 
                 return result ?? new Cart();
             }
@@ -236,7 +236,7 @@ namespace TicketGames.Infrastructure.Repositories
                                 "Inner Join Tb_Raffle R On(R.Id = I.RaffleId) " +
                                 "Where ParticipantId = @participantId And CartStatusId = 2 And R.RaffleStatusId In(3,4);";
 
-                connect.Open();
+                //connect.Open();
 
                 //cart = connect.Query<Cart>(query, new { participantId = participantId }).FirstOrDefault();
 
@@ -263,7 +263,7 @@ namespace TicketGames.Infrastructure.Repositories
 
                   }, new { participantId = participantId }).Distinct().FirstOrDefault();
 
-                connect.Close();
+                //connect.Close();
 
                 return result ?? new Cart();
             }
@@ -273,13 +273,13 @@ namespace TicketGames.Infrastructure.Repositories
         {
             using (var connect = new MySqlConnection(connection))
             {
-                connect.Open();
+                //connect.Open();
 
                 string query = @"Select A.* From Tb_OrderDeliveryAddress A Inner Join Tb_Cart C On(A.CartId = C.Id) Where A.ParticipantId = @participantId And C.CartStatusId = 2;";
 
                 var deliveryAddress = connect.Query<OrderDeliveryAddress>(query, new { participantId = participantId }).FirstOrDefault();
 
-                connect.Close();
+                //connect.Close();
 
                 return deliveryAddress ?? new OrderDeliveryAddress();
             }
@@ -296,13 +296,13 @@ namespace TicketGames.Infrastructure.Repositories
 
             using (var connect = new MySqlConnection(connection))
             {
-                connect.Open();
+                //connect.Open();
 
                 string queryCart = @"Select * From Tb_Cart Where Id = @cartId;";
 
                 cartModified = connect.Query<Cart>(queryCart, new { cartId = cartId }).FirstOrDefault();
 
-                connect.Close();
+                //connect.Close();
             }
 
             cartModified.CartStatusId = cartStatusId;
