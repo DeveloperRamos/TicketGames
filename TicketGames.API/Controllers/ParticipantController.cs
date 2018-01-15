@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -21,12 +22,15 @@ namespace TicketGames.API.Controllers
     public class ParticipantController : ApiController
     {
         private readonly IParticipantService _participantService;
-        public ParticipantController(IParticipantService participantService)
+        private readonly IConfigurationService _configurationService;
+
+        public ParticipantController(IParticipantService participantService, IConfigurationService configurationService)
         {
             this._participantService = participantService;
+            this._configurationService = configurationService;
         }
         public ParticipantController()
-            : this(new ParticipantService(new ParticipantRepository()))
+            : this(new ParticipantService(new ParticipantRepository()), new ConfigurationService(new ConfigurationRepository()))
         {
             CacheManager.SetProvider(new CacheProvider());
         }
@@ -87,7 +91,6 @@ namespace TicketGames.API.Controllers
 
             if (participant == null)
             {
-
                 var result = this._participantService.GetParticipant(session);
 
                 participant = new Participant(result);
@@ -171,6 +174,19 @@ namespace TicketGames.API.Controllers
 
                 if (participantId > 0)
                 {
+
+                    var settingsKey = "Settings:Configuration";
+                    List<Domain.Model.Configuration> settings = null;
+                    settings = CacheManager.GetObject<List<Domain.Model.Configuration>>(settingsKey);
+
+                    if (settings == null)
+                    {
+                        settings = this._configurationService.GetSettings();
+
+                        if (settings != null && settings.Count > 0)
+                            CacheManager.StoreObject(settingsKey, settings, LifetimeProfile.Longest);
+                    }
+
                     string session = null;
 
                     var key = string.Concat("Participant:Id:", participantId.ToString(), ":Session");
@@ -179,7 +195,7 @@ namespace TicketGames.API.Controllers
 
                     if (string.IsNullOrEmpty(session))
                     {
-                        session = this._participantService.GetSession();
+                        session = this._participantService.GetSession(settings);
 
                         if (!string.IsNullOrEmpty(session))
                             CacheManager.StoreObject(key, session, LifetimeProfile.Long);

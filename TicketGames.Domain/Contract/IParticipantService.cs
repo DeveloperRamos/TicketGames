@@ -1,4 +1,5 @@
-﻿using TicketGames.Domain.Model;
+﻿using System.Collections.Generic;
+using TicketGames.Domain.Model;
 
 namespace TicketGames.Domain.Contract
 {
@@ -11,6 +12,6 @@ namespace TicketGames.Domain.Contract
         Participant GetParticipant(string session);
         Session GetSession(string session);
         Participant Authenticate(string login, string password, string salt);
-        string GetSession();
+        string GetSession(List<Configuration> settings);
     }
 }

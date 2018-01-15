@@ -1,29 +1,23 @@
 ﻿using System.Data.Entity.ModelConfiguration;
-using TicketGames.Domain.Model;
 
 namespace TicketGames.Infrastructure.Mapping
 {
-    public class DepartmentMap : EntityTypeConfiguration<Department>
+    class ConfigurationMap : EntityTypeConfiguration<Domain.Model.Configuration>
     {
-        public DepartmentMap()
+        public ConfigurationMap()
         {
             // Primary Key
             this.HasKey(t => t.Id);
-
+            
             // Table & Column Mappings
-            this.ToTable("Tb_Department");
+            this.ToTable("Tb_Configuration");
             this.Property(t => t.Id).HasColumnName("Id");
-            this.Property(t => t.CategoryId).HasColumnName("CategoryId");
-            this.Property(t => t.Name).HasColumnName("Name");
+            this.Property(t => t.Key).HasColumnName("Key");
+            this.Property(t => t.Value).HasColumnName("Value");
             this.Property(t => t.Description).HasColumnName("Description");
             this.Property(t => t.InsertDate).HasColumnName("InsertDate");
             this.Property(t => t.UpdateDate).HasColumnName("UpdateDate");
             this.Property(t => t.Active).HasColumnName("Active");
-
-            // Relationships
-            this.HasRequired(t => t.Category)
-                .WithMany(t => t.Departaments)
-                .HasForeignKey(d => d.CategoryId);
 
         }
     }

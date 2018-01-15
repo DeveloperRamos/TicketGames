@@ -109,6 +109,15 @@ namespace TicketGames.API.Controllers
 
                     #endregion
 
+                    #region Get Session
+
+                    string session = null;
+
+                    var key = string.Concat("Participant:Id:", participantId.ToString(), ":Session");
+
+                    session = CacheManager.GetObject<string>(key);
+
+                    #endregion
 
                     float total = 0;
 
@@ -144,8 +153,6 @@ namespace TicketGames.API.Controllers
 
                                 orderDomain.Money = Convert.ToSingle(money);
 
-
-
                                 orderDomain.PaymentType = "Credit";
 
                                 foreach (var cart in carts)
@@ -169,6 +176,7 @@ namespace TicketGames.API.Controllers
                                     transaction.Value = account.Balance;
 
                                     orderDomain.Point = account.Balance;
+                                    orderDomain.PaymentType = "Point + Credit";
                                 }
 
                                 var credit = new Domain.Model.Credit();
@@ -177,6 +185,7 @@ namespace TicketGames.API.Controllers
                                 credit.SenderHash = order.Card.SenderHash;
                                 credit.Brand = order.Card.Brand;
                                 credit.CreditCardToken = order.Card.CreditCardToken;
+                                credit.Session = session;
 
                                 credit.Parcel = order.Card.Parcel.Quantity;
                                 credit.Value = order.Card.Parcel.Value;

@@ -17,6 +17,7 @@ namespace TicketGames.PagSeguro.Model
         public string CVV { get; set; }
         public string SenderHash { get; set; }
         public string CreditCardToken { get; set; }
+        public string Session { get; set; }
         public Buyer Buyer { get; set; }
         public Parcel Parcel { get; set; }
         public ShippingAddress ShippingAddress { get; set; }
@@ -36,7 +37,7 @@ namespace TicketGames.PagSeguro.Model
 
             // Sets the payment mode
             checkout.PaymentMode = PaymentMode.DEFAULT;
-
+            checkout.PaymentMethod = "creditCard";
 
             // Sets the receiver e-mail should will get paid
             //checkout.ReceiverEmail = "backoffice@lojamodelo.com.br";
@@ -50,6 +51,11 @@ namespace TicketGames.PagSeguro.Model
             //{
             //    checkout.Items.Add(new Uol.PagSeguro.Domain.Item(item.ProductId, item.Product, item.Quantity, Convert.ToDecimal(item.Value)));
             //    checkout.Items.Add(new Item("0002", "Notebook Rosa", 2, 150.99m));
+            //}
+
+            //foreach (var item in this.Items)
+            //{
+            //    checkout.Items.Add(new Uol.PagSeguro.Domain.Item(item.ProductId, item.Product, item.Quantity, Convert.ToDecimal(item.Value)));                
             //}
 
             checkout.Items.Add(new Uol.PagSeguro.Domain.Item("2018", "Ticket Games", 1, Convert.ToDecimal(this.Parcel.Value * this.Parcel.Quantity)));

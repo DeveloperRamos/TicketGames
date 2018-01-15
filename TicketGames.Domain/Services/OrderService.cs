@@ -17,12 +17,11 @@ namespace TicketGames.Domain.Services
         private readonly ITransactionRepository _transactionRepository;
         private readonly ICartRepository _cartRepository;
 
-
         public OrderService(IOrderRepository orderRepository, ITransactionRepository transactionRepository, ICartRepository cartRepository)
         {
             this._orderRepository = orderRepository;
             this._transactionRepository = transactionRepository;
-            this._cartRepository = cartRepository;
+            this._cartRepository = cartRepository;            
         }
 
         public List<PagSeguro.Model.Installment> Installments(decimal amount, string creditCardBrand, int maxInstallmentNoInterest)
@@ -144,7 +143,7 @@ namespace TicketGames.Domain.Services
                     creditCreate.Brand = credit.Brand;
                     creditCreate.SenderHash = credit.SenderHash;
                     creditCreate.CreditCardToken = credit.CreditCardToken;
-                    creditCreate.Session = string.Empty;
+                    creditCreate.Session = credit.Session;
                     creditCreate.Parcel = credit.Parcel.Quantity;
                     creditCreate.Value = credit.Parcel.Value;
                     creditCreate.SubTotal = order.Money;
