@@ -24,7 +24,7 @@ namespace TicketGames.Infrastructure.Repositories
         {
             using (var connect = new MySqlConnection(connection))
             {
-                connect.Open();
+                //connect.Open();
 
                 var raffleDictionary = new Dictionary<long, Raffle>();
 
@@ -44,7 +44,7 @@ namespace TicketGames.Infrastructure.Repositories
 
                  }, new { productId = productId }).Distinct().FirstOrDefault();
 
-                connect.Close();
+                //connect.Close();
 
                 return result;
             }

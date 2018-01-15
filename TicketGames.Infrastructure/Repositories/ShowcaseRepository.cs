@@ -35,7 +35,7 @@ namespace TicketGames.Infrastructure.Repositories
                                 "Inner Join Tb_Raffle R On(P.Id = R.ProductId) " +
                                 "Where S.Active = 1 And SP.Active = 1 And P.Active = 1 And C.Active = 1 And D.Active = 1 And I.Active = 1 And S.ShowcaseTypeId = @showcaseTypeId;";
 
-                connect.Open();
+                //connect.Open();
 
                 var productDictionary = new Dictionary<long, Product>();
 
@@ -61,7 +61,7 @@ namespace TicketGames.Infrastructure.Repositories
 
                   }, new { ShowcaseTypeId = showcaseTypeId }).Distinct().ToList();
 
-                connect.Close();
+                //connect.Close();
 
                 return results;
             }

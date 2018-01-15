@@ -53,13 +53,13 @@ namespace TicketGames.Infrastructure.Repositories
 
             using (var connect = new MySqlConnection(connection))
             {
-                connect.Open();
+                //connect.Open();
 
                 string queryOrderDeliveryAddress = @"Select * From Tb_OrderDeliveryAddress Where CartId = @cartId;";
 
                 orderDeliveryAddressModified = connect.Query<OrderDeliveryAddress>(queryOrderDeliveryAddress, new { cartId = cartId }).FirstOrDefault();
 
-                connect.Close();
+                //connect.Close();
             }
 
             orderDeliveryAddressModified.OrderId = orderId;
@@ -75,13 +75,13 @@ namespace TicketGames.Infrastructure.Repositories
 
             using (var connect = new MySqlConnection(connection))
             {
-                connect.Open();
+                //connect.Open();
 
                 string queryOrder = @"Select * From Tb_Order Where Id = @orderId;";
 
                 orderModified = connect.Query<Order>(queryOrder, new { orderId = orderId }).FirstOrDefault();
 
-                connect.Close();
+                //connect.Close();
             }
 
             orderModified.OrderStatusId = orderStatusId;

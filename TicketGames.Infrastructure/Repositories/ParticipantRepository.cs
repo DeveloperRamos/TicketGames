@@ -30,11 +30,11 @@ namespace TicketGames.Infrastructure.Repositories
 
                 string query = @"Select * From Tb_Participant Where Login = @login And Password = @password And Salt = @salt And ParticipantStatusId = 1;";
 
-                connect.Open();
+                //connect.Open();
 
                 participant = connect.Query<Participant>(query, new { login = login, password = password, salt = salt }).FirstOrDefault();
 
-                connect.Close();
+                //connect.Close();
 
                 return participant;
             }
@@ -65,11 +65,11 @@ namespace TicketGames.Infrastructure.Repositories
 
                 string query = @"Select * From Tb_Participant Where Id = @participantId;";
 
-                connect.Open();
+                //connect.Open();
 
                 participant = connect.Query<Participant>(query, new { participantId = id }).FirstOrDefault();
 
-                connect.Close();
+                //connect.Close();
 
                 return participant;
             }
@@ -88,11 +88,11 @@ namespace TicketGames.Infrastructure.Repositories
 
                 string query = @"Select * From Tb_Participant Where CPF = @cpf And Login = @login;";
 
-                connect.Open();
+                //connect.Open();
 
                 participant = connect.Query<Participant>(query, new { cpf = cpf, login = login }).FirstOrDefault();
 
-                connect.Close();
+                //connect.Close();
 
                 return participant;
             }
@@ -106,11 +106,11 @@ namespace TicketGames.Infrastructure.Repositories
 
                 string query = @"Select * From Tb_Session Where SessionKey = @session And ExpirationDate > @date And Activated = 0;";
 
-                connect.Open();
+                //connect.Open();
 
                 _session = connect.Query<Session>(query, new { session = session, date = DateTime.Now }).FirstOrDefault();
 
-                connect.Close();
+                //connect.Close();
 
                 return _session;
             }
@@ -123,7 +123,7 @@ namespace TicketGames.Infrastructure.Repositories
 
             using (var connect = new MySqlConnection(connection))
             {
-                connect.Open();
+                //connect.Open();
 
                 if (participant.Sessions.Count > 0)
                 {
@@ -139,7 +139,7 @@ namespace TicketGames.Infrastructure.Repositories
 
                 participantModified = connect.Query<Participant>(queryParticipant, new { participantId = participant.Id }).FirstOrDefault();
 
-                connect.Close();
+                //connect.Close();
             }
 
             if (sessionModified.Id > 0)
