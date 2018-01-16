@@ -17,24 +17,47 @@ namespace TicketGames.PagSeguro
     public class Transaction
     {
         private string configuration = "http://hml.ticketgames.com.br/Configuration/PagSeguroConfig.xml";
+        private readonly PagSeguroResult pagSeguroResult;
 
-        public void BilletCheckout(Billet billet)
+
+        public Transaction()
+        {
+            pagSeguroResult = new PagSeguroResult();
+
+        }
+
+
+        public PagSeguroResult BilletCheckout(Billet billet)
         {
             PagSeguroConfiguration.UrlXmlConfiguration = this.configuration;
             bool isSandbox = true;
             EnvironmentConfiguration.ChangeEnvironment(isSandbox);
 
             // Instantiate a new checkout
-            BoletoCheckout checkout = billet.MappingDebitCheckout();
+            BoletoCheckout checkout = billet.MappingBilletCheckout();
 
             try
             {
                 AccountCredentials credentials = PagSeguroConfiguration.Credentials(isSandbox);
-                Uol.PagSeguro.Domain.Transaction result = TransactionService.CreateCheckout(credentials, checkout);
+                Uol.PagSeguro.Domain.Transaction transaction = TransactionService.CreateCheckout(credentials, checkout);
+
+                if (!string.IsNullOrEmpty(transaction.Code))
+                {
+                    pagSeguroResult.Success = true;
+                    pagSeguroResult.Code = transaction.Code;
+                    pagSeguroResult.FeeAmount = transaction.FeeAmount;
+                    pagSeguroResult.NetAmount = transaction.NetAmount;
+                    pagSeguroResult.Reference = transaction.Reference;
+                    pagSeguroResult.TransactionStatus = transaction.TransactionStatus.ToString();
+                    pagSeguroResult.PaymentLink = transaction.PaymentLink;
+                }
+
+                return pagSeguroResult;
 
             }
             catch (PagSeguroServiceException exception)
             {
+                return new PagSeguroResult() { Success = false };
                 //Gravar log do erro
             }
         }
@@ -53,20 +76,17 @@ namespace TicketGames.PagSeguro
                 AccountCredentials credentials = PagSeguroConfiguration.Credentials(isSandbox);
                 Uol.PagSeguro.Domain.Transaction transaction = TransactionService.CreateCheckout(credentials, checkout);
 
-                var result = new PagSeguroResult();
-
-
                 if (!string.IsNullOrEmpty(transaction.Code))
                 {
-                    result.Success = true;
-                    result.Code = transaction.Code;
-                    result.FeeAmount = transaction.FeeAmount;
-                    result.NetAmount = transaction.NetAmount;
-                    result.Reference = transaction.Reference;
-                    result.TransactionStatus = transaction.TransactionStatus.ToString();
+                    pagSeguroResult.Success = true;
+                    pagSeguroResult.Code = transaction.Code;
+                    pagSeguroResult.FeeAmount = transaction.FeeAmount;
+                    pagSeguroResult.NetAmount = transaction.NetAmount;
+                    pagSeguroResult.Reference = transaction.Reference;
+                    pagSeguroResult.TransactionStatus = transaction.TransactionStatus.ToString();
                 }
 
-                return result;
+                return pagSeguroResult;
             }
             catch (PagSeguroServiceException exception)
             {

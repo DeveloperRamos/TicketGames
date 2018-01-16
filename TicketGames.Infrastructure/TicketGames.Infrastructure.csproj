@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="Configuration\TicketGamesInitialization.cs" />
     <Compile Include="Context\TicketGamesContext.cs" />
+    <Compile Include="Mapping\BilletMap.cs" />
     <Compile Include="Mapping\CartItemMap.cs" />
     <Compile Include="Mapping\CartMap.cs" />
     <Compile Include="Mapping\CartStatusMap.cs" />

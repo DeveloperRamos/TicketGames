@@ -126,7 +126,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Configuration\PagSeguroConfig.xml" />
     <Content Include="Global.asax" />
     <Content Include="Image\default.png" />
     <Content Include="Image\WebAPI.gif" />

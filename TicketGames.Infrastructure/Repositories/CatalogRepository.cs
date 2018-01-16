@@ -1,15 +1,13 @@
-﻿using System;
+﻿using Dapper;
+using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TicketGames.Domain.Model;
 using TicketGames.Domain.Repositories;
 using TicketGames.Infrastructure.Context;
-using System.Data.Entity;
-using MySql.Data.MySqlClient;
-using System.Configuration;
-using Dapper;
 
 namespace TicketGames.Infrastructure.Repositories
 {
@@ -29,10 +27,34 @@ namespace TicketGames.Infrastructure.Repositories
 
         public List<Category> GetCategories()
         {
+            using (var connect = new MySqlConnection(connection))
+            {
+                string queryCategory = @"Select * From Tb_Category C " +
+                                "Inner Join Tb_Department D On(D.CategoryId = C.Id) " +
+                                "Where C.Active = 1 And D.Active = 1 Order By C.Order Asc;";
 
-            List<Category> categories = this._context.Categories.Include(c => c.Departaments).ToList();
+                var categoryDictionary = new Dictionary<long, Category>();
 
-            return categories;
+                var results = connect.Query<Category, Department, Category>(queryCategory,
+                  (category, department) =>
+                  {
+                      Category categoryEntity;
+
+                      if (!categoryDictionary.TryGetValue(category.Id, out categoryEntity))
+                      {
+                          categoryEntity = category;
+                          categoryEntity.Departaments = new List<Department>();
+                          categoryDictionary.Add(category.Id, categoryEntity);
+                      }
+
+                      categoryEntity.Departaments.Add(department);
+
+                      return categoryEntity;
+
+                  }).Distinct().ToList();
+
+                return results;
+            }
         }
 
         public Product GetProductById(long id)

@@ -11,7 +11,79 @@ namespace TicketGames.PagSeguro.Model
 {
     public class Billet
     {
-        public BoletoCheckout MappingDebitCheckout()
+        public long OrderId { get; set; }
+        public string SenderHash { get; set; }
+        public float Price { get; set; }
+        public string Session { get; set; }
+        public ShippingAddress ShippingAddress { get; set; }
+        public Buyer Buyer { get; set; }
+
+        public BoletoCheckout MappingBilletCheckout()
+        {
+            // Instantiate a new checkout
+            BoletoCheckout checkout = new BoletoCheckout();
+
+            // Sets the payment mode
+            checkout.PaymentMode = PaymentMode.DEFAULT;
+            checkout.PaymentMethod = "boleto";
+
+            // Sets the receiver e-mail should will get paid
+            //checkout.ReceiverEmail = "backoffice@lojamodelo.com.br";
+            checkout.ReceiverEmail = "marcio.correia@terra.com.br";
+
+            // Sets the currency
+            checkout.Currency = Currency.Brl;
+
+            // Add items
+            //foreach (var item in this.Items)
+            //{
+            //    checkout.Items.Add(new Uol.PagSeguro.Domain.Item(item.ProductId, item.Product, item.Quantity, Convert.ToDecimal(item.Value)));
+            //    checkout.Items.Add(new Item("0002", "Notebook Rosa", 2, 150.99m));
+            //}
+
+            //foreach (var item in this.Items)
+            //{
+            //    checkout.Items.Add(new Uol.PagSeguro.Domain.Item(item.ProductId, item.Product, item.Quantity, Convert.ToDecimal(item.Value)));                
+            //}
+
+            checkout.Items.Add(new Uol.PagSeguro.Domain.Item("2018", "Ticket Games", 1, Convert.ToDecimal(this.Price)));
+
+            // Sets a reference code for this checkout, it is useful to identify this payment in future notifications.
+            checkout.Reference = this.OrderId.ToString();
+
+            // Sets shipping information.
+            checkout.Shipping = new Shipping();
+            checkout.Shipping.ShippingType = ShippingType.Sedex;
+            checkout.Shipping.Cost = 0.00m;
+            checkout.Shipping.Address = new Address(
+                "BRA",
+                this.ShippingAddress.State,
+                this.ShippingAddress.City,
+                this.ShippingAddress.District,
+                this.ShippingAddress.ZipCode,
+                this.ShippingAddress.Street,
+                this.ShippingAddress.Number,
+                string.Empty
+            );
+
+            // Sets your customer information.
+            // If you using SANDBOX you must use an email @sandbox.pagseguro.com.br
+            checkout.Sender = new Sender(
+                this.Buyer.Name,
+                this.Buyer.Mail,
+                new Phone(this.Buyer.DDD, this.Buyer.Phone)
+            );
+
+            checkout.Sender.Hash = this.SenderHash;
+            SenderDocument senderCPF = new SenderDocument(Documents.GetDocumentByType("CPF"), this.Buyer.CPF);
+            checkout.Sender.Documents.Add(senderCPF);
+
+            // Sets the notification url
+            checkout.NotificationURL = "https://ticketgames.com.br";
+
+            return checkout;
+        }
+        public BoletoCheckout MappingDebitCheckout(int id)
         {
             // Instantiate a new checkout
             BoletoCheckout checkout = new BoletoCheckout();
@@ -27,7 +99,7 @@ namespace TicketGames.PagSeguro.Model
             checkout.Currency = Currency.Brl;
 
             // Extra amount to be added to the transaction total
-            checkout.ExtraAmount = 1.00m;
+            //checkout.ExtraAmount = 1.00m;
 
             // Add items
             checkout.Items.Add(new Uol.PagSeguro.Domain.Item("0001", "Resident Evil 6", 1, 10.00m));

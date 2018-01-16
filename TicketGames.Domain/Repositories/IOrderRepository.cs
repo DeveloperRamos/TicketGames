@@ -13,6 +13,7 @@ namespace TicketGames.Domain.Repositories
         bool UpdateStatusByOrderId(long orderId, int orderStatusId);
 
         Credit CreateCreditByOrderId(Credit credit);
+        Billet CreateBilletByOrderId(Billet billet);
 
         bool CreateOrderHistory(OrderHistory history);
 

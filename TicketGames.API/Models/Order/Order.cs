@@ -9,8 +9,37 @@ namespace TicketGames.API.Models.Order
     public class Order
     {
         public PaymentType PaymentType { get; set; }
+        public string SenderHash { get; set; }
         public Card Card { get; set; }
 
+        public TicketGames.PagSeguro.Model.Billet MappingBillet(Domain.Model.Participant participant, Domain.Model.OrderDeliveryAddress orderDeliveryAddress, TicketGames.Domain.Model.Billet billet)
+        {
+            TicketGames.PagSeguro.Model.Billet billetPagSeguro = new PagSeguro.Model.Billet();
+
+            billetPagSeguro.Price = billet.Value;
+
+            billetPagSeguro.ShippingAddress = new TicketGames.PagSeguro.Model.ShippingAddress();
+
+            billetPagSeguro.ShippingAddress.Street = orderDeliveryAddress.Street;
+            billetPagSeguro.ShippingAddress.Number = orderDeliveryAddress.Number;
+            billetPagSeguro.ShippingAddress.Complement = orderDeliveryAddress.Complement;
+            billetPagSeguro.ShippingAddress.District = orderDeliveryAddress.District;
+            billetPagSeguro.ShippingAddress.ZipCode = orderDeliveryAddress.ZipCode;
+            billetPagSeguro.ShippingAddress.City = orderDeliveryAddress.City;
+            billetPagSeguro.ShippingAddress.State = orderDeliveryAddress.State;
+
+            billetPagSeguro.Buyer = new TicketGames.PagSeguro.Model.Buyer();
+
+            billetPagSeguro.Session = billet.Session;
+            billetPagSeguro.SenderHash = billet.SenderHash;
+            billetPagSeguro.Buyer.Name = participant.Name;
+            billetPagSeguro.Buyer.CPF = participant.CPF;
+            billetPagSeguro.Buyer.DDD = "11";
+            billetPagSeguro.Buyer.Phone = "980203026";
+            billetPagSeguro.Buyer.Mail = participant.Email;
+
+            return billetPagSeguro;
+        }
 
         public TicketGames.PagSeguro.Model.Credit MappingCredit(Domain.Model.Participant participant, Domain.Model.Cart cart, Domain.Model.OrderDeliveryAddress orderDeliveryAddress, TicketGames.Domain.Model.Credit credit)
         {
@@ -115,7 +144,6 @@ namespace TicketGames.API.Models.Order
         public string ExpiryMonth { get; set; }
         public string ExpiryYear { get; set; }
         public string CVV { get; set; }
-        public string SenderHash { get; set; }
         public string CreditCardToken { get; set; }
         public Parcel Parcel { get; set; }
         public BillingAddress BillingAddress { get; set; }

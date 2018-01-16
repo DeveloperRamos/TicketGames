@@ -49,6 +49,7 @@
     <Compile Include="Contract\IRaffleService.cs" />
     <Compile Include="Contract\IShowcaseService.cs" />
     <Compile Include="Contract\ITransactionService.cs" />
+    <Compile Include="Model\Billet.cs" />
     <Compile Include="Model\Cart.cs" />
     <Compile Include="Model\CartItem.cs" />
     <Compile Include="Model\CartStatus.cs" />

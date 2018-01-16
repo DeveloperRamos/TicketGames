@@ -45,10 +45,16 @@
   <ItemGroup>
     <Compile Include="Installment.cs" />
     <Compile Include="Model\Billet.cs" />
+    <Compile Include="Model\BillingAddress.cs" />
+    <Compile Include="Model\Buyer.cs" />
     <Compile Include="Model\Credit.cs" />
+    <Compile Include="Model\CreditCardHolder.cs" />
     <Compile Include="Model\Debit.cs" />
     <Compile Include="Model\Installment.cs" />
+    <Compile Include="Model\Item.cs" />
     <Compile Include="Model\PagSeguroResult.cs" />
+    <Compile Include="Model\Parcel.cs" />
+    <Compile Include="Model\ShippingAddress.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="Transaction.cs" />
