@@ -46,17 +46,27 @@ namespace TicketGames.API.Controllers
         {
             try
             {
-                long orderId = 0;
+                #region Declarations of variables and objects
 
+                long orderId = 0;
+                string session = null;
+                float total = 0;
                 ClaimsPrincipal principal = Request.GetRequestContext().Principal as ClaimsPrincipal;
+                Participant participant = null;
+                Domain.Model.Cart domainCart = null;
+                var carts = new List<TicketGames.API.Models.Order.Cart>();
+                Account account = new Account();
+                var transaction = new Domain.Model.Transaction();
+                var orderDomain = new Domain.Model.Order();
+
+
+                #endregion
 
                 long.TryParse(principal.Claims.Where(c => c.Type == "participant_Id").Single().Value, out participantId);
 
                 if (this.participantId > 0)
                 {
                     #region Get Participant
-
-                    Participant participant = null;
 
                     var participantKey = string.Concat("Participant:Id:", this.participantId.ToString(), ":Register");
 
@@ -75,9 +85,7 @@ namespace TicketGames.API.Controllers
 
                     #endregion
 
-                    #region Get Cart
-
-                    Domain.Model.Cart domainCart = null;
+                    #region Get Cart                    
 
                     var cartKey = string.Concat("Participant:Id:", this.participantId.ToString(), ":Cart");
 
@@ -90,15 +98,11 @@ namespace TicketGames.API.Controllers
 
                     var deliveryAddressResult = this._cartService.Get(this.participantId, domainCart.Id);
 
-                    var carts = new List<TicketGames.API.Models.Order.Cart>();
-
                     carts = new TicketGames.API.Models.Order.Cart().CreateCart(domainCart);
 
                     #endregion
 
-                    #region Get Balance
-
-                    Account account = new Account();
+                    #region Get Balance                    
 
                     var transactions = this._transactionService.GetTransactions(participantId);
 
@@ -109,9 +113,7 @@ namespace TicketGames.API.Controllers
 
                     #endregion
 
-                    #region Get Session
-
-                    string session = null;
+                    #region Get Session                    
 
                     var key = string.Concat("Participant:Id:", participantId.ToString(), ":Session");
 
@@ -119,14 +121,9 @@ namespace TicketGames.API.Controllers
 
                     #endregion
 
-                    float total = 0;
-
                     carts.ForEach(c =>
                     total += c.Price * c.Quantity
                     );
-
-                    var transaction = new Domain.Model.Transaction();
-                    var orderDomain = new Domain.Model.Order();
 
                     orderDomain.ParticipantId = this.participantId;
 
@@ -137,6 +134,21 @@ namespace TicketGames.API.Controllers
 
                     orderDomain.Value = total;
 
+                    orderDomain.Money = Convert.ToSingle(total - account.Balance);
+
+                    foreach (var cart in carts)
+                    {
+                        orderDomain.OrderItems.Add(new Domain.Model.OrderItem()
+                        {
+                            ProductId = cart.ProductId,
+                            RaffleId = cart.RaffleId,
+                            Value = cart.Price,
+                            Quantity = cart.Quantity
+                        });
+
+                        orderDomain.CartId = cart.CartId;
+                    }
+
                     switch (order.PaymentType)
                     {
                         case PaymentType.Point:
@@ -145,28 +157,37 @@ namespace TicketGames.API.Controllers
                             }
                         case PaymentType.Billet:
                             {
+                                orderDomain.PaymentType = "Billet";
+
+                                if (account.Balance > 0)
+                                {
+                                    transaction.ParticipantId = this.participantId;
+                                    transaction.TransactionTypeId = 2;
+                                    transaction.Description = "Fechamento do pedido {0}";
+                                    transaction.Value = account.Balance;
+
+                                    orderDomain.Point = account.Balance;
+                                    orderDomain.PaymentType = "Point + Billet";
+                                }
+
+                                var billet = new Domain.Model.Billet();
+
+                                billet.Name = participant.Name;
+                                billet.CPF = participant.CPF;
+                                billet.SenderHash = order.SenderHash;
+                                billet.Session = session;
+
+                                billet.Value = orderDomain.Money;
+
+                                var paymentBillet = order.MappingBillet(domainParticipant, deliveryAddressResult, billet);
+
+                                orderId = this._orderService.Redemption(paymentBillet, transaction, orderDomain);
+
                                 break;
                             }
                         case PaymentType.Credit:
                             {
-                                Decimal money = Convert.ToDecimal(total - account.Balance);
-
-                                orderDomain.Money = Convert.ToSingle(money);
-
                                 orderDomain.PaymentType = "Credit";
-
-                                foreach (var cart in carts)
-                                {
-                                    orderDomain.OrderItems.Add(new Domain.Model.OrderItem()
-                                    {
-                                        ProductId = cart.ProductId,
-                                        RaffleId = cart.RaffleId,
-                                        Value = cart.Price,
-                                        Quantity = cart.Quantity
-                                    });
-
-                                    orderDomain.CartId = cart.CartId;
-                                }
 
                                 if (account.Balance > 0)
                                 {
@@ -182,7 +203,7 @@ namespace TicketGames.API.Controllers
                                 var credit = new Domain.Model.Credit();
 
                                 credit.Owner = order.Card.Owner;
-                                credit.SenderHash = order.Card.SenderHash;
+                                credit.SenderHash = order.SenderHash;
                                 credit.Brand = order.Card.Brand;
                                 credit.CreditCardToken = order.Card.CreditCardToken;
                                 credit.Session = session;
@@ -194,17 +215,15 @@ namespace TicketGames.API.Controllers
 
                                 orderId = this._orderService.Redemption(paymentCredit, transaction, orderDomain);
 
-                                if (orderId > 0)
-                                {
-                                    CacheManager.KeyDelete(cartKey);
-                                }
-
-
                                 break;
                             }
                         default: break;
                     }
 
+                    if (orderId > 0)
+                    {
+                        CacheManager.KeyDelete(cartKey);
+                    }
 
 
                     var pedido = order;

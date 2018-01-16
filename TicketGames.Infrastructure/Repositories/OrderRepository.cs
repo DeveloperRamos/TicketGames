@@ -31,6 +31,15 @@ namespace TicketGames.Infrastructure.Repositories
             return result;
         }
 
+        public Billet CreateBilletByOrderId(Billet billet)
+        {
+            var result = this._context.Set<Billet>().Add(billet);
+
+            this._context.SaveChanges();
+
+            return result;
+        }
+
         public Credit CreateCreditByOrderId(Credit credit)
         {
             var result = this._context.Set<Credit>().Add(credit);

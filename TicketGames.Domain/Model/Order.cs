@@ -11,8 +11,7 @@ namespace TicketGames.Domain.Model
     {
         public Order()
         {
-            this.OrderItems = new List<OrderItem>();
-            this.Credits = new List<Credit>();
+            this.OrderItems = new List<OrderItem>();            
             this.OrderHistory = new List<OrderHistory>();
         }
         public long Id { get; set; }
@@ -27,7 +26,8 @@ namespace TicketGames.Domain.Model
         public virtual Participant Participant { get; set; }
         public virtual OrderStatus OrderStatus { get; set; }
         public ICollection<OrderItem> OrderItems { get; set; }
-        public ICollection<Credit> Credits { get; set; }
+        //public virtual Credit Credit { get; set; }
+        //public virtual Billet Billet { get; set; }
         public ICollection<OrderHistory> OrderHistory { get; set; }
 
         [NotMapped]

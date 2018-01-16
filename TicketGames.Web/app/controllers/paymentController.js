@@ -299,10 +299,27 @@ ticketGamesApp
 
             vmPayment.redemption = function (order) {
 
-                switch (order.paymentType) {
-                    case 3: {
+                order.senderHash = PagSeguroDirectPayment.getSenderHash();
 
-                        order.card.senderHash = PagSeguroDirectPayment.getSenderHash();
+                switch (order.paymentType) {
+                    case 2: {
+
+                        orderService.redemption(order, function (response) {
+                            var orderid = response.data;
+
+                            if (orderid > 0) {
+                                $location.path('/Sucesso/' + orderid);
+                            } else {
+                                $location.path('/Error');
+                            }
+
+                        }, function (error) {
+                            $location.path('/Error');
+                        });
+
+                        break;
+                    }
+                    case 3: {
 
                         PagSeguroDirectPayment.createCardToken({
                             brand: order.card.brand,

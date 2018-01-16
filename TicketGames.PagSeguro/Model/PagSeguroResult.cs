@@ -14,6 +14,7 @@ namespace TicketGames.PagSeguro.Model
         public decimal NetAmount { get; set; }
         public string Reference { get; set; }
         public string TransactionStatus { get; set; }
+        public string PaymentLink { get; set; }
         public bool Success { get; set; }
 
     }
