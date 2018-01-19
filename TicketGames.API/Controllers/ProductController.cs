@@ -127,8 +127,8 @@ namespace TicketGames.API.Controllers
 
                 raffle = new Raffle(result);
 
-                if (raffle != null)
-                    CacheManager.StoreObject(key, raffle, LifetimeProfile.Long);
+                //if (raffle != null)
+                //    CacheManager.StoreObject(key, raffle, LifetimeProfile.Long);
             }
 
             return Ok(raffle);

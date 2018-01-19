@@ -52,6 +52,7 @@ namespace TicketGames.Infrastructure.Context
         public DbSet<Credit> Credits { get; set; }
         public DbSet<Domain.Model.Configuration> Settings { get; set; }
         public DbSet<Billet> Tickets { get; set; }
+        public DbSet<LuckyNumber> LuckyNumbers { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -85,6 +86,7 @@ namespace TicketGames.Infrastructure.Context
             modelBuilder.Configurations.Add(new CreditMap());
             modelBuilder.Configurations.Add(new ConfigurationMap());
             modelBuilder.Configurations.Add(new BilletMap());
+            modelBuilder.Configurations.Add(new LuckyNumberMap());
         }
 
         public override int SaveChanges()
