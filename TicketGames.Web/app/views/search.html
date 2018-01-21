@@ -59,19 +59,7 @@
             <!--<p>Lorem ipsum dolor sit consectetur adipiscing elit do eiusmod tempor...</p>-->
             <small class="price" style="text-align: center !important;">{{product.Value | currency: 'R$ '}}</small>
 
-            <h3 ng-show="product.Raffle.SalesMade == 100"><b>Sorteio {{ product.Raffle.RaffleDate | date: 'dd/MM/yyyy' }}</b></h3>
-
-            <div class="progress">
-                <div class="progress-bar progress-bar-success" role="progressbar" style="width:{{product.Raffle.SalesMade}}%" alt="O sorteio ocorrerá quando chegar a 100%">
-                    {{product.Raffle.SalesMade}}%
-                </div>
-                <div class="progress-bar progress-bar-warning" role="progressbar" style="width:{{product.Raffle.MissingtoSell}}%" alt="O sorteio ocorrerá quando chegar a 100%">
-                    {{product.Raffle.MissingtoSell}}%
-                </div>
-                <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
-                    Danger
-                </div>-->
-            </div>
+            <raffle ng-init="lucky(product.Id)"></raffle>
 
             <!--<a href="#" class="button">Comprar</a>-->
             <button ng-click="vmSearch.addCart(product.Id)" class="button">Comprar</button>

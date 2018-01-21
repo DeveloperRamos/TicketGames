@@ -17,7 +17,13 @@ namespace TicketGames.Domain.Services
         {
             this._raffleRepository = raffleRepository;
         }
-        public Raffle GetRaffle(long productId)
+
+        public async Task<Raffle> GetRaffleAsync(long productId)
+        {
+            return await this._raffleRepository.GetRaffleAsyncByProductId(productId);
+        }
+
+        Raffle IRaffleService.GetRaffle(long productId)
         {
             return this._raffleRepository.GetRaffleByProductId(productId);
         }

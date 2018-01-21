@@ -81,6 +81,8 @@
     <Content Include="app\directives\logged\loggedDirective.js" />
     <Content Include="app\directives\modal\modal.html" />
     <Content Include="app\directives\modal\modalDirective.js" />
+    <Content Include="app\directives\raffle\raffle.html" />
+    <Content Include="app\directives\raffle\raffleDirective.js" />
     <Content Include="app\directives\showcase\showcase.html" />
     <Content Include="app\directives\showcase\showcaseDirective.js" />
     <Content Include="app\services\accountService.js" />
@@ -109,6 +111,7 @@
     <Content Include="content\images\icon-boleto.png" />
     <Content Include="content\images\icon-boleto2.png" />
     <Content Include="content\images\icon-creditcard.png" />
+    <Content Include="content\images\raffle.gif" />
     <Content Include="content\images\ticketgames.png" />
     <Content Include="content\images\TicketGames3.png" />
     <Content Include="content\images\TicketGamesLogo.png" />

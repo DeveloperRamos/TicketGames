@@ -1,4 +1,4 @@
-﻿ticketGamesApp.directive('logged', function () {
+﻿ticketGamesApp.directive('raffle', function () {
     return {
         restrict: "EA",
         scope: {
@@ -6,26 +6,32 @@
             actions: "="
         },
         replace: false,
-        templateUrl: "app/directives/logged/logged.html",
-        controller: function ($scope, $rootScope, $window, $sce, globalService, accountService, cookieService) {
-            var vmLogged = this;
+        templateUrl: "app/directives/raffle/raffle.html",
+        controller: function ($scope, $rootScope, $window, $sce, globalService, productService, cookieService) {
+            //var vmLogged = this;
 
             $scope.balance = 0;
 
-
             var logged = cookieService.getItem('logged') ? true : false;
 
-            if (logged) {
-                accountService.get(function (response) {
+            $rootScope.lucky = function (productId) {
 
-                    $scope.balance = response.data.Balance;
+                productService.getRaffle(productId, function (response) {
 
-                    globalService.setItem('balance', response.data.Balance);
+                    $scope.wasLoaded = true;
+
+                    $scope.raffle = response.data;
+
+                    var resutl = response.data;
+
                 });
-            }
+
+                var estete = productId;
 
 
-            $rootScope.logged = {
+            };
+
+            $rootScope.raf = {
                 text: function (obj) {
 
                 },
@@ -44,18 +50,11 @@
                 }
             }
 
-            $scope.trustAsHtml = function (html) {
+            //$scope.trustAsHtml = function (html) {
 
-                return $sce.trustAsHtml(html);
+            //    return $sce.trustAsHtml(html);
 
-            };
-
-            $scope.logout = function () {
-
-                globalService.clear();
-                cookieService.clear();
-                $window.location.href = "/";
-            };
+            //};
 
 
             //$scope.actions = {
