@@ -2,7 +2,7 @@
 
 ticketGamesApp
     .controller('indexController', ['$scope', '$cookieStore', '$rootScope', '$location', '$routeParams', 'cartService', 'categoryService', 'participantService', 'globalService', '$window', 'cookieService',
-        function ($scope, $cookieStore, $rootScope, $location, $routeParams, cartService, categoryService, partcipantService, globalService, $window, cookieService) {
+        function ($scope, $cookieStore, $rootScope, $location, $routeParams, cartService, categoryService, participantService, globalService, $window, cookieService) {
             var vmIndex = this;
 
             vmIndex.sumCart = 0;
@@ -44,7 +44,9 @@ ticketGamesApp
 
                 if (participant.cpf && participant.email) {
 
-                    partcipantService.createParticipant(participant, function (response) {
+                    participantService.createParticipant(participant, function (response) {
+
+                        $window.location.reload();
 
                     }, function (error) {
 
@@ -57,7 +59,7 @@ ticketGamesApp
 
                 if (participant.login && participant.password) {
 
-                    partcipantService.login(participant, function (response) {
+                    participantService.login(participant, function (response) {
 
                         cookieService.setItem('token', response.data.access_token);
 

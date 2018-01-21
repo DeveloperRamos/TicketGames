@@ -40,6 +40,22 @@ namespace TicketGames.API.Controllers
         {
             CacheManager.SetProvider(new CacheProvider());
         }
+
+        [Authorize]
+        [HttpGet, Route("{orderId}")]
+        public IHttpActionResult Get(long orderId)
+        {
+            try
+            {
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return NotFound();
+            }
+        }
+
+
         [Authorize]
         [HttpPost, Route()]
         public IHttpActionResult Redemption(Order order)

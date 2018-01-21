@@ -15,5 +15,7 @@ namespace TicketGames.Domain.Contract
 
         List<PagSeguro.Model.Installment> Installments(Decimal amount, string creditCardBrand, int maxInstallmentNoInterest);
 
+        Billet GetBillet(long participantId, long orderId);
+        Credit GetCredit(long participantId, long orderId);
     }
 }

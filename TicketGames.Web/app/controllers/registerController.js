@@ -5,18 +5,15 @@ ticketGamesApp
         function ($scope, $cookieStore, $rootScope, $routeParams, $location, searchService, participantService, globalService, cookieService) {
             var vmRegister = this;
 
+            var logged = cookieService.getItem('logged') ? true : false;
+            var isSession = $routeParams.session ? true : false;
+
+
             var initialize = function () {
                 vmRegister.participant = {};
 
-                var logged = cookieService.getItem('logged');
-
-                logged = logged ? true : false;
-                var isSession = $routeParams.session ? true : false;
-
                 if (!logged) {
                     if (!isSession) {
-                        $location.path('/');
-                    } else {
                         $location.path('/');
                     }
                 }
@@ -74,8 +71,29 @@ ticketGamesApp
 
             vmRegister.save = function (register) {
 
-
                 participantService.createParticipant(register, function (response) {
+
+                    if (!logged) {
+
+                        var participant = {
+                            login: register.CPF,
+                            password: register.Password
+                        }
+
+                        participantService.login(participant, function (response) {
+
+                            cookieService.setItem('token', response.data.access_token);
+
+                            cookieService.setItem('logged', true);
+
+                            $window.location.reload();
+
+                        }, function (error) {
+
+                            var teste = error;
+                        });
+                    }
+
                     $location.path('/');
                 });
 

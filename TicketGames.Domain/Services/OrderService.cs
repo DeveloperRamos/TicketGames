@@ -24,6 +24,16 @@ namespace TicketGames.Domain.Services
             this._cartRepository = cartRepository;
         }
 
+        public Model.Billet GetBillet(long participantId, long orderId)
+        {
+            return this._orderRepository.GetBilletByOrderId(participantId,orderId);
+        }
+
+        public Model.Credit GetCredit(long participantId, long orderId)
+        {
+            return this._orderRepository.GetCreditByOrderId(participantId,orderId);
+        }
+
         public List<PagSeguro.Model.Installment> Installments(decimal amount, string creditCardBrand, int maxInstallmentNoInterest)
         {
             var installment = new PagSeguro.Model.Installment();

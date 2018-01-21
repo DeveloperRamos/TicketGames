@@ -160,6 +160,7 @@
     <Compile Include="Models\Order\Cart.cs" />
     <Compile Include="Models\Order\DeliveryAddress.cs" />
     <Compile Include="Models\Order\Order.cs" />
+    <Compile Include="Models\Order\OrderDetails.cs" />
     <Compile Include="Models\Participant\Participant.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\SimpleAuthorizationServerProvider.cs" />
