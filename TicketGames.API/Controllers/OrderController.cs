@@ -47,7 +47,24 @@ namespace TicketGames.API.Controllers
         {
             try
             {
-                return Ok();
+                ClaimsPrincipal principal = Request.GetRequestContext().Principal as ClaimsPrincipal;
+
+                long.TryParse(principal.Claims.Where(c => c.Type == "participant_Id").Single().Value, out this.participantId);
+
+                var order = this._orderService.GetOrder(orderId);
+
+
+                var orderDetails = new OrderDetails();
+
+                if (order.PaymentType.ToUpper().Contains("BILLET"))
+                {
+                    var billet = this._orderService.GetBillet(this.participantId, order.Id);
+
+
+                    orderDetails.MappingDetailsByBillet(order, billet);
+                }
+                
+                return Ok(orderDetails);
             }
             catch (Exception ex)
             {

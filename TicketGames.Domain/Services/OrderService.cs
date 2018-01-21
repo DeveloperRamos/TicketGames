@@ -26,12 +26,17 @@ namespace TicketGames.Domain.Services
 
         public Model.Billet GetBillet(long participantId, long orderId)
         {
-            return this._orderRepository.GetBilletByOrderId(participantId,orderId);
+            return this._orderRepository.GetBilletByOrderId(participantId, orderId);
         }
 
         public Model.Credit GetCredit(long participantId, long orderId)
         {
-            return this._orderRepository.GetCreditByOrderId(participantId,orderId);
+            return this._orderRepository.GetCreditByOrderId(participantId, orderId);
+        }
+
+        public Order GetOrder(long orderId)
+        {
+            return this._orderRepository.GetOrderById(orderId);
         }
 
         public List<PagSeguro.Model.Installment> Installments(decimal amount, string creditCardBrand, int maxInstallmentNoInterest)
