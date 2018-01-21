@@ -35,6 +35,7 @@ ticketGamesApp
 
                     vmProduct.product = response.data;
                     vmProduct.quantity = 1;
+                    $rootScope.lucky(vmProduct.product.Id)
 
                     //productService.getValue(productId, function (value) {                       
 

@@ -9,6 +9,7 @@ namespace TicketGames.Domain.Contract
 {
     public interface IRaffleService
     {
+        Task<Raffle> GetRaffleAsync(long productId);
         Raffle GetRaffle(long productId);
     }
 }

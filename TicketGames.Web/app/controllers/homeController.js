@@ -8,7 +8,7 @@ ticketGamesApp
 
             var initialize = function () {
                 getShowcases();
-                
+
                 var logged = cookieService.getItem('logged');
 
                 vmHome.logged = logged ? logged : false;
@@ -44,13 +44,8 @@ ticketGamesApp
 
                 if (productId) {
 
-                    productService.getRaffle(productId, function (response) {
-
-                        vmHome.raffle = response.data;
-                        return true;
-                    });
+                    var result = productService.getRaffle(productId);
                 }
-
             };
 
 
@@ -63,7 +58,7 @@ ticketGamesApp
 
 
             vmHome.addCart = function (productId) {
-                                
+
                 var logged = cookieService.getItem('logged');
 
                 logged = logged ? logged : false;

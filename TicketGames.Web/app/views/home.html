@@ -14,7 +14,12 @@
                 <h3 class="product-title"><a href="#/Produto/{{product.Id}}"><b>{{product.Name}}</b></a></h3>
                 <small class="price">{{product.Value | currency: 'R$ '}}</small>
                 <!--<p>Com a tecnologia Frostbite™, o EA SPORTS™FIFA 18 elimina o limite entre o mundo virtual e o real, dando vida aos jogadores, times e climas envolventes do maior esporte do mundo.</p>-->
-                <h3 ng-show="product.Raffle.SalesMade == 100"><b>Sorteio {{ product.Raffle.RaffleDate | date: 'dd/MM/yyyy' }}</b></h3>
+                <!--<div ng-change="vmHome.getRaffle(product.Id)"></div>-->
+
+                <raffle ng-init="lucky(product.Id)"></raffle>
+
+
+                <!--<h3 ng-show="product.Raffle.SalesMade == 100"><b>Sorteio {{ product.Raffle.RaffleDate | date: 'dd/MM/yyyy' }}</b></h3>
 
                 <div class="progress">
                     <div class="progress-bar progress-bar-success" role="progressbar" style="width:{{product.Raffle.SalesMade}}%" alt="O sorteio ocorrerá quando chegar a 100%">
@@ -23,11 +28,7 @@
                     <div class="progress-bar progress-bar-warning" role="progressbar" style="width:{{product.Raffle.MissingtoSell}}%" alt="O sorteio ocorrerá quando chegar a 100%">
                         {{product.Raffle.MissingtoSell}}%
                     </div>
-                    <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
-                        Danger
-                    </div>-->
-                </div>
-
+                </div>-->
                 <!--<a href="" class="button">Comprar</a>-->
                 <button ng-click="vmHome.addCart(product.Id)" class="button">Comprar</button>
                 <a href="#/Produto/{{product.Id}}" class="button muted">Detalhes</a>
@@ -50,29 +51,16 @@
                     <a ng-repeat="image in product.Images | filter: { ImageType: 2 }" href="#/Produto/{{product.Id}}"><img src="{{image.URL}}" alt="{{product.Name}}" class="img204x234"></a>
                     <!--<a href="#/Produto/{{product.Id}}"><img src="../../images/{{product.Id + '.png'}}" alt="{{product.Name}}" class="img204x234"></a>-->
                 </div>
+
                 <h3 class="product-title"><a href="#/Produto/{{product.Id}}"><b>{{product.Name}}</b></a></h3>
                 <small class="price">{{product.Value | currency: 'R$ '}}</small>
                 <!--<p>Com a tecnologia Frostbite™, o EA SPORTS™FIFA 18 elimina o limite entre o mundo virtual e o real, dando vida aos jogadores, times e climas envolventes do maior esporte do mundo.</p>-->
 
-
-                <h3 ng-show="product.Raffle.SalesMade == 100"><b>Sorteio {{ product.Raffle.RaffleDate | date: 'dd/MM/yyyy' }}</b></h3>
-
-                <div class="progress">
-                    <div class="progress-bar progress-bar-success" role="progressbar" style="width:{{product.Raffle.SalesMade}}%" alt="O sorteio ocorrerá quando chegar a 100%">
-                        {{product.Raffle.SalesMade}}%
-                    </div>
-                    <div class="progress-bar progress-bar-warning" role="progressbar" style="width:{{product.Raffle.MissingtoSell}}%" alt="O sorteio ocorrerá quando chegar a 100%">
-                        {{product.Raffle.MissingtoSell}}%
-                    </div>
-                    <!--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
-                        Danger
-                    </div>-->
-                </div>
+                <raffle ng-init="lucky(product.Id)"></raffle>
 
                 <!--<a href="cart.html" class="button">Comprar</a>-->
                 <button ng-click="vmHome.addCart(product.Id)" class="button">Comprar</button>
                 <a href="#/Produto/{{product.Id}}" class="button muted">Detalhes</a>
-
             </div>
         </div> <!-- .product -->
     </div> <!-- .product-list -->

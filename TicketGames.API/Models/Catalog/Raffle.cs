@@ -18,8 +18,8 @@ namespace TicketGames.API.Models.Catalog
 
         public Raffle(Domain.Model.Raffle Raffle)
         {
-            this.SalesMade = 100;
-            this.MissingtoSell = 0;
+            this.SalesMade = Raffle.LuckyNumbers.Where(l => l.OrderId > 0 && l.CartId > 0).Count();
+            this.MissingtoSell = Raffle.LuckyNumbers.Where(l => l.OrderId == 0 && l.CartId == 0).Count();
             this.RaffleDate = (RaffleStatus)Raffle.RaffleStatusId == RaffleStatus.Prolonged ? Raffle.DrawDate : Raffle.ExpectedDate;
         }
 

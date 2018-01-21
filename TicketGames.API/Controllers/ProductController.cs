@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using TicketGames.API.Models.Catalog;
@@ -112,7 +113,7 @@ namespace TicketGames.API.Controllers
         }
 
         [HttpGet, Route("raffle/{productId}")]
-        public IHttpActionResult RaffleByProductId(long productId)
+        public async Task<IHttpActionResult> RaffleAsyncByProductId(long productId)
         {
 
             Raffle raffle = null;
@@ -123,12 +124,12 @@ namespace TicketGames.API.Controllers
 
             if (raffle == null)
             {
-                var result = this._raffleService.GetRaffle(productId);
+                var result = await this._raffleService.GetRaffleAsync(productId);
 
                 raffle = new Raffle(result);
 
-                if (raffle != null)
-                    CacheManager.StoreObject(key, raffle, LifetimeProfile.Long);
+                //if (raffle != null)
+                //    CacheManager.StoreObject(key, raffle, LifetimeProfile.Long);
             }
 
             return Ok(raffle);

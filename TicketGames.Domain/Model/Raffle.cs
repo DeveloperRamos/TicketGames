@@ -9,6 +9,7 @@ namespace TicketGames.Domain.Model
         {
             this.CartItems = new List<CartItem>();
             this.OrderItems = new List<OrderItem>();
+            this.LuckyNumbers = new List<LuckyNumber>();
         }
 
         public long Id { get; set; }
@@ -27,5 +28,6 @@ namespace TicketGames.Domain.Model
         public virtual Product Product { get; set; }
         public virtual ICollection<CartItem> CartItems { get; set; }
         public virtual ICollection<OrderItem> OrderItems { get; set; }
+        public virtual ICollection<LuckyNumber> LuckyNumbers { get; set; }
     }
 }

@@ -60,6 +60,7 @@
     <Compile Include="Model\Enum\OrderStatus.cs" />
     <Compile Include="Model\Image.cs" />
     <Compile Include="Model\ImageType.cs" />
+    <Compile Include="Model\LuckyNumber.cs" />
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\OrderDeliveryAddress.cs" />
     <Compile Include="Model\OrderHistory.cs" />

@@ -68,12 +68,12 @@ namespace TicketGames.API.Controllers
                     {
                         domainCart = this._cartService.Get(this.participantId);
 
-                        if(domainCart.Id > 0)
+                        if (domainCart.Id > 0)
                         {
                             cart = new TicketGames.API.Models.Order.Cart().CreateCart(domainCart);
 
                             CacheManager.StoreObject(key, domainCart, LifetimeProfile.Long);
-                        }                        
+                        }
                     }
 
                     return Ok(cart);
@@ -184,7 +184,7 @@ namespace TicketGames.API.Controllers
 
                     foreach (var item in domainCart.CartItems)
                     {
-                        item.Cart = null;                        
+                        item.Cart = null;
                         item.Product.CartItems = null;
                     }
 

@@ -1,4 +1,4 @@
-﻿ticketGamesApp.service('productService', function ($http) {
+﻿ticketGamesApp.service('productService', function ($http, $q) {
     var urlBase = '/v1/product';
 
     var service = {
@@ -21,6 +21,7 @@
     };
 
     function getRaffle(productId, successCallback, errorCallback) {
+
         $http.get(global.service + urlBase + '/raffle/' + productId)
             .then(successCallback, errorCallback);
     };
