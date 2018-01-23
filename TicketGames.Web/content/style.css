@@ -553,256 +553,256 @@ form textarea {
 
 /* IMAGE LIGHTBOX SELECTOR */
 #imagelightbox {
-    cursor: pointer !important;
-    position: fixed !important;
-    z-index: 10000 !important;
-    -ms-touch-action: none !important;
-    touch-action: none !important;
+    cursor: pointer;
+    position: fixed;
+    z-index: 10000;
+    -ms-touch-action: none;
+    touch-action: none;
     /* 50 */
-    box-shadow: 0 0 3.125em rgba(0, 0, 0, 0.75) !important;
+    box-shadow: 0 0 3.125em rgba(0, 0, 0, 0.75);
     /* 50 */
 }
 
 /* ACTIVITY INDICATION */
 #imagelightbox-loading,
 #imagelightbox-loading div {
-    border-radius: 50% !important;
+    border-radius: 50%;
 }
 
 #imagelightbox-loading {
-    width: 2.5em !important;
+    width: 2.5em;
     /* 40 */
-    height: 2.5em !important;
+    height: 2.5em;
     /* 40 */
-    background-color: #444 !important;
-    background-color: rgba(0, 0, 0, 0.5) !important;
-    position: fixed !important;
-    z-index: 10003 !important;
-    top: 50% !important;
-    left: 50% !important;
-    padding: 0.625em !important;
+    background-color: #444;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    z-index: 10003;
+    top: 30%;
+    left: 30%;
+    padding: 0.625em;
     /* 10 */
-    margin: -1.25em 0 0 -1.25em !important;
+    margin: -1.25em 0 0 -1.25em;
     /* 20 */
     /* 40 */
-    box-shadow: 0 0 2.5em rgba(0, 0, 0, 0.75) !important;
+    box-shadow: 0 0 2.5em rgba(0, 0, 0, 0.75);    
     /* 40 */
 }
 
     #imagelightbox-loading div {
-        width: 1.25em !important;
+        width: 1.25em;
         /* 20 */
-        height: 1.25em !important;
+        height: 1.25em;
         /* 20 */
-        background-color: #fff !important;
+        background-color: #fff;
         -webkit-animation: imagelightbox-loading .5s ease infinite !important;
-        animation: imagelightbox-loading .5s ease infinite !important;
+        animation: imagelightbox-loading 10s ease infinite !important;
     }
 
 @-webkit-keyframes imagelightbox-loading {
     from {
         opacity: .5 !important;
-        -webkit-transform: scale(0.75) !important;
+        -webkit-transform: scale(0.75);
     }
 
     50% {
         opacity: 1 !important;
-        -webkit-transform: scale(1) !important;
+        -webkit-transform: scale(1);
     }
 
     to {
         opacity: .5 !important;
-        -webkit-transform: scale(0.75) !important;
+        -webkit-transform: scale(0.75);
     }
 }
 
 @keyframes imagelightbox-loading {
     from {
-        opacity: .5 !important;
-        -webkit-transform: scale(0.75) !important;
-        transform: scale(0.75) !important;
+        opacity: .5;
+        -webkit-transform: scale(0.75);
+        transform: scale(0.75);
     }
 
     50% {
-        opacity: 1 !important;
-        -webkit-transform: scale(1) !important;
-        transform: scale(1) !important;
+        opacity: 1;
+        -webkit-transform: scale(1);
+        transform: scale(1);
     }
 
     to {
-        opacity: .5 !important;
-        -webkit-transform: scale(0.75) !important;
-        transform: scale(0.75) !important;
+        opacity: .5;
+        -webkit-transform: scale(0.75);
+        transform: scale(0.75);
     }
 }
 /* OVERLAY */
 #imagelightbox-overlay {
-    background-color: #fff !important;
-    background-color: rgba(255, 255, 255, 0.9) !important;
-    position: fixed !important;
-    z-index: 9998 !important;
-    top: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    left: 0 !important;
+    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.9);
+    position: fixed;
+    z-index: 9998;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
 }
 
 /* "CLOSE" BUTTON */
 #imagelightbox-close {
-    width: 2.5em !important;
+    width: 2.5em;
     /* 40 */
-    height: 2.5em !important;
+    height: 2.5em;
     /* 40 */
-    text-align: left !important;
-    border: none !important;
-    background-color: #666 !important;
-    border-radius: 50% !important;
-    position: fixed !important;
-    z-index: 10002 !important;
-    top: 2.5em !important;
+    text-align: left;
+    border: none;
+    background-color: #666;
+    border-radius: 50%;
+    position: fixed;
+    z-index: 10002;
+    top: 2.5em;
     /* 40 */
-    right: 2.5em !important;
+    right: 2.5em;
     /* 40 */
-    -webkit-transition: color .3s ease !important;
-    transition: color .3s ease !important;
+    -webkit-transition: color .3s ease;
+    transition: color .3s ease;
 }
 
     #imagelightbox-close:hover,
     #imagelightbox-close:focus {
-        background-color: #111 !important;
+        background-color: #111;
     }
 
     #imagelightbox-close:before,
     #imagelightbox-close:after {
-        width: 2px !important;
-        background-color: #fff !important;
-        content: '' !important;
-        position: absolute !important;
-        top: 20% !important;
-        bottom: 20% !important;
-        left: 50% !important;
-        margin-left: -1px !important;
+        width: 2px;
+        background-color: #fff;
+        content: '';
+        position: absolute;
+        top: 20%;
+        bottom: 20%;
+        left: 50%;
+        margin-left: -1px;
     }
 
     #imagelightbox-close:before {
-        -webkit-transform: rotate(45deg) !important;
-        -ms-transform: rotate(45deg) !important;
-        transform: rotate(45deg) !important;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
     }
 
     #imagelightbox-close:after {
-        -webkit-transform: rotate(-45deg) !important;
-        -ms-transform: rotate(-45deg) !important;
-        transform: rotate(-45deg) !important;
+        -webkit-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+        transform: rotate(-45deg);
     }
 
 /* CAPTION */
 #imagelightbox-caption {
-    text-align: center !important;
-    color: #fff !important;
-    background-color: #666 !important;
-    position: fixed !important;
-    z-index: 10001 !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    padding: 0.625em !important;
+    text-align: center;
+    color: #fff;
+    background-color: #666;
+    position: fixed;
+    z-index: 10001;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0.625em;
     /* 10 */
 }
 
 /* NAVIGATION */
 #imagelightbox-nav {
-    background-color: #444 !important;
-    background-color: rgba(0, 0, 0, 0.5) !important;
-    border-radius: 20px !important;
-    position: fixed !important;
-    z-index: 10001 !important;
-    left: 50% !important;
-    bottom: 3.75em !important;
+    background-color: #444;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    position: fixed;
+    z-index: 10001;
+    left: 50%;
+    bottom: 3.75em;
     /* 60 */
-    padding: 0.313em !important;
+    padding: 0.313em;
     /* 5 */
-    -webkit-transform: translateX(-50%) !important;
-    -ms-transform: translateX(-50%) !important;
-    transform: translateX(-50%) !important;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
 }
 
     #imagelightbox-nav button {
-        width: 1em !important;
+        width: 1em;
         /* 20 */
-        height: 1em !important;
+        height: 1em;
         /* 20 */
-        background-color: transparent !important;
-        border: 1px solid #fff !important;
-        border-radius: 50% !important;
-        display: inline-block !important;
-        margin: 0 0.313em !important;
+        background-color: transparent;
+        border: 1px solid #fff;
+        border-radius: 50%;
+        display: inline-block;
+        margin: 0 0.313em;
         /* 5 */
     }
 
         #imagelightbox-nav button.active {
-            background-color: #fff !important;
+            background-color: #fff;
         }
 
 /* ARROWS */
 .imagelightbox-arrow {
-    width: 3.75em !important;
+    width: 3.75em;
     /* 60 */
-    height: 7.5em !important;
+    height: 7.5em;
     /* 120 */
-    background-color: #444 !important;
-    background-color: rgba(0, 0, 0, 0.5) !important;
-    vertical-align: middle !important;
-    display: none !important;
-    position: fixed !important;
-    z-index: 10001 !important;
-    top: 50% !important;
-    margin-top: -3.75em !important;
+    background-color: #444;
+    background-color: rgba(0, 0, 0, 0.5);
+    vertical-align: middle;
+    display: none;
+    position: fixed;
+    z-index: 10001;
+    top: 50%;
+    margin-top: -3.75em;
     /* 60 */
-    border: none !important;
+    border: none;
 }
 
     .imagelightbox-arrow:hover,
     .imagelightbox-arrow:focus {
-        background-color: #666 !important;
-        background-color: rgba(0, 0, 0, 0.75) !important;
+        background-color: #666;
+        background-color: rgba(0, 0, 0, 0.75);
     }
 
     .imagelightbox-arrow:active {
-        background-color: #111 !important;
+        background-color: #111;
     }
 
 .imagelightbox-arrow-left {
-    left: 2.5em !important;
+    left: 2.5em;
     /* 40 */
 }
 
 .imagelightbox-arrow-right {
-    right: 2.5em !important;
+    right: 2.5em;
     /* 40 */
 }
 
 .imagelightbox-arrow:before {
-    width: 0 !important;
-    height: 0 !important;
-    border: 1em solid transparent !important;
-    content: '' !important;
-    display: inline-block !important;
-    margin-bottom: -0.125em !important;
+    width: 0;
+    height: 0;
+    border: 1em solid transparent;
+    content: '';
+    display: inline-block;
+    margin-bottom: -0.125em;
     /* 2 */
 }
 
 .imagelightbox-arrow-left:before {
-    border-left: none !important;
-    border-right-color: #fff !important;
-    margin-left: -0.313em !important;
+    border-left: none;
+    border-right-color: #fff;
+    margin-left: -0.313em;
     /* 5 */
 }
 
 .imagelightbox-arrow-right:before {
-    border-right: none !important;
-    border-left-color: #fff !important;
-    margin-right: -0.313em !important;
+    border-right: none;
+    border-left-color: #fff;
+    margin-right: -0.313em;
     /* 5 */
 }
 
@@ -812,83 +812,83 @@ form textarea {
 #imagelightbox-caption,
 #imagelightbox-nav,
 .imagelightbox-arrow {
-    -webkit-animation: fade-in .25s linear !important;
-    animation: fade-in .25s linear !important;
+    -webkit-animation: fade-in .25s linear;
+    animation: fade-in .25s linear;
 }
 
 @-webkit-keyframes fade-in {
     from {
-        opacity: 0 !important;
+        opacity: 0;
     }
 
     to {
-        opacity: 1 !important;
+        opacity: 1;
     }
 }
 
 @keyframes fade-in {
     from {
-        opacity: 0 !important;
+        opacity: 0;
     }
 
     to {
-        opacity: 1 !important;
+        opacity: 1;
     }
 }
 
 @media only screen and (max-width: 41.25em) {
     #container {
-        width: 100% !important;
+        width: 100%;
     }
 
     #imagelightbox-close {
-        top: 1.25em !important;
+        top: 1.25em;
         /* 20 */
-        right: 1.25em !important;
+        right: 1.25em;
         /* 20 */
     }
 
     #imagelightbox-nav {
-        bottom: 1.25em !important;
+        bottom: 1.25em;
         /* 20 */
     }
 
     .imagelightbox-arrow {
-        width: 2.5em !important;
+        width: 2.5em;
         /* 40 */
-        height: 3.75em !important;
+        height: 3.75em;
         /* 60 */
-        margin-top: -2.75em !important;
+        margin-top: -2.75em;
         /* 30 */
     }
 
     .imagelightbox-arrow-left {
-        left: 1.25em !important;
+        left: 1.25em;
         /* 20 */
     }
 
     .imagelightbox-arrow-right {
-        right: 1.25em !important;
+        right: 1.25em;
         /* 20 */
     }
 }
 
 @media only screen and (max-width: 20em) {
     .imagelightbox-arrow-left {
-        left: 0 !important;
+        left: 0;
     }
 
     .imagelightbox-arrow-right {
-        right: 0 !important;
+        right: 0;
     }
 }
 
 .container {
-    margin-right: auto !important;
-    margin-left: auto !important;
-    padding-left: 15px !important;
-    padding-right: 15px !important;
-    *zoom: 1 !important;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    *zoom: 1;
 }
 
     .container:after {
