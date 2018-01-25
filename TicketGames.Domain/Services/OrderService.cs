@@ -24,6 +24,21 @@ namespace TicketGames.Domain.Services
             this._cartRepository = cartRepository;
         }
 
+        public Model.Billet GetBillet(long participantId, long orderId)
+        {
+            return this._orderRepository.GetBilletByOrderId(participantId, orderId);
+        }
+
+        public Model.Credit GetCredit(long participantId, long orderId)
+        {
+            return this._orderRepository.GetCreditByOrderId(participantId, orderId);
+        }
+
+        public Order GetOrder(long orderId)
+        {
+            return this._orderRepository.GetOrderById(orderId);
+        }
+
         public List<PagSeguro.Model.Installment> Installments(decimal amount, string creditCardBrand, int maxInstallmentNoInterest)
         {
             var installment = new PagSeguro.Model.Installment();
@@ -107,9 +122,15 @@ namespace TicketGames.Domain.Services
             return 0;
         }
 
-        public long Redemption(PagSeguro.Model.Billet billet, Model.Transaction transaction, Order order)
+        public long Redemption(PagSeguro.Model.Billet billet, Model.Transaction transaction, Order order, List<Configuration> settings)
         {
-            PagSeguro.Transaction trans = new PagSeguro.Transaction();
+            var pagSeguroSettings = settings.Where(s => s.Key.Contains("pagSeguro")).ToList();
+
+            Dictionary<string, string> dictionary = new Dictionary<string, string>();
+
+            pagSeguroSettings.ForEach(s => dictionary.Add(s.Key, s.Value));
+
+            PagSeguro.Transaction trans = new PagSeguro.Transaction(dictionary);
             var resultTransaction = new Domain.Model.Transaction();
 
             var orderCreate = this._orderRepository.Create(order);

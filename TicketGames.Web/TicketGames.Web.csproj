@@ -79,6 +79,8 @@
     <Content Include="app\directives\loading\loadingDirective.js" />
     <Content Include="app\directives\logged\logged.html" />
     <Content Include="app\directives\logged\loggedDirective.js" />
+    <Content Include="app\directives\luckyNumber\number.html" />
+    <Content Include="app\directives\luckyNumber\numberDirective.js" />
     <Content Include="app\directives\modal\modal.html" />
     <Content Include="app\directives\modal\modalDirective.js" />
     <Content Include="app\directives\raffle\raffle.html" />
@@ -299,6 +301,9 @@
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\ticketgames - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\ticketgames - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="Scripts\formulario.js" />
     <Content Include="Scripts\jquery-3.2.1.js" />

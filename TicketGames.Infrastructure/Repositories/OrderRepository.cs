@@ -56,6 +56,54 @@ namespace TicketGames.Infrastructure.Repositories
             return this._context.SaveChanges() > 0;
         }
 
+        public Billet GetBilletByOrderId(long participantId, long orderId)
+        {
+            using (var connect = new MySqlConnection(connection))
+            {
+                //connect.Open();
+
+                string queryBillet = @"Select B.* From Tb_Billet B Inner Join Tb_Order O On(B.OrderId = O.Id) Where O.ParticipantId = @participantId And B.OrderId = @orderId;";
+
+                var resultBillet = connect.Query<Billet>(queryBillet, new { participantId = participantId, orderId = orderId }).FirstOrDefault();
+
+                //connect.Close();
+
+                return resultBillet;
+            }
+        }
+
+        public Credit GetCreditByOrderId(long participantId, long orderId)
+        {
+            using (var connect = new MySqlConnection(connection))
+            {
+                //connect.Open();
+
+                string queryCredit = @"Select C.* From Tb_Credit C Inner Join Tb_Order O On(C.OrderId = O.Id) Where O.ParticipantId = @participantId And C.OrderId = @orderId;";
+
+                var resultCredit = connect.Query<Credit>(queryCredit, new { participantId = participantId, orderId = orderId }).FirstOrDefault();
+
+                //connect.Close();
+
+                return resultCredit;
+            }
+        }
+
+        public Order GetOrderById(long orderId)
+        {
+            using (var connect = new MySqlConnection(connection))
+            {
+                //connect.Open();
+
+                string queryOrder = @"Select * From Tb_Order Where Id = @orderId;";
+
+                var resultOrder = connect.Query<Order>(queryOrder, new { orderId = orderId }).FirstOrDefault();
+
+                //connect.Close();
+
+                return resultOrder;
+            }
+        }
+
         public bool UpdateOrderDeliveryAddressByCartId(long cartId, long orderId)
         {
             var orderDeliveryAddressModified = new OrderDeliveryAddress();

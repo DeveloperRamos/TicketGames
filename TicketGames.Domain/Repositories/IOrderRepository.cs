@@ -18,5 +18,11 @@ namespace TicketGames.Domain.Repositories
         bool CreateOrderHistory(OrderHistory history);
 
         bool UpdateOrderDeliveryAddressByCartId(long cartId, long orderId);
+
+        Order GetOrderById(long orderId);
+        Billet GetBilletByOrderId(long participantId, long orderId);
+        Credit GetCreditByOrderId(long participantId, long orderId);
+
+
     }
 }
