@@ -25,18 +25,20 @@ namespace TicketGames.API.Controllers
         private readonly ICartService _cartService;
         private readonly IOrderService _orderService;
         private readonly ITransactionService _transactionService;
+        private readonly IConfigurationService _configurationService;
         private long participantId = 0;
 
 
-        public OrderController(IParticipantService participantService, ICartService cartService, IOrderService orderService, ITransactionService transactionService)
+        public OrderController(IParticipantService participantService, ICartService cartService, IOrderService orderService, ITransactionService transactionService, IConfigurationService configurationService)
         {
             this._participantService = participantService;
             this._cartService = cartService;
             this._orderService = orderService;
             this._transactionService = transactionService;
+            this._configurationService = configurationService;
         }
         public OrderController()
-            : this(new ParticipantService(new ParticipantRepository()), new CartService(new CartRepository()), new OrderService(new OrderRepository(), new TransactionRepository(), new CartRepository()), new TransactionService(new TransactionRepository()))
+            : this(new ParticipantService(new ParticipantRepository()), new CartService(new CartRepository()), new OrderService(new OrderRepository(), new TransactionRepository(), new CartRepository()), new TransactionService(new TransactionRepository()), new ConfigurationService(new ConfigurationRepository()))
         {
             CacheManager.SetProvider(new CacheProvider());
         }
@@ -63,7 +65,7 @@ namespace TicketGames.API.Controllers
 
                     orderDetails.MappingDetailsByBillet(order, billet);
                 }
-                
+
                 return Ok(orderDetails);
             }
             catch (Exception ex)
@@ -154,6 +156,23 @@ namespace TicketGames.API.Controllers
 
                     #endregion
 
+
+                    #region Get Settings
+
+                    var settingsKey = "Settings:Configuration";
+                    List<Domain.Model.Configuration> settings = null;
+                    settings = CacheManager.GetObject<List<Domain.Model.Configuration>>(settingsKey);
+
+                    if (settings == null)
+                    {
+                        settings = this._configurationService.GetSettings();
+
+                        if (settings != null && settings.Count > 0)
+                            CacheManager.StoreObject(settingsKey, settings, LifetimeProfile.Longest);
+                    }
+
+                    #endregion
+
                     carts.ForEach(c =>
                     total += c.Price * c.Quantity
                     );
@@ -214,7 +233,7 @@ namespace TicketGames.API.Controllers
 
                                 var paymentBillet = order.MappingBillet(domainParticipant, deliveryAddressResult, billet);
 
-                                orderId = this._orderService.Redemption(paymentBillet, transaction, orderDomain);
+                                orderId = this._orderService.Redemption(paymentBillet, transaction, orderDomain, settings);
 
                                 break;
                             }
